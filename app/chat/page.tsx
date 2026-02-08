@@ -72,9 +72,9 @@ export default function ChatPage() {
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
               <Bot className="w-4 h-4" />
-              مساعد liilsol الذكي
+              سولي - مساعدك الذكي
             </div>
-            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويساعدك خطوة بخطوة</p>
+            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويمشي معك خطوة بخطوة</p>
           </div>
 
           {/* Chat Area */}
