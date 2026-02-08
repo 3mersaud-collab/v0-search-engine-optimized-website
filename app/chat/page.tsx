@@ -6,15 +6,15 @@ import { DefaultChatTransport } from "ai"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Send, Bot, User, Loader2, MessageCircle, Calculator, FileText, ArrowLeft, Search, ExternalLink, ShoppingCart } from "lucide-react"
+import { Send, Bot, User, Loader2, MessageCircle, Calculator, FileText, Search, ExternalLink, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { ChatMessageContent } from "@/components/chat-message"
 
 const quickQuestions = [
-  { icon: Calculator, text: "ابي 2000 كاش، كم لازم اشتري؟" },
-  { icon: Search, text: "كم سعر ايفون 16 في اكسترا؟" },
-  { icon: FileText, text: "كيف أقدم طلب سيولة؟" },
-  { icon: MessageCircle, text: "وش الفرق بين تابي وتمارا؟" },
+  { icon: Calculator, text: "ابي 1000 كاش" },
+  { icon: Calculator, text: "ابي 2000 كاش" },
+  { icon: Calculator, text: "ابي 3000 كاش" },
+  { icon: Calculator, text: "ابي 5000 كاش" },
 ]
 
 const chatTransport = new DefaultChatTransport({ api: "/api/chat" })
@@ -24,7 +24,6 @@ export default function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const prevMessageCount = useRef(0)
 
   const { messages, sendMessage, status } = useChat({
     transport: chatTransport,
@@ -35,7 +34,7 @@ export default function ChatPage() {
         parts: [
           {
             type: "text",
-            text: "اهلا فيك! انا مساعد **liilsol** الذكي.\n\nنحول لك مشترياتك بالتقسيط من **تابي وتمارا ومدفوع** الى كاش في حسابك البنكي خلال ساعتين.\n\nالطريقة بسيطة: تشتري جهاز بالتقسيط، ونشتريه منك ونحول لك المبلغ. الدفعة الاولى نقوم بدفعها واستردادها بعد البيع **بدون اي فوائد عليك**.\n\n**كم المبلغ اللي تحتاجه كاش (الصافي)؟**"
+            text: "اهلا وسهلا فيك! انا مساعدك في **ليل سول** (liilsol)\n\nنحول لك مشترياتك بالتقسيط من **تابي وتمارا ومدفوع** الى كاش يوصل حسابك البنكي خلال ساعتين.\n\nالطريقة بسيطة:\n- تشتري جهاز بالتقسيط من متجر مثل اكسترا\n- نشتريه منك ونبيعه\n- نحول لك الكاش\n- الدفعة الاولى **نحن ندفعها** ونستردها بعد البيع - **بدون اي فوائد عليك**\n\nراح امشي معك خطوة بخطوة ان شاء الله.\n\n**كم المبلغ اللي تحتاجه كاش (الصافي)؟**"
           }
         ],
         createdAt: new Date(),
@@ -46,11 +45,10 @@ export default function ChatPage() {
   const isLoading = status === "streaming" || status === "submitted"
 
   useEffect(() => {
-    if (messages.length > prevMessageCount.current) {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })
-      prevMessageCount.current = messages.length
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
-  }, [messages.length])
+  }, [messages])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -72,17 +70,17 @@ export default function ChatPage() {
         <div className="container mx-auto px-4 flex-1 flex flex-col max-w-3xl">
           {/* Header */}
           <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
               <Bot className="w-4 h-4" />
               مساعد liilsol الذكي
             </div>
-            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويساعدك خطوة بخطوة</p>
+            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويمشي معك خطوة بخطوة</p>
           </div>
 
           {/* Chat Area */}
           <div className="flex-1 bg-card rounded-2xl border border-border shadow-lg flex flex-col overflow-hidden">
             {/* Messages */}
-            <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 min-h-[400px] max-h-[500px]">
+            <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 min-h-[420px] max-h-[520px]">
               {messages.map((message) => (
                 <div key={message.id} className={`flex gap-3 ${message.role === "user" ? "flex-row-reverse" : ""}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
@@ -96,59 +94,56 @@ export default function ChatPage() {
                       : "bg-secondary text-foreground rounded-tl-sm"
                   }`}>
                     {message.parts.map((part, index) => {
-                      if (part.type === "text") {
+                      if (part.type === "text" && part.text.trim()) {
                         return (
                           <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
                         )
                       }
                       if (part.type === "tool-invocation") {
-                        const toolName = part.toolName
-                        
                         if (part.state !== "output-available") {
                           return (
                             <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground mt-2">
                               <Loader2 className="w-3 h-3 animate-spin" />
-                              {toolName === "searchExtra" ? "جاري البحث في اكسترا..." : "جاري الحساب..."}
+                              {part.toolName === "searchExtra" ? "جاري البحث في اكسترا..." : "جاري الحساب..."}
                             </div>
                           )
                         }
 
-                        // نتائج الحساب
-                        if (toolName === "calculateCash") {
+                        if (part.toolName === "calculateCash") {
                           const r = part.output as {
                             purchaseAmount: number; saleAmount: number; adminFee: number
                             downPayment: number; netAmount: number; remainingInstallment: number
-                            sellingLossPercent: number; note: string
                           }
+                          if (!r || !r.purchaseAmount) return null
                           return (
-                            <div key={index} className="mt-3 bg-background/60 rounded-xl p-4 border border-border/50 space-y-2">
-                              <div className="flex items-center gap-1.5 text-xs font-medium text-primary mb-2">
+                            <div key={index} className="mt-3 bg-background/60 rounded-xl p-4 border border-border/50 space-y-1">
+                              <div className="flex items-center gap-1.5 text-xs font-medium text-primary mb-3">
                                 <Calculator className="w-3.5 h-3.5" />
                                 تفاصيل الحساب
                               </div>
-                              <div className="grid grid-cols-2 gap-2 text-xs">
-                                <div className="flex justify-between col-span-2 py-1 border-b border-border/30">
+                              <div className="space-y-1.5 text-xs">
+                                <div className="flex justify-between py-1.5 border-b border-border/30">
                                   <span className="text-muted-foreground">قيمة الشراء (الجهاز)</span>
-                                  <span className="font-semibold">{r.purchaseAmount.toLocaleString()} ر.س</span>
+                                  <span className="font-semibold text-foreground">{r.purchaseAmount.toLocaleString()} ر.س</span>
                                 </div>
-                                <div className="flex justify-between col-span-2 py-1 border-b border-border/30">
-                                  <span className="text-muted-foreground">مبلغ البيع (-{r.sellingLossPercent}%)</span>
-                                  <span className="font-medium">{r.saleAmount.toLocaleString()} ر.س</span>
+                                <div className="flex justify-between py-1.5 border-b border-border/30">
+                                  <span className="text-muted-foreground">مبلغ البيع</span>
+                                  <span className="font-medium text-foreground">{r.saleAmount.toLocaleString()} ر.س</span>
                                 </div>
-                                <div className="flex justify-between col-span-2 py-1 border-b border-border/30">
+                                <div className="flex justify-between py-1.5 border-b border-border/30">
                                   <span className="text-muted-foreground">الرسوم الادارية</span>
                                   <span className="text-destructive font-medium">{r.adminFee.toLocaleString()} ر.س</span>
                                 </div>
-                                <div className="flex justify-between col-span-2 py-1 border-b border-border/30">
-                                  <span className="text-muted-foreground">الدفعة الاولى (25%)</span>
-                                  <span className="text-destructive font-medium">{r.downPayment.toLocaleString()} ر.س</span>
+                                <div className="flex justify-between py-1.5 border-b border-border/30">
+                                  <span className="text-muted-foreground">الدفعة الاولى (نحن ندفعها)</span>
+                                  <span className="text-foreground font-medium">{r.downPayment.toLocaleString()} ر.س</span>
                                 </div>
-                                <div className="flex justify-between col-span-2 py-2 bg-accent/5 rounded-lg px-2 -mx-2">
-                                  <span className="font-bold text-foreground">الصافي المستلم (كاش)</span>
+                                <div className="flex justify-between py-2 bg-accent/10 rounded-lg px-3 mt-2">
+                                  <span className="font-bold text-foreground">الصافي المستلم كاش</span>
                                   <span className="font-bold text-accent text-sm">{r.netAmount.toLocaleString()} ر.س</span>
                                 </div>
-                                <div className="flex justify-between col-span-2 py-1 text-muted-foreground">
-                                  <span>المتبقي للتقسيط</span>
+                                <div className="flex justify-between py-1.5 text-muted-foreground">
+                                  <span>المتبقي عليك بالتقسيط</span>
                                   <span>{r.remainingInstallment.toLocaleString()} ر.س</span>
                                 </div>
                               </div>
@@ -156,40 +151,21 @@ export default function ChatPage() {
                           )
                         }
 
-                        // نتائج البحث في اكسترا
-                        if (toolName === "searchExtra") {
-                          const result = part.output as { products?: { name: string; price: string; url: string }[]; searchUrl?: string }
-                          if (result?.products && result.products.length > 0) {
+                        if (part.toolName === "searchExtra") {
+                          const result = part.output as { searchUrl?: string }
+                          if (result?.searchUrl) {
                             return (
-                              <div key={index} className="mt-2 space-y-2">
-                                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                                  <Search className="w-3 h-3" />
-                                  نتائج البحث في اكسترا
-                                </div>
-                                {result.products.map((product, pIdx) => (
-                                  <a
-                                    key={pIdx}
-                                    href={product.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-between gap-2 bg-background/60 rounded-lg px-3 py-2 hover:bg-background transition-colors border border-border/50"
-                                  >
-                                    <div className="flex items-center gap-2 min-w-0">
-                                      <ShoppingCart className="w-3.5 h-3.5 text-primary shrink-0" />
-                                      <span className="text-xs text-foreground truncate">{product.name}</span>
-                                    </div>
-                                    <div className="flex items-center gap-1.5 shrink-0">
-                                      <span className="text-xs font-bold text-accent">{Number(product.price).toLocaleString()} ر.س</span>
-                                      <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                                    </div>
-                                  </a>
-                                ))}
-                                {result.searchUrl && (
-                                  <a href={result.searchUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 text-xs text-primary hover:underline pt-1">
-                                    عرض كل النتائج في اكسترا
-                                    <ExternalLink className="w-3 h-3" />
-                                  </a>
-                                )}
+                              <div key={index} className="mt-2">
+                                <a
+                                  href={result.searchUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 bg-background/60 rounded-lg px-3 py-2 hover:bg-background transition-colors border border-border/50 text-xs"
+                                >
+                                  <ShoppingCart className="w-3.5 h-3.5 text-primary" />
+                                  <span className="text-foreground">ابحث في اكسترا</span>
+                                  <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                                </a>
                               </div>
                             )
                           }
@@ -200,21 +176,25 @@ export default function ChatPage() {
                   </div>
                 </div>
               ))}
+
               {isLoading && messages[messages.length - 1]?.role === "user" && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-accent/10 text-accent">
                     <Bot className="w-4 h-4" />
                   </div>
                   <div className="bg-secondary rounded-2xl rounded-tl-sm px-4 py-3">
-                    <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-2 h-2 bg-muted-foreground/40 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </div>
                   </div>
                 </div>
               )}
               <div ref={messagesEndRef} />
 
-              {/* Quick Questions - show if only welcome message */}
               {messages.length <= 1 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                <div className="grid grid-cols-2 gap-2 pt-2">
                   {quickQuestions.map((q) => (
                     <button
                       key={q.text}
@@ -237,7 +217,7 @@ export default function ChatPage() {
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="اكتب مبلغ أو سؤالك..."
+                  placeholder="اكتب المبلغ أو رد على المساعد..."
                   disabled={isLoading}
                   className="flex-1 bg-secondary/50 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
                   dir="rtl"
@@ -254,7 +234,7 @@ export default function ChatPage() {
             <Button variant="outline" size="sm" asChild className="gap-2 bg-transparent">
               <Link href="/order">
                 <FileText className="w-4 h-4" />
-                اطلب سيولة
+                صفحة الطلب
               </Link>
             </Button>
             <Button variant="outline" size="sm" asChild className="gap-2 bg-[#25D366]/10 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 hover:text-[#25D366]">
