@@ -184,7 +184,7 @@ export async function POST(req: Request) {
         },
       }),
     },
-    stopWhen: stepCountIs(8),
+    stopWhen: stepCountIs(3),
   })
 
   return result.toUIMessageStreamResponse()
