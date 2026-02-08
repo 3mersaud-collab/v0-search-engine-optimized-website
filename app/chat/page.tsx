@@ -22,7 +22,9 @@ const chatTransport = new DefaultChatTransport({ api: "/api/chat" })
 export default function ChatPage() {
   const [input, setInput] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const prevMessageCount = useRef(0)
 
   const { messages, sendMessage, status } = useChat({
     transport: chatTransport,
@@ -44,8 +46,11 @@ export default function ChatPage() {
   const isLoading = status === "streaming" || status === "submitted"
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
+    if (messages.length > prevMessageCount.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      prevMessageCount.current = messages.length
+    }
+  }, [messages.length])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -77,7 +82,7 @@ export default function ChatPage() {
           {/* Chat Area */}
           <div className="flex-1 bg-card rounded-2xl border border-border shadow-lg flex flex-col overflow-hidden">
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 min-h-[400px] max-h-[500px]">
+            <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 min-h-[400px] max-h-[500px]">
               {messages.map((message) => (
                 <div key={message.id} className={`flex gap-3 ${message.role === "user" ? "flex-row-reverse" : ""}`}>
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
