@@ -6,14 +6,15 @@ import { DefaultChatTransport } from "ai"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Send, Bot, User, Loader2, MessageCircle, Calculator, FileText, ArrowLeft, Sparkles } from "lucide-react"
+import { Send, Bot, User, Loader2, MessageCircle, Calculator, FileText, ArrowLeft, Sparkles, Search, ExternalLink, ShoppingCart } from "lucide-react"
 import Link from "next/link"
+import { ChatMessageContent } from "@/components/chat-message"
 
 const quickQuestions = [
   { icon: Calculator, text: "كم أستلم كاش لو اشتريت بـ 5000؟" },
+  { icon: Search, text: "ابحث لي عن سعر ايفون 16 في اكسترا" },
   { icon: FileText, text: "كيف أقدم طلب سيولة؟" },
-  { icon: MessageCircle, text: "وش الفرق بين تابي وتمارا؟" },
-  { icon: Sparkles, text: "كم أقل مبلغ تقبلون؟" },
+  { icon: Sparkles, text: "وش الفرق بين تابي وتمارا؟" },
 ]
 
 export default function ChatPage() {
@@ -103,8 +104,51 @@ export default function ChatPage() {
                         {message.parts.map((part, index) => {
                           if (part.type === "text") {
                             return (
-                              <div key={index} className="text-sm leading-relaxed whitespace-pre-wrap">
-                                {part.text}
+                              <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
+                            )
+                          }
+                          if (part.type === "tool-invocation" && part.state === "output-available") {
+                            const result = part.output as { products?: { name: string; price: string; url: string }[]; searchUrl?: string }
+                            if (result?.products && result.products.length > 0) {
+                              return (
+                                <div key={index} className="mt-2 space-y-2">
+                                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                                    <Search className="w-3 h-3" />
+                                    نتائج البحث في اكسترا
+                                  </div>
+                                  {result.products.map((product, pIdx) => (
+                                    <a
+                                      key={pIdx}
+                                      href={product.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center justify-between gap-2 bg-background/60 rounded-lg px-3 py-2 hover:bg-background transition-colors border border-border/50"
+                                    >
+                                      <div className="flex items-center gap-2 min-w-0">
+                                        <ShoppingCart className="w-3.5 h-3.5 text-primary shrink-0" />
+                                        <span className="text-xs text-foreground truncate">{product.name}</span>
+                                      </div>
+                                      <div className="flex items-center gap-1.5 shrink-0">
+                                        <span className="text-xs font-bold text-accent">{Number(product.price).toLocaleString()} ر.س</span>
+                                        <ExternalLink className="w-3 h-3 text-muted-foreground" />
+                                      </div>
+                                    </a>
+                                  ))}
+                                  {result.searchUrl && (
+                                    <a href={result.searchUrl} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 text-xs text-primary hover:underline pt-1">
+                                      عرض كل النتائج في اكسترا
+                                      <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                  )}
+                                </div>
+                              )
+                            }
+                          }
+                          if (part.type === "tool-invocation" && part.state !== "output-available") {
+                            return (
+                              <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground mt-1">
+                                <Loader2 className="w-3 h-3 animate-spin" />
+                                جاري البحث في اكسترا...
                               </div>
                             )
                           }
