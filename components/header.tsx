@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Phone } from "lucide-react"
+import { Menu, X, Phone, Bot } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -50,6 +50,10 @@ export function Header() {
             </Link>
             <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
               من نحن
+            </Link>
+            <Link href="/chat" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+              <Bot className="w-4 h-4" />
+              المساعد الذكي
             </Link>
             <Link href="/track" className="text-muted-foreground hover:text-foreground transition-colors">
               تتبع الطلب
@@ -135,6 +139,14 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 من نحن
+              </Link>
+              <Link 
+                href="/chat" 
+                className="text-primary font-medium hover:text-primary/80 transition-colors py-2 flex items-center gap-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Bot className="w-4 h-4" />
+                المساعد الذكي
               </Link>
               <Link 
                 href="/track" 

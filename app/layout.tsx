@@ -4,6 +4,7 @@ import { IBM_Plex_Sans_Arabic } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SeoSchema } from '@/components/seo-schema'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ChatFab } from '@/components/chat-fab'
 import './globals.css'
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({ 
@@ -114,6 +115,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ChatFab />
         </ThemeProvider>
         <Analytics />
       </body>
