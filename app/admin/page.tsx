@@ -10,8 +10,9 @@ import { Input } from "@/components/ui/input"
 import {
   Package, Clock, CheckCircle2, Truck, XCircle, LogOut,
   Search, RefreshCw, Phone, DollarSign, Filter, Loader2,
-  ChevronDown, MessageCircle, Trash2
+  ChevronDown, MessageCircle, Trash2, Bot
 } from "lucide-react"
+import Link from "next/link"
 
 const statusConfig: Record<string, { label: string; color: string; bg: string; icon: React.ElementType }> = {
   pending: { label: "قيد المراجعة", color: "text-yellow-600", bg: "bg-yellow-50 border-yellow-200", icon: Clock },
@@ -159,11 +160,19 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-foreground">لوحة التحكم - liilsol</h1>
-          <Button variant="outline" size="sm" onClick={handleLogout} className="bg-transparent">
-            <LogOut className="w-4 h-4 ml-2" />
-            خروج
-          </Button>
+ <h1 className="text-xl font-bold text-foreground">لوحة التحكم - liilsol</h1>
+  <div className="flex items-center gap-2">
+    <Button variant="outline" size="sm" asChild className="bg-transparent">
+      <Link href="/admin/whatsapp">
+        <Bot className="w-4 h-4 ml-1" />
+        ربط واتساب
+      </Link>
+    </Button>
+    <Button variant="outline" size="sm" onClick={handleLogout} className="bg-transparent">
+      <LogOut className="w-4 h-4 ml-2" />
+      خروج
+    </Button>
+  </div>
         </div>
       </header>
 
