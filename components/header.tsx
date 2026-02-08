@@ -53,7 +53,7 @@ export function Header() {
             </Link>
             <Link href="/chat" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
               <Bot className="w-4 h-4" />
-              المساعد الذكي
+              مطر
             </Link>
             <Link href="/track" className="text-muted-foreground hover:text-foreground transition-colors">
               تتبع الطلب
@@ -146,7 +146,7 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Bot className="w-4 h-4" />
-                المساعد الذكي
+                مطر
               </Link>
               <Link 
                 href="/track" 

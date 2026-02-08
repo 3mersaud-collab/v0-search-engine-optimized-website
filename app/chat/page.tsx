@@ -6,7 +6,7 @@ import { DefaultChatTransport } from "ai"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Send, Bot, User, Loader2, MessageCircle, Calculator, FileText, Search, ExternalLink, ShoppingCart } from "lucide-react"
+import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, Search, ExternalLink, ShoppingCart } from "lucide-react"
 import Link from "next/link"
 import { ChatMessageContent } from "@/components/chat-message"
 
@@ -34,7 +34,7 @@ export default function ChatPage() {
         parts: [
           {
             type: "text",
-            text: "هلا والله! حياك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك ونبيعه\n- نخصم الرسوم والدفعة الأولى من قيمة البيع ونحول لك الباقي\n- الدفعة الأولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. راح أمشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
+            text: "هلا والله! أنا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك ونبيعه\n- نخصم الرسوم والدفعة الأولى من قيمة البيع ونحول لك الباقي\n- الدفعة الأولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. راح أمشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
           }
         ],
         createdAt: new Date(),
@@ -71,10 +71,10 @@ export default function ChatPage() {
           {/* Header */}
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
-              <Bot className="w-4 h-4" />
-              مساعد liilsol الذكي
+              <CloudRain className="w-4 h-4" />
+              مطر - مساعدك الذكي
             </div>
-            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويساعدك خطوة بخطوة</p>
+            <p className="text-muted-foreground text-sm">غيث ونعمة - يمشي معك خطوة بخطوة</p>
           </div>
 
           {/* Chat Area */}
@@ -86,7 +86,7 @@ export default function ChatPage() {
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
                     message.role === "user" ? "bg-primary text-primary-foreground" : "bg-accent/10 text-accent"
                   }`}>
-                    {message.role === "user" ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                    {message.role === "user" ? <User className="w-4 h-4" /> : <CloudRain className="w-4 h-4" />}
                   </div>
                   <div className={`max-w-[85%] rounded-2xl px-4 py-3 ${
                     message.role === "user"
@@ -180,7 +180,7 @@ export default function ChatPage() {
               {isLoading && messages[messages.length - 1]?.role === "user" && (
                 <div className="flex gap-3">
                   <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-accent/10 text-accent">
-                    <Bot className="w-4 h-4" />
+                    <CloudRain className="w-4 h-4" />
                   </div>
                   <div className="bg-secondary rounded-2xl rounded-tl-sm px-4 py-3">
                     <div className="flex gap-1">
