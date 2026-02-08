@@ -10,81 +10,110 @@ import { z } from "zod"
 export const maxDuration = 30
 
 const SYSTEM_PROMPT = `أنت مساعد ذكي لموقع liilsol (ليل سول) - خدمة سيولة فورية من تابي وتمارا ومدفوع في السعودية.
+تتكلم بعامي سعودي ودّي ومختصر.
 
-## معلومات الخدمة:
-- نقوم بشراء جوال أو بيعه للعميل عبر تابي أو تمارا أو مدفوع
-- نحول الكاش مباشرة لحساب العميل البنكي خلال ساعتين
-- خدمة مرخصة بسجل تجاري في الرياض
+## أول رسالة لك دائما تكون ترحيب:
+- رحب بالعميل
+- اشرح بإختصار: "نحول لك مشترياتك بالتقسيط من تابي وتمارا ومدفوع إلى كاش في حسابك البنكي خلال ساعتين. نشتري الجهاز اللي تبيه بالتقسيط، ونبيعه ونحول لك المبلغ. الدفعة الأولى نقوم بدفعها واستردادها بعد البيع بدون أي فوائد عليك."
+- بعدين اسأله: "كم المبلغ اللي تحتاجه كاش (الصافي)؟"
 
-## كيف تعمل الخدمة:
-1. العميل يختار التطبيق (تابي/تمارا/مدفوع)
-2. يحدد المبلغ المطلوب
-3. يذهب لمتجر (اكسترا أو نون أو المنيع) ويشتري جوال بالتقسيط
-4. نستلم الجوال ونبيعه ونحول الكاش لحسابه
+## عندما يذكر العميل مبلغ:
+- استخدم أداة calculateCash لحساب التفاصيل
+- اعرض النتيجة بشكل واضح ومنظم
+- اسأله يبي يكمل ويقدم الطلب
 
 ## طريقة الحساب (على 4 أقساط):
-- الدفعة الأولى: 25% من مبلغ الشراء (يدفعها العميل)
-- فرق البيع: يعتمد على المبلغ:
-  - أقل من 5500: 15%
-  - من 5500: تبدأ 14% وتنقص 1% كل 1000 ريال
-  - من 9500 وأكثر: 10% ثابت
-- الرسوم الإدارية: 10% من مبلغ الشراء + 100 ريال إضافية إذا المبلغ أقل من 4000
+- الدفعة الأولى: 25% من مبلغ الشراء
+- فرق البيع: أقل من 5500 = 15%، من 5500 = يبدأ 14% وينقص 1% كل 1000 ريال، من 9500+ = 10% ثابت
+- الرسوم الإدارية: 10% + 100 ريال إضافية إذا المبلغ أقل من 4000
 - الصافي = مبلغ البيع - الرسوم - الدفعة الأولى
+- ملاحظة: الحسبة على 4 أقساط، إذا زاد عدد الدفعات الفرق لصالح العميل بدون رسوم إضافية
 
-مثال: شراء بـ 5000 ريال:
-- مبلغ البيع = 5000 - 15% = 4250 ريال
-- الرسوم = 500 ريال (10%)
-- الدفعة الأولى = 1250 ريال (25%)
-- الصافي المستلم = 4250 - 500 - 1250 = 2500 ريال
-
-ملاحظة مهمة: هذه الحسبة مبنية على 4 أقساط. بعد التقديم قد تتغير إذا زاد عدد الدفعات والفرق يكون لصالح العميل بدون رسوم إضافية.
-
-## المتاجر المتاحة:
-- اكسترا: https://www.extra.com
-- نون: https://www.noon.com
+## المتاجر:
+- اكسترا: https://www.extra.com/en-sa
+- نون: https://www.noon.com/en-sa
 - المنيع: https://www.almunayes.com.sa
 
-## التواصل:
+## روابط الموقع:
+- [اطلب سيولة](/order) | [حاسبة السيولة](/#calculator) | [تتبع طلبك](/track) | [آراء العملاء](/reviews)
 - واتساب: https://wa.me/966590360039
-- الموقع: https://liilsol.com
 
-## صفحات الموقع المهمة:
-- صفحة الطلب: [اطلب سيولة](/order)
-- حاسبة السيولة: [احسب الكاش](/calculator) أو قسم الحاسبة في الصفحة الرئيسية
-- تتبع الطلب: [تتبع طلبك](/track)
-- التقييمات: [آراء العملاء](/reviews)
+## تعليمات مهمة:
+- اكتب الروابط بصيغة markdown: [النص](الرابط)
+- لا تطوّل، خلّك مختصر ومفيد
+- إذا سأل عن جهاز معين استخدم أداة searchExtra
+- بعد ما تعرض المنتج من اكسترا، احسب له الصافي تلقائي
+- شجع التقديم عبر الموقع لأنه يمنح أولوية`
 
-## البحث في اكسترا:
-- لديك أداة searchExtra تمكنك من البحث في متجر اكسترا عن المنتجات والأسعار
-- عندما يسأل العميل عن سعر جهاز معين أو يريد يعرف وش يقدر يشتري بمبلغ معين، استخدم الأداة
-- اعرض النتائج بشكل واضح مع الأسعار والروابط المباشرة
-- بعد عرض المنتج، احسب له الصافي اللي يستلمه لو اشترى هذا المنتج
-
-## تعليمات:
-- كن ودوداً ومهنياً واستخدم عربي سعودي
-- أجب بشكل مختصر ومفيد
-- عند ذكر الروابط اكتبها بصيغة markdown: [النص](الرابط)
-- إذا سأل العميل عن حساب مبلغ معين، احسب له بالتفصيل
-- إذا أراد التقديم، وجهه لـ [صفحة الطلب](/order) أو [الواتساب](https://wa.me/966590360039)
-- إذا سأل عن جهاز أو سعر، استخدم أداة البحث في اكسترا
-- شجع العميل على التقديم عبر الموقع لأنه يمنح أولوية
-- استخدم أرقام عربية عادية وليس هندية`
-
-async function searchExtra(query: string) {
-  try {
-    const baseUrl = process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
-    const res = await fetch(`${baseUrl}/api/extra-search?q=${encodeURIComponent(query)}`, {
-      signal: AbortSignal.timeout(10000),
-    })
-    return await res.json()
-  } catch {
-    return {
-      products: [],
-      searchUrl: `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`,
-      query,
+function calculateAmount(netRequested: number) {
+  // عكس المعادلة: من الصافي المطلوب إلى مبلغ الشراء
+  // نبدأ بتقريب ونعدّل
+  let purchaseAmount = netRequested * 2
+  for (let i = 0; i < 20; i++) {
+    let sellingLossRate: number
+    if (purchaseAmount <= 5500) sellingLossRate = 0.15
+    else if (purchaseAmount >= 9500) sellingLossRate = 0.10
+    else {
+      const steps = Math.floor((purchaseAmount - 5500) / 1000)
+      sellingLossRate = 0.14 - (steps * 0.01)
     }
+    const saleAmount = purchaseAmount * (1 - sellingLossRate)
+    const adminFee = purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0)
+    const downPayment = purchaseAmount * 0.25
+    const net = saleAmount - adminFee - downPayment
+    const diff = netRequested - net
+    if (Math.abs(diff) < 10) break
+    purchaseAmount += diff * 1.5
+    purchaseAmount = Math.max(1000, Math.round(purchaseAmount / 100) * 100)
+  }
+  purchaseAmount = Math.round(purchaseAmount / 100) * 100
+
+  let sellingLossRate: number
+  if (purchaseAmount <= 5500) sellingLossRate = 0.15
+  else if (purchaseAmount >= 9500) sellingLossRate = 0.10
+  else {
+    const steps = Math.floor((purchaseAmount - 5500) / 1000)
+    sellingLossRate = 0.14 - (steps * 0.01)
+  }
+  const saleAmount = Math.round(purchaseAmount * (1 - sellingLossRate))
+  const adminFee = Math.round(purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0))
+  const downPayment = Math.round(purchaseAmount * 0.25)
+  const netAmount = saleAmount - adminFee - downPayment
+  const remainingInstallment = purchaseAmount - downPayment
+
+  return {
+    purchaseAmount,
+    saleAmount,
+    adminFee,
+    downPayment,
+    netAmount,
+    remainingInstallment,
+    sellingLossPercent: Math.round(sellingLossRate * 100),
+  }
+}
+
+function calculateFromPurchase(purchaseAmount: number) {
+  let sellingLossRate: number
+  if (purchaseAmount <= 5500) sellingLossRate = 0.15
+  else if (purchaseAmount >= 9500) sellingLossRate = 0.10
+  else {
+    const steps = Math.floor((purchaseAmount - 5500) / 1000)
+    sellingLossRate = 0.14 - (steps * 0.01)
+  }
+  const saleAmount = Math.round(purchaseAmount * (1 - sellingLossRate))
+  const adminFee = Math.round(purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0))
+  const downPayment = Math.round(purchaseAmount * 0.25)
+  const netAmount = saleAmount - adminFee - downPayment
+  const remainingInstallment = purchaseAmount - downPayment
+
+  return {
+    purchaseAmount,
+    saleAmount,
+    adminFee,
+    downPayment,
+    netAmount,
+    remainingInstallment,
+    sellingLossPercent: Math.round(sellingLossRate * 100),
   }
 }
 
@@ -97,24 +126,67 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(messages),
     abortSignal: req.signal,
     tools: {
-      searchExtra: tool({
-        description: "البحث عن منتجات وأجهزة في متجر اكسترا مع الأسعار. استخدمها عندما يسأل العميل عن سعر جهاز أو يريد معرفة المنتجات المتوفرة.",
+      calculateCash: tool({
+        description: "حساب تفاصيل السيولة. استخدمها عندما يذكر العميل مبلغ معين سواء الصافي المطلوب أو مبلغ الشراء.",
         inputSchema: z.object({
-          query: z.string().describe("كلمة البحث مثل iPhone 15 أو Samsung Galaxy S24"),
+          amount: z.number().describe("المبلغ بالريال"),
+          type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب (كاش)، purchase = مبلغ الشراء"),
+        }),
+        execute: async ({ amount, type }) => {
+          const calc = type === "net" ? calculateAmount(amount) : calculateFromPurchase(amount)
+          return {
+            ...calc,
+            note: "الحسبة على 4 أقساط. إذا زاد عدد الدفعات الفرق لصالحك بدون رسوم إضافية.",
+          }
+        },
+      }),
+      searchExtra: tool({
+        description: "البحث عن منتجات في متجر اكسترا. استخدمها فقط عندما يسأل العميل عن سعر جهاز محدد.",
+        inputSchema: z.object({
+          query: z.string().describe("اسم المنتج بالانجليزي مثل iPhone 16 أو Samsung Galaxy S24"),
         }),
         execute: async ({ query }) => {
-          const data = await searchExtra(query)
-          return {
-            products: data.products,
-            searchUrl: data.searchUrl,
-            message: data.products.length > 0
-              ? `وجدت ${data.products.length} منتج في اكسترا`
-              : `لم أجد نتائج محددة، لكن يمكنك البحث مباشرة في اكسترا`,
+          try {
+            const searchUrl = `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`
+            const res = await fetch(searchUrl, {
+              headers: { "User-Agent": "Mozilla/5.0 (compatible; bot)" },
+              signal: AbortSignal.timeout(8000),
+            })
+            const html = await res.text()
+
+            const products: { name: string; price: string; url: string }[] = []
+            const productPattern = /"name"\s*:\s*"([^"]+)"[^}]*"price"\s*:\s*"?(\d+[\d.]*)"?/g
+            let match: RegExpExecArray | null
+            while ((match = productPattern.exec(html)) !== null && products.length < 5) {
+              if (match[1].length > 10 && !match[1].includes("extra.com")) {
+                products.push({
+                  name: match[1].substring(0, 80),
+                  price: Math.round(Number(match[2])).toString(),
+                  url: searchUrl,
+                })
+              }
+            }
+
+            if (products.length === 0) {
+              return {
+                products: [],
+                searchUrl,
+                message: `ما لقيت نتائج محددة، لكن تقدر تبحث مباشرة في اكسترا: ${searchUrl}`,
+              }
+            }
+            return { products, searchUrl, message: `لقيت ${products.length} منتج` }
+          } catch {
+            const searchUrl = `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`
+            return {
+              products: [],
+              searchUrl,
+              message: `تقدر تبحث مباشرة في اكسترا: ${searchUrl}`,
+            }
           }
         },
       }),
     },
-    maxSteps: 3,
+    maxSteps: 5,
   })
 
   return result.toUIMessageStreamResponse({
