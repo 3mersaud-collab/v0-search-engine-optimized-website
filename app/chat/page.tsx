@@ -34,7 +34,7 @@ export default function ChatPage() {
         parts: [
           {
             type: "text",
-            text: "اهلا وسهلا فيك! انا مساعدك في **ليل سول** (liilsol)\n\nنحول لك مشترياتك بالتقسيط من **تابي وتمارا ومدفوع** الى كاش يوصل حسابك البنكي خلال ساعتين.\n\nالطريقة بسيطة:\n- تشتري جهاز بالتقسيط من متجر مثل اكسترا\n- نشتريه منك ونبيعه\n- نحول لك الكاش\n- الدفعة الاولى **نحن ندفعها** ونستردها بعد البيع - **بدون اي فوائد عليك**\n\nراح امشي معك خطوة بخطوة ان شاء الله.\n\n**كم المبلغ اللي تحتاجه كاش (الصافي)؟**"
+            text: "هلا والله! حياك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك ونبيعه\n- نخصم الرسوم والدفعة الأولى من قيمة البيع ونحول لك الباقي\n- الدفعة الأولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. راح أمشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
           }
         ],
         createdAt: new Date(),
@@ -74,7 +74,7 @@ export default function ChatPage() {
               <Bot className="w-4 h-4" />
               مساعد liilsol الذكي
             </div>
-            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويمشي معك خطوة بخطوة</p>
+            <p className="text-muted-foreground text-sm">يحسب لك السيولة ويساعدك خطوة بخطوة</p>
           </div>
 
           {/* Chat Area */}
@@ -135,7 +135,7 @@ export default function ChatPage() {
                                   <span className="text-destructive font-medium">{r.adminFee.toLocaleString()} ر.س</span>
                                 </div>
                                 <div className="flex justify-between py-1.5 border-b border-border/30">
-                                  <span className="text-muted-foreground">الدفعة الاولى (نحن ندفعها)</span>
+                                  <span className="text-muted-foreground">الد��عة الاولى (نحن ندفعها)</span>
                                   <span className="text-foreground font-medium">{r.downPayment.toLocaleString()} ر.س</span>
                                 </div>
                                 <div className="flex justify-between py-2 bg-accent/10 rounded-lg px-3 mt-2">
