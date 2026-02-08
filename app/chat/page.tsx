@@ -17,13 +17,15 @@ const quickQuestions = [
   { icon: MessageCircle, text: "وش الفرق بين تابي وتمارا؟" },
 ]
 
+const chatTransport = new DefaultChatTransport({ api: "/api/chat" })
+
 export default function ChatPage() {
   const [input, setInput] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { messages, sendMessage, status } = useChat({
-    transport: new DefaultChatTransport({ api: "/api/chat" }),
+    transport: chatTransport,
     initialMessages: [
       {
         id: "welcome",

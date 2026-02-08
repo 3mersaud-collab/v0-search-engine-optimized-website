@@ -1,5 +1,4 @@
 import {
-  consumeStream,
   convertToModelMessages,
   streamText,
   tool,
@@ -121,10 +120,9 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json()
 
   const result = streamText({
-    model: "openai/gpt-4o-mini",
+    model: "openai/gpt-4.1-mini",
     system: SYSTEM_PROMPT,
     messages: await convertToModelMessages(messages),
-    abortSignal: req.signal,
     tools: {
       calculateCash: tool({
         description: "حساب تفاصيل السيولة. استخدمها عندما يذكر العميل مبلغ معين سواء الصافي المطلوب أو مبلغ الشراء.",
@@ -189,11 +187,5 @@ export async function POST(req: Request) {
     maxSteps: 5,
   })
 
-  return result.toUIMessageStreamResponse({
-    originalMessages: messages,
-    onFinish: async ({ isAborted }) => {
-      if (isAborted) return
-    },
-    consumeSseStream: consumeStream,
-  })
+  return result.toUIMessageStreamResponse()
 }
