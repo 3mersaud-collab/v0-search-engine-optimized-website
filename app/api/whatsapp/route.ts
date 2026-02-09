@@ -4,7 +4,7 @@ import { z } from "zod"
 // WhatsApp Business API Webhook
 // GET = verification, POST = incoming messages
 
-const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || "liilsol_whatsapp_2024"
+const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || "liilsol-matar-verify-2024"
 
 const SYSTEM_PROMPT = `أنت مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
 تتكلم بالعامي السعودي بشكل ودّي ومختصر جداً.
