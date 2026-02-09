@@ -1,6 +1,8 @@
 import { generateText, tool } from "ai"
 import { z } from "zod"
 
+export const maxDuration = 60
+
 // WhatsApp Business API Webhook
 // GET = verification, POST = incoming messages
 
