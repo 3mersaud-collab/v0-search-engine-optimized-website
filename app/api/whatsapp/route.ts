@@ -90,6 +90,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json()
+    console.log("[v0] WhatsApp webhook received:", JSON.stringify(body).slice(0, 500))
 
     const entry = body.entry?.[0]
     const changes = entry?.changes?.[0]
@@ -97,13 +98,16 @@ export async function POST(req: Request) {
     const message = value?.messages?.[0]
 
     if (!message) {
+      console.log("[v0] No message in webhook payload - likely a status update")
       return new Response("OK", { status: 200 })
     }
 
     const from = message.from // phone number
     const msgBody = message.text?.body || ""
+    console.log("[v0] Message from:", from, "Body:", msgBody)
 
     if (!msgBody) {
+      console.log("[v0] Empty message body, skipping")
       return new Response("OK", { status: 200 })
     }
 
@@ -158,9 +162,11 @@ export async function POST(req: Request) {
     // Send reply via WhatsApp Business API
     const phoneId = value?.metadata?.phone_number_id
     const token = process.env.WHATSAPP_ACCESS_TOKEN
+    console.log("[v0] AI response:", text?.slice(0, 200))
+    console.log("[v0] Phone ID:", phoneId, "Token exists:", !!token)
 
     if (phoneId && token) {
-      await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+      const waResponse = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -173,6 +179,10 @@ export async function POST(req: Request) {
           text: { body: text },
         }),
       })
+      const waResult = await waResponse.json()
+      console.log("[v0] WhatsApp API response:", JSON.stringify(waResult).slice(0, 300))
+    } else {
+      console.log("[v0] Missing phoneId or token - cannot send reply")
     }
 
     return new Response("OK", { status: 200 })
