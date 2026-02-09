@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input"
 import {
   Package, Clock, CheckCircle2, Truck, XCircle, LogOut,
   Search, RefreshCw, Phone, DollarSign, Filter, Loader2,
-  ChevronDown, MessageCircle, Trash2, Bot
+  ChevronDown, MessageCircle, Trash2, Bot, Bell, MessagesSquare
 } from "lucide-react"
 import Link from "next/link"
 
@@ -163,9 +163,21 @@ export default function AdminDashboard() {
  <h1 className="text-xl font-bold text-foreground">لوحة التحكم - liilsol</h1>
   <div className="flex items-center gap-2">
     <Button variant="outline" size="sm" asChild className="bg-transparent">
+      <Link href="/admin/conversations">
+        <MessagesSquare className="w-4 h-4 ml-1" />
+        المحادثات
+      </Link>
+    </Button>
+    <Button variant="outline" size="sm" asChild className="bg-transparent">
+      <Link href="/admin/notifications">
+        <Bell className="w-4 h-4 ml-1" />
+        الإشعارات
+      </Link>
+    </Button>
+    <Button variant="outline" size="sm" asChild className="bg-transparent">
       <Link href="/admin/whatsapp">
         <Bot className="w-4 h-4 ml-1" />
-        ربط واتساب
+        واتساب
       </Link>
     </Button>
     <Button variant="outline" size="sm" onClick={handleLogout} className="bg-transparent">

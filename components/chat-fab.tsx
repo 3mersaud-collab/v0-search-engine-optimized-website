@@ -8,7 +8,20 @@ import { usePathname } from "next/navigation"
 import { ChatMessageContent } from "@/components/chat-message"
 import Link from "next/link"
 
-const widgetTransport = new DefaultChatTransport({ api: "/api/chat" })
+function getVisitorId() {
+  if (typeof window === "undefined") return "ssr"
+  let id = localStorage.getItem("liilsol-visitor-id")
+  if (!id) {
+    id = `v-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+    localStorage.setItem("liilsol-visitor-id", id)
+  }
+  return id
+}
+
+const widgetTransport = new DefaultChatTransport({
+  api: "/api/chat",
+  headers: () => ({ "x-visitor-id": getVisitorId() }),
+})
 
 const quickQuestions = [
   { text: "ابي 1000 كاش" },

@@ -1,52 +1,56 @@
 import { generateText, tool } from "ai"
 import { z } from "zod"
+import { createClient } from "@supabase/supabase-js"
 
 export const maxDuration = 60
 
-// WhatsApp Business API Webhook
-// GET = verification, POST = incoming messages
-
 const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || "liilsol-matar-verify-2024"
+
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 const SYSTEM_PROMPT = `اسمك "مطر" - مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
 
 ## شخصيتك:
 - تتكلم باللهجة النجدية كأنك شخص حقيقي - مو بوت ومو خدمة عملاء رسمية
 - رسائلك قصيرة جداً - سطر أو سطرين بالكثير. الواتساب مو مكان مقالات
-- ما تكرر نفسك أبداً
-- تعابيرك: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"، "كم تبي"
-- ما تقول "بالتأكيد" أو "سعدت بخدمتك" - كلامك عادي وبسيط
-- لو العميل متردد طمّنه بطريقة طبيعية
+- ما تكرر نفسك أبداً - لو شرحت شي ما تعيده
+- تعابيرك: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"، "كم تبي"، "تمام"، "وش رايك"، "خلاص"، "اوكي"
+- ما تقول "بالتأكيد" أو "سعدت بخدمتك" أو "هل هناك" - كلامك عادي وبسيط
+- لو العميل متردد أو خايف طمّنه بطريقة طبيعية مو تسويقية
+- لو العميل سأل عن شي ما له علاقة بالخدمة، رد بلطف ورجّعه للموضوع
+- استخدم "ههه" أو "هه" أحياناً لو الموقف مناسب
 
 ## الخدمة باختصار:
 العميل يحدد المبلغ > نحدد له جهاز يشتريه بالتقسيط (تابي/تمارا/مدفوع) > نستلمه ونبيعه > نحول له الكاش خلال ساعتين
 - الدفعة الأولى ندفعها عنه - ما يدفع شي من جيبه - بدون فوائد
-- العميل ما يختار الجهاز أبداً - نحن نحدده
+- العميل ما يختار الجهاز أبداً - نحن نحدده حسب المبلغ
 
 ## الضمان:
-خدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف. موقعنا: https://liilsol.com
+خدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. موقعنا: https://liilsol.com
 
 ## التدفق:
 1. رحب واسأل كم يبي كاش
-2. لما يذكر مبلغ > استخدم calculateCash > اعطه التفاصيل باختصار
+2. لما يذكر مبلغ > استخدم calculateCash > اعطه التفاصيل باختصار شديد
 3. اسأل: تابي ولا تمارا ولا مدفوع؟
 4. وجهه للمتجر (اكسترا/نون/المنيع) يشتري جهاز بقيمة مبلغ الشراء
 5. تمارا: بطاقة يدوي بدون رصيد > ادفع > صور صفحة البنك (اللي تطلب الكود) > اغلق بدون كود > ارسل الصورة
    تابي/مدفوع: ارسل صورة صفحة تقسيم الدفعات
-6. أكد الطلب - نتواصل خلال ساعتين
+6. لما يقول خلص أو يرسل الصورة > استخدم createOrder لإنشاء الطلب > أكد له نتواصل خلال ساعتين
 
-## تحويل: الف=1000، خمسمية=500، الفين=2000، ثلاث آلاف=3000، اربع=4000، خمسة=5000`
+## مهم:
+- لما العميل يقول اسمه أو يعطيك معلومة جديدة، استخدم updateConversation لحفظها
+- لو سأل عن حالة طلب سابق، استخدم checkOrderStatus
+- تحويل: الف=1000، خمسمية=500، الفين=2000، ثلاث آلاف=3000، اربع=4000، خمسة=5000`
 
 function calculateAmount(netRequested: number) {
   let purchaseAmount = netRequested * 2
   for (let i = 0; i < 30; i++) {
-    let sellingLossRate: number
-    if (purchaseAmount <= 5500) sellingLossRate = 0.15
-    else if (purchaseAmount >= 9500) sellingLossRate = 0.10
-    else {
-      const steps = Math.floor((purchaseAmount - 5500) / 1000)
-      sellingLossRate = 0.14 - steps * 0.01
-    }
+    const sellingLossRate = getSellingLossRate(purchaseAmount)
     const saleAmount = purchaseAmount * (1 - sellingLossRate)
     const adminFee = purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0)
     const downPayment = purchaseAmount * 0.25
@@ -57,13 +61,18 @@ function calculateAmount(netRequested: number) {
     purchaseAmount = Math.max(1000, Math.round(purchaseAmount / 100) * 100)
   }
   purchaseAmount = Math.round(purchaseAmount / 100) * 100
-  let sellingLossRate: number
-  if (purchaseAmount <= 5500) sellingLossRate = 0.15
-  else if (purchaseAmount >= 9500) sellingLossRate = 0.10
-  else {
-    const steps = Math.floor((purchaseAmount - 5500) / 1000)
-    sellingLossRate = 0.14 - steps * 0.01
-  }
+  return getBreakdown(purchaseAmount)
+}
+
+function getSellingLossRate(amount: number) {
+  if (amount <= 5500) return 0.15
+  if (amount >= 9500) return 0.10
+  const steps = Math.floor((amount - 5500) / 1000)
+  return 0.14 - steps * 0.01
+}
+
+function getBreakdown(purchaseAmount: number) {
+  const sellingLossRate = getSellingLossRate(purchaseAmount)
   const saleAmount = Math.round(purchaseAmount * (1 - sellingLossRate))
   const adminFee = Math.round(purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0))
   const downPayment = Math.round(purchaseAmount * 0.25)
@@ -71,124 +80,204 @@ function calculateAmount(netRequested: number) {
   return { purchaseAmount, saleAmount, adminFee, downPayment, netAmount }
 }
 
-// Simple in-memory conversation store (per phone number)
-const conversations = new Map<string, { role: "user" | "assistant"; content: string }[]>()
+async function getOrCreateConversation(phone: string) {
+  const supabase = getSupabase()
+  const { data: existing } = await supabase
+    .from("conversations")
+    .select("*")
+    .eq("phone", phone)
+    .eq("source", "whatsapp")
+    .in("status", ["active", "pending"])
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single()
 
-// GET - WhatsApp webhook verification
+  if (existing) return existing
+
+  const { data: newConv } = await supabase
+    .from("conversations")
+    .insert({ phone, source: "whatsapp", status: "active", messages: [], metadata: {} })
+    .select()
+    .single()
+
+  if (newConv) {
+    await supabase.from("notifications").insert({
+      type: "new_customer",
+      title: "عميل جديد",
+      body: `عميل جديد تواصل عبر واتساب: ${phone}`,
+      reference_type: "conversation",
+      reference_id: newConv.id,
+    })
+  }
+  return newConv
+}
+
+async function saveMessage(convId: string, role: "user" | "assistant", content: string, existing: unknown[]) {
+  const supabase = getSupabase()
+  const msgs = [...existing, { role, content, timestamp: new Date().toISOString() }].slice(-50)
+  await supabase
+    .from("conversations")
+    .update({ messages: msgs, last_message: content, updated_at: new Date().toISOString() })
+    .eq("id", convId)
+  return msgs
+}
+
+async function sendText(phoneId: string, to: string, text: string) {
+  const token = process.env.WHATSAPP_ACCESS_TOKEN
+  if (!phoneId || !token) return null
+  const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ messaging_product: "whatsapp", to, type: "text", text: { body: text } }),
+  })
+  return res.json()
+}
+
+async function sendButtons(phoneId: string, to: string, body: string, buttons: { id: string; title: string }[]) {
+  const token = process.env.WHATSAPP_ACCESS_TOKEN
+  if (!phoneId || !token) return null
+  const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      messaging_product: "whatsapp", to, type: "interactive",
+      interactive: {
+        type: "button", body: { text: body },
+        action: { buttons: buttons.map(b => ({ type: "reply", reply: { id: b.id, title: b.title } })) },
+      },
+    }),
+  })
+  return res.json()
+}
+
 export async function GET(req: Request) {
   const url = new URL(req.url)
   const mode = url.searchParams.get("hub.mode")
   const token = url.searchParams.get("hub.verify_token")
   const challenge = url.searchParams.get("hub.challenge")
-
-  if (mode === "subscribe" && token === VERIFY_TOKEN) {
-    return new Response(challenge, { status: 200 })
-  }
+  if (mode === "subscribe" && token === VERIFY_TOKEN) return new Response(challenge, { status: 200 })
   return new Response("Forbidden", { status: 403 })
 }
 
-// POST - Incoming WhatsApp messages
 export async function POST(req: Request) {
   try {
     const body = await req.json()
-    console.log("[v0] WhatsApp webhook received:", JSON.stringify(body).slice(0, 500))
-
     const entry = body.entry?.[0]
     const changes = entry?.changes?.[0]
     const value = changes?.value
     const message = value?.messages?.[0]
+    if (!message) return new Response("OK", { status: 200 })
 
-    if (!message) {
-      console.log("[v0] No message in webhook payload - likely a status update")
-      return new Response("OK", { status: 200 })
+    const from = message.from
+    const phoneId = value?.metadata?.phone_number_id
+
+    let msgBody = ""
+    if (message.type === "interactive" && message.interactive?.button_reply) {
+      msgBody = message.interactive.button_reply.title
+    } else if (message.type === "text") {
+      msgBody = message.text?.body || ""
+    } else if (message.type === "image") {
+      msgBody = "[العميل أرسل صورة]"
     }
+    if (!msgBody) return new Response("OK", { status: 200 })
 
-    const from = message.from // phone number
-    const msgBody = message.text?.body || ""
-    console.log("[v0] Message from:", from, "Body:", msgBody)
+    const conversation = await getOrCreateConversation(from)
+    if (!conversation) return new Response("OK", { status: 200 })
 
-    if (!msgBody) {
-      console.log("[v0] Empty message body, skipping")
-      return new Response("OK", { status: 200 })
-    }
+    const existing = (conversation.messages as unknown[]) || []
+    const updated = await saveMessage(conversation.id, "user", msgBody, existing)
 
-    // Get or create conversation history
-    if (!conversations.has(from)) {
-      conversations.set(from, [])
-    }
-    const history = conversations.get(from)!
-    history.push({ role: "user", content: msgBody })
+    const aiHistory = (updated as { role: string; content: string }[])
+      .slice(-20)
+      .map(m => ({ role: m.role as "user" | "assistant", content: m.content }))
 
-    // Keep only last 20 messages
-    if (history.length > 20) {
-      history.splice(0, history.length - 20)
-    }
+    const supabase = getSupabase()
 
-    // Generate AI response
     const { text } = await generateText({
       model: "anthropic/claude-sonnet-4",
       system: SYSTEM_PROMPT,
-      messages: history,
+      messages: aiHistory,
       tools: {
         calculateCash: tool({
           description: "حساب تفاصيل السيولة",
           inputSchema: z.object({
             amount: z.number().describe("المبلغ بالريال"),
-            type: z.enum(["net", "purchase"]).describe("net = الصافي, purchase = مبلغ الشراء"),
+            type: z.enum(["net", "purchase"]).describe("net = صافي, purchase = مبلغ شراء"),
           }),
-          execute: async ({ amount, type }) => {
-            if (type === "net") return calculateAmount(amount)
-            // calculate from purchase
-            let sellingLossRate: number
-            if (amount <= 5500) sellingLossRate = 0.15
-            else if (amount >= 9500) sellingLossRate = 0.10
-            else {
-              const steps = Math.floor((amount - 5500) / 1000)
-              sellingLossRate = 0.14 - steps * 0.01
+          execute: async ({ amount, type }) => type === "net" ? calculateAmount(amount) : getBreakdown(amount),
+        }),
+        createOrder: tool({
+          description: "إنشاء طلب جديد لما العميل يوافق ويكمل",
+          inputSchema: z.object({
+            customerName: z.string().describe("اسم العميل"),
+            netRequested: z.number().describe("المبلغ المطلوب كاش"),
+            appType: z.string().describe("تابي/تمارا/مدفوع"),
+            storeName: z.string().nullable().describe("اسم المتجر"),
+          }),
+          execute: async ({ customerName, netRequested, appType, storeName }) => {
+            const calc = calculateAmount(netRequested)
+            const { data: order } = await supabase.from("orders").insert({
+              customer_name: customerName, customer_phone: from,
+              net_requested: netRequested, purchase_amount: calc.purchaseAmount,
+              sale_amount: calc.saleAmount, admin_fee: calc.adminFee,
+              first_payment: calc.downPayment, final_amount: calc.netAmount,
+              app_type: appType, store_name: storeName || null, status: "pending",
+            }).select().single()
+
+            if (order) {
+              await supabase.from("conversations").update({ order_id: order.id, status: "pending" }).eq("id", conversation.id)
+              await supabase.from("notifications").insert({
+                type: "new_order", title: "طلب جديد",
+                body: `${customerName} - ${netRequested} ريال كاش عبر ${appType}`,
+                reference_type: "order", reference_id: order.id,
+              })
             }
-            const saleAmount = Math.round(amount * (1 - sellingLossRate))
-            const adminFee = Math.round(amount * 0.10 + (amount < 4000 ? 100 : 0))
-            const downPayment = Math.round(amount * 0.25)
-            const netAmount = saleAmount - adminFee - downPayment
-            return { purchaseAmount: amount, saleAmount, adminFee, downPayment, netAmount }
+            return { success: true, orderId: order?.id }
+          },
+        }),
+        updateConversation: tool({
+          description: "حفظ اسم العميل أو معلومات جديدة",
+          inputSchema: z.object({ customerName: z.string().nullable().describe("اسم العميل") }),
+          execute: async ({ customerName }) => {
+            if (customerName) await supabase.from("conversations").update({ customer_name: customerName }).eq("id", conversation.id)
+            return { updated: true }
+          },
+        }),
+        checkOrderStatus: tool({
+          description: "تحقق من حالة طلب سابق",
+          inputSchema: z.object({ phone: z.string().describe("رقم العميل") }),
+          execute: async ({ phone }) => {
+            const { data: orders } = await supabase.from("orders")
+              .select("id, status, net_requested, app_type, created_at")
+              .eq("customer_phone", phone)
+              .order("created_at", { ascending: false }).limit(3)
+            if (!orders?.length) return { found: false }
+            const map: Record<string, string> = { pending: "قيد المراجعة", approved: "تمت الموافقة", processing: "جاري المعالجة", completed: "مكتمل", cancelled: "ملغي" }
+            return { found: true, orders: orders.map(o => ({ amount: o.net_requested, status: map[o.status] || o.status, app: o.app_type })) }
           },
         }),
       },
       maxSteps: 5,
     })
 
-    // Save assistant response to history
-    history.push({ role: "assistant", content: text })
+    await saveMessage(conversation.id, "assistant", text, updated)
 
-    // Send reply via WhatsApp Business API
-    const phoneId = value?.metadata?.phone_number_id
-    const token = process.env.WHATSAPP_ACCESS_TOKEN
-    console.log("[v0] AI response:", text?.slice(0, 200))
-    console.log("[v0] Phone ID:", phoneId, "Token exists:", !!token)
+    const lower = text.toLowerCase()
+    const isAskingPayment = lower.includes("تابي") && lower.includes("تمارا") && (lower.includes("؟") || lower.includes("ولا"))
 
-    if (phoneId && token) {
-      const waResponse = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          messaging_product: "whatsapp",
-          to: from,
-          type: "text",
-          text: { body: text },
-        }),
-      })
-      const waResult = await waResponse.json()
-      console.log("[v0] WhatsApp API response:", JSON.stringify(waResult).slice(0, 300))
-    } else {
-      console.log("[v0] Missing phoneId or token - cannot send reply")
+    if (isAskingPayment && phoneId) {
+      await sendButtons(phoneId, from, text, [
+        { id: "tabby", title: "تابي" },
+        { id: "tamara", title: "تمارا" },
+        { id: "madfoo3", title: "مدفوع" },
+      ])
+    } else if (phoneId) {
+      await sendText(phoneId, from, text)
     }
 
     return new Response("OK", { status: 200 })
   } catch (error) {
-    console.error("[v0] WhatsApp webhook error:", error)
+    console.error("[v0] WhatsApp error:", error)
     return new Response("OK", { status: 200 })
   }
 }

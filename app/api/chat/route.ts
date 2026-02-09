@@ -6,8 +6,14 @@ import {
   stepCountIs,
 } from "ai"
 import { z } from "zod"
+import { createClient } from "@supabase/supabase-js"
 
 export const maxDuration = 60
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+)
 
 const SYSTEM_PROMPT = `اسمك "مطر" - مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش.
 المطر نعمة وغيث من الله، وأنت كذلك غيث للعميل تساعده يحصل على السيولة اللي يحتاجها.
@@ -164,6 +170,9 @@ function calculateFromPurchase(purchaseAmount: number) {
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json()
 
+  // Get visitor ID from headers for conversation tracking
+  const visitorId = req.headers.get("x-visitor-id") || "anonymous"
+
   const result = streamText({
     model: "anthropic/claude-sonnet-4",
     system: SYSTEM_PROMPT,
@@ -194,5 +203,45 @@ export async function POST(req: Request) {
     stopWhen: stepCountIs(3),
   })
 
-  return result.toUIMessageStreamResponse()
+  return result.toUIMessageStreamResponse({
+    originalMessages: messages,
+    onFinish: async ({ messages: finalMessages }) => {
+      try {
+        const lastUserMsg = [...finalMessages].reverse().find(m => m.role === "user")
+        const lastAssistantMsg = [...finalMessages].reverse().find(m => m.role === "assistant")
+        const userText = lastUserMsg?.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
+        const assistantText = lastAssistantMsg?.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
+        
+        // Save to conversations table
+        const { data: existing } = await supabase
+          .from("conversations")
+          .select("id, messages")
+          .eq("phone_number", `web-${visitorId}`)
+          .single()
+
+        const simplifiedMessages = finalMessages.slice(-20).map((m: { role: string; parts?: Array<{ type: string; text?: string }> }) => ({
+          role: m.role,
+          content: m.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
+        })).filter((m: { content: string }) => m.content)
+
+        if (existing) {
+          await supabase.from("conversations").update({
+            messages: simplifiedMessages,
+            last_message: userText,
+            updated_at: new Date().toISOString(),
+          }).eq("id", existing.id)
+        } else {
+          await supabase.from("conversations").insert({
+            phone_number: `web-${visitorId}`,
+            customer_name: "زائر الموقع",
+            messages: simplifiedMessages,
+            last_message: userText,
+            source: "website",
+          })
+        }
+      } catch (e) {
+        // Silent fail - don't break the chat
+      }
+    }
+  })
 }
