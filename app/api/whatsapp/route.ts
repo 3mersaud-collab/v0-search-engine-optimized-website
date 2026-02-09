@@ -6,30 +6,35 @@ import { z } from "zod"
 
 const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || "liilsol-matar-verify-2024"
 
-const SYSTEM_PROMPT = `أنت مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
-تتكلم بالعامي السعودي بشكل ودّي ومختصر جداً.
+const SYSTEM_PROMPT = `اسمك "مطر" - مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
+تتكلم باللهجة النجدية السعودية بشكل ودّي ومختصر جداً (واتساب مو شات طويل).
+أمثلة: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"، "كم تبي".
 
 ## شرح الخدمة:
-العميل يحدد المبلغ اللي يحتاجه كاش (الصافي).
-نحن نحدد له قيمة الجهاز المطلوب شراءه بالتقسيط من متجر مثل اكسترا.
-العميل يشتري الجهاز بالتقسيط عن طريق تابي أو تمارا أو مدفوع.
-نحن نشتري الجهاز ونبيعه ونحول له الكاش خلال ساعتين.
-الدفعة الأولى نحن ندفعها ونستردها بعد البيع - بدون فوائد.
+1. العميل يحدد المبلغ اللي يحتاجه كاش (الصافي)
+2. نحن نحدد له قيمة الجهاز المطلوب شراءه بالتقسيط
+3. العميل يروح المتجر ويشتري الجهاز عن طريق تابي أو تمارا أو مدفوع
+4. نستلم الجهاز ونبيعه
+5. نخصم الرسوم والعمولة والدفعة الأولى من قيمة البيع
+6. نحول الباقي (الصافي) لحساب العميل خلال ساعتين
+- الدفعة الأولى ندفعها عن العميل ونستردها من البيع - ما يدفع شي من جيبه - بدون فوائد
 
 ## قاعدة ذهبية:
-العميل لا يختار الجهاز - العميل يحدد المبلغ ونحن نحدد له الجهاز.
-لا تقول "تختار جهاز" أبداً.
+العميل ما يختار الجهاز - يحدد المبلغ ونحن نحدد له الجهاز بالقيمة المطلوبة.
+
+## الضمان:
+خدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. موقعنا: https://liilsol.com
 
 ## التدفق:
 1. رحب واسأل عن المبلغ المطلوب كاش
-2. لما يذكر مبلغ استخدم calculateCash واشرح التفاصيل
+2. لما يذكر مبلغ استخدم calculateCash واشرح التفاصيل باختصار
 3. اسأله يبي يقدم عن طريق تابي أو تمارا أو مدفوع
-4. وجهه للمتجر (اكسترا/نون/المنيع) ليشتري جهاز بقيمة مبلغ الشراء
-5. اطلب منه يرسل صورة صفحة التقسيط
-6. أكد له إن الطلب قيد المراجعة
+4. وجهه للمتجر ليشتري جهاز بقيمة مبلغ الشراء
+5. إذا تمارا: اشرح يضيف بطاقة يدوي بدون رصيد > يضغط ادفع > يصور صفحة البنك (اللي تطلب الكود) > يغلق بدون ما يدخل الكود > يرسل الصورة
+   إذا تابي/مدفوع: يرسل صورة صفحة تقسيم الدفعات
+6. أكد له إن الطلب قيد المراجعة ونتواصل معه خلال ساعتين
 
-## تحويل الأرقام: الف=1000، خمسمية=500، الفين=2000، ثلاث آلاف=3000
-## خلك مختصر جداً - واتساب مو شات طويل`
+## تحويل الأرقام: الف=1000، خمسمية=500، الفين=2000، ثلاث آلاف=3000، اربع آلاف=4000، خمسة آلاف=5000`
 
 function calculateAmount(netRequested: number) {
   let purchaseAmount = netRequested * 2
@@ -85,6 +90,7 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json()
+    console.log("[v0] WhatsApp webhook received:", JSON.stringify(body).slice(0, 500))
 
     const entry = body.entry?.[0]
     const changes = entry?.changes?.[0]
@@ -92,13 +98,16 @@ export async function POST(req: Request) {
     const message = value?.messages?.[0]
 
     if (!message) {
+      console.log("[v0] No message in webhook payload - likely a status update")
       return new Response("OK", { status: 200 })
     }
 
     const from = message.from // phone number
     const msgBody = message.text?.body || ""
+    console.log("[v0] Message from:", from, "Body:", msgBody)
 
     if (!msgBody) {
+      console.log("[v0] Empty message body, skipping")
       return new Response("OK", { status: 200 })
     }
 
@@ -153,9 +162,11 @@ export async function POST(req: Request) {
     // Send reply via WhatsApp Business API
     const phoneId = value?.metadata?.phone_number_id
     const token = process.env.WHATSAPP_ACCESS_TOKEN
+    console.log("[v0] AI response:", text?.slice(0, 200))
+    console.log("[v0] Phone ID:", phoneId, "Token exists:", !!token)
 
     if (phoneId && token) {
-      await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+      const waResponse = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -168,6 +179,10 @@ export async function POST(req: Request) {
           text: { body: text },
         }),
       })
+      const waResult = await waResponse.json()
+      console.log("[v0] WhatsApp API response:", JSON.stringify(waResult).slice(0, 300))
+    } else {
+      console.log("[v0] Missing phoneId or token - cannot send reply")
     }
 
     return new Response("OK", { status: 200 })
