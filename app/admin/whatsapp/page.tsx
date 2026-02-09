@@ -8,7 +8,7 @@ import { useState } from "react"
 
 export default function WhatsAppSetupPage() {
   const [copied, setCopied] = useState(false)
-  const webhookUrl = typeof window !== "undefined" ? `${window.location.origin}/api/whatsapp` : ""
+  const webhookUrl = "https://liilsol.com/api/whatsapp"
   const verifyToken = "liilsol-matar-verify-2024"
 
   const copyToClipboard = (text: string) => {
@@ -110,7 +110,7 @@ export default function WhatsAppSetupPage() {
             </p>
             <div className="bg-muted rounded-lg p-3 space-y-1">
               <p className="text-xs font-mono text-foreground">WHATSAPP_ACCESS_TOKEN = [التوكن من Meta]</p>
-              <p className="text-xs font-mono text-foreground">WHATSAPP_VERIFY_TOKEN = liilsol_whatsapp_2024</p>
+              <p className="text-xs font-mono text-foreground">WHATSAPP_VERIFY_TOKEN = liilsol-matar-verify-2024</p>
             </div>
             <p className="text-sm text-muted-foreground">
               أضفها من الشريط الجانبي {"->"} Vars أو من إعدادات Vercel
