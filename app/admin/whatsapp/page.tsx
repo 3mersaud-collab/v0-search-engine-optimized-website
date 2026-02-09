@@ -9,7 +9,7 @@ import { useState } from "react"
 export default function WhatsAppSetupPage() {
   const [copied, setCopied] = useState(false)
   const webhookUrl = typeof window !== "undefined" ? `${window.location.origin}/api/whatsapp` : ""
-  const verifyToken = "liilsol_whatsapp_2024"
+  const verifyToken = "liilsol-matar-verify-2024"
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
