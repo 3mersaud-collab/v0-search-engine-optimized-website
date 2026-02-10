@@ -125,18 +125,22 @@ async function saveMessage(convId: string, role: "user" | "assistant", content: 
 async function sendText(phoneId: string, to: string, text: string) {
   const token = process.env.WHATSAPP_ACCESS_TOKEN
   if (!phoneId || !token) return null
-  const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+  const url = `https://graph.facebook.com/v22.0/${phoneId}/messages`
+  console.log("[v0] Sending text to:", to, "via phoneId:", phoneId, "token exists:", !!token)
+  const res = await fetch(url, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ messaging_product: "whatsapp", to, type: "text", text: { body: text } }),
   })
-  return res.json()
+  const result = await res.json()
+  console.log("[v0] Send text response:", JSON.stringify(result))
+  return result
 }
 
 async function sendButtons(phoneId: string, to: string, body: string, buttons: { id: string; title: string }[]) {
   const token = process.env.WHATSAPP_ACCESS_TOKEN
   if (!phoneId || !token) return null
-  const res = await fetch(`https://graph.facebook.com/v21.0/${phoneId}/messages`, {
+  const res = await fetch(`https://graph.facebook.com/v22.0/${phoneId}/messages`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -219,7 +223,7 @@ export async function POST(req: Request) {
         createOrder: tool({
           description: "إنشاء طلب جديد لما العميل يوافق ويكمل",
           inputSchema: z.object({
-            customerName: z.string().describe("اسم العميل"),
+            customerName: z.string().describe("اسم ال��ميل"),
             netRequested: z.number().describe("المبلغ المطلوب كاش"),
             appType: z.string().describe("��ابي/تمارا/مدفوع"),
             storeName: z.string().nullable().describe("اسم المتجر"),
