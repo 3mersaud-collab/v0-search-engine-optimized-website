@@ -201,6 +201,19 @@ export async function POST(req: Request) {
     const existing = (conversation.messages as unknown[]) || []
     const updated = await saveMessage(conversation.id, "user", msgBody, existing)
 
+    // If conversation is in manual mode, notify admin and don't auto-reply
+    if (conversation.mode === "manual") {
+      const supabase = getSupabase()
+      await supabase.from("notifications").insert({
+        type: "manual_message",
+        title: "رسالة جديدة - وضع يدوي",
+        body: `${conversation.customer_name || from}: ${msgBody.slice(0, 100)}`,
+        reference_type: "conversation",
+        reference_id: conversation.id,
+      })
+      return new Response("OK", { status: 200 })
+    }
+
     const aiHistory = (updated as { role: string; content: string }[])
       .slice(-20)
       .map(m => ({ role: m.role as "user" | "assistant", content: m.content }))
