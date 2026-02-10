@@ -155,6 +155,7 @@ export async function GET(req: Request) {
   const mode = url.searchParams.get("hub.mode")
   const token = url.searchParams.get("hub.verify_token")
   const challenge = url.searchParams.get("hub.challenge")
+  console.log("[v0] Webhook verify - mode:", mode, "token match:", token === VERIFY_TOKEN)
   if (mode === "subscribe" && token === VERIFY_TOKEN) return new Response(challenge, { status: 200 })
   return new Response("Forbidden", { status: 403 })
 }
@@ -220,7 +221,7 @@ export async function POST(req: Request) {
           inputSchema: z.object({
             customerName: z.string().describe("اسم العميل"),
             netRequested: z.number().describe("المبلغ المطلوب كاش"),
-            appType: z.string().describe("تابي/تمارا/مدفوع"),
+            appType: z.string().describe("��ابي/تمارا/مدفوع"),
             storeName: z.string().nullable().describe("اسم المتجر"),
           }),
           execute: async ({ customerName, netRequested, appType, storeName }) => {
