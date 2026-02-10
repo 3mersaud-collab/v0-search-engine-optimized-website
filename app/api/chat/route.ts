@@ -1,5 +1,4 @@
 import {
-  consumeStream,
   convertToModelMessages,
   streamText,
   tool,
@@ -180,7 +179,7 @@ export async function POST(req: Request) {
       abortSignal: req.signal,
       tools: {
         calculateCash: tool({
-          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
+          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ ��و الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
           inputSchema: z.object({
             amount: z.number().describe("المبلغ بالريال"),
             type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب كاش, purchase = مبلغ الشراء"),
@@ -242,9 +241,7 @@ export async function POST(req: Request) {
       if (userText) saveConversation(userText)
     }
 
-    return result.toUIMessageStreamResponse({
-      consumeSseStream: consumeStream,
-    })
+    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("[v0] Chat API error:", error)
     return new Response(JSON.stringify({ error: "حصل خطأ، حاول مرة ثانية" }), { 
