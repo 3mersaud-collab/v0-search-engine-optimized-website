@@ -168,7 +168,9 @@ function calculateFromPurchase(purchaseAmount: number) {
 }
 
 export async function POST(req: Request) {
+  try {
   const { messages }: { messages: UIMessage[] } = await req.json()
+  console.log("[v0] Chat API called, messages:", messages.length)
 
   // Get visitor ID from headers for conversation tracking
   const visitorId = req.headers.get("x-visitor-id") || "anonymous"
@@ -240,8 +242,12 @@ export async function POST(req: Request) {
           })
         }
       } catch (e) {
-        // Silent fail - don't break the chat
+        console.error("[v0] Chat save error:", e)
       }
     }
   })
+  } catch (error) {
+    console.error("[v0] Chat API error:", error)
+    return new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 })
+  }
 }

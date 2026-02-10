@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useChat } from "@ai-sdk/react"
-import { DefaultChatTransport } from "ai"
+import { defaultChatTransport } from "@ai-sdk/react"
 import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { ChatMessageContent } from "@/components/chat-message"
@@ -17,11 +17,6 @@ function getVisitorId() {
   }
   return id
 }
-
-const widgetTransport = new DefaultChatTransport({
-  api: "/api/chat",
-  headers: () => ({ "x-visitor-id": getVisitorId() }),
-})
 
 const quickQuestions = [
   { text: "ابي 1000 كاش" },
@@ -39,7 +34,10 @@ export function ChatFab() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { messages, sendMessage, status } = useChat({
-    transport: widgetTransport,
+    transport: defaultChatTransport({
+      api: "/api/chat",
+      headers: () => ({ "x-visitor-id": getVisitorId() }),
+    }),
     initialMessages: [
       {
         id: "welcome",
