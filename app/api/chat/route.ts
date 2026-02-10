@@ -169,16 +169,12 @@ function calculateFromPurchase(purchaseAmount: number) {
 }
 
 export async function POST(req: Request) {
-  console.log("[v0] Chat API called")
   try {
     const { messages }: { messages: UIMessage[] } = await req.json()
-    console.log("[v0] Messages received:", messages.length)
     const visitorId = req.headers.get("x-visitor-id") || "anonymous"
-    console.log("[v0] Visitor ID:", visitorId)
 
-    console.log("[v0] Starting streamText...")
     const result = streamText({
-      model: "anthropic/claude-sonnet-4",
+      model: "anthropic/claude-3-5-sonnet-20241022",
       system: SYSTEM_PROMPT,
       messages: await convertToModelMessages(messages),
       abortSignal: req.signal,
@@ -246,7 +242,6 @@ export async function POST(req: Request) {
       if (userText) saveConversation(userText)
     }
 
-    console.log("[v0] Returning stream response...")
     return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("[v0] Chat API error:", error)
