@@ -176,9 +176,10 @@ export async function POST(req: Request) {
       model: "anthropic/claude-sonnet-4",
       system: SYSTEM_PROMPT,
       messages: await convertToModelMessages(messages),
+      abortSignal: req.signal,
       tools: {
         calculateCash: tool({
-          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
+          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ ��و الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
           inputSchema: z.object({
             amount: z.number().describe("المبلغ بالريال"),
             type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب كاش, purchase = مبلغ الشراء"),
