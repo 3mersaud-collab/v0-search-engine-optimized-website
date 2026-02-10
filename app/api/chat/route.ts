@@ -169,66 +169,52 @@ function calculateFromPurchase(purchaseAmount: number) {
 
 export async function POST(req: Request) {
   try {
-  const { messages }: { messages: UIMessage[] } = await req.json()
-  console.log("[v0] Chat API called, messages:", messages.length)
+    const { messages }: { messages: UIMessage[] } = await req.json()
+    const visitorId = req.headers.get("x-visitor-id") || "anonymous"
 
-  // Get visitor ID from headers for conversation tracking
-  const visitorId = req.headers.get("x-visitor-id") || "anonymous"
-
-  const result = streamText({
-    model: "anthropic/claude-sonnet-4",
-    system: SYSTEM_PROMPT,
-    messages: await convertToModelMessages(messages),
-    tools: {
-      calculateCash: tool({
-        description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
-        inputSchema: z.object({
-          amount: z.number().describe("المبلغ بالريال"),
-          type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب كاش, purchase = مبلغ الشراء"),
+    const result = streamText({
+      model: "anthropic/claude-sonnet-4",
+      system: SYSTEM_PROMPT,
+      messages: await convertToModelMessages(messages),
+      tools: {
+        calculateCash: tool({
+          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
+          inputSchema: z.object({
+            amount: z.number().describe("المبلغ بالريال"),
+            type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب كاش, purchase = مبلغ الشراء"),
+          }),
+          execute: async ({ amount, type }) => {
+            return type === "net" ? calculateAmount(amount) : calculateFromPurchase(amount)
+          },
         }),
-        execute: async ({ amount, type }) => {
-          const calc = type === "net" ? calculateAmount(amount) : calculateFromPurchase(amount)
-          return calc
-        },
-      }),
-      searchExtra: tool({
-        description: "البحث عن منتج في متجر اكسترا بسعر معين أو باسم المنتج",
-        inputSchema: z.object({
-          query: z.string().describe("اسم المنتج أو وصفه بالانجليزي مثل iPhone 16 أو laptop"),
+        searchExtra: tool({
+          description: "البحث عن منتج في متجر اكسترا بسعر معين أو باسم المنتج",
+          inputSchema: z.object({
+            query: z.string().describe("اسم المنتج أو وصفه بالانجليزي مثل iPhone 16 أو laptop"),
+          }),
+          execute: async ({ query }) => {
+            const searchUrl = `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`
+            return { searchUrl, message: `رابط البحث في اكسترا: ${searchUrl}` }
+          },
         }),
-        execute: async ({ query }) => {
-          const searchUrl = `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`
-          return { searchUrl, message: `رابط البحث في اكسترا: ${searchUrl}` }
-        },
-      }),
-    },
-    stopWhen: stepCountIs(3),
-  })
+      },
+      stopWhen: stepCountIs(3),
+    })
 
-  return result.toUIMessageStreamResponse({
-    originalMessages: messages,
-    onFinish: async ({ messages: finalMessages }) => {
+    // Save conversation in background - don't block the stream
+    const saveConversation = async (userText: string) => {
       try {
-        const lastUserMsg = [...finalMessages].reverse().find(m => m.role === "user")
-        const lastAssistantMsg = [...finalMessages].reverse().find(m => m.role === "assistant")
-        const userText = lastUserMsg?.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
-        const assistantText = lastAssistantMsg?.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
-        
-        // Save to conversations table
         const { data: existing } = await supabase
           .from("conversations")
           .select("id, messages")
           .eq("phone", `web-${visitorId}`)
           .single()
 
-        const simplifiedMessages = finalMessages.slice(-20).map((m: { role: string; parts?: Array<{ type: string; text?: string }> }) => ({
-          role: m.role,
-          content: m.parts?.filter((p: { type: string }) => p.type === "text").map((p: { type: string; text?: string }) => p.text).join("") || ""
-        })).filter((m: { content: string }) => m.content)
-
         if (existing) {
+          const msgs = Array.isArray(existing.messages) ? existing.messages : []
+          msgs.push({ role: "user", content: userText })
           await supabase.from("conversations").update({
-            messages: simplifiedMessages,
+            messages: msgs.slice(-20),
             last_message: userText,
             updated_at: new Date().toISOString(),
           }).eq("id", existing.id)
@@ -236,18 +222,30 @@ export async function POST(req: Request) {
           await supabase.from("conversations").insert({
             phone: `web-${visitorId}`,
             customer_name: "زائر الموقع",
-            messages: simplifiedMessages,
+            messages: [{ role: "user", content: userText }],
             last_message: userText,
             source: "website",
           })
         }
-      } catch (e) {
-        console.error("[v0] Chat save error:", e)
-      }
+      } catch { /* silent */ }
     }
-  })
+
+    // Extract user text and save in background
+    const lastUserMsg = messages[messages.length - 1]
+    if (lastUserMsg?.role === "user") {
+      const userText = lastUserMsg.parts
+        ?.filter((p: { type: string }) => p.type === "text")
+        .map((p: { type: string; text?: string }) => p.text)
+        .join("") || ""
+      if (userText) saveConversation(userText)
+    }
+
+    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("[v0] Chat API error:", error)
-    return new Response(JSON.stringify({ error: "Internal server error" }), { status: 500 })
+    return new Response(JSON.stringify({ error: "حصل خطأ، حاول مرة ثانية" }), { 
+      status: 500,
+      headers: { "Content-Type": "application/json" }
+    })
   }
 }

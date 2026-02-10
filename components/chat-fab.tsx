@@ -118,7 +118,7 @@ export function ChatFab() {
                     ? "bg-primary text-primary-foreground rounded-tr-sm"
                     : "bg-secondary text-foreground rounded-tl-sm"
                 }`}>
-                  {message.parts.map((part, index) => {
+                  {(message.parts || []).map((part, index) => {
                     if (part.type === "text" && part.text.trim()) {
                       return <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
                     }
