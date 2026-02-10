@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { useChat } from "@ai-sdk/react"
-import { defaultChatTransport } from "@ai-sdk/react"
+import { DefaultChatTransport } from "ai"
 import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { ChatMessageContent } from "@/components/chat-message"
@@ -34,7 +34,7 @@ export function ChatFab() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const { messages, sendMessage, status } = useChat({
-    transport: defaultChatTransport({
+    transport: new DefaultChatTransport({
       api: "/api/chat",
       headers: () => ({ "x-visitor-id": getVisitorId() }),
     }),
