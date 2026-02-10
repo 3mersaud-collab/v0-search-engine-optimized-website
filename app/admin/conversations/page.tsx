@@ -12,11 +12,13 @@ import Link from "next/link"
 
 type Conversation = {
   id: string
+  phone: string
   phone_number: string
   customer_name: string
-  messages: { role: string; content: string }[]
+  messages: { role: string; content: string; from_admin?: boolean }[]
   last_message: string
   source: string
+  mode: "bot" | "manual"
   created_at: string
   updated_at: string
 }
@@ -27,6 +29,9 @@ export default function ConversationsPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedConv, setSelectedConv] = useState<Conversation | null>(null)
   const [filterSource, setFilterSource] = useState("all")
+  const [replyText, setReplyText] = useState("")
+  const [sending, setSending] = useState(false)
+  const [toggling, setToggling] = useState(false)
   const router = useRouter()
 
   const fetchConversations = useCallback(async () => {
@@ -39,6 +44,56 @@ export default function ConversationsPage() {
   }, [router])
 
   useEffect(() => { fetchConversations() }, [fetchConversations])
+
+  // Auto-refresh every 10 seconds
+  useEffect(() => {
+    const interval = setInterval(fetchConversations, 10000)
+    return () => clearInterval(interval)
+  }, [fetchConversations])
+
+  const handleSendReply = async () => {
+    if (!replyText.trim() || !selectedConv || sending) return
+    setSending(true)
+    try {
+      const res = await fetch("/api/admin/conversations/reply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ conversationId: selectedConv.id, message: replyText }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setSelectedConv({
+          ...selectedConv,
+          mode: "manual",
+          messages: [
+            ...(selectedConv.messages || []),
+            { role: "assistant", content: replyText, from_admin: true }
+          ],
+          last_message: replyText,
+        })
+        setReplyText("")
+        fetchConversations()
+      }
+    } catch { /* silent */ } finally { setSending(false) }
+  }
+
+  const handleToggleMode = async () => {
+    if (!selectedConv || toggling) return
+    setToggling(true)
+    const newMode = selectedConv.mode === "manual" ? "bot" : "manual"
+    try {
+      const res = await fetch("/api/admin/conversations/reply", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ conversationId: selectedConv.id, mode: newMode }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setSelectedConv({ ...selectedConv, mode: newMode })
+        fetchConversations()
+      }
+    } catch { /* silent */ } finally { setToggling(false) }
+  }
 
   const filtered = conversations.filter(c => {
     const matchSearch = c.customer_name.includes(searchQuery) ||
@@ -188,13 +243,29 @@ export default function ConversationsPage() {
                     <p className="text-xs text-muted-foreground">{selectedConv.phone_number}</p>
                   </div>
                 </div>
-                {selectedConv.source === "whatsapp" && (
-                  <a href={`https://wa.me/${selectedConv.phone_number}`} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm" className="bg-transparent text-[#25D366] border-[#25D366]/30">
-                      <MessageCircle className="w-4 h-4 ml-1" />رد عبر واتساب
+                <div className="flex items-center gap-2">
+                  {selectedConv.source === "whatsapp" && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleToggleMode}
+                      disabled={toggling}
+                      className={`bg-transparent ${
+                        selectedConv.mode === "manual"
+                          ? "text-amber-600 border-amber-300"
+                          : "text-[#25D366] border-[#25D366]/30"
+                      }`}
+                    >
+                      {toggling ? (
+                        <Loader2 className="w-4 h-4 animate-spin ml-1" />
+                      ) : selectedConv.mode === "manual" ? (
+                        <><User className="w-4 h-4 ml-1" />وضع يدوي</>
+                      ) : (
+                        <><MessageCircle className="w-4 h-4 ml-1" />مطر شغال</>
+                      )}
                     </Button>
-                  </a>
-                )}
+                  )}
+                </div>
               </div>
 
               {/* Messages */}
@@ -204,23 +275,62 @@ export default function ConversationsPage() {
                     <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm ${
                       msg.role === "user"
                         ? "bg-primary text-primary-foreground rounded-br-sm"
-                        : "bg-card border border-border rounded-bl-sm"
+                        : msg.from_admin
+                          ? "bg-amber-50 border border-amber-200 rounded-bl-sm dark:bg-amber-950/30 dark:border-amber-800"
+                          : "bg-card border border-border rounded-bl-sm"
                     }`}>
+                      {msg.role === "assistant" && (
+                        <p className={`text-[10px] font-bold mb-1 ${msg.from_admin ? "text-amber-600" : "text-[#25D366]"}`}>
+                          {msg.from_admin ? "أنت (يدوي)" : "مطر (بوت)"}
+                        </p>
+                      )}
                       <p className="whitespace-pre-wrap">{msg.content}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Footer */}
-              <div className="p-3 border-t border-border bg-secondary/30 text-center">
-                <p className="text-xs text-muted-foreground">
-                  <Clock className="w-3 h-3 inline ml-1" />
-                  آخر تحديث: {new Date(selectedConv.updated_at).toLocaleDateString("ar-SA", {
-                    year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
-                  })}
-                </p>
-              </div>
+              {/* Reply Input */}
+              {selectedConv.source === "whatsapp" && (
+                <div className="p-3 border-t border-border bg-card">
+                  <div className="flex gap-2">
+                    <Input
+                      value={replyText}
+                      onChange={e => setReplyText(e.target.value)}
+                      onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendReply() } }}
+                      placeholder="اكتب ردك هنا... (يتحول تلقائياً لوضع يدوي)"
+                      className="flex-1"
+                      disabled={sending}
+                    />
+                    <Button onClick={handleSendReply} disabled={!replyText.trim() || sending} size="sm">
+                      {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : "ارسل"}
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p className="text-[10px] text-muted-foreground">
+                      {selectedConv.mode === "manual"
+                        ? "الوضع اليدوي -- مطر متوقف عن الرد على هذي المحادثة"
+                        : "مطر يرد تلقائياً -- لما ترسل رد يتحول لوضع يدوي"}
+                    </p>
+                    <p className="text-[10px] text-muted-foreground">
+                      <Clock className="w-3 h-3 inline ml-1" />
+                      {new Date(selectedConv.updated_at).toLocaleDateString("ar-SA", {
+                        month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
+                      })}
+                    </p>
+                  </div>
+                </div>
+              )}
+              {selectedConv.source !== "whatsapp" && (
+                <div className="p-3 border-t border-border bg-secondary/30 text-center">
+                  <p className="text-xs text-muted-foreground">
+                    <Clock className="w-3 h-3 inline ml-1" />
+                    آخر تحديث: {new Date(selectedConv.updated_at).toLocaleDateString("ar-SA", {
+                      year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
+                    })}
+                  </p>
+                </div>
+              )}
             </div>
           )}
         </div>
