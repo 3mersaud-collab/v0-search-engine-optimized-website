@@ -13,12 +13,11 @@ import Link from "next/link"
 type Conversation = {
   id: string
   phone: string
-  phone_number: string
   customer_name: string
   messages: { role: string; content: string; from_admin?: boolean }[]
   last_message: string
   source: string
-  mode: "bot" | "manual"
+  mode: "bot" | "manual" | null
   created_at: string
   updated_at: string
 }
@@ -80,7 +79,7 @@ export default function ConversationsPage() {
   const handleToggleMode = async () => {
     if (!selectedConv || toggling) return
     setToggling(true)
-    const newMode = selectedConv.mode === "manual" ? "bot" : "manual"
+    const newMode = (selectedConv.mode === "manual") ? "bot" : "manual"
     try {
       const res = await fetch("/api/admin/conversations/reply", {
         method: "PATCH",
@@ -96,9 +95,9 @@ export default function ConversationsPage() {
   }
 
   const filtered = conversations.filter(c => {
-    const matchSearch = c.customer_name.includes(searchQuery) ||
-      c.phone_number.includes(searchQuery) ||
-      c.last_message.includes(searchQuery)
+    const matchSearch = (c.customer_name || "").includes(searchQuery) ||
+      (c.phone || "").includes(searchQuery) ||
+      (c.last_message || "").includes(searchQuery)
     const matchSource = filterSource === "all" || c.source === filterSource
     return matchSearch && matchSource
   })
@@ -208,7 +207,7 @@ export default function ConversationsPage() {
                       </div>
                       <div className="min-w-0">
                         <p className="font-bold text-foreground text-sm truncate">{conv.customer_name}</p>
-                        <p className="text-xs text-muted-foreground truncate">{conv.phone_number}</p>
+                        <p className="text-xs text-muted-foreground truncate">{conv.phone}</p>
                       </div>
                     </div>
                     <div className="flex flex-col items-end shrink-0">
@@ -240,7 +239,7 @@ export default function ConversationsPage() {
                   </div>
                   <div>
                     <p className="font-bold text-foreground">{selectedConv.customer_name}</p>
-                    <p className="text-xs text-muted-foreground">{selectedConv.phone_number}</p>
+                    <p className="text-xs text-muted-foreground">{selectedConv.phone}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -258,10 +257,10 @@ export default function ConversationsPage() {
                     >
                       {toggling ? (
                         <Loader2 className="w-4 h-4 animate-spin ml-1" />
-                      ) : selectedConv.mode === "manual" ? (
-                        <><User className="w-4 h-4 ml-1" />وضع يدوي</>
+                      ) : (selectedConv.mode === "manual") ? (
+                        <><User className="w-4 h-4 ml-1" />{'وضع يدوي'}</>
                       ) : (
-                        <><MessageCircle className="w-4 h-4 ml-1" />مطر شغال</>
+                        <><MessageCircle className="w-4 h-4 ml-1" />{'مطر شغال'}</>
                       )}
                     </Button>
                   )}
