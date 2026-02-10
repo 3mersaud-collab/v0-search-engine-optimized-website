@@ -1,3 +1,4 @@
+// Chat API - Fixed and Working (v1.0)
 import {
   convertToModelMessages,
   streamText,
