@@ -1,4 +1,5 @@
 import {
+  consumeStream,
   convertToModelMessages,
   streamText,
   tool,
@@ -176,6 +177,7 @@ export async function POST(req: Request) {
       model: "anthropic/claude-sonnet-4",
       system: SYSTEM_PROMPT,
       messages: await convertToModelMessages(messages),
+      abortSignal: req.signal,
       tools: {
         calculateCash: tool({
           description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
@@ -240,7 +242,9 @@ export async function POST(req: Request) {
       if (userText) saveConversation(userText)
     }
 
-    return result.toUIMessageStreamResponse()
+    return result.toUIMessageStreamResponse({
+      consumeSseStream: consumeStream,
+    })
   } catch (error) {
     console.error("[v0] Chat API error:", error)
     return new Response(JSON.stringify({ error: "حصل خطأ، حاول مرة ثانية" }), { 
