@@ -162,14 +162,23 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json()
+    console.log("[v0] WhatsApp webhook received:", JSON.stringify(body).slice(0, 500))
+    
     const entry = body.entry?.[0]
     const changes = entry?.changes?.[0]
     const value = changes?.value
     const message = value?.messages?.[0]
+    
+    // Handle status updates (delivery receipts etc)
+    if (!message && value?.statuses) {
+      console.log("[v0] WhatsApp status update received")
+      return new Response("OK", { status: 200 })
+    }
     if (!message) return new Response("OK", { status: 200 })
 
     const from = message.from
     const phoneId = value?.metadata?.phone_number_id
+    console.log("[v0] Message from:", from, "phoneId:", phoneId, "type:", message.type)
 
     let msgBody = ""
     if (message.type === "interactive" && message.interactive?.button_reply) {
@@ -272,12 +281,13 @@ export async function POST(req: Request) {
         { id: "madfoo3", title: "مدفوع" },
       ])
     } else if (phoneId) {
-      await sendText(phoneId, from, text)
+      const sendResult = await sendText(phoneId, from, text)
+      console.log("[v0] Send text result:", JSON.stringify(sendResult))
     }
 
     return new Response("OK", { status: 200 })
   } catch (error) {
-    console.error("[v0] WhatsApp error:", error)
+    console.error("[v0] WhatsApp POST error:", error)
     return new Response("OK", { status: 200 })
   }
 }
