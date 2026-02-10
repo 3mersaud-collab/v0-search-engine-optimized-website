@@ -216,7 +216,7 @@ export async function POST(req: Request) {
         const { data: existing } = await supabase
           .from("conversations")
           .select("id, messages")
-          .eq("phone_number", `web-${visitorId}`)
+          .eq("phone", `web-${visitorId}`)
           .single()
 
         const simplifiedMessages = finalMessages.slice(-20).map((m: { role: string; parts?: Array<{ type: string; text?: string }> }) => ({
@@ -232,7 +232,7 @@ export async function POST(req: Request) {
           }).eq("id", existing.id)
         } else {
           await supabase.from("conversations").insert({
-            phone_number: `web-${visitorId}`,
+            phone: `web-${visitorId}`,
             customer_name: "زائر الموقع",
             messages: simplifiedMessages,
             last_message: userText,
