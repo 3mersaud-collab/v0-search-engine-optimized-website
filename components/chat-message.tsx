@@ -3,10 +3,10 @@
 import Link from "next/link"
 
 function parseMessageContent(text: string) {
-  const parts: { type: "text" | "link"; content: string; href?: string }[] = []
+  const parts: { type: "text" | "link" | "image"; content: string; href?: string }[] = []
 
-  // Match markdown links [text](url) and plain URLs
-  const regex = /\[([^\]]+)\]\(([^)]+)\)|(https?:\/\/[^\s<>)\]]+)/g
+  // Match image attachments [صورة مرفقة](url), markdown links [text](url) and plain URLs
+  const regex = /\[صورة مرفقة\]\(([^)]+)\)|\[([^\]]+)\]\(([^)]+)\)|(https?:\/\/[^\s<>)\]]+)/g
   let lastIndex = 0
   let match: RegExpExecArray | null
 
@@ -16,12 +16,15 @@ function parseMessageContent(text: string) {
       parts.push({ type: "text", content: text.slice(lastIndex, match.index) })
     }
 
-    if (match[1] && match[2]) {
+    if (match[1]) {
+      // Image attachment [صورة مرفقة](url)
+      parts.push({ type: "image", content: "صورة مرفقة", href: match[1] })
+    } else if (match[2] && match[3]) {
       // Markdown link [text](url)
-      parts.push({ type: "link", content: match[1], href: match[2] })
-    } else if (match[3]) {
+      parts.push({ type: "link", content: match[2], href: match[3] })
+    } else if (match[4]) {
       // Plain URL
-      const url = match[3]
+      const url = match[4]
       // Clean trailing punctuation
       const cleanUrl = url.replace(/[.,،:;!؟?]+$/, "")
       const label = cleanUrl.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")
@@ -74,6 +77,18 @@ export function ChatMessageContent({ text, isUser }: { text: string; isUser: boo
         return (
           <div key={lineIdx}>
             {parsed.map((part, partIdx) => {
+              if (part.type === "image" && part.href) {
+                return (
+                  <a key={partIdx} href={part.href} target="_blank" rel="noopener noreferrer" className="block my-1">
+                    <img
+                      src={part.href}
+                      alt="صورة مرفقة"
+                      className="max-w-full rounded-lg border border-border/50 max-h-48 object-cover"
+                      loading="lazy"
+                    />
+                  </a>
+                )
+              }
               if (part.type === "link" && part.href) {
                 const isInternal = part.href.startsWith("/") || part.href.includes("liilsol")
                 if (isInternal) {
