@@ -30,7 +30,7 @@ export function HeroSection() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/20 mb-6">
               <Zap className="w-4 h-4" />
-              <span className="text-sm font-medium">مطر ليل | سحابة غيث ماحسبت حسابها</span>
+              <span className="text-sm font-medium">مطر | سحابة غيث ماحسبت حسابها</span>
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
@@ -88,7 +88,7 @@ export function HeroSection() {
                   <div className="flex items-center gap-2">
                     <Image 
                       src="/logo.jpg" 
-                      alt="مطر ليل" 
+                      alt="مطر" 
                       width={32} 
                       height={32} 
                       className="rounded-lg"
@@ -156,8 +156,8 @@ export function HeroSection() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            "name": "مطر ليل - liilsol",
-            "description": "مطر ليل - سحابة غيث ماحسبت حسابها. سيولة فورية من تابي وتمارا ومدفوع. كاش تابي، كاش تمارا، سلفة فورية.",
+            "name": "مطر - liilsol",
+            "description": "مطر - سحابة غيث ماحسبت حسابها. سيولة فورية من تابي وتمارا ومدفوع. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
             "telephone": "+966590360039",
             "email": "liilsol.support@liilsa.com",

@@ -91,11 +91,11 @@ export function SeoKeywordsSection() {
         <div className="mt-16 max-w-4xl mx-auto">
           <div className="bg-card rounded-2xl p-8 border border-border shadow-lg">
             <h3 className="text-2xl font-bold text-foreground mb-6">
-              لماذا مطر ليل لخدمات السيولة والكاش؟
+              لماذا مطر لخدمات السيولة والكاش؟
             </h3>
             <div className="prose prose-lg text-muted-foreground leading-relaxed space-y-4">
               <p>
-                نحن في <strong className="text-foreground">مطر ليل</strong> نقدم أفضل خدمات 
+                نحن في <strong className="text-foreground">مطر</strong> نقدم أفضل خدمات 
                 <strong className="text-foreground"> السيولة من تابي وتمارا</strong> في السعودية. سواء كنت تبحث عن 
                 <strong className="text-foreground"> كاش تابي</strong> أو <strong className="text-foreground">سيولة تمارا</strong> أو 
                 <strong className="text-foreground"> سلفة فورية</strong>، نحن هنا لمساعدتك بأسرع وقت وأفضل سعر.
