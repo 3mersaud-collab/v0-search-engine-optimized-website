@@ -173,8 +173,11 @@ export async function POST(req: Request) {
     const { messages }: { messages: UIMessage[] } = await req.json()
     const visitorId = req.headers.get("x-visitor-id") || "anonymous"
 
+    console.log("[v0] Chat API called, using model: openai/gpt-4o-mini")
+    console.log("[v0] AI_GATEWAY_API_KEY exists:", !!process.env.AI_GATEWAY_API_KEY)
+
     const result = streamText({
-      model: "openai/gpt-4o",
+      model: "openai/gpt-4o-mini",
       system: SYSTEM_PROMPT,
       messages: await convertToModelMessages(messages),
       abortSignal: req.signal,
