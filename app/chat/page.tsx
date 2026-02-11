@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, ExternalLink, ShoppingCart, ImagePlus, X, Phone, RotateCcw } from "lucide-react"
+// Brand: مطر - سحابة غيث ماحسبت حسابها
 import Link from "next/link"
 import { ChatMessageContent } from "@/components/chat-message"
 
