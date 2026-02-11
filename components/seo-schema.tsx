@@ -3,8 +3,8 @@ export function SeoSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": "https://liilsol.com/#business",
-    "name": "liilsol",
-    "alternateName": ["ليل سول", "liilSOL", "حلول الليل"],
+    "name": "مطر ليل",
+    "alternateName": ["liilsol", "ليل سول", "مطر ليل - سحابة غيث ماحسبت حسابها"],
     "description": "خدمة سيولة تابي وتمارا ومدفوع - تحويل رصيدك إلى كاش نقدي في السعودية. سيولة فورية، كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا.",
     "url": "https://liilsol.com",
     "telephone": "+966590360039",
@@ -218,8 +218,8 @@ export function SeoSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": "https://liilsol.com/#website",
-    "name": "liilsol - سيولة تابي وتمارا",
-    "alternateName": ["ليل سول", "سيولة تابي", "كاش تمارا"],
+    "name": "مطر ليل - سيولة تابي وتمارا",
+    "alternateName": ["liilsol", "سيولة تابي", "كاش تمارا", "سحابة غيث"],
     "url": "https://liilsol.com",
     "description": "سيولة تابي وتمارا ومدفوع - كاش فوري من رصيدك خلال ساعتين. أفضل خدمة سيولة في السعودية.",
     "inLanguage": "ar-SA",
@@ -244,7 +244,7 @@ export function SeoSchema() {
     "description": "تحويل رصيد تابي وتمارا ومدفوع إلى كاش نقدي فوري",
     "brand": {
       "@type": "Brand",
-      "name": "liilsol"
+      "name": "مطر ليل"
     },
     "aggregateRating": {
       "@type": "AggregateRating",

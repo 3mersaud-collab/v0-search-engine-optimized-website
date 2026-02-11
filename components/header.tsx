@@ -18,15 +18,18 @@ export function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Image 
               src="/logo.jpg" 
-              alt="liilsol - سيولة تابي وتمارا" 
+              alt="مطر ليل - سيولة تابي وتمارا" 
               width={40} 
               height={40} 
               className="rounded-lg"
               style={{ width: "40px", height: "auto" }}
             />
-            <span className="font-bold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              liilsol
-            </span>
+            <div className="flex flex-col">
+              <span className="font-bold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+                مطر ليل
+              </span>
+              <span className="text-[9px] md:text-[10px] text-muted-foreground leading-none">سحابة غيث ماحسبت حسابها</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,7 +57,7 @@ export function Header() {
             </Link>
             <Link href="/chat" className="text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
               <Bot className="w-4 h-4" />
-              مطر
+              مطر ليل
             </Link>
             <Link href="/track" className="text-muted-foreground hover:text-foreground transition-colors">
               تتبع الطلب
@@ -147,7 +150,7 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Bot className="w-4 h-4" />
-                مطر
+                مطر ليل
               </Link>
               <Link 
                 href="/track" 

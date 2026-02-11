@@ -18,7 +18,7 @@ const articlesData: Record<string, {
 }> = {
   "siyola-tabby-guide": {
     title: "سيولة تابي: دليل شامل للحصول على كاش من تابي خلال ساعتين",
-    description: "تعرف على خطوات الحصول على سيولة تابي وكيفية تحويل رصيدك إلى كاش نقدي في حسابك البنكي خلال ساعتين فقط مع liilsol.",
+    description: "تعرف على خطوات الحصول على سيولة تابي وكيفية تحويل رصيدك إلى كاش نقدي في حسابك البنكي خلال ساعتين فقط مع مطر ليل.",
     category: "سيولة تابي",
     readTime: "5 دقائق",
     date: "2026-01-15",
@@ -28,10 +28,10 @@ const articlesData: Record<string, {
 
 سيولة تابي هي عملية تحويل الرصيد المتاح لك في تطبيق تابي (Tabby) إلى كاش نقدي يُحول مباشرة إلى حسابك البنكي خلال ساعتين فقط. هذه الخدمة تساعدك على الاستفادة من حد الائتمان المتاح لديك في تابي للحصول على سيولة نقدية عند الحاجة.
 
-## خطوات الحصول على سيولة تابي مع liilsol
+## خطوات الحصول على سيولة تابي مع مطر ليل
 
 ### الخطوة 1: احسب المبلغ في حاسبة السيولة
-ادخل موقع liilsol.com واستخدم حاسبة السيولة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي الذي ستستلمه بعد الخصومات.
+ادخل موقع مطر ليل (liilsol.com) واستخدم حاسبة السيولة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي الذي ستستلمه بعد الخصومات.
 
 ### الخطوة 2: ادخل متجر نون أو اكسترا
 تابي متواجد في متجر نون ومتجر اكسترا. ادخل أحد المتجرين وأضف منتجات في السلة بنفس مبلغ الشراء من الحاسبة.
@@ -63,7 +63,7 @@ const articlesData: Record<string, {
 - الرسوم الإدارية (10%): 1,000 ريال
 - **المبلغ المستلم**: 8,800 - 2,500 - 1,000 = **5,300 ريال**
 
-## لماذا liilsol لسيولة تابي؟
+## لماذا مطر ليل لسيولة تابي؟
 
 - تنفيذ خلال ساعتين فقط
 - لا نطلب كلمات مرور أو بيانات حساسة
@@ -92,7 +92,7 @@ const articlesData: Record<string, {
 ## خطوات كاش تمارا (مختلفة عن تابي!)
 
 ### الخطوة 1: احسب المبلغ في حاسبة السيولة
-ادخل موقع liilsol.com واستخدم الحاسبة لتحديد مبلغ الشراء.
+ادخل موقع مطر ليل (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء.
 
 ### الخطوة 2: ادخل متجر نون أو اكسترا
 تمارا متواجد في نون واكسترا. أضف منتجات بنفس مبلغ الشراء من الحاسبة.
@@ -210,7 +210,7 @@ const articlesData: Record<string, {
 | تمارا | نون، اكسترا | متوسطة |
 | مدفوع | المنيع | سهلة |
 
-## نصيحة liilsol
+## نصيحة مطر ليل
 
 استخدم التطبيق الذي لديك فيه رصيد أعلى. يمكنك استخدام أكثر من تطبيق للحصول على سيولة أكبر.
 
@@ -273,7 +273,7 @@ const articlesData: Record<string, {
 
 ## نصائح للمبتدئين
 
-1. **احسب قبل الطلب**: استخدم حاسبة liilsol
+1. **احسب قبل الطلب**: استخدم حاسبة مطر ليل
 2. **تأكد من قدرتك على السداد**: الأقساط ستأتي لاحقاً
 3. **اختر مبالغ أكبر**: الرسوم أقل نسبياً
 4. **تواصل معنا**: نشرح لك كل شيء
@@ -314,7 +314,7 @@ const articlesData: Record<string, {
 قسم الإلكترونيات والجوالات - أفضل المنتجات للسيولة
 
 ### متجر اكسترا (تابي + تمارا)
-قسم الجوالات والإلكترونيات
+قسم الجوالات وال��لكترونيات
 
 ### متجر المنيع (مدفوع فقط)
 قسم الجوالات والأجهزة اللوحية
@@ -333,7 +333,7 @@ const articlesData: Record<string, {
 
 1. **اختر منتجات معروفة**: Apple و Samsung الأفضل
 2. **تجنب المنتجات الرخيصة**: فرق البيع يكون أكبر
-3. **اسأل liilsol**: نختار لك المنتج المناسب
+3. **اسأل مطر ليل**: نختار لك المنتج المناسب
 
 ## تواصل معنا
 
@@ -348,7 +348,7 @@ const articlesData: Record<string, {
     category: "أمان",
     readTime: "5 دقائق",
     date: "2025-12-15",
-    keywords: ["حماية", "نصب", "احتيال", "سيولة آمنة", "liilsol"],
+    keywords: ["حماية", "نصب", "احتيال", "سيولة آمنة", "مطر ليل"],
     content: `
 ## كيف تتجنب النصب في السيولة؟
 
@@ -368,7 +368,7 @@ const articlesData: Record<string, {
 هذا مستحيل! دائماً هناك رسوم وفرق بيع
 
 ### 3. الضغط للتعجيل
-- "العرض ينتهي الآن"
+- "الع��ض ينتهي الآن"
 - "آخر فرصة"
 المزودون الموثوقون لا يضغطون عليك
 
@@ -377,10 +377,10 @@ const articlesData: Record<string, {
 - لا حساب انستقرام موثق
 - يختفون بعد الدفع
 
-## علامات المزود الموثوق مثل liilsol
+## علامات المزود الموثوق مثل مطر ليل
 
 ### ما نفعله:
-- نوضح جميع الخصومات مسبقاً بالحاسبة
+- نوضح جميع الخصومات مسب��اً بالحاسبة
 - رقم واتساب ثابت: 0590360039
 - حساب انستقرام: @liilsa.sol
 - موقع واضح: liilsol.com
@@ -432,7 +432,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (!article) {
     return {
-      title: "المقال غير موجود - liilsol",
+      title: "المقال غير موجود - مطر ليل",
     }
   }
 
@@ -445,7 +445,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: article.description,
       type: "article",
       publishedTime: article.date,
-      siteName: "liilsol",
+      siteName: "مطر ليل",
     },
     alternates: {
       canonical: `https://liilsol.com/articles/${slug}`,
@@ -470,12 +470,12 @@ export default async function ArticlePage({ params }: PageProps) {
     "dateModified": article.date,
     "author": {
       "@type": "Organization",
-      "name": "liilsol",
+      "name": "مطر ليل",
       "url": "https://liilsol.com"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "liilsol",
+      "name": "مطر ليل",
       "url": "https://liilsol.com"
     },
     "mainEntityOfPage": {
@@ -520,7 +520,7 @@ export default async function ArticlePage({ params }: PageProps) {
               
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-primary">liilsol</span>
+                  <span className="font-bold text-primary">مطر ليل</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />

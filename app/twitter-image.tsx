@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'liilsol - سيولة تابي وتمارا فورية'
+export const alt = 'مطر ليل - سيولة تابي وتمارا فورية'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -34,7 +34,7 @@ export default async function Image() {
             border: '4px solid rgba(255,255,255,0.3)',
           }}
         >
-          <span style={{ fontSize: 60, color: 'white', fontWeight: 'bold' }}>L</span>
+          <span style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>م</span>
         </div>
 
         {/* Brand Name */}
@@ -47,7 +47,7 @@ export default async function Image() {
             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
           }}
         >
-          liilsol
+          مطر ليل
         </div>
 
         {/* Tagline */}
@@ -59,7 +59,7 @@ export default async function Image() {
             fontWeight: 600,
           }}
         >
-          سيولة تابي وتمارا - كاش فوري
+          سحابة غيث ماحسبت حسابها
         </div>
 
         {/* Features */}

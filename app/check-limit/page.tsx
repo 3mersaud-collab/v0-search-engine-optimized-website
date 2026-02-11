@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer"
 import { CheckLimitContent } from "@/components/check-limit-content"
 
 export const metadata: Metadata = {
-  title: "افحص حدك واطلب السيولة | liilsol - سيولة تابي وتمارا",
+  title: "افحص حدك واطلب السيولة | مطر ليل - سيولة تابي وتمارا",
   description: "افحص حدك الائتماني واطلب سيولة من تابي وتمارا ومدفوع. خطوات سهلة للحصول على كاش فوري خلال ساعتين.",
   keywords: "فحص حد تابي, فحص حد تمارا, طلب سيولة, سيولة تابي, كاش تمارا, خطوات السيولة",
 }

@@ -12,15 +12,18 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-3 mb-4">
               <Image 
                 src="/logo.jpg" 
-                alt="liilsol - سيولة تابي وتمارا" 
+                alt="مطر ليل - سيولة تابي وتمارا" 
                 width={48} 
                 height={48} 
                 className="rounded-xl"
                 style={{ width: "48px", height: "auto" }}
               />
-              <span className="font-bold text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                liilsol
-              </span>
+              <div className="flex flex-col">
+                <span className="font-bold text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+                  مطر ليل
+                </span>
+                <span className="text-[10px] text-background/50 leading-none">سحابة غيث ماحسبت حسابها</span>
+              </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
               متجر مرخص لبيع وشراء الأجهزة الذكية عبر تابي وتمارا ومدفوع. 
@@ -101,7 +104,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-background/70 text-sm text-center md:text-right">
-            <p>جميع الحقوق محفوظة {new Date().getFullYear()} - liilsol</p>
+            <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر ليل | liilsol</p>
             <p className="mt-1">سجل تجاري رقم: 7052450439</p>
           </div>
           <div className="flex gap-6 text-sm">

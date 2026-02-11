@@ -8,13 +8,13 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
-  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع liilsol.",
+  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع مطر ليل.",
   keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, liilsol",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
-    title: "سيولة وسلفة فورية - liilsol",
+    title: "سيولة وسلفة فورية - مطر ليل",
     description: "سيولة من تابي وتمارا ومدفوع خلال ساعتين",
   },
 }
@@ -250,11 +250,11 @@ export default function SiyolaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "سيولة وسلفة - liilsol",
+            "name": "سيولة وسلفة - مطر ليل",
             "description": "خدمة سيولة وسلفة من تابي وتمارا ومدفوع",
             "provider": {
               "@type": "Organization",
-              "name": "liilsol",
+              "name": "مطر ليل",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",

@@ -19,7 +19,7 @@ export default function TermsPage() {
               <div className="bg-card rounded-2xl p-8 border border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-4">1. مقدمة</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  مرحباً بك في liilsol. باستخدامك لخدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. 
+                  مرحباً بك في مطر ليل. باستخدامك لخدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. 
                   نقدم خدمة تحويل رصيد تطبيقات الدفع الآجل (تابي، تمارا، مدفوع) إلى سيولة نقدية.
                 </p>
               </div>
