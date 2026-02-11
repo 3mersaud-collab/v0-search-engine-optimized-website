@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
-    title: "سيولة وسلفة فورية - liilsol",
+    title: "سيولة وسلفة فورية - مطر ليل",
     description: "سيولة من تابي وتمارا ومدفوع خلال ساعتين",
   },
 }
@@ -250,11 +250,11 @@ export default function SiyolaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "سيولة وسلفة - liilsol",
+            "name": "سيولة وسلفة - مطر ليل",
             "description": "خدمة سيولة وسلفة من تابي وتمارا ومدفوع",
             "provider": {
               "@type": "Organization",
-              "name": "liilsol",
+              "name": "مطر ليل",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",

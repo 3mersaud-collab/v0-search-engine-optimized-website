@@ -432,7 +432,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   if (!article) {
     return {
-      title: "المقال غير موجود - liilsol",
+      title: "المقال غير موجود - مطر ليل",
     }
   }
 
@@ -445,7 +445,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: article.description,
       type: "article",
       publishedTime: article.date,
-      siteName: "liilsol",
+      siteName: "مطر ليل",
     },
     alternates: {
       canonical: `https://liilsol.com/articles/${slug}`,
@@ -470,12 +470,12 @@ export default async function ArticlePage({ params }: PageProps) {
     "dateModified": article.date,
     "author": {
       "@type": "Organization",
-      "name": "liilsol",
+      "name": "مطر ليل",
       "url": "https://liilsol.com"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "liilsol",
+      "name": "مطر ليل",
       "url": "https://liilsol.com"
     },
     "mainEntityOfPage": {
@@ -520,7 +520,7 @@ export default async function ArticlePage({ params }: PageProps) {
               
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-primary">liilsol</span>
+                  <span className="font-bold text-primary">مطر ليل</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />

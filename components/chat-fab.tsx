@@ -295,7 +295,7 @@ export function ChatFab() {
               <div>
                 <p className="font-bold text-sm">مطر ليل</p>
                 <p className="text-[10px] opacity-80">
-                  {isLoading ? "يكتب..." : "سحابة غيث ماحسبت حسابها | Powered by liilsol"}
+                  {isLoading ? "يكتب..." : "سحابة غيث ماحسبت حسابها"}
                 </p>
               </div>
             </div>
