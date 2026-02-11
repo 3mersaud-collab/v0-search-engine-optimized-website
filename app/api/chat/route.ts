@@ -67,7 +67,7 @@ const SYSTEM_PROMPT = `اسمك "مطر" - مساعد خدمة liilsol (ليل �
   الرسوم: [الرسوم] ر.س | الدفعة الاولى (مستردة): [الدفعة] ر.س
   الصافي لك: [الصافي] ر.س
   
-  **نبيع لك الجهاز بالقيمة المطلوبة ونشتريه منك** - ما تحتاج تسوي شي غير انك تشتريه بالتقسيط.
+  **نبيع لك الجهاز بالقيمة المطلوبة أو نشتريه منك** - ما تحتاج تسوي شي غير انك تشتريه بالتقسيط.
   
   تبي نكمل؟"
 
@@ -131,7 +131,7 @@ const SYSTEM_PROMPT = `اسمك "مطر" - مساعد خدمة liilsol (ليل �
 - اكتب الروابط بصيغة markdown: [النص](الرابط)
 - خلك مختصر - لا تطوّل
 - أي رقم يذكره العميل بدون توضيح = المبلغ المطلوب كاش (صافي)
-- دايم قول "نبيع لك الجهاز ونشتريه منك" عند الحساب
+- دايم قول "نبيع لك الجهاز أو نشتريه منك" عند الحساب
 - إذا سأل عن الضمان أو المصداقية: ذكره بالسجل التجاري والعمليات اللي تتعدى 100 ألف`
 
 // ═══════════════════════════════════════════════
@@ -208,7 +208,17 @@ function generateOrderNumber() {
 async function sendWhatsAppNotification(message: string) {
   const token = process.env.WHATSAPP_TOKEN
   const phoneId = process.env.WHATSAPP_PHONE_NUMBER_ID
-  if (!token || !phoneId) return { success: false, reason: "WhatsApp not configured" }
+  
+  if (!token || !phoneId) {
+    console.log("[matar] WhatsApp not configured - WHATSAPP_TOKEN:", !!token, "WHATSAPP_PHONE_NUMBER_ID:", !!phoneId)
+    // Save notification to database as fallback
+    await supabase.from("notifications").insert({
+      type: "whatsapp_fallback",
+      title: "تنبيه (واتساب غير مفعل)",
+      body: message,
+    }).then(() => {})
+    return { success: false, reason: "WhatsApp not configured - saved to notifications" }
+  }
   
   try {
     const res = await fetch(`${WHATSAPP_API}/${phoneId}/messages`, {
@@ -221,8 +231,27 @@ async function sendWhatsAppNotification(message: string) {
         text: { body: message },
       }),
     })
+    const responseBody = await res.text()
+    console.log("[matar] WhatsApp API response:", res.status, responseBody)
+    
+    if (!res.ok) {
+      // Save to notifications as fallback
+      await supabase.from("notifications").insert({
+        type: "whatsapp_failed",
+        title: "تنبيه (فشل ارسال واتساب)",
+        body: `${message}\n\n--- خطأ: ${responseBody}`,
+      }).then(() => {})
+    }
+    
     return { success: res.ok }
-  } catch {
+  } catch (err) {
+    console.error("[matar] WhatsApp send error:", err)
+    // Save to notifications as fallback
+    await supabase.from("notifications").insert({
+      type: "whatsapp_error",
+      title: "تنبيه (خطأ واتساب)",
+      body: message,
+    }).then(() => {})
     return { success: false, reason: "send failed" }
   }
 }
@@ -300,48 +329,59 @@ export async function POST(req: Request) {
             iban: z.string().optional().describe("رقم الآيبان"),
           }),
           execute: async ({ customerName, customerPhone, appType, netRequested, bankName, iban }) => {
-            const calc = calculateAmount(netRequested)
-            const orderNumber = generateOrderNumber()
-            const appNames: Record<string, string> = { tabby: "تابي", tamara: "تمارا", madfu: "مدفوع" }
+            try {
+              const calc = calculateAmount(netRequested)
+              const orderNumber = generateOrderNumber()
+              const appNames: Record<string, string> = { tabby: "تابي", tamara: "تمارا", madfu: "مدفوع" }
 
-            const { data, error } = await supabase.from("orders").insert({
-              order_number: orderNumber,
-              customer_name: customerName,
-              customer_phone: customerPhone,
-              app_type: appNames[appType] || appType,
-              purchase_amount: calc.purchaseAmount,
-              sale_amount: calc.saleAmount,
-              admin_fee: calc.adminFee,
-              first_payment: calc.downPayment,
-              final_amount: calc.netAmount,
-              remaining_installment: calc.remainingInstallment,
-              net_requested: netRequested,
-              notes: `${bankName ? `البنك: ${bankName}\n` : ""}${iban ? `IBAN: ${iban}\n` : ""}طلب من الشات`,
-              status: "pending",
-            }).select("id, order_number").single()
+              console.log("[matar] Submitting order:", { orderNumber, customerName, customerPhone, appType, netRequested })
 
-            if (error) return { success: false, error: "فشل رفع الطلب" }
+              const { data, error } = await supabase.from("orders").insert({
+                order_number: orderNumber,
+                customer_name: customerName,
+                customer_phone: customerPhone,
+                app_type: appNames[appType] || appType,
+                purchase_amount: calc.purchaseAmount,
+                sale_amount: calc.saleAmount,
+                admin_fee: calc.adminFee,
+                first_payment: calc.downPayment,
+                final_amount: calc.netAmount,
+                remaining_installment: calc.remainingInstallment,
+                net_requested: netRequested,
+                notes: `${bankName ? `البنك: ${bankName}\n` : ""}${iban ? `IBAN: ${iban}\n` : ""}طلب من الشات`,
+                status: "pending",
+              }).select("id, order_number").single()
 
-            // Notify admin via WhatsApp
-            sendWhatsAppNotification(
-              `طلب جديد من الشات!\nرقم الطلب: ${orderNumber}\nالعميل: ${customerName}\nالجوال: ${customerPhone}\nالصافي: ${netRequested} ر.س\nالتطبيق: ${appNames[appType] || appType}`
-            ).catch(() => {})
+              if (error) {
+                console.error("[matar] Order insert error:", error)
+                return { success: false, error: `فشل رفع الطلب: ${error.message}` }
+              }
 
-            // Notify in database
-            supabase.from("notifications").insert({
-              type: "new_order",
-              title: "طلب جديد من الشات",
-              body: `${customerName} - ${netRequested} ر.س (${appNames[appType] || appType})`,
-              reference_type: "order",
-              reference_id: data.id,
-            }).then(() => {})
+              console.log("[matar] Order created:", data)
 
-            return {
-              success: true,
-              orderNumber,
-              purchaseAmount: calc.purchaseAmount,
-              netAmount: calc.netAmount,
-              appType: appNames[appType] || appType,
+              // Always save notification to database first
+              await supabase.from("notifications").insert({
+                type: "new_order",
+                title: "طلب جديد من الشات",
+                body: `${customerName} - ${customerPhone}\nالصافي: ${netRequested} ر.س | التطبيق: ${appNames[appType] || appType}\n${bankName ? `البنك: ${bankName}` : ""}${iban ? ` | IBAN: ${iban}` : ""}`,
+                reference_type: "order",
+                reference_id: data.id,
+              })
+
+              // Then try WhatsApp notification
+              const whatsappMsg = `طلب جديد من الشات!\nرقم الطلب: ${orderNumber}\nالعميل: ${customerName}\nالجوال: ${customerPhone}\nالصافي: ${netRequested} ر.س\nالتطبيق: ${appNames[appType] || appType}${bankName ? `\nالبنك: ${bankName}` : ""}${iban ? `\nIBAN: ${iban}` : ""}`
+              sendWhatsAppNotification(whatsappMsg).catch(() => {})
+
+              return {
+                success: true,
+                orderNumber,
+                purchaseAmount: calc.purchaseAmount,
+                netAmount: calc.netAmount,
+                appType: appNames[appType] || appType,
+              }
+            } catch (err) {
+              console.error("[matar] submitOrder error:", err)
+              return { success: false, error: "حصل خطأ أثناء رفع الطلب" }
             }
           },
         }),
