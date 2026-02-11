@@ -313,11 +313,3 @@ async function saveMessage(visitorId: string, role: "user" | "assistant", conten
     }
   } catch { /* silent */ }
 }
-  } catch (error) {
-    console.error("[v0] Chat API error:", error)
-    return new Response(JSON.stringify({ error: "حصل خطأ، حاول مرة ثانية" }), { 
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    })
-  }
-}
