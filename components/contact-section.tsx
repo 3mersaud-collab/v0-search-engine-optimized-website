@@ -31,7 +31,7 @@ export function ContactSection() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-6">معلومات التواصل - مطر ليل</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">معلومات التواصل - مطر</h3>
               
               <div className="space-y-5 mb-8">
                 <a 
