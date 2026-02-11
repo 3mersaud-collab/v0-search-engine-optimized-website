@@ -18,12 +18,12 @@ export function Footer() {
                 className="rounded-xl"
                 style={{ width: "48px", height: "auto" }}
               />
-              <div className="flex flex-col">
-                <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+              <div className="flex flex-col gap-0.5">
+                <span className="font-semibold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-none tracking-wide">
                   مطر
                 </span>
-                <span className="text-[10px] text-background/50 leading-none">سحابة غيث ماحسبت حسابها</span>
-                <span className="text-[9px] text-background/30 leading-none mt-0.5">Powered by liilsol</span>
+                <span className="text-sm text-background/50 font-medium leading-none tracking-tight">سحابة غيث ماحسبت حسابها</span>
+                <span className="text-[8px] text-background/25 uppercase tracking-[0.2em] leading-none">powered by liilsol</span>
               </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">

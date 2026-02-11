@@ -24,12 +24,12 @@ export function Header() {
               className="rounded-lg"
               style={{ width: "40px", height: "auto" }}
             />
-            <div className="flex flex-col">
-              <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+            <div className="flex flex-col gap-0.5">
+              <span className="font-semibold text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-none">
                 مطر
               </span>
-              <span className="text-[10px] md:text-xs text-muted-foreground font-medium leading-none">سحابة غيث ماحسبت حسابها</span>
-              <span className="text-[8px] md:text-[9px] text-muted-foreground/60 leading-none mt-0.5">Powered by liilsol</span>
+              <span className="text-xs md:text-sm text-muted-foreground font-medium leading-none tracking-tight">سحابة غيث ماحسبت حسابها</span>
+              <span className="text-[7px] md:text-[8px] text-muted-foreground/40 uppercase tracking-[0.2em] leading-none">powered by liilsol</span>
             </div>
           </Link>
 
