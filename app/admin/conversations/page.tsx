@@ -10,16 +10,19 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 
+type ConvMessage = { role: string; content: string; from_admin?: boolean; timestamp?: string }
+
 type Conversation = {
   id: string
   phone: string
   customer_name: string
-  messages: { role: string; content: string; from_admin?: boolean }[]
+  messages: ConvMessage[]
   last_message: string
   source: string
   mode: "bot" | "manual" | null
   created_at: string
   updated_at: string
+  status: string
 }
 
 export default function ConversationsPage() {
@@ -174,6 +177,10 @@ export default function ConversationsPage() {
     return matchSearch && matchSource
   })
 
+  // Stats
+  const totalMessages = conversations.reduce((sum, c) => sum + (c.messages?.length || 0), 0)
+  const botMessages = conversations.reduce((sum, c) => sum + (c.messages?.filter(m => m.role === "assistant" && !m.from_admin).length || 0), 0)
+
   const formatTime = (date: string) => {
     const d = new Date(date)
     const now = new Date()
@@ -236,18 +243,26 @@ export default function ConversationsPage() {
 
       <div className="container mx-auto px-4 py-6">
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-card rounded-xl p-4 border border-border text-center">
-            <p className="text-2xl font-bold text-foreground">{conversations.length}</p>
-            <p className="text-sm text-muted-foreground">إجمالي المحادثات</p>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+          <div className="bg-card rounded-xl p-3 border border-border text-center">
+            <p className="text-xl font-bold text-foreground">{conversations.length}</p>
+            <p className="text-xs text-muted-foreground">المحادثات</p>
           </div>
-          <div className="bg-[#25D366]/10 rounded-xl p-4 border border-[#25D366]/30 text-center">
-            <p className="text-2xl font-bold text-[#25D366]">{conversations.filter(c => c.source === "whatsapp").length}</p>
-            <p className="text-sm text-[#25D366]">واتساب</p>
+          <div className="bg-[#25D366]/10 rounded-xl p-3 border border-[#25D366]/30 text-center">
+            <p className="text-xl font-bold text-[#25D366]">{conversations.filter(c => c.source === "whatsapp").length}</p>
+            <p className="text-xs text-[#25D366]">واتساب</p>
           </div>
-          <div className="bg-primary/10 rounded-xl p-4 border border-primary/30 text-center">
-            <p className="text-2xl font-bold text-primary">{conversations.filter(c => c.source === "website").length}</p>
-            <p className="text-sm text-primary">الموقع</p>
+          <div className="bg-primary/10 rounded-xl p-3 border border-primary/30 text-center">
+            <p className="text-xl font-bold text-primary">{conversations.filter(c => c.source === "website").length}</p>
+            <p className="text-xs text-primary">الموقع</p>
+          </div>
+          <div className="bg-card rounded-xl p-3 border border-border text-center">
+            <p className="text-xl font-bold text-foreground">{totalMessages}</p>
+            <p className="text-xs text-muted-foreground">اجمالي الرسائل</p>
+          </div>
+          <div className="bg-accent/10 rounded-xl p-3 border border-accent/30 text-center">
+            <p className="text-xl font-bold text-accent">{botMessages}</p>
+            <p className="text-xs text-accent">ردود مطر</p>
           </div>
         </div>
 
@@ -384,26 +399,30 @@ export default function ConversationsPage() {
                     }`}>
                       {msg.role === "assistant" && (
                         <p className={`text-[10px] font-bold mb-1 ${msg.from_admin ? "text-amber-600" : "text-[#25D366]"}`}>
-                          {msg.from_admin ? "أنت (يدوي)" : "مطر (بوت)"}
+                          {msg.from_admin ? "انت (يدوي)" : "مطر (بوت)"}
                         </p>
                       )}
-                      {/* Render images from message */}
+                      {/* Render images */}
                       {msg.content && /\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/.test(msg.content) && (
-                        <a
-                          href={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block mb-2"
-                        >
-                          <img
-                            src={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]}
-                            alt="صورة مرفقة"
-                            className="max-w-full rounded-lg border border-border/50 max-h-48 object-cover"
-                            loading="lazy"
-                          />
+                        <a href={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]} target="_blank" rel="noopener noreferrer" className="block mb-2">
+                          <img src={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]} alt="صورة مرفقة" className="max-w-full rounded-lg border border-border/50 max-h-48 object-cover" loading="lazy" />
                         </a>
                       )}
-                      <p className="whitespace-pre-wrap">{msg.content?.replace(/\[صورة مرفقة\]\(https?:\/\/[^)]+\)/g, "").trim()}</p>
+                      {/* Render markdown links */}
+                      <p className="whitespace-pre-wrap" dangerouslySetInnerHTML={{
+                        __html: (msg.content || "")
+                          .replace(/\[صورة مرفقة\]\(https?:\/\/[^)]+\)/g, "")
+                          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+                          .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="underline text-primary">$1</a>')
+                          .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2" class="underline text-primary">$1</a>')
+                          .trim()
+                      }} />
+                      {/* Message timestamp */}
+                      {msg.timestamp && (
+                        <p className={`text-[9px] mt-1 ${msg.role === "user" ? "text-primary-foreground/60" : "text-muted-foreground/60"}`}>
+                          {new Date(msg.timestamp).toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" })}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
