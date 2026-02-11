@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle, ImagePlus } from "lucide-react"
+import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle, ImagePlus, Phone, RotateCcw } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { ChatMessageContent } from "@/components/chat-message"
 import Link from "next/link"
@@ -32,12 +32,23 @@ export function ChatFab() {
   const [uploading, setUploading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const { messages, sendMessage, status } = useChat({
+  // Phone linking state
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false)
+  const [phoneInput, setPhoneInput] = useState("")
+  const [phoneLinked, setPhoneLinked] = useState(false)
+
+  // History state
+  const [hasHistory, setHasHistory] = useState(false)
+  const [historyLoaded, setHistoryLoaded] = useState(false)
+  const [loadingHistory, setLoadingHistory] = useState(false)
+
+  const { messages, sendMessage, status, setMessages } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
       headers: () => ({ "x-visitor-id": getVisitorId() }),
@@ -49,24 +60,28 @@ export function ChatFab() {
         parts: [
           {
             type: "text",
-            text: "هلا والله! أنا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nتحدد المبلغ اللي تحتاجه ونحن نتكفل بالباقي - بدون فوائد.\n\n**كم تحتاج كاش؟**"
+            text: "هلا والله! انا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nتحدد المبلغ اللي تحتاجه ونحن نتكفل بالباقي - بدون فوائد.\n\n**كم تحتاج كاش؟**"
           }
         ],
         createdAt: new Date(),
       }
     ],
+    onError: (error) => {
+      const msg = error?.message || ""
+      if (msg.includes("402") || msg.includes("funds")) {
+        setErrorMessage("الخدمة متوقفة مؤقتا، تواصل معنا على الواتساب")
+      } else if (msg.includes("429") || msg.includes("rate")) {
+        setErrorMessage("كثرت الرسائل، انتظر شوي وحاول مرة ثانية")
+      } else {
+        setErrorMessage("حصل خطأ، حاول مرة ثانية")
+      }
+      setTimeout(() => setErrorMessage(null), 5000)
+    },
   })
 
   const isLoading = status === "streaming" || status === "submitted"
 
-  const [hasHistory, setHasHistory] = useState(false)
-  const [historyLoaded, setHistoryLoaded] = useState(false)
-  const [showPhonePrompt, setShowPhonePrompt] = useState(false)
-  const [phoneInput, setPhoneInput] = useState("")
-  const [phoneLinked, setPhoneLinked] = useState(false)
-  const messageCountRef = useRef(0)
-
-  // Check if user has previous chat history
+  // Check for previous chat history on mount
   useEffect(() => {
     if (historyLoaded) return
     const checkHistory = async () => {
@@ -79,6 +94,9 @@ export function ChatFab() {
             setHasHistory(true)
           }
         }
+        // Check if phone was already linked
+        const linked = localStorage.getItem("liilsol-phone-linked")
+        if (linked) setPhoneLinked(true)
       } catch {
         // silent
       } finally {
@@ -88,19 +106,56 @@ export function ChatFab() {
     checkHistory()
   }, [historyLoaded])
 
+  // Load previous conversation messages from Supabase
+  const loadPreviousChat = useCallback(async () => {
+    setLoadingHistory(true)
+    try {
+      const visitorId = getVisitorId()
+      const res = await fetch(`/api/chat/history?visitorId=${visitorId}`)
+      if (res.ok) {
+        const data = await res.json()
+        if (data.messages && data.messages.length > 0) {
+          // Convert DB messages to UIMessage format
+          const historyMessages = data.messages.map((m: { role: string; content: string; timestamp?: string }, i: number) => ({
+            id: `history-${i}`,
+            role: m.role as "user" | "assistant",
+            parts: [{ type: "text" as const, text: m.content }],
+            createdAt: m.timestamp ? new Date(m.timestamp) : new Date(),
+          }))
+          // Add a separator message
+          historyMessages.push({
+            id: "history-separator",
+            role: "assistant" as const,
+            parts: [{ type: "text" as const, text: "--- المحادثة السابقة ---\n\nهلا! شفت محادثتنا السابقة. كيف اقدر اساعدك الحين؟" }],
+            createdAt: new Date(),
+          })
+          setMessages(historyMessages)
+          setHasHistory(false) // Hide the button after loading
+        }
+      }
+    } catch {
+      setErrorMessage("ما قدرت أجلب المحادثة السابقة")
+      setTimeout(() => setErrorMessage(null), 3000)
+    } finally {
+      setLoadingHistory(false)
+    }
+  }, [setMessages])
+
+  // Auto-scroll to bottom
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
   }, [messages])
 
+  // Focus input when chat opens
   useEffect(() => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus()
     }
   }, [isOpen])
 
-  // Send typing status
+  // Send typing status to admin
   const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const sendTypingStatus = useCallback((isTyping: boolean) => {
     const visitorId = getVisitorId()
@@ -118,28 +173,62 @@ export function ChatFab() {
     typingTimeoutRef.current = setTimeout(() => sendTypingStatus(false), 3000)
   }
 
+  // Show phone prompt after 3 user messages
+  useEffect(() => {
+    if (phoneLinked) return
+    const userMsgCount = messages.filter(m => m.role === "user").length
+    if (userMsgCount >= 3 && !showPhonePrompt) {
+      const linked = localStorage.getItem("liilsol-phone-linked")
+      if (!linked) {
+        setShowPhonePrompt(true)
+      }
+    }
+  }, [messages, phoneLinked, showPhonePrompt])
+
+  const handlePhoneSubmit = async () => {
+    const phone = phoneInput.trim()
+    if (!phone) return
+    // Validate Saudi phone number
+    if (!/^05\d{8}$/.test(phone)) {
+      setErrorMessage("ادخل رقم جوال سعودي صحيح يبدأ بـ 05")
+      setTimeout(() => setErrorMessage(null), 3000)
+      return
+    }
+    try {
+      const res = await fetch("/api/chat/identify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ visitorId: getVisitorId(), phone, name: "" }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setPhoneLinked(true)
+        setShowPhonePrompt(false)
+        localStorage.setItem("liilsol-phone-linked", phone)
+      }
+    } catch { /* silent */ }
+  }
+
   if (pathname === "/chat") return null
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-
     if (!file.type.startsWith("image/")) {
-      alert("يرجى اختيار صورة فقط")
+      setErrorMessage("يرجى اختيار صورة فقط")
+      setTimeout(() => setErrorMessage(null), 3000)
       return
     }
-
     if (file.size > 10 * 1024 * 1024) {
-      alert("حجم الصورة كبير جداً (الحد 10MB)")
+      setErrorMessage("حجم الصورة كبير (الحد 10MB)")
+      setTimeout(() => setErrorMessage(null), 3000)
       return
     }
 
-    // Show preview
     const reader = new FileReader()
     reader.onload = (ev) => setImagePreview(ev.target?.result as string)
     reader.readAsDataURL(file)
 
-    // Upload
     setUploading(true)
     try {
       const formData = new FormData()
@@ -149,11 +238,13 @@ export function ChatFab() {
       if (data.url) {
         setPendingImageUrl(data.url)
       } else {
-        alert(data.error || "فشل رفع الصورة")
+        setErrorMessage(data.error || "فشل رفع الصورة")
+        setTimeout(() => setErrorMessage(null), 3000)
         setImagePreview(null)
       }
     } catch {
-      alert("فشل رفع الصورة")
+      setErrorMessage("فشل رفع الصورة")
+      setTimeout(() => setErrorMessage(null), 3000)
       setImagePreview(null)
     } finally {
       setUploading(false)
@@ -166,40 +257,11 @@ export function ChatFab() {
     setPendingImageUrl(null)
   }
 
-  // Show phone prompt after 3 user messages if not linked
-  useEffect(() => {
-    if (phoneLinked) return
-    const userMsgCount = messages.filter(m => m.role === "user").length
-    if (userMsgCount >= 3 && !showPhonePrompt) {
-      // Check if phone was already linked
-      const linked = localStorage.getItem("liilsol-phone-linked")
-      if (!linked) {
-        setShowPhonePrompt(true)
-      }
-    }
-  }, [messages, phoneLinked, showPhonePrompt])
-
-  const handlePhoneSubmit = async () => {
-    if (!phoneInput.trim()) return
-    try {
-      const res = await fetch("/api/chat/identify", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ visitorId: getVisitorId(), phone: phoneInput, name: "" }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setPhoneLinked(true)
-        setShowPhonePrompt(false)
-        localStorage.setItem("liilsol-phone-linked", phoneInput)
-      }
-    } catch { /* silent */ }
-  }
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (isLoading) return
     sendTypingStatus(false)
+    setErrorMessage(null)
 
     if (pendingImageUrl) {
       const text = input.trim() ? `${input.trim()}\n[صورة مرفقة](${pendingImageUrl})` : `[صورة مرفقة](${pendingImageUrl})`
@@ -217,6 +279,7 @@ export function ChatFab() {
 
   const handleQuickQuestion = (text: string) => {
     if (isLoading) return
+    setErrorMessage(null)
     sendMessage({ text })
   }
 
@@ -231,7 +294,9 @@ export function ChatFab() {
               <CloudRain className="w-5 h-5" />
               <div>
                 <p className="font-bold text-sm">مطر</p>
-                <p className="text-[10px] opacity-80">مساعدك الذكي - ليل سول</p>
+                <p className="text-[10px] opacity-80">
+                  {isLoading ? "يكتب..." : "مساعدك الذكي - ليل سول"}
+                </p>
               </div>
             </div>
             <button
@@ -242,6 +307,18 @@ export function ChatFab() {
               <X className="w-4 h-4" />
             </button>
           </div>
+
+          {/* Error Banner */}
+          {errorMessage && (
+            <div className="px-3 py-2 bg-destructive/10 border-b border-destructive/20 text-destructive text-xs text-center">
+              {errorMessage}
+              {errorMessage.includes("واتساب") && (
+                <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer" className="underline font-medium mr-1">
+                  اضغط هنا
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Messages */}
           <div ref={chatContainerRef} className="flex-1 overflow-y-auto p-3 space-y-3" style={{ maxHeight: "400px", minHeight: "300px" }}>
@@ -297,7 +374,7 @@ export function ChatFab() {
                                 <span className="text-destructive font-medium">{r.adminFee.toLocaleString()} ر.س</span>
                               </div>
                               <div className="flex justify-between py-1 border-b border-border/30">
-                                <span className="text-muted-foreground">الدفعة الأولى (مستردة)</span>
+                                <span className="text-muted-foreground">الدفعة الاولى (مستردة)</span>
                                 <span className="font-medium">{r.downPayment.toLocaleString()} ر.س</span>
                               </div>
                               <div className="flex justify-between py-1.5 bg-accent/10 rounded-md px-2 mt-1">
@@ -346,14 +423,17 @@ export function ChatFab() {
             )}
             <div ref={messagesEndRef} />
 
+            {/* Quick Actions - only show at start */}
             {messages.length <= 1 && (
               <div className="space-y-2 pt-1">
                 {hasHistory && (
                   <button
                     type="button"
-                    onClick={() => handleQuickQuestion("ابي اكمل محادثتي السابقة")}
-                    className="w-full px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-xs text-primary transition-colors text-center font-medium border border-primary/20"
+                    onClick={loadPreviousChat}
+                    disabled={loadingHistory}
+                    className="w-full px-3 py-2.5 bg-primary/10 hover:bg-primary/20 rounded-lg text-xs text-primary transition-colors text-center font-medium border border-primary/20 flex items-center justify-center gap-2"
                   >
+                    {loadingHistory ? <Loader2 className="w-3 h-3 animate-spin" /> : <RotateCcw className="w-3 h-3" />}
                     استكمال المحادثة السابقة
                   </button>
                 )}
@@ -371,8 +451,11 @@ export function ChatFab() {
 
           {/* Phone Prompt */}
           {showPhonePrompt && !phoneLinked && (
-            <div className="px-3 py-2 border-t border-primary/20 bg-primary/5">
-              <p className="text-[11px] text-foreground mb-2 font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
+            <div className="px-3 py-2.5 border-t border-primary/20 bg-primary/5">
+              <div className="flex items-center gap-1.5 mb-2">
+                <Phone className="w-3 h-3 text-primary" />
+                <p className="text-[11px] text-foreground font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
+              </div>
               <div className="flex gap-1.5">
                 <input
                   value={phoneInput}
@@ -381,6 +464,7 @@ export function ChatFab() {
                   className="flex-1 bg-card border border-border rounded-lg px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
                   dir="ltr"
                   type="tel"
+                  maxLength={10}
                 />
                 <button
                   type="button"
@@ -456,7 +540,7 @@ export function ChatFab() {
                 ref={inputRef}
                 value={input}
                 onChange={(e) => handleInputChange(e.target.value)}
-                placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ أو سؤالك..."}
+                placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ او سؤالك..."}
                 disabled={isLoading}
                 className="flex-1 bg-secondary/50 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
                 dir="rtl"
