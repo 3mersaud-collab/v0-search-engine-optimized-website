@@ -313,20 +313,6 @@ async function saveMessage(visitorId: string, role: "user" | "assistant", conten
     }
   } catch { /* silent */ }
 }
-      } catch { /* silent */ }
-    }
-
-    // Extract user text and save in background
-    const lastUserMsg = messages[messages.length - 1]
-    if (lastUserMsg?.role === "user") {
-      const userText = lastUserMsg.parts
-        ?.filter((p: { type: string }) => p.type === "text")
-        .map((p: { type: string; text?: string }) => p.text)
-        .join("") || ""
-      if (userText) saveConversation(userText)
-    }
-
-    return result.toUIMessageStreamResponse()
   } catch (error) {
     console.error("[v0] Chat API error:", error)
     return new Response(JSON.stringify({ error: "حصل خطأ، حاول مرة ثانية" }), { 
