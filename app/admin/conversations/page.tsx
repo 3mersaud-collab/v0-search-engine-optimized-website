@@ -262,7 +262,7 @@ export default function ConversationsPage() {
           </div>
           <div className="bg-accent/10 rounded-xl p-3 border border-accent/30 text-center">
             <p className="text-xl font-bold text-accent">{botMessages}</p>
-            <p className="text-xs text-accent">ردود مطر</p>
+            <p className="text-xs text-accent">ردود مطر ليل</p>
           </div>
         </div>
 
@@ -379,7 +379,7 @@ export default function ConversationsPage() {
                       ) : (selectedConv.mode === "manual") ? (
                         <><User className="w-4 h-4 ml-1" />{'وضع يدوي'}</>
                       ) : (
-                        <><MessageCircle className="w-4 h-4 ml-1" />{'مطر شغال'}</>
+                        <><MessageCircle className="w-4 h-4 ml-1" />{'مطر ليل شغال'}</>
                       )}
                     </Button>
                   )}
@@ -399,7 +399,7 @@ export default function ConversationsPage() {
                     }`}>
                       {msg.role === "assistant" && (
                         <p className={`text-[10px] font-bold mb-1 ${msg.from_admin ? "text-amber-600" : "text-[#25D366]"}`}>
-                          {msg.from_admin ? "انت (يدوي)" : "مطر (بوت)"}
+                          {msg.from_admin ? "انت (يدوي)" : "مطر ليل (بوت)"}
                         </p>
                       )}
                       {/* Render images */}
@@ -448,8 +448,8 @@ export default function ConversationsPage() {
                   <div className="flex items-center justify-between mt-2">
                     <p className="text-[10px] text-muted-foreground">
                       {selectedConv.mode === "manual"
-                        ? "الوضع اليدوي -- مطر متوقف عن الرد على هذي المحادثة"
-                        : "مطر يرد تلقائياً -- لما ترسل رد يتحول لوضع يدوي"}
+                        ? "الوضع اليدوي -- مطر ليل متوقف عن الرد على هذي المحادثة"
+                        : "مطر ليل يرد تلقائيا -- لما ترسل رد يتحول لوضع يدوي"}
                     </p>
                     <p className="text-[10px] text-muted-foreground">
                       <Clock className="w-3 h-3 inline ml-1" />

@@ -60,7 +60,7 @@ export function ChatFab() {
         parts: [
           {
             type: "text",
-            text: "هلا والله! انا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nتحدد المبلغ اللي تحتاجه ونحن نتكفل بالباقي - بدون فوائد.\n\n**كم تحتاج كاش؟**"
+            text: "هلا والله! معك **مطر** سحابة غيث ماحسبت حسابها\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nتحدد المبلغ اللي تحتاجه ونحن نتكفل بالباقي - بدون فوائد.\n\n**كم تحتاج كاش؟**"
           }
         ],
         createdAt: new Date(),
@@ -293,9 +293,9 @@ export function ChatFab() {
             <div className="flex items-center gap-2">
               <CloudRain className="w-5 h-5" />
               <div>
-                <p className="font-bold text-sm">مطر</p>
+                <p className="font-bold text-sm">مطر ليل</p>
                 <p className="text-[10px] opacity-80">
-                  {isLoading ? "يكتب..." : "مساعدك الذكي - ليل سول"}
+                  {isLoading ? "يكتب..." : "سحابة غيث ماحسبت حسابها | Powered by liilsol"}
                 </p>
               </div>
             </div>
@@ -611,7 +611,7 @@ export function ChatFab() {
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2 group"
-        aria-label="مطر - المساعد الذكي"
+        aria-label="مطر ليل - سحابة غيث ماحسبت حسابها"
       >
         <span className="whitespace-nowrap bg-card text-foreground text-sm font-medium px-4 py-2.5 rounded-xl shadow-lg border border-border group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
           {isOpen ? "اغلق المحادثة" : "صامل؟ اسألني وازهل"}
