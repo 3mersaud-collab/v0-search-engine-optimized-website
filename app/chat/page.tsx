@@ -6,7 +6,7 @@ import { DefaultChatTransport } from "ai"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, Search, ExternalLink, ShoppingCart } from "lucide-react"
+import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, ExternalLink, ShoppingCart, ImagePlus, X } from "lucide-react"
 import Link from "next/link"
 import { ChatMessageContent } from "@/components/chat-message"
 
@@ -21,9 +21,13 @@ const chatTransport = new DefaultChatTransport({ api: "/api/chat" })
 
 export default function ChatPage() {
   const [input, setInput] = useState("")
+  const [uploading, setUploading] = useState(false)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const { messages, sendMessage, status } = useChat({
     transport: chatTransport,
@@ -50,9 +54,56 @@ export default function ChatPage() {
     }
   }, [messages])
 
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    if (!file.type.startsWith("image/")) { alert("يرجى اختيار صورة فقط"); return }
+    if (file.size > 10 * 1024 * 1024) { alert("حجم الصورة كبير جداً (الحد 10MB)"); return }
+
+    const reader = new FileReader()
+    reader.onload = (ev) => setImagePreview(ev.target?.result as string)
+    reader.readAsDataURL(file)
+
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+      const res = await fetch("/api/chat/upload", { method: "POST", body: formData })
+      const data = await res.json()
+      if (data.url) {
+        setPendingImageUrl(data.url)
+      } else {
+        alert(data.error || "فشل رفع الصورة")
+        setImagePreview(null)
+      }
+    } catch {
+      alert("فشل رفع الصورة")
+      setImagePreview(null)
+    } finally {
+      setUploading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ""
+    }
+  }
+
+  const cancelImage = () => {
+    setImagePreview(null)
+    setPendingImageUrl(null)
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || isLoading) return
+    if (isLoading) return
+
+    if (pendingImageUrl) {
+      const text = input.trim() ? `${input.trim()}\n[صورة مرفقة](${pendingImageUrl})` : `[صورة مرفقة](${pendingImageUrl})`
+      sendMessage({ text })
+      setInput("")
+      setImagePreview(null)
+      setPendingImageUrl(null)
+      return
+    }
+
+    if (!input.trim()) return
     sendMessage({ text: input })
     setInput("")
   }
@@ -135,7 +186,7 @@ export default function ChatPage() {
                                   <span className="text-destructive font-medium">{r.adminFee.toLocaleString()} ر.س</span>
                                 </div>
                                 <div className="flex justify-between py-1.5 border-b border-border/30">
-                                  <span className="text-muted-foreground">الد��عة الاولى (نحن ندفعها)</span>
+                                  <span className="text-muted-foreground">الدفعة الاولى (نحن ندفعها)</span>
                                   <span className="text-foreground font-medium">{r.downPayment.toLocaleString()} ر.س</span>
                                 </div>
                                 <div className="flex justify-between py-2 bg-accent/10 rounded-lg px-3 mt-2">
@@ -210,19 +261,56 @@ export default function ChatPage() {
               )}
             </div>
 
+            {/* Image Preview */}
+            {imagePreview && (
+              <div className="px-4 py-2 border-t border-border/50 bg-secondary/30">
+                <div className="relative inline-block">
+                  <img src={imagePreview} alt="معاينة الصورة" className="h-20 w-auto rounded-lg border border-border" />
+                  {uploading && (
+                    <div className="absolute inset-0 bg-background/60 rounded-lg flex items-center justify-center">
+                      <Loader2 className="w-5 h-5 animate-spin text-primary" />
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    onClick={cancelImage}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Input */}
             <div className="border-t border-border p-4">
               <form onSubmit={handleSubmit} className="flex gap-2">
                 <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileSelect}
+                  accept="image/*"
+                  className="hidden"
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={isLoading || uploading}
+                  className="w-11 h-11 bg-secondary/50 border border-border rounded-xl flex items-center justify-center hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed shrink-0 transition-colors text-muted-foreground hover:text-foreground"
+                  title="ارفق صورة"
+                >
+                  {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
+                </button>
+                <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="اكتب المبلغ أو رد على المساعد..."
+                  placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ أو رد على المساعد..."}
                   disabled={isLoading}
                   className="flex-1 bg-secondary/50 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
                   dir="rtl"
                 />
-                <Button type="submit" size="icon" disabled={isLoading || !input.trim()} className="rounded-xl h-11 w-11 shrink-0">
+                <Button type="submit" size="icon" disabled={isLoading || (!input.trim() && !pendingImageUrl)} className="rounded-xl h-11 w-11 shrink-0">
                   {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </Button>
               </form>

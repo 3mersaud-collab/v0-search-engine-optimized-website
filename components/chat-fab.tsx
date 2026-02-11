@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
-import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle } from "lucide-react"
+import { CloudRain, Send, X, User, Loader2, Calculator, ShoppingCart, ExternalLink, MessageCircle, ImagePlus } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { ChatMessageContent } from "@/components/chat-message"
 import Link from "next/link"
@@ -29,9 +29,13 @@ export function ChatFab() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const [input, setInput] = useState("")
+  const [uploading, setUploading] = useState(false)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
@@ -55,6 +59,35 @@ export function ChatFab() {
 
   const isLoading = status === "streaming" || status === "submitted"
 
+  const [hasHistory, setHasHistory] = useState(false)
+  const [historyLoaded, setHistoryLoaded] = useState(false)
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false)
+  const [phoneInput, setPhoneInput] = useState("")
+  const [phoneLinked, setPhoneLinked] = useState(false)
+  const messageCountRef = useRef(0)
+
+  // Check if user has previous chat history
+  useEffect(() => {
+    if (historyLoaded) return
+    const checkHistory = async () => {
+      try {
+        const visitorId = getVisitorId()
+        const res = await fetch(`/api/chat/history?visitorId=${visitorId}`)
+        if (res.ok) {
+          const data = await res.json()
+          if (data.messages && data.messages.length > 0) {
+            setHasHistory(true)
+          }
+        }
+      } catch {
+        // silent
+      } finally {
+        setHistoryLoaded(true)
+      }
+    }
+    checkHistory()
+  }, [historyLoaded])
+
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
@@ -67,11 +100,117 @@ export function ChatFab() {
     }
   }, [isOpen])
 
+  // Send typing status
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const sendTypingStatus = useCallback((isTyping: boolean) => {
+    const visitorId = getVisitorId()
+    fetch("/api/chat/typing", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ visitorId, isTyping }),
+    }).catch(() => {})
+  }, [])
+
+  const handleInputChange = (value: string) => {
+    setInput(value)
+    sendTypingStatus(true)
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current)
+    typingTimeoutRef.current = setTimeout(() => sendTypingStatus(false), 3000)
+  }
+
   if (pathname === "/chat") return null
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    if (!file.type.startsWith("image/")) {
+      alert("يرجى اختيار صورة فقط")
+      return
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("حجم الصورة كبير جداً (الحد 10MB)")
+      return
+    }
+
+    // Show preview
+    const reader = new FileReader()
+    reader.onload = (ev) => setImagePreview(ev.target?.result as string)
+    reader.readAsDataURL(file)
+
+    // Upload
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+      const res = await fetch("/api/chat/upload", { method: "POST", body: formData })
+      const data = await res.json()
+      if (data.url) {
+        setPendingImageUrl(data.url)
+      } else {
+        alert(data.error || "فشل رفع الصورة")
+        setImagePreview(null)
+      }
+    } catch {
+      alert("فشل رفع الصورة")
+      setImagePreview(null)
+    } finally {
+      setUploading(false)
+      if (fileInputRef.current) fileInputRef.current.value = ""
+    }
+  }
+
+  const cancelImage = () => {
+    setImagePreview(null)
+    setPendingImageUrl(null)
+  }
+
+  // Show phone prompt after 3 user messages if not linked
+  useEffect(() => {
+    if (phoneLinked) return
+    const userMsgCount = messages.filter(m => m.role === "user").length
+    if (userMsgCount >= 3 && !showPhonePrompt) {
+      // Check if phone was already linked
+      const linked = localStorage.getItem("liilsol-phone-linked")
+      if (!linked) {
+        setShowPhonePrompt(true)
+      }
+    }
+  }, [messages, phoneLinked, showPhonePrompt])
+
+  const handlePhoneSubmit = async () => {
+    if (!phoneInput.trim()) return
+    try {
+      const res = await fetch("/api/chat/identify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ visitorId: getVisitorId(), phone: phoneInput, name: "" }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setPhoneLinked(true)
+        setShowPhonePrompt(false)
+        localStorage.setItem("liilsol-phone-linked", phoneInput)
+      }
+    } catch { /* silent */ }
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!input.trim() || isLoading) return
+    if (isLoading) return
+    sendTypingStatus(false)
+
+    if (pendingImageUrl) {
+      const text = input.trim() ? `${input.trim()}\n[صورة مرفقة](${pendingImageUrl})` : `[صورة مرفقة](${pendingImageUrl})`
+      sendMessage({ text })
+      setInput("")
+      setImagePreview(null)
+      setPendingImageUrl(null)
+      return
+    }
+
+    if (!input.trim()) return
     sendMessage({ text: input })
     setInput("")
   }
@@ -208,16 +347,59 @@ export function ChatFab() {
             <div ref={messagesEndRef} />
 
             {messages.length <= 1 && (
-              <div className="grid grid-cols-2 gap-1.5 pt-1">
-                {quickQuestions.map((q) => (
-                  <button key={q.text} type="button" onClick={() => handleQuickQuestion(q.text)}
-                    className="px-3 py-2 bg-secondary/50 hover:bg-secondary rounded-lg text-xs text-foreground transition-colors text-right">
-                    {q.text}
+              <div className="space-y-2 pt-1">
+                {hasHistory && (
+                  <button
+                    type="button"
+                    onClick={() => handleQuickQuestion("ابي اكمل محادثتي السابقة")}
+                    className="w-full px-3 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg text-xs text-primary transition-colors text-center font-medium border border-primary/20"
+                  >
+                    استكمال المحادثة السابقة
                   </button>
-                ))}
+                )}
+                <div className="grid grid-cols-2 gap-1.5">
+                  {quickQuestions.map((q) => (
+                    <button key={q.text} type="button" onClick={() => handleQuickQuestion(q.text)}
+                      className="px-3 py-2 bg-secondary/50 hover:bg-secondary rounded-lg text-xs text-foreground transition-colors text-right">
+                      {q.text}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
+
+          {/* Phone Prompt */}
+          {showPhonePrompt && !phoneLinked && (
+            <div className="px-3 py-2 border-t border-primary/20 bg-primary/5">
+              <p className="text-[11px] text-foreground mb-2 font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
+              <div className="flex gap-1.5">
+                <input
+                  value={phoneInput}
+                  onChange={(e) => setPhoneInput(e.target.value)}
+                  placeholder="05xxxxxxxx"
+                  className="flex-1 bg-card border border-border rounded-lg px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  dir="ltr"
+                  type="tel"
+                />
+                <button
+                  type="button"
+                  onClick={handlePhoneSubmit}
+                  disabled={!phoneInput.trim()}
+                  className="px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors"
+                >
+                  تأكيد
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowPhonePrompt(false)}
+                  className="px-2 py-1.5 text-muted-foreground hover:text-foreground transition-colors text-xs"
+                >
+                  لاحقا
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Quick links */}
           <div className="flex items-center justify-center gap-3 px-3 py-2 border-t border-border/50 bg-secondary/30">
@@ -230,21 +412,58 @@ export function ChatFab() {
             <Link href="/#calculator" className="text-[10px] text-primary hover:underline">حاسبة السيولة</Link>
           </div>
 
+          {/* Image Preview */}
+          {imagePreview && (
+            <div className="px-3 py-2 border-t border-border/50 bg-secondary/30">
+              <div className="relative inline-block">
+                <img src={imagePreview} alt="معاينة الصورة" className="h-16 w-auto rounded-lg border border-border" />
+                {uploading && (
+                  <div className="absolute inset-0 bg-background/60 rounded-lg flex items-center justify-center">
+                    <Loader2 className="w-4 h-4 animate-spin text-primary" />
+                  </div>
+                )}
+                <button
+                  type="button"
+                  onClick={cancelImage}
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center text-[10px]"
+                >
+                  <X className="w-3 h-3" />
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Input */}
           <div className="border-t border-border p-3">
             <form onSubmit={handleSubmit} className="flex gap-2">
               <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileSelect}
+                accept="image/*"
+                className="hidden"
+              />
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={isLoading || uploading}
+                className="w-10 h-10 bg-secondary/50 border border-border rounded-xl flex items-center justify-center hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed shrink-0 transition-colors text-muted-foreground hover:text-foreground"
+                title="ارفق صورة"
+              >
+                {uploading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ImagePlus className="w-4 h-4" />}
+              </button>
+              <input
                 ref={inputRef}
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="اكتب المبلغ أو سؤالك..."
+                onChange={(e) => handleInputChange(e.target.value)}
+                placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ أو سؤالك..."}
                 disabled={isLoading}
                 className="flex-1 bg-secondary/50 border border-border rounded-xl px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
                 dir="rtl"
               />
               <button
                 type="submit"
-                disabled={isLoading || !input.trim()}
+                disabled={isLoading || (!input.trim() && !pendingImageUrl)}
                 className="w-10 h-10 bg-primary text-primary-foreground rounded-xl flex items-center justify-center hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed shrink-0 transition-colors"
               >
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}

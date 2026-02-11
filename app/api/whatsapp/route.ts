@@ -197,11 +197,81 @@ async function getOrCreateConversation(phone: string) {
     .limit(1)
     .single()
 
-  if (existing) return existing
+  if (existing) {
+    // Check if there's a website conversation with the same phone number
+    // and merge the context so the bot knows the history
+    const { data: websiteConv } = await supabase
+      .from("conversations")
+      .select("messages, customer_name")
+      .eq("phone", phone)
+      .eq("source", "website")
+      .order("updated_at", { ascending: false })
+      .limit(1)
+      .single()
+
+    if (websiteConv && websiteConv.messages && !existing.metadata?.website_merged) {
+      // Add website context to metadata so AI can reference it
+      const websiteMsgs = Array.isArray(websiteConv.messages) ? websiteConv.messages.slice(-10) : []
+      const websiteContext = websiteMsgs
+        .map((m: { role: string; content: string }) => `${m.role === "user" ? "العميل" : "مطر"}: ${m.content}`)
+        .join("\n")
+
+      await supabase
+        .from("conversations")
+        .update({
+          metadata: {
+            ...((existing.metadata as Record<string, unknown>) || {}),
+            website_merged: true,
+            website_context: websiteContext,
+          },
+          customer_name: existing.customer_name || websiteConv.customer_name,
+        })
+        .eq("id", existing.id)
+
+      existing.metadata = {
+        ...((existing.metadata as Record<string, unknown>) || {}),
+        website_merged: true,
+        website_context: websiteContext,
+      }
+    }
+    return existing
+  }
+
+  // Before creating new, check if there's website context for this phone
+  let initialMessages: unknown[] = []
+  let customerName = ""
+  const { data: websiteConv } = await supabase
+    .from("conversations")
+    .select("messages, customer_name")
+    .eq("phone", phone)
+    .eq("source", "website")
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .single()
+
+  if (websiteConv) {
+    customerName = websiteConv.customer_name || ""
+    // Transfer last few messages as context
+    const websiteMsgs = Array.isArray(websiteConv.messages) ? websiteConv.messages.slice(-5) : []
+    initialMessages = websiteMsgs.map((m: { role: string; content: string }) => ({
+      role: m.role,
+      content: m.content,
+      timestamp: new Date().toISOString(),
+      from_website: true,
+    }))
+  }
 
   const { data: newConv } = await supabase
     .from("conversations")
-    .insert({ phone, source: "whatsapp", status: "active", messages: [], metadata: {}, mode: "bot" })
+    .insert({
+      phone,
+      source: "whatsapp",
+      status: "active",
+      messages: initialMessages,
+      metadata: websiteConv ? { website_merged: true } : {},
+      mode: "bot",
+      customer_name: customerName || null,
+    })
     .select()
     .single()
 
@@ -209,7 +279,7 @@ async function getOrCreateConversation(phone: string) {
     await supabase.from("notifications").insert({
       type: "new_customer",
       title: "عميل جديد",
-      body: `عميل جديد تواصل عبر واتساب: ${phone}`,
+      body: `عميل جديد تواصل عبر واتساب: ${phone}${customerName ? ` (${customerName})` : ""}`,
       reference_type: "conversation",
       reference_id: newConv.id,
     })
@@ -356,10 +426,26 @@ export async function POST(req: Request) {
       return new Response("OK", { status: 200 })
     }
 
-    // Build AI context
-    const aiHistory = (updated as { role: string; content: string }[])
+    // Build AI context - include website context if available
+    const websiteContext = (conversation.metadata as Record<string, unknown>)?.website_context as string | undefined
+    const aiHistory: { role: "user" | "assistant" | "system"; content: string }[] = []
+
+    // Add website context as system hint if available
+    if (websiteContext) {
+      aiHistory.push({
+        role: "user",
+        content: `[ملاحظة: العميل سبق تواصل معنا عبر الموقع وذكر التالي:\n${websiteContext}\nكمّل معه من حيث وقف بدون ما تكرر اللي قاله]`,
+      })
+      aiHistory.push({
+        role: "assistant",
+        content: "تمام فهمت السياق السابق، بكمل معه",
+      })
+    }
+
+    const chatHistory = (updated as { role: string; content: string }[])
       .slice(-20)
       .map(m => ({ role: m.role as "user" | "assistant", content: m.content }))
+    aiHistory.push(...chatHistory)
 
     const supabase = getSupabase()
 

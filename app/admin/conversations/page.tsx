@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
   MessageCircle, Search, RefreshCw, Loader2, ArrowRight,
-  Phone, Globe, Clock, User, ChevronDown, LogOut, Package, Bell
+  Phone, Globe, Clock, User, Package, Bell, Volume2, VolumeX, Image as ImageIcon
 } from "lucide-react"
 import Link from "next/link"
 
@@ -31,24 +31,89 @@ export default function ConversationsPage() {
   const [replyText, setReplyText] = useState("")
   const [sending, setSending] = useState(false)
   const [toggling, setToggling] = useState(false)
+  const [soundEnabled, setSoundEnabled] = useState(true)
+  const [newMessageCount, setNewMessageCount] = useState(0)
+  const prevConversationsRef = useRef<Conversation[]>([])
+  const audioRef = useRef<HTMLAudioElement | null>(null)
   const router = useRouter()
+
+  // Initialize notification sound
+  useEffect(() => {
+    audioRef.current = new Audio("data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbsGczHjqCqNjVpXxMPE13ncu+kVo4NVuLsMy3gFA0MlqLrsi0fE4zMlyNscizfE8zMl2Prsmzf1AzM12QsMezf1IzNF+SsMazgVMzNWGUsqezglUyNmOVs6azg1YxN2SWtKWzg1cxOGWXtaSyg1gxOWWYtqSxglkxOmaZt6OxgloxOmiauaKwgVsxO2ibu6GvgFwxPGicvJ+uf10xPWqevZ2tf14wPmqfvpysfl8wP2ugwJqrfmAwQGyhwZipfWExQW2iwpeofGIxQm6jw5WneWMxQ2+kxJOmd2QxRHClxZKkdmUxRXGmxpCjdGYwRnKnx46icmcwR3OoyIyhcGgwSHSpyoufa2kwSXWqy4mdaWowSnaryoibZ2sxS3eryYaZZWwxTHityoSXY20xTXmvyoKVYW4xTnqwy4CTX28xT3uxzH6RXXAxUHyyzXyPW3ExUX2zzXqNWHIxUn60znmLVnMxU3+1z3eJVHQxVIC20HSHUnUxVYG30HKFUHYxVoK40XCDTncxV4O50W6BTXgyWIS70WuATHk="
+    )
+    audioRef.current.volume = 0.5
+  }, [])
 
   const fetchConversations = useCallback(async () => {
     try {
       const res = await fetch("/api/admin/conversations")
       if (res.status === 401) { router.push("/admin/login"); return }
       const data = await res.json()
-      if (data.conversations) setConversations(data.conversations)
+      if (data.conversations) {
+        // Detect new messages
+        const prev = prevConversationsRef.current
+        if (prev.length > 0) {
+          let newMsgs = 0
+          for (const conv of data.conversations) {
+            const prevConv = prev.find((p: Conversation) => p.id === conv.id)
+            if (!prevConv) {
+              newMsgs++ // New conversation
+            } else if (conv.messages?.length > (prevConv.messages?.length || 0)) {
+              const lastMsg = conv.messages[conv.messages.length - 1]
+              if (lastMsg?.role === "user") {
+                newMsgs++ // New user message
+              }
+            }
+          }
+          if (newMsgs > 0) {
+            setNewMessageCount(prev => prev + newMsgs)
+            if (soundEnabled && audioRef.current) {
+              audioRef.current.play().catch(() => {})
+            }
+            // Update page title
+            document.title = `(${newMsgs}) رسائل جديدة - سجل المحادثات`
+          }
+        }
+        prevConversationsRef.current = data.conversations
+        setConversations(data.conversations)
+
+        // Also update selected conversation if it's open
+        if (selectedConv) {
+          const updated = data.conversations.find((c: Conversation) => c.id === selectedConv.id)
+          if (updated && JSON.stringify(updated.messages) !== JSON.stringify(selectedConv.messages)) {
+            setSelectedConv(updated)
+          }
+        }
+      }
     } catch { /* silent */ } finally { setLoading(false) }
-  }, [router])
+  }, [router, soundEnabled, selectedConv])
 
   useEffect(() => { fetchConversations() }, [fetchConversations])
 
-  // Auto-refresh every 10 seconds
+  // Typing status
+  const [typingVisitors, setTypingVisitors] = useState<string[]>([])
+  const prevConvRef = useRef<string | null>(null)
+
+  // Auto-refresh every 5 seconds
   useEffect(() => {
-    const interval = setInterval(fetchConversations, 10000)
+    const interval = setInterval(fetchConversations, 5000)
     return () => clearInterval(interval)
   }, [fetchConversations])
+
+  // Check typing status every 3 seconds
+  useEffect(() => {
+    const checkTyping = async () => {
+      try {
+        const res = await fetch("/api/chat/typing")
+        if (res.ok) {
+          const data = await res.json()
+          setTypingVisitors(data.typing || [])
+        }
+      } catch { /* silent */ }
+    }
+    const interval = setInterval(checkTyping, 3000)
+    return () => clearInterval(interval)
+  }, [])
 
   const handleSendReply = async () => {
     if (!replyText.trim() || !selectedConv || sending) return
@@ -134,6 +199,24 @@ export default function ConversationsPage() {
             <h1 className="text-xl font-bold text-foreground">سجل المحادثات</h1>
           </div>
           <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setSoundEnabled(!soundEnabled)
+                setNewMessageCount(0)
+                document.title = "سجل المحادثات"
+              }}
+              className={`bg-transparent ${soundEnabled ? "text-primary border-primary/30" : "text-muted-foreground"}`}
+              title={soundEnabled ? "ايقاف الصوت" : "تفعيل الصوت"}
+            >
+              {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              {newMessageCount > 0 && (
+                <span className="mr-1 bg-destructive text-destructive-foreground text-[10px] rounded-full w-5 h-5 flex items-center justify-center">
+                  {newMessageCount}
+                </span>
+              )}
+            </Button>
             <Button variant="outline" size="sm" asChild className="bg-transparent">
               <Link href="/admin"><Package className="w-4 h-4 ml-1" />الطلبات</Link>
             </Button>
@@ -217,7 +300,14 @@ export default function ConversationsPage() {
                       }`}>{conv.source === "whatsapp" ? "واتساب" : "موقع"}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2 truncate">{conv.last_message}</p>
+                  {conv.source === "website" && typingVisitors.some(v => conv.phone?.includes(v)) ? (
+                    <p className="text-xs text-primary mt-2 flex items-center gap-1 animate-pulse">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                      العميل يكتب...
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted-foreground mt-2 truncate">{conv.last_message}</p>
+                  )}
                 </button>
               ))
             )}
@@ -283,7 +373,23 @@ export default function ConversationsPage() {
                           {msg.from_admin ? "أنت (يدوي)" : "مطر (بوت)"}
                         </p>
                       )}
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                      {/* Render images from message */}
+                      {msg.content && /\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/.test(msg.content) && (
+                        <a
+                          href={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block mb-2"
+                        >
+                          <img
+                            src={msg.content.match(/\[صورة مرفقة\]\((https?:\/\/[^)]+)\)/)?.[1]}
+                            alt="صورة مرفقة"
+                            className="max-w-full rounded-lg border border-border/50 max-h-48 object-cover"
+                            loading="lazy"
+                          />
+                        </a>
+                      )}
+                      <p className="whitespace-pre-wrap">{msg.content?.replace(/\[صورة مرفقة\]\(https?:\/\/[^)]+\)/g, "").trim()}</p>
                     </div>
                   </div>
                 ))}
@@ -318,6 +424,18 @@ export default function ConversationsPage() {
                       })}
                     </p>
                   </div>
+                </div>
+              )}
+              {selectedConv.source === "website" && typingVisitors.some(v => selectedConv.phone?.includes(v)) && (
+                <div className="px-4 py-2 bg-primary/5 border-t border-primary/10">
+                  <p className="text-xs text-primary flex items-center gap-2 animate-pulse">
+                    <span className="flex gap-0.5">
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <span className="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </span>
+                    العميل يكتب الحين...
+                  </p>
                 </div>
               )}
               {selectedConv.source !== "whatsapp" && (
