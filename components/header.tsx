@@ -22,6 +22,7 @@ export function Header() {
               width={40} 
               height={40} 
               className="rounded-lg"
+              style={{ width: "40px", height: "auto" }}
             />
             <span className="font-bold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               liilsol

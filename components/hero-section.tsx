@@ -92,6 +92,7 @@ export function HeroSection() {
                       width={32} 
                       height={32} 
                       className="rounded-lg"
+                      style={{ width: "32px", height: "auto" }}
                     />
                     <span className="text-sm text-muted-foreground">السيولة المتاحة</span>
                   </div>
