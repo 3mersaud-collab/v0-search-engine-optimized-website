@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'مطر ليل - سيولة تابي وتمارا فورية'
+export const alt = 'مطر - سيولة تابي وتمارا فورية'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -47,7 +47,7 @@ export default async function Image() {
             textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
           }}
         >
-          مطر ليل
+          مطر
         </div>
 
         {/* Tagline */}

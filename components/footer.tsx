@@ -23,6 +23,7 @@ export function Footer() {
                   مطر
                 </span>
                 <span className="text-[10px] text-background/50 leading-none">سحابة غيث ماحسبت حسابها</span>
+                <span className="text-[9px] text-background/30 leading-none mt-0.5">Powered by liilsol</span>
               </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">

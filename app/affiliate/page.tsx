@@ -20,9 +20,9 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata = {
-  title: "برنامج المسوقين بالعمولة | انضم لفريق مطر ليل",
-  description: "انضم لبرنامج المسوقين بالعمولة في مطر ليل واحصل على عمولة مجزية على كل عميل. فرصة دخل إضافي بدون رأس مال.",
-  keywords: "تسويق بالعمولة, عمولة, دخل إضافي, العمل من المنزل, مطر ليل, liilsol affiliate",
+  title: "برنامج المسوقين بالعمولة | انضم لفريق مطر",
+  description: "انضم لبرنامج المسوقين بالعمولة في مطر واحصل على عمولة مجزية على كل عميل. فرصة دخل إضافي بدون رأس مال.",
+  keywords: "تسويق بالعمولة, عمولة, دخل إضافي, العمل من المنزل, مطر, liilsol affiliate",
 }
 
 export default function AffiliatePage() {
@@ -91,7 +91,7 @@ export default function AffiliatePage() {
             <div className="flex justify-center mb-6">
               <Image 
                 src="/logo.jpg" 
-                alt="مطر ليل" 
+                alt="مطر" 
                 width={80} 
                 height={80} 
                 className="rounded-2xl shadow-lg"
@@ -105,7 +105,7 @@ export default function AffiliatePage() {
               اربح معنا بدون رأس مال
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-              انضم لفريق المسوقين في مطر ليل واحصل على عمولة مجزية على كل عميل. 
+              انضم لفريق المسوقين في مطر واحصل على عمولة مجزية على كل عميل. 
               فرصتك لدخل إضافي من المنزل بكل سهولة.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -29,6 +29,7 @@ export function Header() {
                 مطر
               </span>
               <span className="text-[10px] md:text-xs text-muted-foreground font-medium leading-none">سحابة غيث ماحسبت حسابها</span>
+              <span className="text-[8px] md:text-[9px] text-muted-foreground/60 leading-none mt-0.5">Powered by liilsol</span>
             </div>
           </Link>
 
