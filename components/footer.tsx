@@ -16,6 +16,7 @@ export function Footer() {
                 width={48} 
                 height={48} 
                 className="rounded-xl"
+                style={{ width: "48px", height: "auto" }}
               />
               <span className="font-bold text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 liilsol
