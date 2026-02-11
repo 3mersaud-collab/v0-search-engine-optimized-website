@@ -1,14 +1,24 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
 import { useChat } from "@ai-sdk/react"
 import { DefaultChatTransport } from "ai"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, ExternalLink, ShoppingCart, ImagePlus, X } from "lucide-react"
+import { Send, CloudRain, User, Loader2, MessageCircle, Calculator, FileText, ExternalLink, ShoppingCart, ImagePlus, X, Phone, RotateCcw } from "lucide-react"
 import Link from "next/link"
 import { ChatMessageContent } from "@/components/chat-message"
+
+function getVisitorId() {
+  if (typeof window === "undefined") return "ssr"
+  let id = localStorage.getItem("liilsol-visitor-id")
+  if (!id) {
+    id = `v-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+    localStorage.setItem("liilsol-visitor-id", id)
+  }
+  return id
+}
 
 const quickQuestions = [
   { icon: Calculator, text: "ابي 1000 كاش" },
@@ -17,20 +27,31 @@ const quickQuestions = [
   { icon: Calculator, text: "ابي 5000 كاش" },
 ]
 
-const chatTransport = new DefaultChatTransport({ api: "/api/chat" })
-
 export default function ChatPage() {
   const [input, setInput] = useState("")
   const [uploading, setUploading] = useState(false)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const { messages, sendMessage, status } = useChat({
-    transport: chatTransport,
+  // Phone linking
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false)
+  const [phoneInput, setPhoneInput] = useState("")
+  const [phoneLinked, setPhoneLinked] = useState(false)
+
+  // History
+  const [hasHistory, setHasHistory] = useState(false)
+  const [loadingHistory, setLoadingHistory] = useState(false)
+
+  const { messages, sendMessage, status, setMessages } = useChat({
+    transport: new DefaultChatTransport({
+      api: "/api/chat",
+      headers: () => ({ "x-visitor-id": getVisitorId() }),
+    }),
     initialMessages: [
       {
         id: "welcome",
@@ -38,27 +59,140 @@ export default function ChatPage() {
         parts: [
           {
             type: "text",
-            text: "هلا والله! أنا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك ونبيعه\n- نخصم الرسوم والدفعة الأولى من قيمة البيع ونحول لك الباقي\n- الدفعة الأولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة مرخصة بسجل تجاري وعمليات تتعدى 100 ألف بكل شفافية. راح أمشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
+            text: "هلا والله! انا **مطر**، مساعدك في **ليل سول**\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك ونبيعه\n- نخصم الرسوم والدفعة الاولى من قيمة البيع ونحول لك الباقي\n- الدفعة الاولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة مرخصة بسجل تجاري وعمليات تتعدى 100 الف بكل شفافية. راح امشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
           }
         ],
         createdAt: new Date(),
       }
     ],
+    onError: (error) => {
+      const msg = error?.message || ""
+      if (msg.includes("402") || msg.includes("funds")) {
+        setErrorMessage("الخدمة متوقفة مؤقتا، تواصل معنا على الواتساب")
+      } else if (msg.includes("429") || msg.includes("rate")) {
+        setErrorMessage("كثرت الرسائل، انتظر شوي وحاول مرة ثانية")
+      } else {
+        setErrorMessage("حصل خطأ، حاول مرة ثانية")
+      }
+      setTimeout(() => setErrorMessage(null), 5000)
+    },
   })
 
   const isLoading = status === "streaming" || status === "submitted"
 
+  // Check history + phone linked on mount
+  useEffect(() => {
+    const checkHistory = async () => {
+      try {
+        const visitorId = getVisitorId()
+        const res = await fetch(`/api/chat/history?visitorId=${visitorId}`)
+        if (res.ok) {
+          const data = await res.json()
+          if (data.messages && data.messages.length > 0) setHasHistory(true)
+        }
+      } catch { /* silent */ }
+    }
+    checkHistory()
+    const linked = localStorage.getItem("liilsol-phone-linked")
+    if (linked) setPhoneLinked(true)
+  }, [])
+
+  // Load previous chat
+  const loadPreviousChat = useCallback(async () => {
+    setLoadingHistory(true)
+    try {
+      const visitorId = getVisitorId()
+      const res = await fetch(`/api/chat/history?visitorId=${visitorId}`)
+      if (res.ok) {
+        const data = await res.json()
+        if (data.messages && data.messages.length > 0) {
+          const historyMessages = data.messages.map((m: { role: string; content: string; timestamp?: string }, i: number) => ({
+            id: `history-${i}`,
+            role: m.role as "user" | "assistant",
+            parts: [{ type: "text" as const, text: m.content }],
+            createdAt: m.timestamp ? new Date(m.timestamp) : new Date(),
+          }))
+          historyMessages.push({
+            id: "history-separator",
+            role: "assistant" as const,
+            parts: [{ type: "text" as const, text: "--- المحادثة السابقة ---\n\nهلا! شفت محادثتنا السابقة. كيف اقدر اساعدك الحين؟" }],
+            createdAt: new Date(),
+          })
+          setMessages(historyMessages)
+          setHasHistory(false)
+        }
+      }
+    } catch {
+      setErrorMessage("ما قدرت اجلب المحادثة السابقة")
+      setTimeout(() => setErrorMessage(null), 3000)
+    } finally {
+      setLoadingHistory(false)
+    }
+  }, [setMessages])
+
+  // Auto-scroll
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
   }, [messages])
 
+  // Typing status
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const sendTypingStatus = useCallback((isTyping: boolean) => {
+    const visitorId = getVisitorId()
+    fetch("/api/chat/typing", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ visitorId, isTyping }),
+    }).catch(() => {})
+  }, [])
+
+  const handleInputChange = (value: string) => {
+    setInput(value)
+    sendTypingStatus(true)
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current)
+    typingTimeoutRef.current = setTimeout(() => sendTypingStatus(false), 3000)
+  }
+
+  // Phone prompt after 3 messages
+  useEffect(() => {
+    if (phoneLinked) return
+    const userMsgCount = messages.filter(m => m.role === "user").length
+    if (userMsgCount >= 3 && !showPhonePrompt) {
+      const linked = localStorage.getItem("liilsol-phone-linked")
+      if (!linked) setShowPhonePrompt(true)
+    }
+  }, [messages, phoneLinked, showPhonePrompt])
+
+  const handlePhoneSubmit = async () => {
+    const phone = phoneInput.trim()
+    if (!phone) return
+    if (!/^05\d{8}$/.test(phone)) {
+      setErrorMessage("ادخل رقم جوال سعودي صحيح يبدأ بـ 05")
+      setTimeout(() => setErrorMessage(null), 3000)
+      return
+    }
+    try {
+      const res = await fetch("/api/chat/identify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ visitorId: getVisitorId(), phone, name: "" }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setPhoneLinked(true)
+        setShowPhonePrompt(false)
+        localStorage.setItem("liilsol-phone-linked", phone)
+      }
+    } catch { /* silent */ }
+  }
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (!file.type.startsWith("image/")) { alert("يرجى اختيار صورة فقط"); return }
-    if (file.size > 10 * 1024 * 1024) { alert("حجم الصورة كبير جداً (الحد 10MB)"); return }
+    if (!file.type.startsWith("image/")) { setErrorMessage("يرجى اختيار صورة فقط"); setTimeout(() => setErrorMessage(null), 3000); return }
+    if (file.size > 10 * 1024 * 1024) { setErrorMessage("حجم الصورة كبير (الحد 10MB)"); setTimeout(() => setErrorMessage(null), 3000); return }
 
     const reader = new FileReader()
     reader.onload = (ev) => setImagePreview(ev.target?.result as string)
@@ -73,11 +207,13 @@ export default function ChatPage() {
       if (data.url) {
         setPendingImageUrl(data.url)
       } else {
-        alert(data.error || "فشل رفع الصورة")
+        setErrorMessage(data.error || "فشل رفع الصورة")
+        setTimeout(() => setErrorMessage(null), 3000)
         setImagePreview(null)
       }
     } catch {
-      alert("فشل رفع الصورة")
+      setErrorMessage("فشل رفع الصورة")
+      setTimeout(() => setErrorMessage(null), 3000)
       setImagePreview(null)
     } finally {
       setUploading(false)
@@ -85,14 +221,13 @@ export default function ChatPage() {
     }
   }
 
-  const cancelImage = () => {
-    setImagePreview(null)
-    setPendingImageUrl(null)
-  }
+  const cancelImage = () => { setImagePreview(null); setPendingImageUrl(null) }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (isLoading) return
+    sendTypingStatus(false)
+    setErrorMessage(null)
 
     if (pendingImageUrl) {
       const text = input.trim() ? `${input.trim()}\n[صورة مرفقة](${pendingImageUrl})` : `[صورة مرفقة](${pendingImageUrl})`
@@ -110,6 +245,7 @@ export default function ChatPage() {
 
   const handleQuickQuestion = (text: string) => {
     if (isLoading) return
+    setErrorMessage(null)
     sendMessage({ text })
   }
 
@@ -124,9 +260,22 @@ export default function ChatPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
               <CloudRain className="w-4 h-4" />
               مطر - مساعدك الذكي
+              {isLoading && <Loader2 className="w-3 h-3 animate-spin" />}
             </div>
             <p className="text-muted-foreground text-sm">غيث ونعمة - يمشي معك خطوة بخطوة</p>
           </div>
+
+          {/* Error Banner */}
+          {errorMessage && (
+            <div className="mb-4 px-4 py-3 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm text-center">
+              {errorMessage}
+              {errorMessage.includes("واتساب") && (
+                <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer" className="underline font-medium mr-1">
+                  اضغط هنا
+                </a>
+              )}
+            </div>
+          )}
 
           {/* Chat Area */}
           <div className="flex-1 bg-card rounded-2xl border border-border shadow-lg flex flex-col overflow-hidden">
@@ -146,9 +295,7 @@ export default function ChatPage() {
                   }`}>
                     {message.parts.map((part, index) => {
                       if (part.type === "text" && part.text.trim()) {
-                        return (
-                          <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
-                        )
+                        return <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
                       }
                       if (part.type === "tool-invocation") {
                         if (part.state !== "output-available") {
@@ -207,12 +354,8 @@ export default function ChatPage() {
                           if (result?.searchUrl) {
                             return (
                               <div key={index} className="mt-2">
-                                <a
-                                  href={result.searchUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 bg-background/60 rounded-lg px-3 py-2 hover:bg-background transition-colors border border-border/50 text-xs"
-                                >
+                                <a href={result.searchUrl} target="_blank" rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-2 bg-background/60 rounded-lg px-3 py-2 hover:bg-background transition-colors border border-border/50 text-xs">
                                   <ShoppingCart className="w-3.5 h-3.5 text-primary" />
                                   <span className="text-foreground">ابحث في اكسترا</span>
                                   <ExternalLink className="w-3 h-3 text-muted-foreground" />
@@ -244,22 +387,59 @@ export default function ChatPage() {
               )}
               <div ref={messagesEndRef} />
 
+              {/* Quick actions at start */}
               {messages.length <= 1 && (
-                <div className="grid grid-cols-2 gap-2 pt-2">
-                  {quickQuestions.map((q) => (
+                <div className="space-y-3 pt-2">
+                  {hasHistory && (
                     <button
-                      key={q.text}
                       type="button"
-                      onClick={() => handleQuickQuestion(q.text)}
-                      className="flex items-center gap-2 px-4 py-3 bg-secondary/50 hover:bg-secondary rounded-xl text-sm text-foreground transition-colors text-right"
+                      onClick={loadPreviousChat}
+                      disabled={loadingHistory}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-primary/10 hover:bg-primary/20 rounded-xl text-sm text-primary transition-colors font-medium border border-primary/20"
                     >
-                      <q.icon className="w-4 h-4 text-primary shrink-0" />
-                      <span>{q.text}</span>
+                      {loadingHistory ? <Loader2 className="w-4 h-4 animate-spin" /> : <RotateCcw className="w-4 h-4" />}
+                      استكمال المحادثة السابقة
                     </button>
-                  ))}
+                  )}
+                  <div className="grid grid-cols-2 gap-2">
+                    {quickQuestions.map((q) => (
+                      <button
+                        key={q.text}
+                        type="button"
+                        onClick={() => handleQuickQuestion(q.text)}
+                        className="flex items-center gap-2 px-4 py-3 bg-secondary/50 hover:bg-secondary rounded-xl text-sm text-foreground transition-colors text-right"
+                      >
+                        <q.icon className="w-4 h-4 text-primary shrink-0" />
+                        <span>{q.text}</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
+
+            {/* Phone Prompt */}
+            {showPhonePrompt && !phoneLinked && (
+              <div className="px-4 py-3 border-t border-primary/20 bg-primary/5">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <Phone className="w-3.5 h-3.5 text-primary" />
+                  <p className="text-xs text-foreground font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    value={phoneInput}
+                    onChange={(e) => setPhoneInput(e.target.value)}
+                    placeholder="05xxxxxxxx"
+                    className="flex-1 bg-card border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
+                    dir="ltr"
+                    type="tel"
+                    maxLength={10}
+                  />
+                  <Button size="sm" onClick={handlePhoneSubmit} disabled={!phoneInput.trim()}>تأكيد</Button>
+                  <Button size="sm" variant="ghost" onClick={() => setShowPhonePrompt(false)} className="text-muted-foreground">لاحقا</Button>
+                </div>
+              </div>
+            )}
 
             {/* Image Preview */}
             {imagePreview && (
@@ -271,11 +451,8 @@ export default function ChatPage() {
                       <Loader2 className="w-5 h-5 animate-spin text-primary" />
                     </div>
                   )}
-                  <button
-                    type="button"
-                    onClick={cancelImage}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center"
-                  >
+                  <button type="button" onClick={cancelImage}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-destructive text-destructive-foreground rounded-full flex items-center justify-center">
                     <X className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -285,13 +462,7 @@ export default function ChatPage() {
             {/* Input */}
             <div className="border-t border-border p-4">
               <form onSubmit={handleSubmit} className="flex gap-2">
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handleFileSelect}
-                  accept="image/*"
-                  className="hidden"
-                />
+                <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*" className="hidden" />
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
@@ -304,8 +475,8 @@ export default function ChatPage() {
                 <input
                   ref={inputRef}
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ أو رد على المساعد..."}
+                  onChange={(e) => handleInputChange(e.target.value)}
+                  placeholder={pendingImageUrl ? "اكتب تعليق على الصورة (اختياري)..." : "اكتب المبلغ او رد على المساعد..."}
                   disabled={isLoading}
                   className="flex-1 bg-secondary/50 border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 disabled:opacity-50"
                   dir="rtl"

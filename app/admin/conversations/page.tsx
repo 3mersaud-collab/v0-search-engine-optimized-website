@@ -92,7 +92,14 @@ export default function ConversationsPage() {
 
   // Typing status
   const [typingVisitors, setTypingVisitors] = useState<string[]>([])
-  const prevConvRef = useRef<string | null>(null)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Auto-scroll messages when selectedConv changes
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [selectedConv?.messages])
 
   // Auto-refresh every 5 seconds
   useEffect(() => {
@@ -275,7 +282,11 @@ export default function ConversationsPage() {
             ) : (
               filtered.map(conv => (
                 <button key={conv.id} type="button"
-                  onClick={() => setSelectedConv(conv)}
+                  onClick={() => {
+                    setSelectedConv(conv)
+                    setNewMessageCount(0)
+                    document.title = "سجل المحادثات"
+                  }}
                   className={`w-full text-right p-4 rounded-xl border transition-all ${
                     selectedConv?.id === conv.id
                       ? "bg-primary/10 border-primary/30"
@@ -293,11 +304,14 @@ export default function ConversationsPage() {
                         <p className="text-xs text-muted-foreground truncate">{conv.phone}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end shrink-0">
+                    <div className="flex flex-col items-end shrink-0 gap-1">
                       <span className="text-[10px] text-muted-foreground">{formatTime(conv.updated_at)}</span>
-                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full mt-1 ${
-                        conv.source === "whatsapp" ? "bg-[#25D366]/15 text-[#25D366]" : "bg-primary/15 text-primary"
-                      }`}>{conv.source === "whatsapp" ? "واتساب" : "موقع"}</span>
+                      <div className="flex items-center gap-1">
+                        <span className="text-[10px] text-muted-foreground">{conv.messages?.length || 0} رسالة</span>
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                          conv.source === "whatsapp" ? "bg-[#25D366]/15 text-[#25D366]" : "bg-primary/15 text-primary"
+                        }`}>{conv.source === "whatsapp" ? "واتساب" : "موقع"}</span>
+                      </div>
                     </div>
                   </div>
                   {conv.source === "website" && typingVisitors.some(v => conv.phone?.includes(v)) ? (
@@ -393,6 +407,7 @@ export default function ConversationsPage() {
                     </div>
                   </div>
                 ))}
+                <div ref={messagesEndRef} />
               </div>
 
               {/* Reply Input */}
@@ -426,6 +441,7 @@ export default function ConversationsPage() {
                   </div>
                 </div>
               )}
+              {/* Typing indicator */}
               {selectedConv.source === "website" && typingVisitors.some(v => selectedConv.phone?.includes(v)) && (
                 <div className="px-4 py-2 bg-primary/5 border-t border-primary/10">
                   <p className="text-xs text-primary flex items-center gap-2 animate-pulse">
@@ -438,14 +454,34 @@ export default function ConversationsPage() {
                   </p>
                 </div>
               )}
-              {selectedConv.source !== "whatsapp" && (
-                <div className="p-3 border-t border-border bg-secondary/30 text-center">
-                  <p className="text-xs text-muted-foreground">
-                    <Clock className="w-3 h-3 inline ml-1" />
-                    آخر تحديث: {new Date(selectedConv.updated_at).toLocaleDateString("ar-SA", {
-                      year: "numeric", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
-                    })}
-                  </p>
+
+              {/* Website reply - can also reply to website chats */}
+              {selectedConv.source === "website" && (
+                <div className="p-3 border-t border-border bg-card">
+                  <div className="flex gap-2">
+                    <Input
+                      value={replyText}
+                      onChange={e => setReplyText(e.target.value)}
+                      onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendReply() } }}
+                      placeholder="اكتب ردك هنا للعميل..."
+                      className="flex-1"
+                      disabled={sending}
+                    />
+                    <Button onClick={handleSendReply} disabled={!replyText.trim() || sending} size="sm">
+                      {sending ? <Loader2 className="w-4 h-4 animate-spin" /> : "ارسل"}
+                    </Button>
+                  </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p className="text-[10px] text-muted-foreground">
+                      محادثة موقع - ردك بيظهر للعميل لما يفتح الشات
+                    </p>
+                    <p className="text-[10px] text-muted-foreground">
+                      <Clock className="w-3 h-3 inline ml-1" />
+                      {new Date(selectedConv.updated_at).toLocaleDateString("ar-SA", {
+                        month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"
+                      })}
+                    </p>
+                  </div>
                 </div>
               )}
             </div>
