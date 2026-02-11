@@ -8,8 +8,8 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "مقالات سيولة تابي وتمارا | دليل كاش وسلفة شامل",
-  description: "مقالات تعليمية عن سيولة تابي، كاش تمارا، سلفة تابي، سلفة تمارا. دليل شامل لتحويل رصيدك إلى كاش نقدي مع liilsol.",
-  keywords: "سيولة تابي, سيولة تمارا, كاش تابي, كاش تمارا, سلفة تابي, سلفة تمارا, تحويل رصيد تابي, مقالات سيولة, liilsol",
+  description: "مقالات تعليمية عن سيولة تابي، كاش تمارا، سلفة تابي، سلفة تمارا. دليل شامل لتحويل رصيدك إلى كاش نقدي مع مطر ليل.",
+  keywords: "سيولة تابي, سيولة تمارا, كاش تابي, كاش تمارا, سلفة تابي, سلفة تمارا, تحويل رصيد تابي, مقالات سيولة, مطر ليل, liilsol",
   alternates: {
     canonical: "https://liilsol.com/articles",
   },
@@ -93,7 +93,7 @@ export default function ArticlesPage() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 mb-6">
                 <Search className="w-4 h-4" />
-                <span className="text-sm font-medium">مقالات liilsol التعليمية</span>
+                <span className="text-sm font-medium">مقالات مطر ليل التعليمية</span>
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance leading-relaxed">
@@ -247,7 +247,7 @@ export default function ArticlesPage() {
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4">
                 <p>
-                  هل تبحث عن <strong className="text-foreground">سيولة تابي</strong> أو <strong className="text-foreground">كاش تمارا</strong>؟ موقع liilsol يقدم لك دليلاً شاملاً لفهم كيفية تحويل رصيدك في تطبيقات الدفع الآجل إلى نقد حقيقي في حسابك البنكي.
+                  هل تبحث عن <strong className="text-foreground">سيولة تابي</strong> أو <strong className="text-foreground">كاش تمارا</strong>؟ مطر ليل يقدم لك دليلاً شاملاً لفهم كيفية تحويل رصيدك في تطبيقات الدفع الآجل إلى نقد حقيقي في حسابك البنكي.
                 </p>
                 <p>
                   سواء كنت تبحث عن <strong className="text-foreground">سلفة تابي</strong> أو <strong className="text-foreground">سلفة تمارا</strong> أو حتى كاش من مدفوع، مقالاتنا تشرح لك كل الخطوات بالتفصيل: من فحص الحد الائتماني، إلى اختيار المتجر المناسب (نون، اكسترا، أو المنيع)، وحتى استلام المبلغ في حسابك.
@@ -294,12 +294,12 @@ export default function ArticlesPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Blog",
-            "name": "مقالات liilsol - سيولة تابي وتمارا",
+            "name": "مقالات مطر ليل - سيولة تابي وتمارا",
             "description": "مقالات تعليمية عن سيولة تابي وكاش تمارا وسلفة",
             "url": "https://liilsol.com/articles",
             "publisher": {
               "@type": "Organization",
-              "name": "liilsol",
+              "name": "مطر ليل",
               "url": "https://liilsol.com"
             },
             "blogPost": articles.map(article => ({

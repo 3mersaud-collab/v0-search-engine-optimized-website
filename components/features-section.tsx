@@ -14,7 +14,7 @@ const features = [
   {
     icon: Headphones,
     title: "دعم واتساب متواصل",
-    description: "فريق دعم liilsol متاح على 0590360039 للإجابة على استفساراتك"
+    description: "فريق دعم مطر ليل متاح على 0590360039 للإجابة على استفساراتك"
   },
   {
     icon: BadgeCheck,
@@ -40,7 +40,7 @@ export function FeaturesSection() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
-            لماذا liilsol
+            لماذا مطر ليل
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
             مميزات خدمة سيولة تابي وكاش تمارا

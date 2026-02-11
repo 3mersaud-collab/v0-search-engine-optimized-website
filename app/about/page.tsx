@@ -23,7 +23,7 @@ export default function AboutPage() {
             <div className="flex justify-center mb-6">
               <Image 
                 src="/logo.jpg" 
-                alt="liilsol - سيولة تابي وتمارا" 
+                alt="مطر ليل - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
                 className="rounded-2xl shadow-lg"
@@ -34,7 +34,7 @@ export default function AboutPage() {
               من نحن
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              liilsol - حلول الليل للسيولة
+              مطر ليل - سحابة غيث ماحسبت حسابها
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
               نحن متجر مرخص متخصص في بيع وشراء الأجهزة الذكية عبر تطبيقات الدفع الآجل 

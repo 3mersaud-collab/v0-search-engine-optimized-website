@@ -59,7 +59,7 @@ export default function InvoicePage() {
 
     const message = `
 ━━━━━━━━━━━━━━━
-    *liilsol* | ملخص العملية
+    *مطر ليل* | ملخص العملية
 ━━━━━━━━━━━━━━━
 
 📋 *تفاصيل العملية:*
@@ -77,7 +77,7 @@ export default function InvoicePage() {
 📅 المتبقي للتقسيط: *${remainingInstallment.toLocaleString()} ر.س*
 
 شكراً لثقتكم بنا 🙏
-🌐 liilsol.com
+🌐 liilsol.com | مطر ليل
     `.trim()
 
     const phoneNumber = formatPhoneForWhatsApp(clientPhone)
@@ -94,7 +94,7 @@ export default function InvoicePage() {
           <div className="flex items-center justify-center gap-3 mb-2">
             <Image 
               src="/logo.jpg" 
-              alt="liilsol" 
+              alt="مطر ليل" 
               width={48} 
               height={48} 
               className="rounded-xl"
@@ -173,7 +173,7 @@ export default function InvoicePage() {
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">ملخص العملية</h2>
-                <p className="text-white/80 text-sm">liilsol.com</p>
+                <p className="text-white/80 text-sm">مطر ليل | liilsol.com</p>
               </div>
               <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                 <FileText className="w-6 h-6" />
@@ -236,7 +236,7 @@ export default function InvoicePage() {
             {/* Footer */}
             <div className="text-center pt-4 mt-4 border-t border-slate-100">
               <p className="text-slate-500 text-sm">شكراً لثقتكم بنا</p>
-              <p className="text-[#2d5a3d] font-bold mt-1">liilsol.com</p>
+              <p className="text-[#2d5a3d] font-bold mt-1">مطر ليل | liilsol.com</p>
             </div>
           </CardContent>
         </Card>

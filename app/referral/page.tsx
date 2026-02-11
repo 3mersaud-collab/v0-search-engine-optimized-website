@@ -33,7 +33,7 @@ export default function ReferralPage() {
   }
 
   const shareWhatsApp = () => {
-    const message = `احصل على سيولة فورية من تابي وتمارا مع liilsol%0A%0Aاستخدم كود الإحالة: ${referralCode}%0A%0Ahttps://liilsol.com?ref=${referralCode}`
+    const message = `احصل على سيولة فورية من تابي وتمارا مع مطر ليل%0A%0Aاستخدم كود الإحالة: ${referralCode}%0A%0Ahttps://liilsol.com?ref=${referralCode}`
     window.open(`https://wa.me/?text=${message}`, '_blank')
   }
 
@@ -54,7 +54,7 @@ export default function ReferralPage() {
               برنامج الإحالات
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              اربح مع كل صديق تحيله لـ liilsol
+              اربح مع كل صديق تحيله لـ مطر ليل
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               شارك رابط الإحالة مع أصدقائك واحصل على عمولة عن كل عملية سيولة يقومون بها

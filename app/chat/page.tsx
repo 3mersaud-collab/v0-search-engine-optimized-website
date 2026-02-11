@@ -262,7 +262,7 @@ export default function ChatPage() {
               مطر ليل
               {isLoading && <Loader2 className="w-3 h-3 animate-spin" />}
             </div>
-            <p className="text-muted-foreground text-sm">سحابة غيث ماحسبت حسابها | Powered by liilsol</p>
+            <p className="text-muted-foreground text-sm">سحابة غيث ماحسبت حسابها | Powered by مطر ليل</p>
           </div>
 
           {/* Error Banner */}
