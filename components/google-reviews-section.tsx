@@ -5,86 +5,99 @@ import { Star, ExternalLink, ChevronLeft, ChevronRight, CheckCircle2 } from "luc
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+// التقييمات الحقيقية اللي فيها تعليق فقط - للكاروسيل
 const reviews = [
   {
-    id: 1,
-    name: "عبدالله المطيري",
-    initial: "ع",
-    rating: 5,
-    date: "قبل أسبوع",
-    comment: "تجربة ممتازة من البداية للنهاية. تواصلت معاهم عن طريق الواتساب وخلال ساعة ونص استلمت المبلغ في حسابي.",
-    service: "تابي",
-  },
-  {
     id: 2,
-    name: "فهد الشمري",
-    initial: "ف",
+    name: "تاليا",
+    initial: "ت",
     rating: 5,
-    date: "قبل أسبوعين",
-    comment: "صراحة كنت متردد بالبداية بس الحمدلله تعاملت معاهم وكانت تجربة رهيبة. سرعة في الرد وسرعة في التحويل.",
-    service: "تمارا",
+    date: "قبل يوم",
+    comment: "تعاملت معهم مصداقية وامانه والموظفة تعاملها راقي وانصح بالتعامل معهم",
+    isLocalGuide: true,
   },
   {
     id: 3,
-    name: "سارة القحطاني",
-    initial: "س",
+    name: "Joodu Alhmadan",
+    initial: "J",
     rating: 5,
-    date: "قبل 3 أسابيع",
-    comment: "أفضل خدمة سيولة جربتها. المبلغ وصل حسابي قبل الوقت المتوقع. شكرا لكم على الأمانة والسرعة.",
-    service: "تابي",
+    date: "قبل يوم",
+    comment: "تعامل الموظفه جميل جدا يعطيها الف عافيه",
+    isLocalGuide: true,
   },
   {
     id: 4,
-    name: "خالد العتيبي",
-    initial: "خ",
+    name: "MM DR",
+    initial: "M",
     rating: 5,
-    date: "قبل شهر",
-    comment: "ثاني مرة اتعامل معاهم والتجربة كل مرة أفضل من اللي قبلها. أسعار واضحة بدون أي رسوم مخفية.",
-    service: "تابي",
+    date: "قبل أسبوع",
+    comment: "جوده عاليه ومصادقية وأسعار في المتناول.. والأهم هو التعامل الراقي والشغل الإحترافي.. أنصح وبشده التعامل معهم",
+    isLocalGuide: false,
   },
   {
     id: 5,
-    name: "محمد الدوسري",
-    initial: "م",
+    name: "امل البلوشي",
+    initial: "ا",
     rating: 5,
-    date: "قبل شهر",
-    comment: "خدمة ممتازة وسريعة. كنت محتاج سيولة ضرورية وتواصلت معاهم الساعة 11 بالليل وردوا علي بسرعة.",
-    service: "مدفوع",
+    date: "قبل يوم",
+    comment: "ممتازة الموظفه جدا وصبوره وواضح انها تحب شغلها واميته جداا اشكركم على الخدمة الجميله",
+    isLocalGuide: false,
   },
   {
     id: 6,
-    name: "نورة السبيعي",
-    initial: "ن",
+    name: "Beba S",
+    initial: "B",
     rating: 5,
-    date: "قبل شهر",
-    comment: "تعامل راقي جدا وصدق في المواعيد. المبلغ وصلني بالضبط زي ما اتفقنا بدون أي نقص.",
-    service: "تمارا",
+    date: "قبل أسبوع",
+    comment: "خدمة احترافية شباب ذوق متفهمين وكانو واضحين انصح فيهم وبشده",
+    isLocalGuide: false,
   },
   {
     id: 7,
-    name: "ريم الزهراني",
-    initial: "ر",
+    name: "Userz.",
+    initial: "U",
     rating: 5,
-    date: "قبل شهرين",
-    comment: "خدمة احترافية وسرعة مو طبيعية! طلبت سيولة من تابي والمبلغ وصل حسابي قبل ما أكمل غدائي.",
-    service: "تابي",
+    date: "قبل أسبوع",
+    comment: "تعامل جداً ممتاز وانصح بشده",
+    isLocalGuide: false,
   },
   {
     id: 8,
-    name: "بندر الرشيدي",
-    initial: "ب",
+    name: "KA",
+    initial: "K",
     rating: 5,
-    date: "قبل 4 أشهر",
-    comment: "ثالث مرة اتعامل معاهم وكل مرة نفس المستوى العالي. سرعة + أمانة + أسعار ممتازة.",
-    service: "تابي",
+    date: "قبل 4 أيام",
+    comment: "المعامله راقيه أخلاق و احترام و مصداقيه و كلامها جدا مريح ان شاءالله مو آخر تعامل",
+    isLocalGuide: false,
+  },
+  {
+    id: 9,
+    name: "Aaa Aaa",
+    initial: "A",
+    rating: 5,
+    date: "قبل 5 أيام",
+    comment: "معاملتهم راقيه جدا بكل ادب وطولت بال ... وشرح بالتفصيل .... ونسبتهم افضل من غيرهم بكثير ... وينزل لك المبلغ خلال ساعه",
+    isLocalGuide: false,
+  },
+  {
+    id: 11,
+    name: "saloom ALdosari",
+    initial: "S",
+    rating: 5,
+    date: "قبل 5 أيام",
+    comment: "سريعين في تعاملهم وموثوقين انصحكم فيهم والله يعطيهم العافيه صراحه",
+    isLocalGuide: false,
+  },
+  {
+    id: 15,
+    name: "عبدالله",
+    initial: "ع",
+    rating: 5,
+    date: "قبل أسبوع",
+    comment: "شكراً على مجهودكم",
+    isLocalGuide: false,
   },
 ]
-
-const serviceColors: Record<string, string> = {
-  "تابي": "bg-[#3BFFC1]/15 text-[#0a7c5c] border-[#3BFFC1]/30",
-  "تمارا": "bg-[#FFD700]/15 text-[#7a6600] border-[#FFD700]/30",
-  "مدفوع": "bg-[#4361EE]/15 text-[#4361EE] border-[#4361EE]/30",
-}
 
 const initialColors = [
   "bg-primary/15 text-primary",
@@ -92,6 +105,9 @@ const initialColors = [
   "bg-[#4361EE]/15 text-[#4361EE]",
   "bg-[#FFD700]/15 text-[#7a6600]",
   "bg-[#3BFFC1]/15 text-[#0a7c5c]",
+  "bg-[#FF6B6B]/15 text-[#c0392b]",
+  "bg-[#A855F7]/15 text-[#7e22ce]",
+  "bg-[#F97316]/15 text-[#c2410c]",
 ]
 
 export function GoogleReviewsSection() {
@@ -205,7 +221,9 @@ export function GoogleReviewsSection() {
                       <h3 className="font-semibold text-foreground text-sm">{review.name}</h3>
                       <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
                     </div>
-                    <span className="text-xs text-muted-foreground">{review.date}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {review.isLocalGuide ? "Local Guide" : review.date}
+                    </span>
                   </div>
                 </div>
                 <img
@@ -229,9 +247,9 @@ export function GoogleReviewsSection() {
                     />
                   ))}
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border ${serviceColors[review.service]}`}>
-                  {review.service}
-                </span>
+                {review.isLocalGuide && (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-yellow-500/10 text-yellow-600 border border-yellow-500/20 font-medium">Local Guide</span>
+                )}
               </div>
 
               {/* Comment */}
@@ -245,7 +263,7 @@ export function GoogleReviewsSection() {
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" variant="outline" className="gap-2" asChild>
               <Link href="/reviews">
-                شاهد جميع التقييمات ({reviews.length}+)
+                شاهد جميع التقييمات (17)
               </Link>
             </Button>
             <Button size="lg" className="gap-2" asChild>

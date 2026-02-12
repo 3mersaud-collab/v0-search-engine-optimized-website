@@ -7,168 +7,185 @@ import { Star, ExternalLink, MapPin, Quote, ThumbsUp, ChevronDown, ChevronUp, Ch
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
+// تقييمات حقيقية من Google Maps - liilSOL
 const googleReviews = [
   {
     id: 1,
-    name: "عبدالله المطيري",
-    initial: "ع",
+    name: "Aloo Li",
+    initial: "A",
     rating: 5,
-    date: "قبل أسبوع",
-    comment: "تجربة ممتازة من البداية للنهاية. تواصلت معاهم عن طريق الواتساب وخلال ساعة ونص استلمت المبلغ في حسابي. اسعارهم منافسة وتعاملهم راقي جدا. انصح فيهم بقوة.",
-    likes: 3,
-    service: "تابي",
+    date: "قبل يوم",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 2,
-    name: "فهد الشمري",
-    initial: "ف",
+    name: "تاليا",
+    initial: "ت",
     rating: 5,
-    date: "قبل أسبوعين",
-    comment: "صراحة كنت متردد بالبداية بس الحمدلله تعاملت معاهم وكانت تجربة رهيبة. سرعة في الرد وسرعة في التحويل. استخدمت تمارا وكل شي تم بسلاسة.",
-    likes: 5,
-    service: "تمارا",
+    date: "قبل يوم",
+    comment: "تعاملت معهم مصداقية وامانه والموظفة تعاملها راقي وانصح بالتعامل معهم\nشكراً لكم على رقي خدمتكم",
+    likes: 0,
+    isLocalGuide: true,
     verified: true,
   },
   {
     id: 3,
-    name: "سارة القحطاني",
-    initial: "س",
+    name: "Joodu Alhmadan",
+    initial: "J",
     rating: 5,
-    date: "قبل 3 أسابيع",
-    comment: "أفضل خدمة سيولة جربتها. المبلغ وصل حسابي قبل الوقت المتوقع. شكرا لكم على الأمانة والسرعة.",
-    likes: 7,
-    service: "تابي",
+    date: "قبل يوم",
+    comment: "تعامل الموظفه جميل جدا يعطيها الف عافيه",
+    likes: 0,
+    isLocalGuide: true,
     verified: true,
   },
   {
     id: 4,
-    name: "خالد العتيبي",
-    initial: "خ",
+    name: "MM DR",
+    initial: "M",
     rating: 5,
-    date: "قبل شهر",
-    comment: "ثاني مرة اتعامل معاهم والتجربة كل مرة أفضل من اللي قبلها. أسعار واضحة بدون أي رسوم مخفية. التحويل كان خلال ساعة فقط. موقعهم على قوقل ماب واضح ومسجلين بسجل تجاري.",
-    likes: 4,
-    service: "تابي",
+    date: "قبل أسبوع",
+    comment: "جوده عاليه ومصادقية وأسعار في المتناول.. والأهم هو التعامل الراقي والشغل الإحترافي..\nتحياتي لكل من تعاملت معه\nأنصح وبشده التعامل معهم\nبصراحة من اليوم ورايح ما راح أتعامل إلا معهم..\nبالتوفيق لهم جميعاً والله يرزقهم من واسع رزقه",
+    likes: 1,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 5,
-    name: "محمد الدوسري",
-    initial: "م",
+    name: "امل البلوشي",
+    initial: "ا",
     rating: 5,
-    date: "قبل شهر",
-    comment: "خدمة ممتازة وسريعة. كنت محتاج سيولة ضرورية وتواصلت معاهم الساعة 11 بالليل وردوا علي بسرعة وتم التحويل. ناس محترمة وموثوقة.",
-    likes: 6,
-    service: "مدفوع",
+    date: "قبل يوم",
+    comment: "ممتازة الموظفه جدا وصبوره وواضح انها تحب شغلها واميته جداا اشكركم على الخدمة الجميله والموظفة العسل السكر مره حبيتها وحبيت اخلاقها واحترمها للعميل",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 6,
-    name: "نورة السبيعي",
-    initial: "ن",
+    name: "Beba S",
+    initial: "B",
     rating: 5,
-    date: "قبل شهر",
-    comment: "تعامل راقي جدا وصدق في المواعيد. المبلغ وصلني بالضبط زي ما اتفقنا بدون أي نقص. أول مرة ألاقي خدمة بهالمصداقية.",
-    likes: 8,
-    service: "تمارا",
+    date: "قبل أسبوع",
+    comment: "خدمة احترافية\nشباب ذوق متفهمين\nوكانو واضحين انصح فيهم وبشده",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 7,
-    name: "عمر الحربي",
-    initial: "ع",
+    name: "Userz.",
+    initial: "U",
     rating: 5,
-    date: "قبل شهرين",
-    comment: "الصراحة كنت خايف من الموضوع بس صديقي نصحني فيهم وفعلا ما خذلوني. كل شي واضح من البداية والتحويل سريع. الله يوفقهم.",
-    likes: 2,
-    service: "تابي",
+    date: "قبل أسبوع",
+    comment: "تعامل جداً ممتاز وانصح بشده",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 8,
-    name: "ريم الزهراني",
-    initial: "ر",
+    name: "KA",
+    initial: "K",
     rating: 5,
-    date: "قبل شهرين",
-    comment: "خدمة احترافية وسرعة مو طبيعية! طلبت سيولة من تابي والمبلغ وصل حسابي قبل ما أكمل غدائي. شكرا مطر!",
-    likes: 10,
-    service: "تابي",
+    date: "قبل 4 أيام",
+    comment: "المعامله راقيه أخلاق و احترام و مصداقيه و كلامها جدا مريح\nان شاءالله مو آخر تعامل",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 9,
-    name: "تركي السويلم",
-    initial: "ت",
+    name: "Aaa Aaa",
+    initial: "A",
     rating: 5,
-    date: "قبل شهرين",
-    comment: "ما توقعت ان العملية بتكون بالسهولة هذي. كلمتهم وشرحوا لي كل شي بالتفصيل وخلال ساعتين كان المبلغ في حسابي. تجربة تستاهل 5 نجوم.",
-    likes: 3,
-    service: "تمارا",
+    date: "قبل 5 أيام",
+    comment: "معاملتهم راقيه جدا بكل ادب وطولت بال ... وشرح بالتفصيل .... ونسبتهم افضل من غيرهم بكثير ... وينزل لك المبلغ خلال ساعه ....",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 10,
-    name: "سلطان العنزي",
-    initial: "س",
+    name: "Fawuz Ayed",
+    initial: "F",
     rating: 5,
-    date: "قبل 3 أشهر",
-    comment: "أمانة ومصداقية في التعامل. جربت أكثر من جهة قبلهم وكلهم كانوا يخصمون مبالغ كبيرة أو يتأخرون. مطر مختلفين تماما، أسعار عادلة وتحويل سريع.",
-    likes: 5,
-    service: "مدفوع",
+    date: "قبل 5 أيام",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 11,
-    name: "هند الغامدي",
-    initial: "ه",
+    name: "saloom ALdosari",
+    initial: "S",
     rating: 5,
-    date: "قبل 3 أشهر",
-    comment: "التعامل معاهم كان سلس وسهل. ما احتجت أروح لأي مكان، كل شي تم عن بعد. المبلغ وصل في الوقت المحدد. أنصح الكل يجربهم.",
-    likes: 4,
-    service: "تابي",
+    date: "قبل 5 أيام",
+    comment: "سريعين في تعاملهم وموثوقين انصحكم فيهم والله يعطيهم العافيه صراحه",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 12,
-    name: "بندر الرشيدي",
-    initial: "ب",
+    name: "rashed subaie",
+    initial: "R",
     rating: 5,
-    date: "قبل 4 أشهر",
-    comment: "ثالث مرة اتعامل معاهم وكل مرة نفس المستوى العالي. سرعة + أمانة + أسعار ممتازة. لا يفوتكم.",
-    likes: 9,
-    service: "تابي",
+    date: "قبل 6 أيام",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 13,
-    name: "أحمد الشهري",
-    initial: "أ",
-    rating: 4,
-    date: "قبل 4 أشهر",
-    comment: "خدمة جيدة بشكل عام. التحويل أخذ وقت أطول شوي من المتوقع بس في النهاية وصل المبلغ كامل. ردهم على الواتساب سريع.",
-    likes: 1,
-    service: "تمارا",
+    name: "Foxie Active",
+    initial: "F",
+    rating: 5,
+    date: "قبل 6 أيام",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
   {
     id: 14,
-    name: "منيرة العجمي",
-    initial: "م",
+    name: "Yousuf Rashidi",
+    initial: "Y",
     rating: 5,
-    date: "قبل 5 أشهر",
-    comment: "من أفضل الخدمات اللي جربتها. الأخ أبو مطر تعامله يريح ويشرح لك كل شي بصبر. المبلغ وصل بسرعة والسعر كان أفضل من غيرهم.",
-    likes: 6,
-    service: "تابي",
+    date: "قبل أسبوع",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
+    verified: true,
+  },
+  {
+    id: 15,
+    name: "عبدالله",
+    initial: "ع",
+    rating: 5,
+    date: "قبل أسبوع",
+    comment: "شكراً على مجهودكم",
+    likes: 0,
+    isLocalGuide: false,
+    verified: true,
+  },
+  {
+    id: 16,
+    name: "msh m",
+    initial: "M",
+    rating: 5,
+    date: "قبل أسبوع",
+    comment: "",
+    likes: 0,
+    isLocalGuide: false,
     verified: true,
   },
 ]
-
-const serviceColors: Record<string, string> = {
-  "تابي": "bg-[#3BFFC1]/15 text-[#0a7c5c] border-[#3BFFC1]/30",
-  "تمارا": "bg-[#FFD700]/15 text-[#7a6600] border-[#FFD700]/30",
-  "مدفوع": "bg-[#4361EE]/15 text-[#4361EE] border-[#4361EE]/30",
-}
 
 const initialColors = [
   "bg-primary/15 text-primary",
@@ -176,6 +193,9 @@ const initialColors = [
   "bg-[#4361EE]/15 text-[#4361EE]",
   "bg-[#FFD700]/15 text-[#7a6600]",
   "bg-[#3BFFC1]/15 text-[#0a7c5c]",
+  "bg-[#FF6B6B]/15 text-[#c0392b]",
+  "bg-[#A855F7]/15 text-[#7e22ce]",
+  "bg-[#F97316]/15 text-[#c2410c]",
 ]
 
 export default function ReviewsPage() {
@@ -184,22 +204,18 @@ export default function ReviewsPage() {
 
   const filteredReviews = filter === "all"
     ? googleReviews
-    : googleReviews.filter((r) => r.service === filter)
+    : filter === "with-comment"
+    ? googleReviews.filter((r) => r.comment.length > 0)
+    : googleReviews
 
-  const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, 8)
+  const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, 10)
 
-  const averageRating = (
-    googleReviews.reduce((acc, r) => acc + r.rating, 0) / googleReviews.length
-  ).toFixed(1)
-
-  const totalReviews = googleReviews.length
+  const totalReviews = 17 // العدد الحقيقي من Google Maps
 
   const ratingBreakdown = [5, 4, 3, 2, 1].map((star) => ({
     star,
-    count: googleReviews.filter((r) => r.rating === star).length,
-    percent: Math.round(
-      (googleReviews.filter((r) => r.rating === star).length / totalReviews) * 100
-    ),
+    count: star === 5 ? 17 : 0,
+    percent: star === 5 ? 100 : 0,
   }))
 
   return (
@@ -233,7 +249,7 @@ export default function ReviewsPage() {
                     alt="Google"
                     className="h-7 object-contain mb-2"
                   />
-                  <span className="text-6xl font-bold text-foreground">{averageRating}</span>
+                  <span className="text-6xl font-bold text-foreground">5.0</span>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
@@ -301,17 +317,20 @@ export default function ReviewsPage() {
       <section className="py-4 border-b border-border sticky top-16 z-20 bg-background/95 backdrop-blur-sm">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center gap-3 flex-wrap">
-            {["all", "تابي", "تمارا", "مدفوع"].map((item) => (
+            {[
+              { key: "all", label: `الكل (${totalReviews})` },
+              { key: "with-comment", label: "مع تعليق" },
+            ].map((item) => (
               <button
-                key={item}
-                onClick={() => { setFilter(item); setShowAll(false) }}
+                key={item.key}
+                onClick={() => { setFilter(item.key); setShowAll(false) }}
                 className={`px-5 py-2 rounded-full text-sm font-medium border transition-all ${
-                  filter === item
+                  filter === item.key
                     ? "bg-primary text-primary-foreground border-primary"
                     : "bg-card text-muted-foreground border-border hover:border-primary/30 hover:text-foreground"
                 }`}
               >
-                {item === "all" ? `الكل (${totalReviews})` : item}
+                {item.label}
               </button>
             ))}
           </div>
@@ -340,11 +359,12 @@ export default function ReviewsPage() {
                     <div>
                       <div className="flex items-center gap-2">
                         <h3 className="font-semibold text-foreground">{review.name}</h3>
-                        {review.verified && (
-                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {review.isLocalGuide && (
+                          <span className="text-xs text-muted-foreground">Local Guide</span>
                         )}
                       </div>
-                      <span className="text-xs text-muted-foreground">{review.date}</span>
                     </div>
                   </div>
                   <img
@@ -354,7 +374,7 @@ export default function ReviewsPage() {
                   />
                 </div>
 
-                {/* Stars */}
+                {/* Stars + Date */}
                 <div className="flex items-center gap-2 mb-3">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -368,20 +388,27 @@ export default function ReviewsPage() {
                       />
                     ))}
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded-full border ${serviceColors[review.service]}`}>
-                    {review.service}
-                  </span>
+                  <span className="text-xs text-muted-foreground">{review.date}</span>
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 border border-green-500/20 font-medium">NEW</span>
                 </div>
 
                 {/* Comment */}
-                <p className="text-foreground leading-relaxed mb-4">{review.comment}</p>
+                {review.comment ? (
+                  <p className="text-foreground leading-relaxed mb-4 whitespace-pre-line">{review.comment}</p>
+                ) : (
+                  <p className="text-muted-foreground text-sm italic mb-4">{"(تقييم بدون تعليق)"}</p>
+                )}
 
                 {/* Footer */}
                 <div className="flex items-center justify-between text-muted-foreground">
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <ThumbsUp className="w-3.5 h-3.5" />
-                    <span>مفيد ({review.likes})</span>
-                  </div>
+                  {review.likes > 0 ? (
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <ThumbsUp className="w-3.5 h-3.5" />
+                      <span>{review.likes}</span>
+                    </div>
+                  ) : (
+                    <div />
+                  )}
                   <span className="text-xs">Google Maps</span>
                 </div>
               </div>
@@ -389,7 +416,7 @@ export default function ReviewsPage() {
           </div>
 
           {/* Show More / Less */}
-          {filteredReviews.length > 8 && (
+          {filteredReviews.length > 10 && (
             <div className="text-center mt-10">
               <Button
                 variant="outline"
