@@ -6,14 +6,20 @@ import {
   stepCountIs,
 } from "ai"
 import { z } from "zod"
-import { createClient } from "@supabase/supabase-js"
+import { createClient, type SupabaseClient } from "@supabase/supabase-js"
 
 export const maxDuration = 60
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+let _supabase: SupabaseClient | null = null
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+  }
+  return _supabase
+}
 
 const ADMIN_PHONE = "966590360039"
 const WHATSAPP_API = "https://graph.facebook.com/v22.0"
@@ -125,7 +131,7 @@ const SYSTEM_PROMPT = `اسمك "مطر ليل" - سحابة غيث ماحسبت
 - أي اقتراح يحسن الخدمة
 
 ## الذاكرة والسياق:
-- لو في سياق محادثة سابقة مع العميل (يجيك في نهاية هالرسالة) استخدمه!
+- لو في سياق محادثة سابقة مع العميل (يجيك في نهاية هالرسالة) استخد��ه!
 - لو سأل "تعرفني" أو "تتذكرني" رد عليه بالمعلومات اللي عندك من السياق
 - لو عنده طلبات سابقة اذكرها له
 - لو ما عندك سياق، قول "هلا! وش اقدر اساعدك فيه؟" بدون ما تقول "ما اقدر احتفظ بمعلومات"
@@ -220,7 +226,7 @@ async function sendWhatsAppNotification(message: string) {
   if (!token || !phoneId) {
     console.log("[matar] WhatsApp not configured - WHATSAPP_TOKEN:", !!token, "WHATSAPP_PHONE_NUMBER_ID:", !!phoneId)
     // Save notification to database as fallback
-    await supabase.from("notifications").insert({
+    await getSupabase().from("notifications").insert({
       type: "whatsapp_fallback",
       title: "تنبيه (واتساب غير مفعل)",
       body: message,
@@ -244,7 +250,7 @@ async function sendWhatsAppNotification(message: string) {
     
     if (!res.ok) {
       // Save to notifications as fallback
-      await supabase.from("notifications").insert({
+      await getSupabase().from("notifications").insert({
         type: "whatsapp_failed",
         title: "تنبيه (فشل ارسال واتساب)",
         body: `${message}\n\n--- خطأ: ${responseBody}`,
@@ -255,7 +261,7 @@ async function sendWhatsAppNotification(message: string) {
   } catch (err) {
     console.error("[matar] WhatsApp send error:", err)
     // Save to notifications as fallback
-    await supabase.from("notifications").insert({
+    await getSupabase().from("notifications").insert({
       type: "whatsapp_error",
       title: "تنبيه (خطأ واتساب)",
       body: message,
@@ -311,7 +317,7 @@ export async function POST(req: Request) {
     let historyContext = ""
     try {
       const phone = `web-${visitorId}`
-      const { data: conv } = await supabase
+      const { data: conv } = await getSupabase()
         .from("conversations")
         .select("messages, customer_name, phone")
         .eq("phone", phone)
@@ -331,7 +337,7 @@ export async function POST(req: Request) {
       }
 
       // Also check if this visitor has orders
-      const { data: orders } = await supabase
+      const { data: orders } = await getSupabase()
         .from("orders")
         .select("order_number, status, customer_name, customer_phone, app_type, final_amount, created_at")
         .or(`customer_phone.eq.${phone},customer_phone.eq.${phone.replace("web-", "")}`)
@@ -383,7 +389,7 @@ export async function POST(req: Request) {
 
               console.log("[matar] Submitting order:", { orderNumber, customerName, customerPhone, appType, netRequested })
 
-              const { data, error } = await supabase.from("orders").insert({
+              const { data, error } = await getSupabase().from("orders").insert({
                 order_number: orderNumber,
                 customer_name: customerName,
                 customer_phone: customerPhone,
@@ -407,7 +413,7 @@ export async function POST(req: Request) {
               console.log("[matar] Order created:", data)
 
               // Always save notification to database first
-              await supabase.from("notifications").insert({
+              await getSupabase().from("notifications").insert({
                 type: "new_order",
                 title: "طلب جديد من الشات",
                 body: `${customerName} - ${customerPhone}\nالصافي: ${netRequested} ر.س | التطبيق: ${appNames[appType] || appType}\n${bankName ? `البنك: ${bankName}` : ""}${iban ? ` | IBAN: ${iban}` : ""}`,
@@ -441,7 +447,7 @@ export async function POST(req: Request) {
             phone: z.string().optional().describe("رقم جوال العميل"),
           }),
           execute: async ({ orderNumber, phone }) => {
-            let query = supabase.from("orders").select("order_number, status, customer_name, purchase_amount, final_amount, app_type, created_at").order("created_at", { ascending: false })
+            let query = getSupabase().from("orders").select("order_number, status, customer_name, purchase_amount, final_amount, app_type, created_at").order("created_at", { ascending: false })
             if (orderNumber) query = query.eq("order_number", orderNumber)
             else if (phone) query = query.eq("customer_phone", phone)
             else return { found: false, message: "احتاج رقم الطلب أو رقم جوالك" }
@@ -494,7 +500,7 @@ export async function POST(req: Request) {
             const message = `${urgencyEmoji} تنبيه من مطر:\n${reason}${customerInfo ? `\nالعميل: ${customerInfo}` : ""}`
 
             await sendWhatsAppNotification(message)
-            await supabase.from("notifications").insert({
+            await getSupabase().from("notifications").insert({
               type: "matar_alert",
               title: `تنبيه مطر (${urgency})`,
               body: reason + (customerInfo ? ` | ${customerInfo}` : ""),
@@ -514,7 +520,7 @@ export async function POST(req: Request) {
           }),
           execute: async ({ category, description, priority }) => {
             const catNames: Record<string, string> = { bug: "خلل", feature: "ميزة جديدة", pricing: "اسعار", faq: "سؤال متكرر", other: "اخرى" }
-            await supabase.from("notifications").insert({
+            await getSupabase().from("notifications").insert({
               type: "improvement_suggestion",
               title: `اقتراح تطوير: ${catNames[category]} (${priority})`,
               body: description,
@@ -560,7 +566,7 @@ export async function POST(req: Request) {
 async function saveMessage(visitorId: string, role: "user" | "assistant", content: string) {
   try {
     const phone = `web-${visitorId}`
-    const { data: existing } = await supabase
+    const { data: existing } = await getSupabase()
       .from("conversations")
       .select("id, messages")
       .eq("phone", phone)
@@ -576,13 +582,13 @@ async function saveMessage(visitorId: string, role: "user" | "assistant", conten
     if (existing) {
       const msgs = Array.isArray(existing.messages) ? existing.messages : []
       msgs.push(newMsg)
-      await supabase.from("conversations").update({
+      await getSupabase().from("conversations").update({
         messages: msgs.slice(-50),
         last_message: content.slice(0, 200),
         updated_at: timestamp,
       }).eq("id", existing.id)
     } else {
-      const { data: newConv } = await supabase.from("conversations").insert({
+      const { data: newConv } = await getSupabase().from("conversations").insert({
         phone,
         customer_name: "زائر الموقع",
         messages: [newMsg],
@@ -592,7 +598,7 @@ async function saveMessage(visitorId: string, role: "user" | "assistant", conten
       }).select("id").single()
 
       if (newConv) {
-        await supabase.from("notifications").insert({
+        await getSupabase().from("notifications").insert({
           type: "new_customer",
           title: "محادثة جديدة",
           body: "زائر جديد بدأ محادثة عبر الموقع",
