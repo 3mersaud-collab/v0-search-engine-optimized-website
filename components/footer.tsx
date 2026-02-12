@@ -9,21 +9,21 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <Image 
-                src="/logo.jpg" 
-                alt="مطر - سيولة تابي وتمارا" 
-                width={48} 
-                height={48} 
-                className="rounded-xl"
-                style={{ width: "48px", height: "auto" }}
-              />
-              <div className="flex flex-col">
-                <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+            <Link href="/" className="flex flex-col items-start gap-0.5 mb-4">
+              <div className="flex items-center gap-3">
+                <Image 
+                  src="/logo.jpg" 
+                  alt="مطر - سيولة تابي وتمارا" 
+                  width={48} 
+                  height={48} 
+                  className="rounded-xl"
+                  style={{ width: "48px", height: "auto" }}
+                />
+                <span className="font-semibold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
                   مطر
                 </span>
-                <span className="text-[10px] text-background/50 leading-none">سحابة غيث ماحسبت حسابها</span>
               </div>
+              <span className="text-[10px] text-background/50 leading-none mr-1">سحابة غيث ماحسبت حسابها</span>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
               متجر مرخص لبيع وشراء الأجهزة الذكية عبر تابي وتمارا ومدفوع. 
@@ -107,13 +107,16 @@ export function Footer() {
             <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر | liilsol</p>
             <p className="mt-1">سجل تجاري رقم: 7052450439</p>
           </div>
-          <div className="flex gap-6 text-sm">
-            <Link href="/privacy" className="text-background/70 hover:text-background transition-colors">
-              سياسة الخصوصية
-            </Link>
-            <Link href="/terms" className="text-background/70 hover:text-background transition-colors">
-              الشروط والأحكام
-            </Link>
+          <div className="flex flex-col items-center md:items-end gap-2">
+            <div className="flex gap-6 text-sm">
+              <Link href="/privacy" className="text-background/70 hover:text-background transition-colors">
+                سياسة الخصوصية
+              </Link>
+              <Link href="/terms" className="text-background/70 hover:text-background transition-colors">
+                الشروط والأحكام
+              </Link>
+            </div>
+            <p className="text-background/40 text-xs">Powered by <span className="font-medium text-background/60">liilsol</span></p>
           </div>
         </div>
       </div>

@@ -15,21 +15,21 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image 
-              src="/logo.jpg" 
-              alt="مطر - سيولة تابي وتمارا" 
-              width={40} 
-              height={40} 
-              className="rounded-lg"
-              style={{ width: "40px", height: "auto" }}
-            />
-            <div className="flex flex-col">
-              <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+          <Link href="/" className="flex flex-col items-center gap-0.5">
+            <div className="flex items-center gap-2">
+              <Image 
+                src="/logo.jpg" 
+                alt="مطر - سيولة تابي وتمارا" 
+                width={36} 
+                height={36} 
+                className="rounded-lg"
+                style={{ width: "36px", height: "auto" }}
+              />
+              <span className="font-semibold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
                 مطر
               </span>
-              <span className="text-[10px] md:text-xs text-muted-foreground font-medium leading-none">سحابة غيث ماحسبت حسابها</span>
             </div>
+            <span className="text-[9px] md:text-[11px] text-muted-foreground font-medium leading-none">سحابة غيث ماحسبت حسابها</span>
           </Link>
 
           {/* Desktop Navigation */}

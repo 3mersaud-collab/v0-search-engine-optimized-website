@@ -121,7 +121,7 @@ export default function AdminDashboard() {
 
   const sendWhatsApp = (order: Order) => {
     const statusLabel = statusConfig[order.status]?.label || order.status
-    const message = `مرحباً ${order.customer_name}%0A%0Aتحديث طلبك رقم: ${order.order_number}%0Aالحالة: ${statusLabel}%0A%0Aمبلغ الشراء: ${Number(order.purchase_amount).toLocaleString()} ريال%0Aالمبلغ المستلم: ${Number(order.final_amount).toLocaleString()} ريال%0A%0Aشكراً لتعاملك مع مطر ليل`
+    const message = `مرحباً ${order.customer_name}%0A%0Aتحديث طلبك رقم: ${order.order_number}%0Aالحالة: ${statusLabel}%0A%0Aمبلغ الشراء: ${Number(order.purchase_amount).toLocaleString()} ريال%0Aالمبلغ المستلم: ${Number(order.final_amount).toLocaleString()} ريال%0A%0Aشكراً لتعاملك مع مطر`
     const phone = order.customer_phone.startsWith("0")
       ? `966${order.customer_phone.slice(1)}`
       : order.customer_phone
@@ -160,7 +160,7 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
- <h1 className="text-xl font-bold text-foreground">لوحة التحكم - مطر ليل</h1>
+ <h1 className="text-xl font-bold text-foreground">لوحة التحكم - مطر</h1>
   <div className="flex items-center gap-2">
     <Button variant="outline" size="sm" asChild className="bg-transparent">
       <Link href="/admin/conversations">

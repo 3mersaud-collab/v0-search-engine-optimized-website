@@ -17,7 +17,7 @@ function getSupabase() {
 // ═══════════════════════════════════════════════════════════
 // SYSTEM PROMPT - شخصية مطر الكاملة
 // ═══════════════════════════════════════════════════════════
-const SYSTEM_PROMPT = `اسمك "مطر ليل" - سحابة غيث ماحسبت حسابها. مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
+const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد خدمة liilsol (ليل سول) لتحويل مشتريات التقسيط الى كاش عبر واتساب.
 لما تعرف عن نفسك قول: "معك مطر سحابة غيث ماحسبت حسابها"
 المطر نعمة وغيث من الله، وأنت كذلك غيث للعميل تساعده يحصل على السيولة اللي يحتاجها.
 
@@ -307,7 +307,7 @@ async function saveMessage(
   return msgs
 }
 
-const ADMIN_PHONE = "966590360039"
+const ADMIN_PHONE = "966509399221"
 
 async function notifyAdmin(type: string, title: string, body: string, refType: string, refId: string) {
   const supabase = getSupabase()
@@ -351,7 +351,7 @@ export async function GET(req: Request) {
   return new Response("Forbidden", { status: 403 })
 }
 
-// ═══════════════════════════════════════════════════════════
+// ════════════════��══════════════════════════════════════════
 // Incoming Messages (POST)
 // ═══════════════════════════════════════════════════════════
 export async function POST(req: Request) {

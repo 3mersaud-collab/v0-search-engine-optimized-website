@@ -81,9 +81,9 @@ export function HeroSection() {
 
           {/* Visual Element */}
           <div className="flex-1 w-full max-w-lg overflow-hidden">
-            <div className="relative">
+            <div className="relative mt-4">
               {/* Main Card */}
-              <div className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-2xl p-5 md:p-8 border border-border overflow-hidden">
+              <div className="bg-card/95 backdrop-blur-sm rounded-2xl shadow-2xl p-5 pt-8 md:p-8 md:pt-10 border border-border overflow-hidden">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-2">
                     <Image 
@@ -123,7 +123,7 @@ export function HeroSection() {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-3 right-2 md:-right-4 bg-gradient-to-r from-primary to-accent text-primary-foreground px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg">
+              <div className="absolute -top-4 right-4 md:right-6 bg-gradient-to-r from-primary to-accent text-primary-foreground px-4 py-2 md:px-5 md:py-2.5 rounded-full text-sm md:text-base font-bold shadow-xl z-10">
                 تحويل خلال ساعتين
               </div>
               <div className="absolute -bottom-3 left-2 md:-left-3 bg-card border border-border text-foreground px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg flex items-center gap-1 md:gap-2">

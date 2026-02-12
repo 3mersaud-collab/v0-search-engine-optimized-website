@@ -8,13 +8,13 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعتين",
-  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعتين فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر ليل.",
+  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعتين فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر.",
   keywords: "سيولة تابي, كاش تابي, سلفة تابي, تحويل رصيد تابي, تسييل تابي, tabby cash, سيولة من تابي",
   alternates: {
     canonical: "https://liilsol.com/siyola-tabby",
   },
   openGraph: {
-    title: "سيولة تابي | كاش تابي - مطر ليل",
+    title: "سيولة تابي | كاش تابي - مطر",
     description: "احصل على كاش من رصيد تابي خلال ساعتين",
   },
 }
@@ -105,7 +105,7 @@ export default function SiyolaTabbyPage() {
                 {
                   step: "1",
                   title: "احسب المبلغ في حاسبة السيولة",
-                  desc: "ادخل موقع مطر ليل (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي"
+                  desc: "ادخل موقع مطر (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي"
                 },
                 {
                   step: "2",
@@ -243,11 +243,11 @@ export default function SiyolaTabbyPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "سيولة تابي - مطر ليل",
+            "name": "سيولة تابي - مطر",
             "description": "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعتين",
             "provider": {
               "@type": "Organization",
-              "name": "مطر ليل",
+              "name": "مطر",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",

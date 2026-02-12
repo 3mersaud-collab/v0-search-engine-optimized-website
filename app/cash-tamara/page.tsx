@@ -8,13 +8,13 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "كاش تمارا | سيولة تمارا | سلفة تمارا - تحويل خلال ساعتين",
-  description: "احصل على كاش تمارا وسيولة من رصيدك خلال ساعتين. سلفة تمارا بأفضل الأسعار. تحويل رصيد تمارا إلى نقد في حسابك البنكي مع مطر ليل.",
+  description: "احصل على كاش تمارا وسيولة من رصيدك خلال ساعتين. سلفة تمارا بأفضل الأسعار. تحويل رصيد تمارا إلى نقد في حسابك البنكي مع مطر.",
   keywords: "كاش تمارا, سيولة تمارا, سلفة تمارا, تحويل رصيد تمارا, تسييل تمارا, tamara cash, كاش من تمارا",
   alternates: {
     canonical: "https://liilsol.com/cash-tamara",
   },
   openGraph: {
-    title: "كاش تمارا | سيولة تمارا - مطر ليل",
+    title: "كاش تمارا | سيولة تمارا - مطر",
     description: "احصل على كاش من رصيد تمارا خلال ساعتين",
   },
 }
@@ -50,7 +50,7 @@ export default function CashTamaraPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-                حول رصيدك في تمارا إلى <strong className="text-foreground">كاش نقدي</strong> في حسابك البنكي خلال ساعتين. سلفة تمارا بأفضل الأسعار مع مطر ليل.
+                حول رصيدك في تمارا إلى <strong className="text-foreground">كاش نقدي</strong> في حسابك البنكي خلال ساعتين. سلفة تمارا بأفضل الأسعار مع مطر.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -96,7 +96,7 @@ export default function CashTamaraPage() {
                 {
                   step: "1",
                   title: "احسب المبلغ في حاسبة السيولة",
-                  desc: "ادخل موقع مطر ليل (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء"
+                  desc: "ادخل موقع مطر (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء"
                 },
                 {
                   step: "2",
@@ -280,11 +280,11 @@ export default function CashTamaraPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "كاش تمارا - مطر ليل",
+            "name": "كاش تمارا - مطر",
             "description": "خدمة تحويل رصيد تمارا إلى كاش نقدي خلال ساعتين",
             "provider": {
               "@type": "Organization",
-              "name": "مطر ليل",
+              "name": "مطر",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",
