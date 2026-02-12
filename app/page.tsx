@@ -7,6 +7,7 @@ import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
 import { SeoKeywordsSection } from "@/components/seo-keywords-section"
+import { GoogleReviewsSection } from "@/components/google-reviews-section"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <HowItWorks />
         <CalculatorSection />
         <FeaturesSection />
+        <GoogleReviewsSection />
         <SeoKeywordsSection />
         <FaqSection />
         <ContactSection />
