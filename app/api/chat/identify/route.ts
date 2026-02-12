@@ -1,13 +1,16 @@
 import { createClient } from "@supabase/supabase-js"
 import { NextResponse, type NextRequest } from "next/server"
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabase() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 // POST: Link a visitor to a phone number
 export async function POST(req: NextRequest) {
+  const supabase = getSupabase()
   try {
     const { visitorId, phone, name } = await req.json()
     if (!visitorId || !phone) {
