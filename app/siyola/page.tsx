@@ -8,13 +8,13 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
-  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع مطر ليل.",
-  keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, liilsol",
+  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع مطر.",
+  keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, مطر, سحابة غيث",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
-    title: "سيولة وسلفة فورية - مطر ليل",
+    title: "سيولة وسلفة فورية - مطر",
     description: "سيولة من تابي وتمارا ومدفوع خلال ساعتين",
   },
 }
@@ -43,7 +43,7 @@ export default function SiyolaPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ حول رصيدك في تابي أو تمارا أو مدفوع إلى كاش نقدي في حسابك البنكي خلال <strong className="text-foreground">ساعتين فقط</strong>.
+                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعتين فقط</strong>.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -108,10 +108,10 @@ export default function SiyolaPage() {
               
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4 mb-12">
                 <p>
-                  <strong className="text-foreground">السيولة</strong> (أو السلفة أو الكاش) هي عملية تحويل الرصيد الائتماني المتاح لك في تطبيقات الدفع الآجل مثل تابي وتمارا ومدفوع إلى <strong className="text-foreground">نقد حقيقي</strong> يُحول مباشرة لحسابك البنكي.
+                  <strong className="text-foreground">السيولة</strong> (أو السلفة) هي خدمة نقوم فيها بالدخول كشركاء معكم في شراء الجهاز عبر تطبيقات الدفع الآجل مثل تابي وتمارا ومدفوع، ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ <strong className="text-foreground">السيولة أو السلفة المطلوب</strong> مباشرة لحسابكم البنكي.
                 </p>
                 <p>
-                  بدلاً من استخدام رصيدك للشراء فقط، يمكنك الآن الحصول على <strong className="text-foreground">كاش</strong> عند الحاجة لأي غرض: فواتير، طوارئ، فرص، أو أي احتياج مالي.
+                  وبهذا الأسلوب نتجنب بإذن الله <strong className="text-foreground">شبهات الربا</strong> ونحقق التورق المباح شرعاً. لا نفتيكم لكن هذا ما توصلنا له باجتهادنا وبحثنا في الأحكام الشرعية فيما يتعلق بالتعاملات المالية.
                 </p>
               </div>
 
@@ -197,7 +197,7 @@ export default function SiyolaPage() {
             <div className="max-w-lg mx-auto">
               <div className="bg-card rounded-2xl border border-border p-6 space-y-4">
                 <div className="flex justify-between items-center py-3 border-b border-border">
-                  <span className="text-foreground">الدفعة الأولى</span>
+                  <span className="text-foreground">الدفعة الأولى (نتكفل بها كشركاء)</span>
                   <span className="font-bold text-primary text-xl">25%</span>
                 </div>
                 <div className="flex justify-between items-center py-3 border-b border-border">
@@ -250,11 +250,11 @@ export default function SiyolaPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "سيولة وسلفة - مطر ليل",
+            "name": "سيولة وسلفة - مطر",
             "description": "خدمة سيولة وسلفة من تابي وتمارا ومدفوع",
             "provider": {
               "@type": "Organization",
-              "name": "مطر ليل",
+              "name": "مطر",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",

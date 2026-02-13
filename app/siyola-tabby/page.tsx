@@ -8,13 +8,13 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعتين",
-  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعتين فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر ليل.",
+  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعتين فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر.",
   keywords: "سيولة تابي, كاش تابي, سلفة تابي, تحويل رصيد تابي, تسييل تابي, tabby cash, سيولة من تابي",
   alternates: {
     canonical: "https://liilsol.com/siyola-tabby",
   },
   openGraph: {
-    title: "سيولة تابي | كاش تابي - مطر ليل",
+    title: "سيولة تابي | كاش تابي - مطر",
     description: "احصل على كاش من رصيد تابي خلال ساعتين",
   },
 }
@@ -50,7 +50,7 @@ export default function SiyolaTabbyPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-                حول رصيدك في تابي إلى <strong className="text-foreground">كاش نقدي</strong> في حسابك البنكي خلال ساعتين فقط. سلفة تابي بأفضل الأسعار وأسرع تنفيذ.
+                ندخل معك كشركاء في شراء الجهاز عبر تابي، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعتين فقط.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -105,7 +105,7 @@ export default function SiyolaTabbyPage() {
                 {
                   step: "1",
                   title: "احسب المبلغ في حاسبة السيولة",
-                  desc: "ادخل موقع مطر ليل (liilsol.com) واستخدم الحاسبة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي"
+                  desc: "ادخل موقع مطر واستخدم الحاسبة لتحديد مبلغ الشراء ومعرفة المبلغ النهائي"
                 },
                 {
                   step: "2",
@@ -119,8 +119,8 @@ export default function SiyolaTabbyPage() {
                 },
                 {
                   step: "4",
-                  title: "استلم الكاش خلال ساعتين",
-                  desc: "نقوم بإتمام العملية ونحول لك المبلغ في حسابك البنكي خلال ساعتين"
+                  title: "استلم السيولة خلال ساعتين",
+                  desc: "ندخل كشركاء معك ونتكفل بالدفعة الأولى، ثم نبيع الجهاز ونحول لك مبلغ السيولة في حسابك البنكي خلال ساعتين"
                 }
               ].map((item, index) => (
                 <div key={index} className="flex gap-4 p-6 bg-background rounded-2xl border border-border">
@@ -151,7 +151,7 @@ export default function SiyolaTabbyPage() {
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-border">
-                    <span className="text-foreground">الدفعة الأولى</span>
+                    <span className="text-foreground">الدفعة الأولى (نتكفل بها كشركاء)</span>
                     <span className="font-bold text-primary">25%</span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-border">
@@ -243,11 +243,11 @@ export default function SiyolaTabbyPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            "name": "سيولة تابي - مطر ليل",
+            "name": "سيولة تابي - مطر",
             "description": "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعتين",
             "provider": {
               "@type": "Organization",
-              "name": "مطر ليل",
+              "name": "مطر",
               "url": "https://liilsol.com"
             },
             "areaServed": "SA",

@@ -19,15 +19,16 @@ export function Footer() {
                 style={{ width: "48px", height: "auto" }}
               />
               <div className="flex flex-col">
-                <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+                <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">
                   مطر
                 </span>
-                <span className="text-[10px] text-background/50 leading-none">سحابة غيث ماحسبت حسابها</span>
+                <span className="text-[9px] text-background/50 font-light leading-none tracking-wide">سحابة غيث ماحسبت حسابها</span>
+                <span className="text-[7px] text-background/30 font-light leading-none mt-0.5 tracking-widest">powered by liilsol</span>
               </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
-              متجر مرخص لبيع وشراء الأجهزة الذكية عبر تابي وتمارا ومدفوع. 
-              نشتري جوالك أو نبيعه لك ونحول لك الكاش مباشرة لحسابك البنكي خلال ساعتين. خدمة موثوقة في الرياض والسعودية.
+              نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تابي وتمارا ومدفوع، 
+              ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي خلال ساعتين. خدمة موثوقة في الرياض والسعودية.
             </p>
             {/* Contact Info */}
             <div className="space-y-2 text-sm">
@@ -35,15 +36,15 @@ export function Footer() {
                 <Phone className="w-4 h-4" />
                 <span dir="ltr">+966 59 036 0039</span>
               </a>
-              <a href="mailto:liilsol.support@liilsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="mailto:matar@liilsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Mail className="w-4 h-4" />
-                <span>liilsol.support@liilsa.com</span>
+                <span>matar@liilsa.com</span>
               </a>
               <a href="https://instagram.com/liilsa.sol" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Instagram className="w-4 h-4" />
                 <span>@liilsa.sol</span>
               </a>
-              <a href="https://maps.google.com/?q=liilsol+الرياض+حي+المرسلات" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="https://maps.google.com/?q=مطر+الرياض+حي+المرسلات" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <MapPin className="w-4 h-4" />
                 <span>الرياض - حي المرسلات</span>
               </a>
@@ -104,7 +105,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-background/70 text-sm text-center md:text-right">
-            <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر | liilsol</p>
+            <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر | سحابة غيث ماحسبت حسابها</p>
             <p className="mt-1">سجل تجاري رقم: 7052450439</p>
           </div>
           <div className="flex gap-6 text-sm">

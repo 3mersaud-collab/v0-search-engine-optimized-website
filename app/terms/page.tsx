@@ -19,7 +19,7 @@ export default function TermsPage() {
               <div className="bg-card rounded-2xl p-8 border border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-4">1. مقدمة</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  مرحباً بك في مطر ليل. باستخدامك لخدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. 
+                  مرحباً بك في مطر. باستخدامك لخدماتنا، فإنك توافق على الالتزام بهذه الشروط والأحكام. 
                   نقدم خدمة تحويل رصيد تطبيقات الدفع الآجل (تابي، تمارا، مدفوع) إلى سيولة نقدية.
                 </p>
               </div>
@@ -27,10 +27,10 @@ export default function TermsPage() {
               <div className="bg-card rounded-2xl p-8 border border-border">
                 <h2 className="text-2xl font-bold text-foreground mb-4">2. طبيعة الخدمة</h2>
                 <ul className="text-muted-foreground space-y-3 list-disc list-inside">
-                  <li>نقوم بشراء منتجات من المتاجر الإلكترونية نيابة عنك باستخدام رصيدك في تابي أو تمارا أو مدفوع</li>
-                  <li>يتم بيع المنتجات في السوق وتحويل المبلغ المتبقي لحسابك البنكي</li>
+                  <li>نقوم بالدخول كشركاء معكم في شراء الأجهزة من المتاجر الإلكترونية عبر رصيدك في تابي أو تمارا أو مدفوع، ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة</li>
+                  <li>يتم بيع الجهاز في السوق وتحويل مبلغ السيولة أو السلفة المطلوب لحسابك البنكي</li>
                   <li>أنت المسؤول عن سداد الأقساط للتطبيق المستخدم (تابي/تمارا/مدفوع)</li>
-                  <li>نحن وسطاء فقط ولا نتحمل مسؤولية أي خلاف بينك وبين التطبيقات</li>
+                  <li>نحن شركاء في عملية الشراء ولا نتحمل مسؤولية أي خلاف بينك وبين التطبيقات</li>
                 </ul>
               </div>
 
@@ -90,7 +90,7 @@ export default function TermsPage() {
                 </p>
                 <ul className="text-muted-foreground space-y-2">
                   <li><strong>واتساب:</strong> 0590360039</li>
-                  <li><strong>البريد:</strong> liilsol.support@liilsa.com</li>
+                  <li><strong>البريد:</strong> matar@liilsa.com</li>
                   <li><strong>انستقرام:</strong> @liilsa.sol</li>
                 </ul>
               </div>

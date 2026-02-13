@@ -34,14 +34,14 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              سيولة فورية من{" "}
-              <span className="text-primary">تابي وتمارا ومدفوع</span>{" "}
-              - كاش في حسابك
+              نقوم بالدخول كـ{" "}
+              <span className="text-primary">شركاء معك في شراء الجهاز</span>{" "}
+              ونتكفل بالدفعة الاولى
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              نقوم بشراء جوالك أو بيعه لك عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
-              ونحول لك الكاش مباشرة لحسابك البنكي خلال ساعتين. 
+              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
+              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
               خدمة مرخصة وموثوقة بسجل تجاري في الرياض والسعودية.
             </p>
 
@@ -156,11 +156,11 @@ export function HeroSection() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            "name": "مطر - liilsol",
-            "description": "مطر - سحابة غيث ماحسبت حسابها. سيولة فورية من تابي وتمارا ومدفوع. كاش تابي، كاش تمارا، سلفة فورية.",
+            "name": "مطر - سحابة غيث ماحسبت حسابها",
+            "description": "مطر - سحابة غيث ماحسبت حسابها. نقوم بالدخول كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
             "telephone": "+966590360039",
-            "email": "liilsol.support@liilsa.com",
+            "email": "matar@liilsa.com",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "الرياض",

@@ -4,11 +4,11 @@ export function SeoSchema() {
     "@type": "LocalBusiness",
     "@id": "https://liilsol.com/#business",
     "name": "مطر",
-    "alternateName": ["liilsol", "ليل سول", "مطر - سحابة غيث ماحسبت حسابها"],
-    "description": "خدمة سيولة تابي وتمارا ومدفوع - تحويل رصيدك إلى كاش نقدي في السعودية. سيولة فورية، كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا.",
+    "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سحابة غيث ماحسبت حسابها"],
+    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. سيولة فورية، كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا.",
     "url": "https://liilsol.com",
     "telephone": "+966590360039",
-    "email": "liilsol.support@liilsa.com",
+    "email": "matar@liilsa.com",
     "image": "https://liilsol.com/og-image.jpg",
     "logo": "https://liilsol.com/logo.png",
     "address": {
@@ -61,9 +61,9 @@ export function SeoSchema() {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://liilsol.com/#service",
-    "serviceType": "خدمة سيولة وتحويل رصيد",
-    "name": "سيولة تابي وتمارا ومدفوع - كاش فوري",
-    "description": "تحويل رصيد تابي وتمارا ومدفوع إلى كاش نقدي في حسابك البنكي خلال ساعتين. سيولة فورية، سلفة تابي، سلفة تمارا، كاش تابي، كاش تمارا.",
+    "serviceType": "خدمة سيولة وسلفة بالشراكة",
+    "name": "سيولة تابي وتمارا ومدفوع - شراكة في شراء الجهاز",
+    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة خلال ساعتين.",
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://liilsol.com/#business"
@@ -174,10 +174,10 @@ export function SeoSchema() {
       },
       {
         "@type": "Question",
-        "name": "ما هو رقم التواصل للحصول على سيولة؟",
+        "name": "ما هو رقم التوا��ل للحصول على سيولة؟",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "تواصل معنا عبر واتساب على الرقم 0590360039 أو البريد الإلكتروني liilsol.support@liilsa.com. نحن متاحين 24/7."
+          "text": "تواصل معنا عبر واتساب على الرقم 0590360039 أو البريد الإلكتروني matar@liilsa.com. نحن متاحين 24/7."
         }
       }
     ]
@@ -219,7 +219,7 @@ export function SeoSchema() {
     "@type": "WebSite",
     "@id": "https://liilsol.com/#website",
     "name": "مطر - سيولة تابي وتمارا",
-    "alternateName": ["liilsol", "سيولة تابي", "كاش تمارا", "سحابة غيث"],
+    "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "سيولة تابي", "كاش تمارا"],
     "url": "https://liilsol.com",
     "description": "سيولة تابي وتمارا ومدفوع - كاش فوري من رصيدك خلال ساعتين. أفضل خدمة سيولة في السعودية.",
     "inLanguage": "ar-SA",

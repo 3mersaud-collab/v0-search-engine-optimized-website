@@ -63,7 +63,7 @@ export function ContactSection() {
                 </a>
 
                 <a 
-                  href="mailto:liilsol.support@liilsa.com"
+                  href="mailto:matar@liilsa.com"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -71,7 +71,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">البريد الإلكتروني</p>
-                    <p className="font-medium text-foreground text-sm">liilsol.support@liilsa.com</p>
+                    <p className="font-medium text-foreground text-sm">matar@liilsa.com</p>
                   </div>
                 </a>
 

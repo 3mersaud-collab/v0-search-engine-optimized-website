@@ -23,7 +23,7 @@ export default function AboutPage() {
             <div className="flex justify-center mb-6">
               <Image 
                 src="/logo.jpg" 
-                alt="مطر ليل - سيولة تابي وتمارا" 
+                alt="مطر - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
                 className="rounded-2xl shadow-lg"
@@ -34,11 +34,11 @@ export default function AboutPage() {
               من نحن
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              مطر ليل - سحابة غيث ماحسبت حسابها
+              مطر - سحابة غيث ماحسبت حسابها
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
-              نحن متجر مرخص متخصص في بيع وشراء الأجهزة الذكية عبر تطبيقات الدفع الآجل 
-              تابي وتمارا ومدفوع. نقوم بشراء جوالك أو بيعه لك ونحول لك الكاش مباشرة لحسابك البنكي.
+              نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تطبيقات الدفع الآجل 
+              تابي وتمارا ومدفوع. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي. وبهذا نتجنب شبهات الربا ونحقق بإذن الله التورق المباح شرعاً.
             </p>
             <p className="text-sm text-muted-foreground mb-8">
               سجل تجاري رقم: <strong className="text-foreground">7052450439</strong>
@@ -95,8 +95,8 @@ export default function AboutPage() {
               },
               {
                 icon: Shield,
-                title: "أمان تام",
-                description: "لا نطلب كلمات مرور أو بيانات حساسة. العملية تتم من خلالك"
+                title: "تجنب شبهات الربا",
+                description: "بدخولنا كشركاء معكم نتجنب شبهات الربا ونحقق بإذن الله التورق المباح شرعاً"
               },
               {
                 icon: Users,
@@ -105,8 +105,8 @@ export default function AboutPage() {
               },
               {
                 icon: Award,
-                title: "أفضل الأسعار",
-                description: "نقدم أقل نسبة رسوم في السوق مع شفافية كاملة"
+                title: "أفضل خدمة سيولة وسلفة",
+                description: "نقدم أفضل خدمة سيولة وسلفة بدخولنا كشركاء معكم بأقل نسبة وشفافية كاملة"
               },
               {
                 icon: Star,
@@ -147,10 +147,10 @@ export default function AboutPage() {
             <div className="space-y-6">
               {[
                 "تختار المبلغ المطلوب من حاسبة السيولة",
-                "نختار لك الجوال المناسب من المتاجر المعتمدة",
-                "تشتري الجوال باستخدام تابي أو تمارا أو مدفوع (بالتقسيط)",
-                "نشتري منك الجوال بسعر السوق نقداً",
-                "نخصم الدفعة الأولى والرسوم الإدارية ونحول لك الكاش المتبقي لحسابك البنكي"
+                "نختار لك الجهاز المناسب من المتاجر المعتمدة",
+                "ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع ونتكفل بالدفعة الأولى",
+                "نقوم ببيع الجهاز بسعر السوق نقداً",
+                "نخصم نسبة الشراكة والرسوم الإدارية ونحول لك مبلغ السيولة أو السلفة المطلوب لحسابك البنكي"
               ].map((step, index) => (
                 <div key={index} className="flex items-start gap-4 bg-card rounded-xl p-5 border border-border">
                   <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold shrink-0">
@@ -192,14 +192,14 @@ export default function AboutPage() {
               </a>
 
               <a 
-                href="mailto:liilsol.support@liilsa.com"
+                href="mailto:matar@liilsa.com"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-primary/50 hover:shadow-lg transition-all text-center group"
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">البريد الإلكتروني</h3>
-                <p className="text-muted-foreground text-sm">liilsol.support@liilsa.com</p>
+                <p className="text-muted-foreground text-sm">matar@liilsa.com</p>
               </a>
 
               <a 

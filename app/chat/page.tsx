@@ -259,10 +259,10 @@ export default function ChatPage() {
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-3">
               <CloudRain className="w-4 h-4" />
-              مطر ليل
+              مطر
               {isLoading && <Loader2 className="w-3 h-3 animate-spin" />}
             </div>
-            <p className="text-muted-foreground text-sm">سحابة غيث ماحسبت حسابها | Powered by مطر ليل</p>
+            <p className="text-muted-foreground text-sm">سحابة غيث ماحسبت حسابها</p>
           </div>
 
           {/* Error Banner */}
