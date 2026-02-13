@@ -156,11 +156,11 @@ export function HeroSection() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FinancialService",
-            "name": "مطر - liilsol",
+            "name": "مطر - سحابة غيث ماحسبت حسابها",
             "description": "مطر - سحابة غيث ماحسبت حسابها. نقوم بالدخول كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
             "telephone": "+966590360039",
-            "email": "liilsol.support@liilsa.com",
+            "email": "matar@liilsa.com",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "الرياض",

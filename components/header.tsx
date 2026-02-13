@@ -25,10 +25,11 @@ export function Header() {
               style={{ width: "40px", height: "auto" }}
             />
             <div className="flex flex-col">
-              <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight">
+              <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">
                 مطر
               </span>
-              <span className="text-[10px] md:text-xs text-muted-foreground font-medium leading-none">سحابة غيث ماحسبت حسابها</span>
+              <span className="text-[9px] md:text-[11px] text-muted-foreground/80 font-light leading-none tracking-wide">سحابة غيث ماحسبت حسابها</span>
+              <span className="text-[7px] md:text-[8px] text-muted-foreground/40 font-light leading-none mt-0.5 tracking-widest">powered by liilsol</span>
             </div>
           </Link>
 

@@ -23,7 +23,7 @@ export default function AboutPage() {
             <div className="flex justify-center mb-6">
               <Image 
                 src="/logo.jpg" 
-                alt="مطر ليل - سيولة تابي وتمارا" 
+                alt="مطر - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
                 className="rounded-2xl shadow-lg"
@@ -34,7 +34,7 @@ export default function AboutPage() {
               من نحن
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 text-balance">
-              مطر ليل - سحابة غيث ماحسبت حسابها
+              مطر - سحابة غيث ماحسبت حسابها
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
               نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تطبيقات الدفع الآجل 
@@ -192,14 +192,14 @@ export default function AboutPage() {
               </a>
 
               <a 
-                href="mailto:liilsol.support@liilsa.com"
+                href="mailto:matar@liilsa.com"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-primary/50 hover:shadow-lg transition-all text-center group"
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">البريد الإلكتروني</h3>
-                <p className="text-muted-foreground text-sm">liilsol.support@liilsa.com</p>
+                <p className="text-muted-foreground text-sm">matar@liilsa.com</p>
               </a>
 
               <a 
