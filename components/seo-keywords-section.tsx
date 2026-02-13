@@ -91,24 +91,22 @@ export function SeoKeywordsSection() {
         <div className="mt-16 max-w-4xl mx-auto">
           <div className="bg-card rounded-2xl p-8 border border-border shadow-lg">
             <h3 className="text-2xl font-bold text-foreground mb-6">
-              لماذا مطر لخدمات السيولة والكاش؟
+              لماذا مطر لخدمات السيولة والسلفة؟
             </h3>
             <div className="prose prose-lg text-muted-foreground leading-relaxed space-y-4">
               <p>
-                نحن في <strong className="text-foreground">مطر</strong> نقدم أفضل خدمات 
-                <strong className="text-foreground"> السيولة من تابي وتمارا</strong> في السعودية. سواء كنت تبحث عن 
-                <strong className="text-foreground"> كاش تابي</strong> أو <strong className="text-foreground">سيولة تمارا</strong> أو 
-                <strong className="text-foreground"> سلفة فورية</strong>، نحن هنا لمساعدتك بأسرع وقت وأفضل سعر.
+                نحن في <strong className="text-foreground">مطر</strong> نقدم أفضل خدمة 
+                <strong className="text-foreground"> سيولة وسلفة</strong> في السعودية بدخولنا معكم كشركاء في شراء الجهاز عبر 
+                <strong className="text-foreground"> تابي وتمارا ومدفوع</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
               </p>
               <p>
-                خدماتنا تشمل: <strong className="text-foreground">سيولة تابي</strong>، <strong className="text-foreground">كاش تمارا</strong>، 
-                <strong className="text-foreground"> سلفة تابي</strong>، <strong className="text-foreground">سلفة تمارا</strong>، 
-                <strong className="text-foreground"> تسييل رصيد</strong>، وتحويل من <strong className="text-foreground">مدفوع</strong>.
-                كل ذلك بأسعار منافسة وتحويل سريع <strong className="text-foreground">خلال ساعتين فقط</strong>.
+                وبهذا الأسلوب نتجنب بإذن الله <strong className="text-foreground">شبهات الربا</strong> ونحقق 
+                <strong className="text-foreground"> التورق المباح شرعاً</strong>. لا نفتيكم لكن هذا ما توصلنا له باجتهادنا وبحثنا في 
+                <strong className="text-foreground">الأحكام الشرعية</strong> فيما يتعلق بالتعاملات المالية.
               </p>
               <p>
                 موقعنا في <strong className="text-foreground">الرياض - حي المرسلات</strong>، ونخدم جميع مناطق المملكة.
-                تواصل معنا على <strong className="text-foreground">0590360039</strong> للحصول على أفضل عروض السيولة والكاش.
+                تواصل معنا على <strong className="text-foreground">0590360039</strong> للحصول على أفضل خدمة سيولة وسلفة.
               </p>
             </div>
           </div>

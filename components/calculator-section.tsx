@@ -174,7 +174,7 @@ export function CalculatorSection() {
                     <span className="text-destructive font-medium">- {Math.round(calculations.adminFee).toLocaleString("ar-SA")} ر.س</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-t border-border/50">
-                    <span className="text-muted-foreground">الدفعة الأولى (25%)</span>
+                    <span className="text-muted-foreground">الدفعة الأولى - نتكفل بها كشركاء (25%)</span>
                     <span className="text-destructive font-medium">- {Math.round(calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
                   </div>
                   <div className="border-t-2 border-primary/30 pt-4 mt-4">

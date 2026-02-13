@@ -50,7 +50,7 @@ export default function CashTamaraPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-                حول رصيدك في تمارا إلى <strong className="text-foreground">كاش نقدي</strong> في حسابك البنكي خلال ساعتين. سلفة تمارا بأفضل الأسعار مع مطر ليل.
+                ندخل معك كشركاء في شراء الجهاز عبر تمارا، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعتين.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -122,8 +122,8 @@ export default function CashTamaraPage() {
                 },
                 {
                   step: "6",
-                  title: "استلم الكاش خلال ساعتين",
-                  desc: "نقوم بإتمام العملية ونحول لك المبلغ في حسابك البنكي"
+                  title: "استلم السيولة خلال ساعتين",
+                  desc: "ندخل كشركاء معك ونتكفل بالدفعة الأولى، ثم نبيع الجهاز ونحول لك مبلغ السيولة في حسابك البنكي"
                 }
               ].map((item, index) => (
                 <div 
@@ -191,7 +191,7 @@ export default function CashTamaraPage() {
                 </div>
                 <div className="p-6 space-y-4">
                   <div className="flex justify-between items-center py-3 border-b border-border">
-                    <span className="text-foreground">الدفعة الأولى</span>
+                    <span className="text-foreground">الدفعة الأولى (نتكفل بها كشركاء)</span>
                     <span className="font-bold text-accent">25%</span>
                   </div>
                   <div className="flex justify-between items-center py-3 border-b border-border">
