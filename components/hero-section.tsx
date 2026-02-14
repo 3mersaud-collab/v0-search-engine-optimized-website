@@ -34,9 +34,8 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              نقوم بالدخول كـ{" "}
-              <span className="text-primary">شركاء معك في شراء الجهاز</span>{" "}
-              ونتكفل بالدفعة الاولى
+              سيولة تابي وسلفة تمارا شرعية |{" "}
+              <span className="text-primary">كاش فوري عبر تقسيط جوالات الى كاش</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
