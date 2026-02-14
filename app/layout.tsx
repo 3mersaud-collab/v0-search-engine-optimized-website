@@ -105,6 +105,18 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-3TWCLCVPWB');
               gtag('config', 'AW-17942036032');
+
+              // Track WhatsApp button clicks as Google Ads conversions
+              document.addEventListener('click', function(e) {
+                var el = e.target;
+                while (el && el.tagName !== 'A') { el = el.parentElement; }
+                if (el && el.href && el.href.indexOf('wa.me') !== -1) {
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-17942036032/CONVERSION_LABEL',
+                    'event_callback': function() {}
+                  });
+                }
+              });
             `,
           }}
         />
