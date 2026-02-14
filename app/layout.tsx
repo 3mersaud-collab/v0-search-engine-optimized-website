@@ -96,6 +96,7 @@ export default function RootLayout({
       <head>
         <SeoSchema />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TWCLCVPWB" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17942036032" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -103,6 +104,7 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-3TWCLCVPWB');
+              gtag('config', 'AW-17942036032');
             `,
           }}
         />
