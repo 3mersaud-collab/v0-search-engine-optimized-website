@@ -112,7 +112,7 @@ export default function RootLayout({
                 while (el && el.tagName !== 'A') { el = el.parentElement; }
                 if (el && el.href && el.href.indexOf('wa.me') !== -1) {
                   gtag('event', 'conversion', {
-                    'send_to': 'AW-17942036032/CONVERSION_LABEL',
+                    'send_to': 'AW-17942036032/RfuzCK7T2vYbEMD8tutC',
                     'event_callback': function() {}
                   });
                 }
