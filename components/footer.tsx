@@ -79,6 +79,9 @@ export function Footer() {
               <Link href="/about" className="text-background/70 hover:text-background transition-colors">
                 من نحن
               </Link>
+              <Link href="/shariah" className="text-background/70 hover:text-background transition-colors">
+                الامتثال الشرعي
+              </Link>
               <Link href="/articles" className="text-background/70 hover:text-background transition-colors">
                 المقالات
               </Link>
@@ -95,8 +98,9 @@ export function Footer() {
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">كاش تمارا</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة تابي</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة تمارا</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة نقدية</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة فورية</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">تورق شرعي</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">مدفوع</span>
             </div>
           </div>
@@ -108,12 +112,15 @@ export function Footer() {
             <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر | سحابة غيث ماحسبت حسابها</p>
             <p className="mt-1">سجل تجاري رقم: 7052450439</p>
           </div>
-          <div className="flex gap-6 text-sm">
+          <div className="flex flex-wrap gap-6 text-sm">
             <Link href="/privacy" className="text-background/70 hover:text-background transition-colors">
               سياسة الخصوصية
             </Link>
             <Link href="/terms" className="text-background/70 hover:text-background transition-colors">
               الشروط والأحكام
+            </Link>
+            <Link href="/shariah" className="text-background/70 hover:text-background transition-colors">
+              الامتثال الشرعي
             </Link>
           </div>
         </div>

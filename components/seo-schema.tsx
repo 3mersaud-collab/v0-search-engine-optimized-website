@@ -5,7 +5,7 @@ export function SeoSchema() {
     "@id": "https://liilsol.com/#business",
     "name": "مطر",
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سحابة غيث ماحسبت حسابها"],
-    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. سيولة فورية، كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا.",
+    "description": "سيولة نقدية فورية وسلفة بدون ربا عبر التورق الشرعي المباح. ندخل كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى. كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، تحويل جوالات الى كاش خلال ساعتين.",
     "url": "https://liilsol.com",
     "telephone": "+966590360039",
     "email": "matar@liilsa.com",
@@ -210,6 +210,18 @@ export function SeoSchema() {
         "position": 4,
         "name": "كاش تمارا",
         "item": "https://liilsol.com/cash-tamara"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
+        "name": "الامتثال الشرعي",
+        "item": "https://liilsol.com/shariah"
+      },
+      {
+        "@type": "ListItem",
+        "position": 6,
+        "name": "سياسة الخصوصية",
+        "item": "https://liilsol.com/privacy"
       }
     ]
   }
