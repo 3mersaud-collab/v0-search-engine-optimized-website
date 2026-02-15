@@ -6,6 +6,7 @@ import { FeaturesSection } from "@/components/features-section"
 import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { TamaraExampleSection } from "@/components/tamara-example-section"
 import { SeoKeywordsSection } from "@/components/seo-keywords-section"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
 
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <HowItWorks />
         <CalculatorSection />
+        <TamaraExampleSection />
         <FeaturesSection />
         <GoogleReviewsSection />
         <SeoKeywordsSection />
