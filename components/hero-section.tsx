@@ -34,13 +34,13 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              سيولة تابي وسلفة تمارا شرعية |{" "}
+              سيولة تابي وسلفة تمارا |{" "}
               <span className="text-primary">كاش فوري عبر تقسيط جوالات الى كاش</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
-              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
+              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
               خدمة مرخصة وموثوقة بسجل تجاري في الرياض والسعودية.
             </p>
 
@@ -156,7 +156,7 @@ export function HeroSection() {
             "@context": "https://schema.org",
             "@type": "FinancialService",
             "name": "مطر - سحابة غيث ماحسبت حسابها",
-            "description": "مطر - سحابة غيث ماحسبت حسابها. نقوم بالدخول كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
+            "description": "مطر - سحابة غيث ماحسبت حسابها. ندخل كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
             "telephone": "+966590360039",
             "email": "matar@liilsa.com",

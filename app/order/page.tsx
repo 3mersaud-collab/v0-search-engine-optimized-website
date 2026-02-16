@@ -15,7 +15,7 @@ import Link from "next/link"
 
 const appOptions = [
   { id: "tabby", name: "تابي", label: "tabby", color: "text-[#3CBED8]", border: "border-[#3CBED8] bg-[#3CBED8]/5", screenshotLabel: "صورة صفحة تقسيم الدفعات من تابي" },
-  { id: "tamara", name: "تمارا", label: "tamara", color: "text-[#FF6B35]", border: "border-[#FF6B35] bg-[#FF6B35]/5", screenshotLabel: "صورة صفحة البنك من تمارا" },
+  { id: "tamara", name: "تمارا", label: "tamara", color: "text-[#FF6B35]", border: "border-[#FF6B35] bg-[#FF6B35]/5", screenshotLabel: "صورة الشاشة من تمارا" },
   { id: "madfu", name: "مدفوع", label: "مدفوع", color: "text-[#4361EE]", border: "border-[#4361EE] bg-[#4361EE]/5", screenshotLabel: "صورة صفحة تقسيم الدفعات من مدفوع" },
 ]
 
