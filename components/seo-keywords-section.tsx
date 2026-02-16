@@ -100,9 +100,8 @@ export function SeoKeywordsSection() {
                 <strong className="text-foreground"> تابي وتمارا ومدفوع</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
               </p>
               <p>
-                وبهذا الأسلوب نتجنب بإذن الله <strong className="text-foreground">شبهات الربا</strong> ونحقق 
-                <strong className="text-foreground"> التورق المباح شرعاً</strong>. لا نفتيكم لكن هذا ما توصلنا له باجتهادنا وبحثنا في 
-                <strong className="text-foreground">الأحكام الشرعية</strong> فيما يتعلق بالتعاملات المالية.
+                لمزيد من التفاصيل عن الاساس الذي نعمل عليه، يرجى زيارة صفحة{" "}
+                <a href="/shariah" className="text-primary underline">الامتثال الشرعي</a>.
               </p>
               <p>
                 موقعنا في <strong className="text-foreground">الرياض - حي المرسلات</strong>، ونخدم جميع مناطق المملكة.

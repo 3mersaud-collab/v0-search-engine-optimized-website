@@ -100,7 +100,7 @@ export function Footer() {
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة تمارا</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة نقدية</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة فورية</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">تورق شرعي</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">شراكة في الشراء</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">مدفوع</span>
             </div>
           </div>

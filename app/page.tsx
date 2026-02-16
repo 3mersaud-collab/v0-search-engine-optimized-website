@@ -6,21 +6,23 @@ import { FeaturesSection } from "@/components/features-section"
 import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
-import { TamaraExampleSection } from "@/components/tamara-example-section"
 import { SeoKeywordsSection } from "@/components/seo-keywords-section"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
+import { EhsanCharityBanner } from "@/components/ehsan-charity-banner"
+import { RainBackground } from "@/components/rain-background"
 
 export default function Home() {
   return (
     <>
+      <RainBackground />
       <Header />
-      <main>
+      <main className="relative z-10">
         <HeroSection />
+        <EhsanCharityBanner />
         <HowItWorks />
         <CalculatorSection />
-        <TamaraExampleSection />
-        <FeaturesSection />
         <GoogleReviewsSection />
+        <FeaturesSection />
         <SeoKeywordsSection />
         <FaqSection />
         <ContactSection />

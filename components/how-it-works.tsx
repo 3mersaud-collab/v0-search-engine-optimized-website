@@ -156,7 +156,7 @@ export function HowItWorks() {
           <div className="flex items-start gap-4">
             <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
             <div>
-              <h4 className="font-bold text-foreground mb-3">تعليمات مهمة لسيولة تمارا</h4>
+              <h4 className="font-bold text-foreground mb-3">تعل��مات مهمة لسيولة تمارا</h4>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
@@ -172,7 +172,7 @@ export function HowItWorks() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                  <span>اضغط على &quot;ادفع&quot; وصور الشاشة (سواء تم تحويلك لصفحة البنك أو ظهرت رسالة خطأ)</span>
+                  <span>اضغط على &quot;ادفع&quot; وصور الشاشة وارسلها لنا على واتساب</span>
                 </li>
               </ul>
             </div>
