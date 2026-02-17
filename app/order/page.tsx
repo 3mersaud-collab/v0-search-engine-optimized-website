@@ -416,7 +416,7 @@ export default function OrderPage() {
                           <span className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0">4</span>
                           <span>
                             {app === "تمارا"
-                              ? "صوّر صفحة البنك من تمارا (تفاصيل التقسيط)"
+                              ? "صوّر الشاشة من تمارا وأرسلها لنا"
                               : `صوّر صفحة تقسيم الدفعات من ${app}`
                             }
                           </span>
