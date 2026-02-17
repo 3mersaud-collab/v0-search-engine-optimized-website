@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SeoSchema } from '@/components/seo-schema'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ChatFab } from '@/components/chat-fab'
+import { RainBackground } from '@/components/rain-background'
 import './globals.css'
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({ 
@@ -21,10 +22,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://liilsol.com'),
   title: {
-    default: 'مطر | سيولة تابي وسلفة تمارا شرعية - كاش فوري عبر تقسيط جوالات الى كاش',
+    default: 'مطر | سيولة تابي وسلفة تمارا - كاش فوري عبر تقسيط جوالات الى كاش',
     template: '%s | مطر - سيولة تابي وتمارا'
   },
-  description: 'مطر - سيولة نقدية فورية في السعودية وسلفة بدون ربا عبر تابي وتمارا. تحويل جوالات الى كاش خلال ساعتين عبر التورق الشرعي المباح. كاش تابي وكاش تمارا برسوم شفافة 10-14%. سلفة تابي وسلفة تمارا بنسبة شراكة واضحة. خدمة موثوقة في الرياض والسعودية.',
+  description: 'مطر - سيولة نقدية فورية في السعودية عبر تابي وتمارا. تحويل جوالات الى كاش خلال ساعتين. كاش تابي وكاش تمارا برسوم شفافة 10-14%. سلفة تابي وسلفة تمارا بنسبة شراكة واضحة. خدمة موثوقة في الرياض والسعودية.',
   keywords: [
     'سيولة', 'سلفة', 'كاش تمارا', 'كاش تابي', 
     'سيولة تابي', 'سيولة تمارا', 'سلفة تابي', 'سلفة تمارا',
@@ -33,13 +34,13 @@ export const metadata: Metadata = {
     'تسييل فوري', 'سيولة فورية', 'سلفة فورية', 'نقد تابي', 'نقد تمارا',
     'تحويل جوالات الى كاش', 'تقسيط جوالات الى كاش',
     'سيولة نقدية', 'سيولة نقدية فورية في السعودية', 'سلفة فورية',
-    'سلفة بدون ربا عبر تابي', 'تقسيط جوالات بدون ربا', 'تورق مباح', 'تورق شرعي',
+    'سلفة تابي فورية', 'تقسيط جوالات', 'شراكة في الشراء',
     'مطر', 'سحابة غيث ماحسبت حسابها', 'سحابة غيث',
     'tabby cash', 'tamara cash', 'tabby سيولة', 'tamara سيولة'
   ].join(', '),
   openGraph: {
-    title: 'مطر | سيولة تابي وسلفة تمارا شرعية - كاش فوري عبر تقسيط جوالات الى كاش',
-    description: 'مطر - سيولة نقدية فورية وسلفة بدون ربا عبر التورق الشرعي. تحويل جوالات الى كاش عبر تابي وتمارا خلال ساعتين. خدمة موثوقة في الرياض والسعودية.',
+    title: 'مطر | سيولة تابي وسلفة تمارا - كاش فوري عبر تقسيط جوالات الى كاش',
+    description: 'مطر - سيولة نقدية فورية عبر تابي وتمارا. تحويل جوالات الى كاش خلال ساعتين. خدمة موثوقة في الرياض والسعودية.',
     locale: 'ar_SA',
     type: 'website',
     siteName: 'مطر - سيولة تابي وتمارا',
@@ -131,6 +132,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <RainBackground />
           {children}
           <ChatFab />
         </ThemeProvider>
