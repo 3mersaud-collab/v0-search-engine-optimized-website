@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { SeoSchema } from '@/components/seo-schema'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ChatFab } from '@/components/chat-fab'
+import { RainBackground } from '@/components/rain-background'
 import './globals.css'
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({ 
@@ -131,6 +132,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <RainBackground />
           {children}
           <ChatFab />
         </ThemeProvider>
