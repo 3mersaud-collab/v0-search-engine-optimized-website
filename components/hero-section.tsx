@@ -41,7 +41,7 @@ export function HeroSection() {
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
               ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
-              خدمة مرخصة وموثوقة بسجل تجاري في الرياض والسعودية.
+              خدمة موثوقة في الرياض والسعودية.
             </p>
 
             {/* CTA Buttons */}
