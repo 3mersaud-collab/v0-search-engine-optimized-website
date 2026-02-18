@@ -40,9 +40,7 @@ export default function AboutPage() {
               نقوم بالدخول كشركاء معكم في شراء الاجهزة الذكية عبر تطبيقات الدفع الآجل 
               تابي وتمارا ومدفوع. نتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة او السلفة المطلوب مباشرة لحسابكم البنكي.
             </p>
-            <p className="text-sm text-muted-foreground mb-8">
-              سجل تجاري رقم: <strong className="text-foreground">7052450439</strong>
-            </p>
+            <div className="mb-8" />
             <div className="flex flex-wrap justify-center gap-4">
               <Button size="lg" asChild>
                 <Link href="/#calculator">احسب سيولتك الآن</Link>
@@ -150,7 +148,7 @@ export default function AboutPage() {
                 "نختار لك الجهاز المناسب من المتاجر المعتمدة",
                 "ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع ونتكفل بالدفعة الأولى",
                 "نقوم ببيع الجهاز بسعر السوق نقداً",
-                "نخصم نسبة الشراكة والرسوم الإدارية ونحول لك مبلغ السيولة أو السلفة المطلوب لحسابك البنكي"
+                "نخصم نسبة الشراكة وال��سوم الإدارية ونحول لك مبلغ السيولة أو السلفة المطلوب لحسابك البنكي"
               ].map((step, index) => (
                 <div key={index} className="flex items-start gap-4 bg-card rounded-xl p-5 border border-border">
                   <div className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold shrink-0">

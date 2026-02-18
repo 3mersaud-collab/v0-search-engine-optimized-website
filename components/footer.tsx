@@ -110,7 +110,6 @@ export function Footer() {
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-background/70 text-sm text-center md:text-right">
             <p>جميع الحقوق محفوظة {new Date().getFullYear()} - مطر | سحابة غيث ماحسبت حسابها</p>
-            <p className="mt-1">سجل تجاري رقم: 7052450439</p>
           </div>
           <div className="flex flex-wrap gap-6 text-sm">
             <Link href="/privacy" className="text-background/70 hover:text-background transition-colors">
