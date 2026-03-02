@@ -70,8 +70,10 @@ export default function InvoicePage() {
 ▫️ الدفعة الأولى: *${down.toLocaleString()} ر.س*
 
 ━━━━━━━━━━━━━━━
-💰 *المبلغ النهائي (الكاش):*
-    *${Math.round(netAmount).toLocaleString()} ر.س*
+💰 *مجموع ما يتم تحويله إلى حسابك البنكي:*
+
+▫️ إذا الدفعة عليك: *${Math.round(netAmount + down).toLocaleString()} ر.س*
+▫️ إذا الدفعة علينا: *${Math.round(netAmount).toLocaleString()} ر.س*
 ━━━━━━━━━━━━━━━
 
 📅 المتبقي للتقسيط: *${remainingInstallment.toLocaleString()} ر.س*
@@ -217,11 +219,22 @@ export default function InvoicePage() {
               </div>
             </div>
 
-            {/* المبلغ النهائي */}
-            <div className="bg-gradient-to-l from-emerald-500 to-teal-600 rounded-xl p-5 mt-6">
-              <div className="flex justify-between items-center text-white">
-                <span className="text-lg font-medium">المبلغ النهائي (الكاش)</span>
-                <span className="text-3xl font-bold">{Math.round(netAmount).toLocaleString()} ر.س</span>
+            {/* مجموع ما يتم تحويله */}
+            <div className="mt-6">
+              <p className="text-slate-700 font-bold text-lg mb-3">مجموع ما يتم تحويله إلى حسابك البنكي</p>
+              <div className="space-y-3">
+                <div className="bg-gradient-to-l from-[#1e3a5f] to-[#2d5a3d] rounded-xl p-4">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">إذا الدفعة عليك</span>
+                    <span className="text-2xl font-bold">{Math.round(netAmount + down).toLocaleString()} ر.س</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-l from-emerald-500 to-teal-600 rounded-xl p-4">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">إذا الدفعة علينا</span>
+                    <span className="text-2xl font-bold">{Math.round(netAmount).toLocaleString()} ر.س</span>
+                  </div>
+                </div>
               </div>
             </div>
 

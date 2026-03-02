@@ -183,12 +183,12 @@ export function CalculatorSection() {
                     </div>
                     <div className="space-y-3 bg-card/50 rounded-xl p-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
-                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
-                      </div>
-                      <div className="flex justify-between items-center pt-3 border-t border-border/50">
                         <span className="text-muted-foreground font-medium">إذا الدفعة عليك</span>
                         <span className="text-2xl font-bold text-primary">{Math.round(calculations.netAmount + calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-3 border-t border-border/50">
+                        <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
+                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
                       </div>
                     </div>
                   </div>
