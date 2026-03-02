@@ -7,7 +7,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
-  const [installmentMonths, setInstallmentMonths] = useState(5)
+  const [installmentMonths, setInstallmentMonths] = useState(4)
 
   // New calculation logic based on requirements
   const calculations = useMemo(() => {
@@ -123,10 +123,10 @@ export function CalculatorSection() {
               {/* Installment Months Selection */}
               <div className="mb-8">
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  عدد دفعات الشراكة (الدفعة الأولى)
+                  عدد الدفعات
                 </label>
                 <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
-                  {Array.from({ length: 20 }, (_, i) => i + 5).map((months) => (
+                  {Array.from({ length: 21 }, (_, i) => i + 4).map((months) => (
                     <button
                       key={months}
                       onClick={() => setInstallmentMonths(months)}
