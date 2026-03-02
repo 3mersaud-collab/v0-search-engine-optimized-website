@@ -7,6 +7,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
+  const [installmentMonths, setInstallmentMonths] = useState(4)
 
   // New calculation logic based on requirements
   const calculations = useMemo(() => {
@@ -37,6 +38,9 @@ export function CalculatorSection() {
     
     const totalDeductions = downPayment + adminFee + sellingLoss
     const netAmount = Math.max(0, amount - totalDeductions)
+    
+    // الدفعة الشهرية للدفعة الأولى
+    const monthlyDownPayment = downPayment / installmentMonths
 
     return {
       purchaseAmount,
@@ -48,9 +52,10 @@ export function CalculatorSection() {
       adminFee,
       adminFeeRate,
       totalDeductions,
-      netAmount
+      netAmount,
+      monthlyDownPayment
     }
-  }, [amount])
+  }, [amount, installmentMonths])
 
   const apps = [
     { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
