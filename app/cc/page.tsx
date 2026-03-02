@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
 import { FileText, Send, RefreshCw } from "lucide-react"
 import Image from "next/image"
 
@@ -15,7 +15,6 @@ export default function InvoicePage() {
   const [saleAmount, setSaleAmount] = useState<string>("")
   const [downPayment, setDownPayment] = useState<string>("")
   const [clientPhone, setClientPhone] = useState<string>("")
-  const [installmentMonths, setInstallmentMonths] = useState<string>("")
 
   // الحسابات
   const purchase = parseFloat(purchaseAmount) || 0
@@ -27,10 +26,6 @@ export default function InvoicePage() {
   const adminFeeExtra = purchase < 4000 && purchase > 0 ? 100 : 0
   const adminFee = adminFeeBase + adminFeeExtra
   
-  // وقف المطر: الدفعة الأولى مقسمة على عدد الأشهر المختارة
-  const months = parseInt(installmentMonths) || 0
-  const matarFee = months > 0 ? down / months : 0
-  
   const netAmount = sale - adminFee - down
   const remainingInstallment = purchase - down
 
@@ -40,7 +35,6 @@ export default function InvoicePage() {
     setSaleAmount("")
     setDownPayment("")
     setClientPhone("")
-    setInstallmentMonths("")
   }
 
   // تنسيق رقم الجوال للواتساب
@@ -64,8 +58,6 @@ export default function InvoicePage() {
 
     const adminFeeLabel = purchase < 4000 && purchase > 0 ? "(10%+100)" : "(10%)"
 
-    const matarFeeText = months > 0 ? `\n▫️ وقف المطر (${months} شهر): *${Math.round(matarFee).toLocaleString()} ر.س / شهر*` : ''
-
     const message = `
 ━━━━━━━━━━━━━━━
     *مطر* | ملخص العملية
@@ -76,7 +68,7 @@ export default function InvoicePage() {
 ▫️ مبلغ الشراء: *${purchase.toLocaleString()} ر.س*
 ▫️ مبلغ البيع: *${sale.toLocaleString()} ر.س*
 ▫️ الرسوم الإدارية ${adminFeeLabel}: *${Math.round(adminFee).toLocaleString()} ر.س*
-▫️ الدفعة الأولى: *${down.toLocaleString()} ر.س*${matarFeeText}
+▫️ الدفعة الأولى: *${down.toLocaleString()} ر.س*
 
 ━━━━━━━━━━━━━━━
 💰 *مجموع ما يتم تحويله إلى حسابك البنكي:*
@@ -175,27 +167,7 @@ export default function InvoicePage() {
               />
             </div>
 
-            <div>
-              <Label className="text-sm font-medium">وقف المطر (عدد الأشهر)</Label>
-              <Select value={installmentMonths} onValueChange={setInstallmentMonths}>
-                <SelectTrigger className="mt-1 text-lg font-semibold">
-                  <SelectValue placeholder="اختر عدد الأشهر" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="4">4 أشهر</SelectItem>
-                  <SelectItem value="6">6 أشهر</SelectItem>
-                  <SelectItem value="8">8 أشهر</SelectItem>
-                  <SelectItem value="10">10 أشهر</SelectItem>
-                  <SelectItem value="12">12 شهر</SelectItem>
-                  <SelectItem value="14">14 شهر</SelectItem>
-                  <SelectItem value="16">16 شهر</SelectItem>
-                  <SelectItem value="18">18 شهر</SelectItem>
-                  <SelectItem value="20">20 شهر</SelectItem>
-                  <SelectItem value="22">22 شهر</SelectItem>
-                  <SelectItem value="24">24 شهر</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+
           </CardContent>
         </Card>
 
@@ -249,12 +221,7 @@ export default function InvoicePage() {
                 <span className="font-bold text-lg text-red-600">- {down.toLocaleString()} ر.س</span>
               </div>
 
-              {months > 0 && (
-                <div className="flex justify-between items-center py-3 border-b border-slate-100 bg-amber-50 -mx-6 px-6">
-                  <span className="text-slate-700 font-medium">وقف المطر ({months} شهر)</span>
-                  <span className="font-bold text-lg text-amber-700">{Math.round(matarFee).toLocaleString()} ر.س / شهر</span>
-                </div>
-              )}
+
             </div>
 
             {/* مجموع ما يتم تحويله */}
