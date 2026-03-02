@@ -7,7 +7,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
-  const [installmentMonths, setInstallmentMonths] = useState(4)
+  const [installmentMonths, setInstallmentMonths] = useState(5)
 
   // New calculation logic based on requirements
   const calculations = useMemo(() => {
@@ -33,14 +33,13 @@ export function CalculatorSection() {
     const adminFeeExtra = amount < 4000 ? 100 : 0 // 100 ريال إضافية للمبالغ أقل من 4000
     const adminFee = adminFeeBase + adminFeeExtra
     
-    const downPaymentRate = 0.25 // الدفعة الأولى 25%
+    const downPaymentRate = 1 / installmentMonths // نسبة الشراكة = عدد الدفعات (مثلا 10 دفعات = 10%)
     const downPayment = amount * downPaymentRate
     
     const totalDeductions = downPayment + adminFee + sellingLoss
     const netAmount = Math.max(0, amount - totalDeductions)
     
-    // الدفعة الشهرية للدفعة الأولى
-    const monthlyDownPayment = downPayment / installmentMonths
+    // الدفعة الشهرية للدفعة الأولى (removed from display)
 
     return {
       purchaseAmount,
@@ -53,7 +52,6 @@ export function CalculatorSection() {
       adminFeeRate,
       totalDeductions,
       netAmount,
-      monthlyDownPayment
     }
   }, [amount, installmentMonths])
 
@@ -127,8 +125,8 @@ export function CalculatorSection() {
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
                   عدد دفعات الشراكة (الدفعة الأولى)
                 </label>
-                <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
-                  {[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map((months) => (
+                <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
+                  {Array.from({ length: 20 }, (_, i) => i + 5).map((months) => (
                     <button
                       key={months}
                       onClick={() => setInstallmentMonths(months)}
@@ -203,12 +201,8 @@ export function CalculatorSection() {
                     <span className="text-destructive font-medium">- {Math.round(calculations.adminFee).toLocaleString("ar-SA")} ر.س</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-t border-border/50">
-                    <span className="text-muted-foreground">الدفعة الأولى - نتكفل بها كشركاء (25%)</span>
+                    <span className="text-muted-foreground">الدفعة الأولى - نتكفل بها كشركاء ({Math.round(100 / installmentMonths)}%)</span>
                     <span className="text-destructive font-medium">- {Math.round(calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2 border-t border-border/50 bg-primary/5 -mx-6 px-6">
-                    <span className="text-muted-foreground">الدفعة الشهرية ({installmentMonths} دفعة)</span>
-                    <span className="font-bold text-primary">{Math.round(calculations.monthlyDownPayment).toLocaleString("ar-SA")} ر.س / شهر</span>
                   </div>
                   <div className="border-t-2 border-primary/30 pt-4 mt-4">
                     <div className="mb-3">
