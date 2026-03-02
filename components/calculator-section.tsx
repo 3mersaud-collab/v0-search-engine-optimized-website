@@ -178,9 +178,18 @@ export function CalculatorSection() {
                     <span className="text-destructive font-medium">- {Math.round(calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
                   </div>
                   <div className="border-t-2 border-primary/30 pt-4 mt-4">
-                    <div className="flex justify-between items-center">
-                      <span className="font-bold text-foreground text-lg">المبلغ النهائي (الكاش)</span>
-                      <span className="text-3xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
+                    <div className="mb-3">
+                      <span className="font-bold text-foreground text-lg">مجموع ما يتم تحويله إلى حسابك البنكي</span>
+                    </div>
+                    <div className="space-y-3 bg-card/50 rounded-xl p-4">
+                      <div className="flex justify-between items-center">
+                        <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
+                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-3 border-t border-border/50">
+                        <span className="text-muted-foreground font-medium">إذا الدفعة عليك</span>
+                        <span className="text-2xl font-bold text-primary">{Math.round(calculations.netAmount + calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
+                      </div>
                     </div>
                   </div>
                   <div className="flex justify-between items-center pt-3 mt-3 border-t border-border/50">
