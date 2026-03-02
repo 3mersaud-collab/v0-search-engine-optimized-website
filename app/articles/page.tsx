@@ -112,14 +112,16 @@ export default function ArticlesPage() {
                   alt="تمارا"
                   width={100}
                   height={32}
-                  className="h-8 w-auto opacity-70"
+                  className="opacity-70"
+                  style={{ width: 'auto', height: '32px' }}
                 />
                 <Image
                   src="https://cdn.tabby.ai/assets/tabby-logo-black.svg"
                   alt="تابي"
                   width={80}
                   height={32}
-                  className="h-7 w-auto opacity-70"
+                  className="opacity-70"
+                  style={{ width: 'auto', height: '28px' }}
                 />
               </div>
             </div>

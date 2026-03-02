@@ -65,14 +65,16 @@ export default function SiyolaPage() {
                   alt="تابي"
                   width={80}
                   height={32}
-                  className="h-8 w-auto opacity-80"
+                  className="opacity-80"
+                  style={{ width: 'auto', height: '32px' }}
                 />
                 <Image
                   src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Tamara_logo.png"
                   alt="تمارا"
                   width={100}
                   height={32}
-                  className="h-8 w-auto opacity-80"
+                  className="opacity-80"
+                  style={{ width: 'auto', height: '32px' }}
                 />
               </div>
 
@@ -124,7 +126,8 @@ export default function SiyolaPage() {
                     alt="تابي"
                     width={80}
                     height={32}
-                    className="h-8 w-auto mb-4"
+                    className="mb-4"
+                    style={{ width: 'auto', height: '32px' }}
                   />
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سيولة تابي</h3>
                   <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات بسيطة وسريعة.</p>
@@ -139,7 +142,8 @@ export default function SiyolaPage() {
                     alt="تمارا"
                     width={100}
                     height={32}
-                    className="h-8 w-auto mb-4"
+                    className="mb-4"
+                    style={{ width: 'auto', height: '32px' }}
                   />
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-accent transition-colors">كاش تمارا</h3>
                   <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات مختلفة عن تابي.</p>
