@@ -7,6 +7,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
+  const [installmentMonths, setInstallmentMonths] = useState(4)
 
   // New calculation logic based on requirements
   const calculations = useMemo(() => {
@@ -37,6 +38,9 @@ export function CalculatorSection() {
     
     const totalDeductions = downPayment + adminFee + sellingLoss
     const netAmount = Math.max(0, amount - totalDeductions)
+    
+    // الدفعة الشهرية للدفعة الأولى
+    const monthlyDownPayment = downPayment / installmentMonths
 
     return {
       purchaseAmount,
@@ -48,9 +52,10 @@ export function CalculatorSection() {
       adminFee,
       adminFeeRate,
       totalDeductions,
-      netAmount
+      netAmount,
+      monthlyDownPayment
     }
-  }, [amount])
+  }, [amount, installmentMonths])
 
   const apps = [
     { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
@@ -117,6 +122,30 @@ export function CalculatorSection() {
                 </div>
               </div>
 
+              {/* Installment Months Selection */}
+              <div className="mb-8">
+                <label className="block text-sm font-medium text-muted-foreground mb-4">
+                  عدد الدفعات (الأقساط)
+                </label>
+                <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
+                  {[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map((months) => (
+                    <button
+                      key={months}
+                      onClick={() => setInstallmentMonths(months)}
+                      className={`p-3 rounded-xl border-2 transition-all text-center ${
+                        installmentMonths === months
+                          ? "border-primary bg-primary/10 shadow-lg"
+                          : "border-border hover:border-primary/50 bg-card"
+                      }`}
+                    >
+                      <span className={`font-bold ${installmentMonths === months ? "text-primary" : "text-foreground"}`}>
+                        {months}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Amount Input */}
               <div className="mb-8">
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
@@ -177,18 +206,22 @@ export function CalculatorSection() {
                     <span className="text-muted-foreground">الدفعة الأولى - نتكفل بها كشركاء (25%)</span>
                     <span className="text-destructive font-medium">- {Math.round(calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
                   </div>
+                  <div className="flex justify-between items-center py-2 border-t border-border/50 bg-primary/5 -mx-6 px-6">
+                    <span className="text-muted-foreground">الدفعة الشهرية ({installmentMonths} دفعة)</span>
+                    <span className="font-bold text-primary">{Math.round(calculations.monthlyDownPayment).toLocaleString("ar-SA")} ر.س / شهر</span>
+                  </div>
                   <div className="border-t-2 border-primary/30 pt-4 mt-4">
                     <div className="mb-3">
                       <span className="font-bold text-foreground text-lg">مجموع ما يتم تحويله إلى حسابك البنكي</span>
                     </div>
                     <div className="space-y-3 bg-card/50 rounded-xl p-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
-                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
-                      </div>
-                      <div className="flex justify-between items-center pt-3 border-t border-border/50">
                         <span className="text-muted-foreground font-medium">إذا الدفعة عليك</span>
                         <span className="text-2xl font-bold text-primary">{Math.round(calculations.netAmount + calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-3 border-t border-border/50">
+                        <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
+                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
                       </div>
                     </div>
                   </div>
@@ -221,7 +254,7 @@ export function CalculatorSection() {
               <div className="flex gap-3 items-start justify-center text-sm">
                 <Info className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <p className="text-foreground leading-relaxed text-right">
-                  <strong>هذه الحسبة مبنية على تقسيم الدفعات على 4 أقساط.</strong> بعد تقديم الطلب قد تتغير الحسبة إذا تم زيادة عدد الدفعات، والفرق يكون <span className="text-accent font-bold">لصالح العميل</span> ولا تُحسب أي رسوم إضافية.
+                  <strong>الحسبة مبنية على {installmentMonths} دفعة.</strong> بعد تقديم الطلب قد تتغير الحسبة إذا تم تغيير عدد الدفعات، والفرق يكون <span className="text-accent font-bold">لصالح العميل</span> ولا تُحسب أي رسوم إضافية.
                 </p>
               </div>
             </div>

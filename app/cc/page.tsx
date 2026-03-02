@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+
 import { FileText, Send, RefreshCw } from "lucide-react"
 import Image from "next/image"
 
@@ -70,8 +71,10 @@ export default function InvoicePage() {
 ▫️ الدفعة الأولى: *${down.toLocaleString()} ر.س*
 
 ━━━━━━━━━━━━━━━
-💰 *المبلغ النهائي (الكاش):*
-    *${Math.round(netAmount).toLocaleString()} ر.س*
+💰 *مجموع ما يتم تحويله إلى حسابك البنكي:*
+
+▫️ إذا الدفعة عليك: *${Math.round(netAmount + down).toLocaleString()} ر.س*
+▫️ إذا الدفعة علينا: *${Math.round(netAmount).toLocaleString()} ر.س*
 ━━━━━━━━━━━━━━━
 
 📅 المتبقي للتقسيط: *${remainingInstallment.toLocaleString()} ر.س*
@@ -163,6 +166,8 @@ export default function InvoicePage() {
                 className="mt-1 text-lg font-semibold"
               />
             </div>
+
+
           </CardContent>
         </Card>
 
@@ -195,7 +200,7 @@ export default function InvoicePage() {
             {/* تفاصيل العملية */}
             <div className="space-y-3">
               <div className="flex justify-between items-center py-3 border-b border-slate-100">
-                <span className="text-slate-600">مبلغ الشراء</span>
+                <span className="text-slate-600">مبل�� الشراء</span>
                 <span className="font-bold text-lg">{purchase.toLocaleString()} ر.س</span>
               </div>
               
@@ -215,13 +220,26 @@ export default function InvoicePage() {
                 <span className="text-slate-600">الدفعة الأولى</span>
                 <span className="font-bold text-lg text-red-600">- {down.toLocaleString()} ر.س</span>
               </div>
+
+
             </div>
 
-            {/* المبلغ النهائي */}
-            <div className="bg-gradient-to-l from-emerald-500 to-teal-600 rounded-xl p-5 mt-6">
-              <div className="flex justify-between items-center text-white">
-                <span className="text-lg font-medium">المبلغ النهائي (الكاش)</span>
-                <span className="text-3xl font-bold">{Math.round(netAmount).toLocaleString()} ر.س</span>
+            {/* مجموع ما يتم تحويله */}
+            <div className="mt-6">
+              <p className="text-slate-700 font-bold text-lg mb-3">مجموع ما يتم تحويله إلى حسابك البنكي</p>
+              <div className="space-y-3">
+                <div className="bg-gradient-to-l from-[#1e3a5f] to-[#2d5a3d] rounded-xl p-4">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">إذا الدفعة عليك</span>
+                    <span className="text-2xl font-bold">{Math.round(netAmount + down).toLocaleString()} ر.س</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-l from-emerald-500 to-teal-600 rounded-xl p-4">
+                  <div className="flex justify-between items-center text-white">
+                    <span className="font-medium">إذا الدفعة علينا</span>
+                    <span className="text-2xl font-bold">{Math.round(netAmount).toLocaleString()} ر.س</span>
+                  </div>
+                </div>
               </div>
             </div>
 
