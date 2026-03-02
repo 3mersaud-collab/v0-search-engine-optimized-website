@@ -22,7 +22,7 @@ export function Header() {
               width={40} 
               height={40} 
               className="rounded-lg"
-              style={{ width: "40px", height: "auto" }}
+              style={{ width: "40px", height: "40px" }}
             />
             <div className="flex flex-col">
               <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">

@@ -16,7 +16,7 @@ export function Footer() {
                 width={48} 
                 height={48} 
                 className="rounded-xl"
-                style={{ width: "48px", height: "auto" }}
+                style={{ width: "48px", height: "48px" }}
               />
               <div className="flex flex-col">
                 <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">

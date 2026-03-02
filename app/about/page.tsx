@@ -27,7 +27,7 @@ export default function AboutPage() {
                 width={100} 
                 height={100} 
                 className="rounded-2xl shadow-lg"
-                style={{ width: "100px", height: "auto" }}
+                style={{ width: "100px", height: "100px" }}
               />
             </div>
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
