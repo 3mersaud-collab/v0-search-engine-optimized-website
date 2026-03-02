@@ -1,8 +1,10 @@
 "use client"
 
 import { useEffect, useState, useCallback } from "react"
+import { usePathname } from "next/navigation"
 
 export function RainBackground() {
+  const pathname = usePathname()
   const [lightningFlash, setLightningFlash] = useState(false)
   const [boltPosition, setBoltPosition] = useState({ x: 50, segments: [] as { dx: number; dy: number }[] })
 
@@ -83,6 +85,9 @@ export function RainBackground() {
       />
     )
   }
+
+  // إخفاء المطر في صفحة الحاسبة الداخلية
+  if (pathname === "/cc") return null
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">

@@ -200,7 +200,7 @@ export default function InvoicePage() {
             {/* تفاصيل العملية */}
             <div className="space-y-3">
               <div className="flex justify-between items-center py-3 border-b border-slate-100">
-                <span className="text-slate-600">مبل�� الشراء</span>
+                <span className="text-slate-600">مبلغ الشراء</span>
                 <span className="font-bold text-lg">{purchase.toLocaleString()} ر.س</span>
               </div>
               
