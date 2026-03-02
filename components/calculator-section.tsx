@@ -125,7 +125,7 @@ export function CalculatorSection() {
               {/* Installment Months Selection */}
               <div className="mb-8">
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  عدد الدفعات (الأقساط)
+                  عدد دفعات الشراكة (الدفعة الأولى)
                 </label>
                 <div className="grid grid-cols-4 md:grid-cols-6 gap-2">
                   {[4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map((months) => (
