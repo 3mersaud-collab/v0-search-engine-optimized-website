@@ -95,7 +95,7 @@ export default function AffiliatePage() {
                 width={80} 
                 height={80} 
                 className="rounded-2xl shadow-lg"
-                style={{ width: "80px", height: "auto" }}
+                style={{ width: "80px", height: "80px" }}
               />
             </div>
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">

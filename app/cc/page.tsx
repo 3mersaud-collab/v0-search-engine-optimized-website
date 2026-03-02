@@ -98,7 +98,7 @@ export default function InvoicePage() {
               width={48} 
               height={48} 
               className="rounded-xl"
-              style={{ width: "48px", height: "auto" }}
+              style={{ width: "48px", height: "48px" }}
             />
             <div>
               <h1 className="text-2xl font-bold text-[#1e3a5f]">ملخص العملية</h1>
