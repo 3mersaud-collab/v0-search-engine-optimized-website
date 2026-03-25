@@ -123,7 +123,7 @@ export default function RootLayout({
                       href.indexOf('mailto:') !== -1 || 
                       href.indexOf('instagram.com') !== -1) {
                     gtag('event', 'conversion', {
-                      'send_to': 'AW-18033444354',
+                      'send_to': 'AW-18033444354/4RONCODtkY8cEIKMgpdD',
                       'event_callback': function() {}
                     });
                   }
