@@ -100,7 +100,7 @@ export default function RootLayout({
       <head>
         <SeoSchema />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TWCLCVPWB" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17942036032" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18033444354" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -108,17 +108,25 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-3TWCLCVPWB');
-              gtag('config', 'AW-17942036032');
+              gtag('config', 'AW-18033444354');
 
-              // Track WhatsApp button clicks as Google Ads conversions
+              // Track all contact button clicks as Google Ads conversions
               document.addEventListener('click', function(e) {
                 var el = e.target;
                 while (el && el.tagName !== 'A') { el = el.parentElement; }
-                if (el && el.href && el.href.indexOf('wa.me') !== -1) {
-                  gtag('event', 'conversion', {
-                    'send_to': 'AW-17942036032/RfuzCK7T2vYbEMD8tutC',
-                    'event_callback': function() {}
-                  });
+                if (el && el.href) {
+                  var href = el.href;
+                  // Track WhatsApp, phone calls, email, and Instagram clicks
+                  if (href.indexOf('wa.me') !== -1 || 
+                      href.indexOf('whatsapp.com') !== -1 || 
+                      href.indexOf('tel:') !== -1 || 
+                      href.indexOf('mailto:') !== -1 || 
+                      href.indexOf('instagram.com') !== -1) {
+                    gtag('event', 'conversion', {
+                      'send_to': 'AW-18033444354',
+                      'event_callback': function() {}
+                    });
+                  }
                 }
               });
             `,
