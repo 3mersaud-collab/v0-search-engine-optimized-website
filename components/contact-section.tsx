@@ -48,7 +48,7 @@ export function ContactSection() {
                 </a>
 
                 <a 
-                  href="https://wa.me/966590360039"
+                  href="https://api.whatsapp.com/send/?phone=966590360039&text&type=phone_number&app_absent=0"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-accent/30 hover:shadow-md transition-all group"
@@ -112,7 +112,7 @@ export function ContactSection() {
                 className="w-full gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-lg"
                 asChild
               >
-                <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
+                <a href="https://api.whatsapp.com/send/?phone=966590360039&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
                   اطلب سيولة عبر واتساب الآن
                 </a>
