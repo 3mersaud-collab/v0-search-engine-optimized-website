@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer"
 import { SeoKeywordsSection } from "@/components/seo-keywords-section"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
 import { EhsanCharityBanner } from "@/components/ehsan-charity-banner"
+import { VerifySteps } from "@/components/verify-steps"
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         <EhsanCharityBanner />
         <HowItWorks />
         <CalculatorSection />
+        <VerifySteps />
         <GoogleReviewsSection />
         <FeaturesSection />
         <SeoKeywordsSection />
