@@ -5,28 +5,66 @@ const WHATSAPP_NUMBER = "966590360039"
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? ""
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
-const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد مختصر ولطيف لخدمة تحويل مشتريات التقسيط الى كاش.
-- تكلّم باللهجة النجدية وباختصار.
-- لا تطلب بيانات بنكية ولا ترفع طلب داخل الموقع.
-- إذا طلب العميل مبلغ، احسب له بشكل تقريبي ثم وجّهه للواتساب فقط.
-- إذا وافق العميل، أعطه رابط واتساب مباشر.
-- لا تستخدم أدوات داخلية ولا تذكر submitOrder أو trackOrder.
+const SYSTEM_PROMPT = `أنت "مطر" - خدمة سيولة نقدية من تابي وتمارا ومدفوع.
 
-الترحيب المناسب:
-هلا والله! معك مطر سحابة غيث ماحسبت حسابها 🌧️
-نحسب لك المبلغ ونكمل معك على الواتساب مباشرة.
-كم تحتاج كاش؟`
+## شخصيتك:
+- تكلّم بلهجة نجدية طبيعية، مختصر، مثل الواتساب
+- لا تكرر نفسك، لا تستخدم كلمات رسمية
+- تستخدم: "هلا"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"
 
-function calc(net: number) {
-  let purchase = Math.round((net * 2.5) / 100) * 100
-  for (let i = 0; i < 8; i++) {
+## الخدمة:
+العميل يحدد الصافي المطلوب → نحن نحدد الجهاز → يشتريه بالتقسيط من اكسترا/جرير/نون → نبيعه ونحول الصافي لحسابه.
+- الدفعة الأولى (25%) نتكفل بها ونستردها من البيع
+- التحويل خلال أقل من ساعة
+
+## حساب المبالغ (مهم جداً):
+عند ذكر مبلغ احسب:
+- قيمة الجهاز = الصافي ÷ 0.50 (تقريب لأقرب 100)
+- مبلغ البيع = قيمة الجهاز × 85%
+- الدفعة الأولى = قيمة الجهاز × 25%
+- الرسوم الإدارية = قيمة الجهاز × 10%
+- الصافي الفعلي = مبلغ البيع - الدفعة الأولى - الرسوم
+
+## تدفق الردود:
+
+**الترحيب:**
+هلا والله! معك مطر 🌧️
+نحول لك مشتريات التقسيط من تابي وتمارا ومدفوع لكاش في حسابك خلال أقل من ساعة.
+**كم تحتاج كاش (الصافي)؟**
+
+**عند ذكر مبلغ:**
+احسب ثم قل:
+ابشر يالغالي! التفاصيل:
+• قيمة الجهاز: [X] ر.س
+• مبلغ البيع: [X] ر.س  
+• الرسوم الإدارية: [X] ر.س
+• الدفعة الأولى (نتكفل فيها ✅): [X] ر.س
+**الصافي لك: [X] ر.س**
+
+تبي نكمل؟
+
+**عند الموافقة:**
+ممتاز! اضغط هنا تكمل معنا على الواتساب مباشرة 👇
+[تواصل على الواتساب 📲](https://wa.me/WHATSAPP_NUMBER?text=السلام+عليكم+أبي+كاش+[المبلغ]+ريال)
+
+**قواعد:**
+- لا تطلب بيانات بنكية أبداً، الواتساب يتكفل
+- أي رقم = المبلغ المطلوب كاش
+- إذا سأل عن التطبيق قل: تابي وتمارا ومدفوع كلهم متاحين
+- إذا سأل عن الأمان: خدمة موثوقة وعمليات تتعدى 100 ألف ريال
+- إذا سأل عن الوقت: أقل من ساعة`
+
+function calc(net: number): { purchase: number; sale: number; down: number; admin: number; actual: number } {
+  let purchase = Math.round((net / 0.50) / 100) * 100
+  for (let i = 0; i < 10; i++) {
     const sale = Math.round(purchase * 0.85)
     const down = Math.round(purchase * 0.25)
     const admin = Math.round(purchase * 0.10)
     const actual = sale - down - admin
     const diff = net - actual
-    if (Math.abs(diff) < 50) break
-    purchase = Math.round((purchase + diff * 1.5) / 100) * 100
+    if (Math.abs(diff) < 30) break
+    purchase = Math.round((purchase + diff * 1.8) / 100) * 100
+    purchase = Math.max(500, purchase)
   }
   const sale = Math.round(purchase * 0.85)
   const down = Math.round(purchase * 0.25)
@@ -35,24 +73,12 @@ function calc(net: number) {
   return { purchase, sale, down, admin, actual }
 }
 
-function fallbackReply(lastUserText: string) {
-  const txt = lastUserText || ""
-  const match = txt.match(/\d{3,5}/)
-  if (match) {
-    const amount = Number(match[0])
-    const r = calc(amount)
-    const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`السلام عليكم، أبي كاش ${amount} ريال`)}`
-    return `ابشر يالغالي!\n\nعشان توصلك تقريباً ${r.actual.toLocaleString()} ر.س:\n• قيمة الجهاز: ${r.purchase.toLocaleString()} ر.س\n• قيمة البيع: ${r.sale.toLocaleString()} ر.س\n• الرسوم الإدارية: ${r.admin.toLocaleString()} ر.س\n• الدفعة الأولى (نتكفل فيها): ${r.down.toLocaleString()} ر.س\n\nإذا مناسب لك، كمل معنا على الواتساب مباشرة:\n${wa}`
-  }
-  return `هلا والله! معك مطر 🌧️\nنحسب لك المبلغ ونكمل معك على الواتساب مباشرة.\n\nارسل لي كم تحتاج كاش بالأرقام مثل: 2000 أو 3500.`
-}
-
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 function checkRateLimit(id: string): boolean {
   const now = Date.now()
   const l = rateLimitMap.get(id)
   if (!l || now > l.resetAt) { rateLimitMap.set(id, { count: 1, resetAt: now + 60_000 }); return true }
-  if (l.count >= 15) return false
+  if (l.count >= 20) return false
   l.count++
   return true
 }
@@ -63,36 +89,57 @@ interface InMessage {
   parts?: Array<{ type: string; text?: string }>
 }
 
+function extractText(m: InMessage): string {
+  if (m.content) return m.content
+  if (Array.isArray(m.parts)) return m.parts.filter(p => p.type === "text").map(p => p.text || "").join("\n")
+  return ""
+}
+
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json() as { messages: InMessage[] }
     const visitorId = req.headers.get("x-visitor-id") || "anonymous"
 
     if (!checkRateLimit(visitorId)) {
-      return Response.json({ messages: [{ role: "assistant", content: "كثرت الرسائل، انتظر شوي وحاول مرة ثانية" }] }, { status: 429 })
+      return Response.json({ messages: [{ role: "assistant", content: "كثرت الرسائل، انتظر شوي وحاول مرة ثانية 🙏" }] }, { status: 429 })
     }
 
-    const normalized = (messages || []).map((m) => {
-      const textFromParts = Array.isArray(m.parts)
-        ? m.parts.filter((p) => p.type === "text").map((p) => p.text || "").join("\n")
-        : ""
-      return {
-        role: m.role === "assistant" ? "model" : "user",
-        text: m.content || textFromParts || "",
-      }
-    }).filter((m) => m.text.trim())
+    const normalized = (messages || [])
+      .map((m) => ({ role: m.role === "assistant" ? "model" : "user", text: extractText(m) }))
+      .filter((m) => m.text.trim())
 
     const lastUserText = [...normalized].reverse().find((m) => m.role === "user")?.text || ""
 
+    // استخرج أي مبلغ من الرسالة الأخيرة وأضف الحساب للـ system
+    let calcContext = ""
+    const numMatch = lastUserText.replace(/الف|ألف/gi, "000").replace(/ألفين|الفين/gi, "2000").match(/\d{3,6}/)
+    if (numMatch) {
+      const net = Number(numMatch[0])
+      if (net >= 200 && net <= 50000) {
+        const r = calc(net)
+        const waMsg = encodeURIComponent(`السلام عليكم، أبي كاش ${r.actual} ريال`)
+        const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`
+        calcContext = `\n\n## الحساب الجاهز للمبلغ المطلوب (${net} ر.س):
+• قيمة الجهاز: ${r.purchase.toLocaleString()} ر.س
+• مبلغ البيع: ${r.sale.toLocaleString()} ر.س
+• الرسوم الإدارية: ${r.admin.toLocaleString()} ر.س
+• الدفعة الأولى (نتكفل فيها ✅): ${r.down.toLocaleString()} ر.س
+**الصافي الفعلي لك: ${r.actual.toLocaleString()} ر.س**
+
+رابط الواتساب الجاهز للإرسال: [تواصل على الواتساب 📲](${waLink})
+
+استخدم هذه الأرقام بالضبط في ردك ولا تغيّرها. وأضف رابط الواتساب عند الموافقة.`
+      }
+    }
+
     if (!GEMINI_API_KEY) {
-      const text = fallbackReply(lastUserText)
-      return Response.json({ messages: [{ role: "assistant", content: text }] })
+      return Response.json({ messages: [{ role: "assistant", content: `هلا! تواصل معنا على الواتساب مباشرة 👇\n[تواصل على الواتساب 📲](https://wa.me/${WHATSAPP_NUMBER})` }] })
     }
 
     const body = {
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT.replace("WHATSAPP_NUMBER", WHATSAPP_NUMBER) + calcContext }] },
       contents: normalized.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
-      generationConfig: { temperature: 0.7, maxOutputTokens: 400 },
+      generationConfig: { temperature: 0.65, maxOutputTokens: 450 },
     }
 
     const res = await fetch(GEMINI_URL, {
@@ -103,15 +150,16 @@ export async function POST(req: Request) {
     })
 
     if (!res.ok) {
-      const text = fallbackReply(lastUserText)
-      return Response.json({ messages: [{ role: "assistant", content: text }] })
+      const waLink = `https://wa.me/${WHATSAPP_NUMBER}`
+      return Response.json({ messages: [{ role: "assistant", content: `هلا! تواصل معنا مباشرة:\n[واتساب 📲](${waLink})` }] })
     }
 
     const data = await res.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }
-    const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("\n").trim() || fallbackReply(lastUserText)
+    const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("\n").trim()
+      || `هلا! كيف أقدر أساعدك؟ كم تحتاج كاش؟`
 
     return Response.json({ messages: [{ role: "assistant", content: text }] })
   } catch {
-    return Response.json({ messages: [{ role: "assistant", content: "هلا! تواصل معنا على الواتساب مباشرة: https://wa.me/966590360039" }] })
+    return Response.json({ messages: [{ role: "assistant", content: `هلا! تواصل معنا على الواتساب:\n[واتساب 📲](https://wa.me/${WHATSAPP_NUMBER})` }] })
   }
 }
