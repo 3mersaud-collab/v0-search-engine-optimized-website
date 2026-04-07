@@ -52,14 +52,14 @@ export function HeroSection() {
                   اطلب سيولة عبر الواتساب
                 </a>
               </Button>
-              <Button size="lg" className="gap-2 text-lg px-8 py-6 shadow-xl shadow-primary/20" asChild>
-                <a href="/order">
-                  اطلب سيولة هنا للأولوية
+              <Button size="lg" variant="outline" className="gap-2 text-lg px-8 py-6" asChild>
+                <a href="#calculator">
+                  احسب سيولتك الآن
                   <ArrowLeft className="w-5 h-5" />
                 </a>
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mb-6 text-center lg:text-right">الطلب عبر الموقع يمنحك أولوية في المعالجة وتتبع لحظي لطلبك</p>
+            <p className="text-xs text-muted-foreground mb-6 text-center lg:text-right">تواصل معنا عبر الواتساب مباشرة وتحصل على ردّ فوري</p>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
