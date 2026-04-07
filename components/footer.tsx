@@ -55,17 +55,11 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">روابط سريعة</h4>
             <nav className="flex flex-col gap-2">
-              <Link href="/order" className="text-background/70 hover:text-background transition-colors">
-                طلب سيولة
-              </Link>
               <Link href="/#calculator" className="text-background/70 hover:text-background transition-colors">
                 حاسبة السيولة
               </Link>
               <Link href="/check-limit" className="text-background/70 hover:text-background transition-colors">
-                افحص حدك واطلب
-              </Link>
-              <Link href="/track-order" className="text-background/70 hover:text-background transition-colors">
-                تتبع طلبك
+                افحص حدك
               </Link>
               <Link href="/reviews" className="text-background/70 hover:text-background transition-colors">
                 آراء العملاء

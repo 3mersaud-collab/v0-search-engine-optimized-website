@@ -82,7 +82,7 @@ export default function SiyolaPage() {
               <div className="grid sm:grid-cols-3 gap-4 max-w-2xl mx-auto">
                 <div className="p-4 bg-card rounded-xl border border-border text-center">
                   <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="font-bold text-2xl text-foreground">ساعتين</p>
+                  <p className="font-bold text-2xl text-foreground">ساعة</p>
                   <p className="text-sm text-muted-foreground">وقت التحويل</p>
                 </div>
                 <div className="p-4 bg-card rounded-xl border border-border text-center">

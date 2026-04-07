@@ -22,10 +22,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://liilsol.com'),
   title: {
-    default: 'مطر | سيولة تابي وسلفة تمارا - كاش فوري عبر تقسيط جوالات الى كاش',
-    template: '%s | مطر - سيولة تابي وتمارا'
+    default: 'مطر | سيولة تابي وكاش تمارا وتحويل الجوالات إلى كاش خلال ساعة',
+    template: '%s | مطر'
   },
-  description: 'مطر - سيولة نقدية فورية في السعودية عبر تابي وتمارا. تحويل جوالات الى كاش خلال ساعة. كاش تابي وكاش تمارا برسوم شفافة 10-14%. سلفة تابي وسلفة تمارا بنسبة شراكة واضحة. خدمة موثوقة في الرياض والسعودية.',
+  description: 'مطر يقدم سيولة تابي وكاش تمارا وسيولة مدفوع في السعودية. حاسبة سيولة دقيقة، تحويل الجوالات إلى كاش خلال ساعة، ورسوم شفافة مع تواصل مباشر عبر الواتساب.',
   keywords: [
     'سيولة', 'سلفة', 'كاش تمارا', 'كاش تابي', 
     'سيولة تابي', 'سيولة تمارا', 'سلفة تابي', 'سلفة تمارا',
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code', // يجب تحديثه بالكود الحقيقي
+    google: 'TsLjNXq-Ybp-y-LRZ5sTwVhpwyiTn2cZ5EaipzJG5Ek',
   },
   category: 'finance',
   classification: 'خدمات مالية',

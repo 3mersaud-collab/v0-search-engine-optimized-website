@@ -17,7 +17,7 @@ const keywords = [
 ]
 
 const stats = [
-  { icon: Clock, value: "ساعتين", label: "وقت التحويل" },
+  { icon: Clock, value: "ساعة", label: "وقت التحويل" },
   { icon: Shield, value: "5.0", label: "تقييم Google" },
   { icon: Banknote, value: "100K+", label: "ريال تم تحويلها" },
 ]
