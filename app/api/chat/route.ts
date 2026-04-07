@@ -1,12 +1,8 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { google } from "@ai-sdk/google"
 import { streamText, tool, type CoreMessage } from "ai"
 import { z } from "zod"
 
 export const maxDuration = 60
-
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? "",
-})
 
 const WHATSAPP_NUMBER = "966590360039"
 
@@ -130,7 +126,7 @@ export async function POST(req: Request) {
     }
 
     const result = streamText({
-      model: google("gemini-2.0-flash"),
+      model: google("gemini-2.0-flash-exp"),
       system: SYSTEM_PROMPT,
       messages,
       abortSignal: req.signal,
