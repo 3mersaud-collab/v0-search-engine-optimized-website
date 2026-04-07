@@ -39,10 +39,10 @@ export function Header() {
               سيولة
             </Link>
             <Link href="/siyola-tabby" className="text-muted-foreground hover:text-primary transition-colors">
-              سيولة تابي
+              سلفة تابي
             </Link>
-            <Link href="/cash-tamara" className="text-muted-foreground hover:text-accent transition-colors">
-              كاش تمارا
+            <Link href="/cash-tabby" className="text-muted-foreground hover:text-primary transition-colors">
+              كاش تابي
             </Link>
             <Link href="/#calculator" className="text-muted-foreground hover:text-foreground transition-colors">
               الحاسبة
@@ -108,14 +108,14 @@ export function Header() {
                 className="text-muted-foreground hover:text-foreground transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                سيولة تابي
+                سلفة تابي
               </Link>
               <Link 
-                href="/cash-tamara" 
+                href="/cash-tabby" 
                 className="text-muted-foreground hover:text-foreground transition-colors py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                كاش تمارا
+                كاش تابي
               </Link>
               <Link 
                 href="/#calculator" 

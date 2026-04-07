@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { CreditCard, CheckCircle, ExternalLink, ArrowLeft, Smartphone, ShoppingCart, AlertTriangle, Camera, MessageCircle, Star } from "lucide-react"
-import { TabbyLogo, TamaraLogo, MadfuLogo } from "@/components/app-logos"
+import { TabbyLogo } from "@/components/app-logos"
 import Link from "next/link"
 
 const apps = [
@@ -17,73 +17,19 @@ const apps = [
     selectedColor: "border-[#3CBED8] bg-[#3CBED8]/10",
     accentColor: "bg-[#3CBED8]",
     steps: [
-      "افتح حاسبة السيولة واختر المبلغ المطلوب",
+      "افتح حاسبة سلفة تابي واختر المبلغ المطلوب",
       "ادخل متجر نون أو اكسترا",
       "أضف أي منتجات في السلة بنفس مبلغ الشراء من الحاسبة",
       "عند الدفع اختر تابي كوسيلة دفع",
       "بعد ظهور تقسيم الدفعات صور الشاشة فقط",
-      "أرسل الصورة لنا على واتساب واستلم الكاش خلال ساعتين"
+      "أرسل الصورة لنا على واتساب واستلم سلفة تابي خلال ساعتين"
     ],
     stores: [
       { name: "نون", url: "https://www.noon.com/saudi-ar/electronics/" },
       { name: "اكسترا", url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT" }
     ],
-    warning: null
-  },
-  {
-    id: "tamara",
-    name: "Tamara",
-    nameAr: "تمارا",
-    Logo: TamaraLogo,
-    color: "from-[#FF6B35]/10 to-[#FF6B35]/5",
-    borderColor: "border-[#FF6B35]/30",
-    selectedColor: "border-[#FF6B35] bg-[#FF6B35]/10",
-    accentColor: "bg-[#FF6B35]",
-    steps: [
-      "افتح حاسبة السيولة واختر المبلغ المطلوب",
-      "ادخل متجر نون أو اكسترا",
-      "أضف أي منتجات في السلة بنفس مبلغ الشراء من الحاسبة",
-      "عند الدفع اختر تمارا كوسيلة دفع",
-      "أكمل الطلب واضغط على 'ادفع'",
-      "أضف بطاقة بنكية بدون رصيد (مهم جداً)",
-      "اضغط على 'ادفع' وصور الشاشة وارسلها لنا",
-      "أرسل الصورة لنا على واتساب واستلم الكاش خلال ساعتين"
-    ],
-    stores: [
-      { name: "نون", url: "https://www.noon.com/saudi-ar/electronics/" },
-      { name: "اكسترا", url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT" }
-    ],
-    warning: {
-      title: "تنبيهات مهمة لتمارا",
-      items: [
-        "لا تستخدم Apple Pay نهائياً",
-        "لا تستخدم بطاقة فيها رصيد",
-        "لا تستخدم البطاقة المضافة مسبقاً في تمارا",
-        "استخدم بطاقة بنكية جديدة بدون رصيد فقط"
-      ]
-    }
-  },
-  {
-    id: "madfu",
-    name: "Madfu",
-    nameAr: "مدفوع",
-    Logo: MadfuLogo,
-    color: "from-[#6366F1]/10 to-[#6366F1]/5",
-    borderColor: "border-[#6366F1]/30",
-    selectedColor: "border-[#6366F1] bg-[#6366F1]/10",
-    accentColor: "bg-[#6366F1]",
-    steps: [
-      "افتح حاسبة السيولة واختر المبلغ المطلوب",
-      "ادخل متجر المنيع",
-      "أضف أي منتجات في السلة بنفس مبلغ الشراء من الحاسبة",
-      "عند الدفع اختر مدفوع كوسيلة دفع",
-      "بعد ظهور تقسيم الدفعات صور الشاشة فقط",
-      "أرسل الصورة لنا على واتساب واستلم الكاش خلال ساعتين"
-    ],
-    stores: [
-      { name: "المنيع", url: "https://www.almanea.sa/mobiles-tablets-c-7423/mobiles-c-7424" }
-    ],
-    warning: null
+    warning: null,
+    comparison: "تابي أسهل وأسرع من تمارا - لا تحتاج إضافة بطاقة بنكية أو الضغط على ادفع"
   }
 ]
 
@@ -102,13 +48,13 @@ export function CheckLimitContent() {
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
             <CreditCard className="w-4 h-4 inline ml-2" />
-            افحص حدك واطلب السيولة
+            افحص حدك واطلب سلفة تابي
           </span>
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            احصل على سيولة تابي وكاش تمارا بخطوات بسيطة
+            احصل على سلفة تابي بخطوات بسيطة
           </h1>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            اختر التطبيق واتبع الخطوات للحصول على سيولة فورية خلال ساعتين
+            اتبع الخطوات للحصول على سلفة تابي فورية خلال ساعتين - أسهل وأسرع من تمارا
           </p>
         </div>
 
@@ -134,25 +80,26 @@ export function CheckLimitContent() {
         </div>
 
         {/* App Selection */}
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
+        <div className="max-w-3xl mx-auto">
+          <div className="flex justify-center mb-8">
             {apps.map((app) => (
               <button
                 key={app.id}
                 onClick={() => setSelectedApp(app.id === selectedApp ? null : app.id)}
-                className={`p-6 rounded-2xl border-2 transition-all ${
+                className={`p-8 rounded-2xl border-2 transition-all w-full max-w-md ${
                   selectedApp === app.id
                     ? `${app.selectedColor} shadow-lg scale-[1.02]`
                     : "bg-card border-border hover:border-primary/30 hover:shadow-md"
                 }`}
               >
-                <div className="h-12 mb-4 flex items-center justify-center">
-                  <app.Logo className="w-24 h-10" />
+                <div className="h-14 mb-4 flex items-center justify-center">
+                  <app.Logo className="w-32 h-12" />
                 </div>
-                <span className="font-semibold text-foreground">{app.nameAr}</span>
-                <p className="text-xs text-muted-foreground mt-1">
+                <span className="font-bold text-lg text-foreground">سلفة {app.nameAr}</span>
+                <p className="text-sm text-muted-foreground mt-2">
                   {app.stores.map(s => s.name).join(" - ")}
                 </p>
+                <p className="text-xs text-primary mt-2">أفضل وأسرع من تمارا</p>
               </button>
             ))}
           </div>
@@ -198,10 +145,20 @@ export function CheckLimitContent() {
                       </div>
                     )}
 
+                    {/* Comparison Note */}
+                    {app.comparison && (
+                      <div className="bg-primary/10 border border-primary/30 rounded-xl p-4 mb-6">
+                        <p className="text-sm text-foreground flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                          {app.comparison}
+                        </p>
+                      </div>
+                    )}
+
                     {/* Steps */}
                     <h4 className="font-bold text-foreground mb-4 flex items-center gap-2">
                       <Camera className="w-5 h-5 text-primary" />
-                      خطوات الحصول على سيولة {app.nameAr}
+                      خطوات الحصول على سلفة {app.nameAr}
                     </h4>
                     <div className="space-y-4 mb-6">
                       {app.steps.map((step, index) => (
@@ -259,23 +216,23 @@ export function CheckLimitContent() {
             <div className="flex items-start gap-4">
               <Smartphone className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
               <div>
-                <h4 className="font-bold text-foreground mb-3">نصائح لزيادة حدك الائتماني في تابي وتمارا</h4>
+                <h4 className="font-bold text-foreground mb-3">نصائح لزيادة حدك الائتماني في تابي</h4>
                 <ul className="space-y-2 text-muted-foreground text-sm">
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span>أكمل ملفك الشخصي بالكامل في التطبيق لزيادة سقف السيولة</span>
+                    <span>أكمل ملفك الشخصي بالكامل في تابي لزيادة سقف سلفة تابي</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span>اربط حسابك البنكي لرفع حد الكاش المتاح</span>
+                    <span>اربط حسابك البنكي لرفع حد كاش تابي المتاح</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span>سدد أقساطك في موعدها للحصول على سيولة أكبر</span>
+                    <span>سدد أقساطك في موعدها للحصول على سلفة تابي أكبر</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <CheckCircle className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-                    <span>استخدم التطبيق بانتظام لزيادة حد السلفة</span>
+                    <span>استخدم تابي بانتظام لزيادة حد السلفة</span>
                   </li>
                 </ul>
               </div>
@@ -286,7 +243,7 @@ export function CheckLimitContent() {
           <div className="mt-8 text-center">
             <Button variant="outline" size="lg" asChild>
               <Link href="/#calculator" className="gap-2">
-                احسب المبلغ في حاسبة السيولة
+                احسب المبلغ في حاسبة سلفة تابي
                 <ArrowLeft className="w-5 h-5" />
               </Link>
             </Button>

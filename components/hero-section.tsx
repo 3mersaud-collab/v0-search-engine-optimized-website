@@ -34,14 +34,14 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              سيولة تابي وسلفة تمارا |{" "}
-              <span className="text-primary">كاش فوري عبر تقسيط جوالات الى كاش</span>
+              سلفة تابي |{" "}
+              <span className="text-primary">نحول لك تابي الى كاش</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
+              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong>، 
               ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
-              خدمة موثوقة في الرياض والسعودية.
+              خدمة أفضل وأسرع من تمارا - موثوقة في الرياض والسعودية.
             </p>
 
             {/* CTA Buttons */}
@@ -101,18 +101,10 @@ export function HeroSection() {
                 <div className="text-muted-foreground mb-8">ريال سعودي</div>
                 
                 {/* Payment Apps */}
-                <div className="grid grid-cols-3 gap-2 mb-6 w-full min-w-0">
-                  <div className="bg-[#3BFFC1]/10 rounded-xl p-2 md:p-3 text-center border border-[#3BFFC1]/30 min-w-0">
-                    <div className="text-sm md:text-lg font-bold text-[#292929] mb-1 truncate">tabby</div>
-                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground">كاش تابي</span>
-                  </div>
-                  <div className="bg-[#FFD700]/10 rounded-xl p-2 md:p-3 text-center border border-[#FFD700]/30 min-w-0">
-                    <div className="text-sm md:text-lg font-bold text-[#1A1A1A] mb-1 truncate">tamara</div>
-                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground">كاش تمارا</span>
-                  </div>
-                  <div className="bg-[#4361EE]/10 rounded-xl p-2 md:p-3 text-center border border-[#4361EE]/30 min-w-0">
-                    <div className="text-sm md:text-lg font-bold text-[#4361EE] mb-1 truncate">مدفوع</div>
-                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground">مدفوع</span>
+                <div className="flex justify-center mb-6 w-full min-w-0">
+                  <div className="bg-[#3BFFC1]/10 rounded-xl p-4 md:p-6 text-center border border-[#3BFFC1]/30 min-w-0 w-full max-w-xs">
+                    <div className="text-xl md:text-2xl font-bold text-[#292929] mb-1">tabby</div>
+                    <span className="text-sm md:text-base font-medium text-muted-foreground">سلفة تابي - كاش فوري</span>
                   </div>
                 </div>
 
@@ -156,7 +148,7 @@ export function HeroSection() {
             "@context": "https://schema.org",
             "@type": "FinancialService",
             "name": "مطر - سحابة غيث ماحسبت حسابها",
-            "description": "مطر - سحابة غيث ماحسبت حسابها. ندخل كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
+            "description": "مطر - سحابة غيث ماحسبت حسابها. ندخل كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. سلفة تابي، كاش تابي، تحويل تابي الى كاش.",
             "url": "https://liilsol.com",
             "telephone": "+966590360039",
             "email": "matar@liilsa.com",
@@ -167,7 +159,7 @@ export function HeroSection() {
               "addressCountry": "SA"
             },
             "areaServed": "SA",
-            "serviceType": ["سيولة تابي", "سيولة تمارا", "كاش تابي", "كاش تمارا", "سلفة"]
+            "serviceType": ["سلفة تابي", "سيولة تابي", "كاش تابي", "تحويل تابي الى كاش", "سلفة فورية"]
           })
         }}
       />

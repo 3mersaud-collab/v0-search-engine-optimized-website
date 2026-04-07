@@ -6,7 +6,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
-  const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
+  const [selectedApp, setSelectedApp] = useState<"tabby">("tabby")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
   // New calculation logic based on requirements
@@ -56,15 +56,11 @@ export function CalculatorSection() {
   }, [amount, installmentMonths])
 
   const apps = [
-    { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
-    { id: "tamara" as const, name: "تمارا", label: "tamara", color: "text-[#FF6B35]" },
-    { id: "madfu" as const, name: "مدفوع", label: "مدفوع", color: "text-[#4361EE]" }
+    { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" }
   ]
 
   const appColors = {
-    tabby: "border-[#3CBED8] bg-[#3CBED8]/5",
-    tamara: "border-[#FF6B35] bg-[#FF6B35]/5",
-    madfu: "border-[#4361EE] bg-[#4361EE]/5"
+    tabby: "border-[#3CBED8] bg-[#3CBED8]/5"
   }
 
   return (
@@ -82,41 +78,30 @@ export function CalculatorSection() {
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
               <Calculator className="w-4 h-4 inline ml-2" />
-              حاسبة السيولة
+              حاسبة سلفة تابي
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              احسب كاش تابي وتمارا الذي ستستلمه
+              احسب سلفة تابي التي ستستلمها
             </h2>
             <p className="text-muted-foreground text-lg">
-              أدخل المبلغ واختر التطبيق لمعرفة السيولة النهائية
+              أدخل المبلغ لمعرفة الكاش الذي ستحصل عليه من تابي
             </p>
           </div>
 
           {/* Calculator Card */}
           <div className="bg-card/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-border overflow-hidden">
             <div className="p-6 md:p-10">
-              {/* App Selection with SVG Logos */}
+              {/* App Selection - Tabby Only */}
               <div className="mb-8">
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  اختر التطبيق (سيولة تابي، سيولة تمارا، أو مدفوع)
+                  سلفة تابي - تحويل تابي الى كاش
                 </label>
-                <div className="grid grid-cols-3 gap-3">
-                  {apps.map((app) => (
-                    <button
-                      key={app.id}
-                      onClick={() => setSelectedApp(app.id)}
-                      className={`p-4 rounded-xl border-2 transition-all text-center ${
-                        selectedApp === app.id
-                          ? `${appColors[app.id]} shadow-lg scale-[1.02]`
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <div className={`text-lg font-bold mb-1 ${app.color}`}>
-                        {app.label}
-                      </div>
-                      <span className="text-foreground font-medium text-sm">{app.name}</span>
-                    </button>
-                  ))}
+                <div className="flex justify-center">
+                  <div className={`p-6 rounded-xl border-2 transition-all text-center w-full max-w-sm ${appColors.tabby} shadow-lg`}>
+                    <div className="text-2xl font-bold mb-2 text-[#3CBED8]">tabby</div>
+                    <span className="text-foreground font-medium">سلفة تابي فورية</span>
+                    <p className="text-xs text-muted-foreground mt-2">أفضل وأسرع من تمارا</p>
+                  </div>
                 </div>
               </div>
 

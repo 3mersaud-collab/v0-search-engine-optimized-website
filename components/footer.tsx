@@ -27,8 +27,8 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
-              نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تابي وتمارا ومدفوع، 
-              ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي خلال ساعتين. خدمة موثوقة في الرياض والسعودية.
+              نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تابي، 
+              ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم سلفة تابي مباشرة لحسابكم البنكي خلال ساعتين. خدمة أفضل وأسرع من تمارا - موثوقة في الرياض والسعودية.
             </p>
             {/* Contact Info */}
             <div className="space-y-2 text-sm">
@@ -92,16 +92,14 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-4">خدماتنا</h4>
             <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة تابي</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة تمارا</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">كاش تابي</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">كاش تمارا</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة تابي</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة تمارا</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة تابي</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">كاش تابي</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">تحويل تابي الى كاش</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سيولة نقدية</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">سلفة فورية</span>
               <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">شراكة في الشراء</span>
-              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">مدفوع</span>
+              <span className="px-3 py-1.5 bg-background/10 rounded-lg text-sm">أفضل من تمارا</span>
             </div>
           </div>
         </div>

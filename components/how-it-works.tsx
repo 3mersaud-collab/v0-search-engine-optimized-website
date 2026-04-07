@@ -1,31 +1,31 @@
-import { ShoppingCart, Smartphone, Camera, Banknote, ExternalLink, AlertTriangle, CheckCircle2, Star, MessageCircle } from "lucide-react"
+import { ShoppingCart, Smartphone, Camera, Banknote, ExternalLink, CheckCircle2, Star, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { TabbyLogo, TamaraLogo, MadfuLogo } from "@/components/app-logos"
+import { TabbyLogo } from "@/components/app-logos"
 import Link from "next/link"
 
 const steps = [
   {
     icon: Smartphone,
-    title: "احسب السيولة واختر المبلغ",
-    description: "استخدم حاسبة السيولة لمعرفة المبلغ الذي ستحصل عليه، ثم افحص حدك الائتماني في تابي أو تمارا أو مدفوع",
+    title: "احسب سلفة تابي واختر المبلغ",
+    description: "استخدم حاسبة سلفة تابي لمعرفة المبلغ الذي ستحصل عليه، ثم افحص حدك الائتماني في تابي",
     number: "01"
   },
   {
     icon: ShoppingCart,
     title: "ادخل المتجر وأضف المنتجات",
-    description: "ادخل نون أو اكسترا (تابي/تمارا) أو المنيع (مدفوع) وأضف أي منتجات بنفس مبلغ الشراء من الحاسبة",
+    description: "ادخل نون أو اكسترا وأضف أي منتجات بنفس مبلغ الشراء من الحاسبة",
     number: "02"
   },
   {
     icon: Camera,
-    title: "اختر طريقة الدفع وصور الشاشة",
-    description: "اختر تابي أو تمارا أو مدفوع كوسيلة دفع. بعد ظهور تقسيم الدفعات صور الشاشة وأرسلها لنا",
+    title: "اختر تابي وصور الشاشة",
+    description: "اختر تابي كوسيلة دفع. بعد ظهور تقسيم الدفعات صور الشاشة وأرسلها لنا",
     number: "03"
   },
   {
     icon: Banknote,
-    title: "استلم السيولة خلال ساعتين",
-    description: "ندخل معك كشركاء ونتكفل بالدفعة الأولى (25%) مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لك مبلغ السيولة أو السلفة المطلوب لحسابك البنكي خلال ساعتين",
+    title: "استلم سلفة تابي خلال ساعتين",
+    description: "ندخل معك كشركاء ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لك سلفة تابي لحسابك البنكي خلال ساعتين",
     number: "04"
   }
 ]
@@ -33,21 +33,15 @@ const steps = [
 const stores = [
   {
     name: "متجر نون",
-    apps: ["تابي", "تمارا"],
+    apps: ["تابي"],
     url: "https://www.noon.com/saudi-ar/electronics/",
-    description: "سيولة تابي وكاش تمارا من نون"
+    description: "سلفة تابي من نون"
   },
   {
     name: "متجر اكسترا",
-    apps: ["تابي", "تمارا"],
+    apps: ["تابي"],
     url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT&text=&pg=1&pageSize=24&sort=relevance",
-    description: "سيولة تابي وكاش تمارا من اكسترا"
-  },
-  {
-    name: "متجر المنيع",
-    apps: ["مدفوع"],
-    url: "https://www.almanea.sa/mobiles-tablets-c-7423/mobiles-c-7424",
-    description: "سيولة مدفوع من المنيع"
+    description: "سلفة تابي من اكسترا"
   }
 ]
 
@@ -61,13 +55,13 @@ export function HowItWorks() {
         {/* Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4">
-            كيف تحصل على سيولة
+            كيف تحصل على سلفة تابي
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            خطوات الحصول على سيولة تابي وكاش تمارا
+            خطوات الحصول على سلفة تابي وتحويلها الى كاش
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            عملية سهلة وشفافة للحصول على كاش تابي أو سيولة تمارا أو سلفة مدفوع بأسرع وقت
+            عملية سهلة وشفافة للحصول على سلفة تابي بأسرع وقت - أفضل من تمارا
           </p>
         </div>
 
@@ -108,8 +102,8 @@ export function HowItWorks() {
 
         {/* Stores Section */}
         <div className="bg-card rounded-2xl border border-border p-6 md:p-8 mb-8">
-          <h3 className="text-xl font-bold text-foreground mb-6 text-center">المتاجر المعتمدة للحصول على سيولة</h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h3 className="text-xl font-bold text-foreground mb-6 text-center">المتاجر المعتمدة للحصول على سلفة تابي</h3>
+          <div className="grid md:grid-cols-2 gap-4">
             {stores.map((store, index) => (
               <a
                 key={index}
@@ -136,57 +130,21 @@ export function HowItWorks() {
         </div>
 
         {/* App Logos */}
-        <div className="flex justify-center items-center gap-8 mb-8 p-6 bg-card rounded-2xl border border-border">
+        <div className="flex justify-center items-center mb-8 p-6 bg-card rounded-2xl border border-border">
           <div className="text-center">
-            <TabbyLogo className="w-24 h-10 mx-auto mb-2" />
-            <span className="text-xs text-muted-foreground">سيولة تابي</span>
-          </div>
-          <div className="text-center">
-            <TamaraLogo className="w-24 h-10 mx-auto mb-2" />
-            <span className="text-xs text-muted-foreground">كاش تمارا</span>
-          </div>
-          <div className="text-center">
-            <MadfuLogo className="w-24 h-10 mx-auto mb-2" />
-            <span className="text-xs text-muted-foreground">سيولة مدفوع</span>
+            <TabbyLogo className="w-32 h-12 mx-auto mb-2" />
+            <span className="text-sm text-muted-foreground">سلفة تابي - تحويل تابي الى كاش</span>
           </div>
         </div>
 
-        {/* Instructions for Tamara */}
-        <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl border border-amber-500/20 p-6 md:p-8 mb-8">
-          <div className="flex items-start gap-4">
-            <AlertTriangle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-1" />
-            <div>
-              <h4 className="font-bold text-foreground mb-3">تعل��مات مهمة لسيولة تمارا</h4>
-              <ul className="space-y-2 text-muted-foreground text-sm">
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                  <span>بعد اختيار تمارا كوسيلة دفع، أكمل الطلب واضغط على &quot;ادفع&quot;</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                  <span><strong>أضف بطاقة بنكية بدون رصيد</strong> - لا تستخدم بطاقة فيها رصيد أو البطاقة المضافة مسبقاً في تمارا</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                  <span><strong>لا تستخدم Apple Pay نهائياً</strong></span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-2 flex-shrink-0" />
-                  <span>اضغط على &quot;ادفع&quot; وصور الشاشة وارسلها لنا على واتساب</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Instructions for Tabby & Madfu */}
+        {/* Instructions for Tabby */}
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl border border-primary/20 p-6 md:p-8 mb-8">
           <div className="flex items-start gap-4">
             <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h4 className="font-bold text-foreground mb-3">تعليمات سيولة تابي ومدفوع</h4>
+              <h4 className="font-bold text-foreground mb-3">تعليمات سلفة تابي</h4>
               <p className="text-muted-foreground text-sm mb-3">
-                بعد اختيار تابي أو مدفوع كوسيلة دفع وظهور تقسيم الدفعات:
+                بعد اختيار تابي كوسيلة دفع وظهور تقسيم الدفعات:
               </p>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li className="flex items-start gap-2">
@@ -202,6 +160,9 @@ export function HowItWorks() {
                   <span>لا تحتاج إكمال عملية الدفع - ندخل كشركاء معك ونتولى الباقي</span>
                 </li>
               </ul>
+              <p className="text-xs text-muted-foreground mt-4 pt-3 border-t border-border/50">
+                تابي أسهل وأسرع من تمارا - لا تحتاج لإضافة بطاقة بنكية أو إكمال الدفع
+              </p>
             </div>
           </div>
         </div>

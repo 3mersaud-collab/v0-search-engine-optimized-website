@@ -7,9 +7,9 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
-  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع مطر.",
-  keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, مطر, سحابة غيث",
+  title: "سيولة | سلفة تابي | كاش فوري - تحويل تابي الى كاش",
+  description: "احصل على سيولة فورية وسلفة تابي. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار سلفة تابي في السعودية مع مطر. أفضل من تمارا في السرعة والخدمة.",
+  keywords: "سيولة, سلفة تابي, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد تابي, كاش تابي, سيولة تابي, سيولة الرياض, مطر, سحابة غيث, افضل من تمارا",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
@@ -43,7 +43,7 @@ export default function SiyolaPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعتين فقط</strong>.
+                هل تحتاج <strong className="text-foreground">سلفة تابي فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعتين فقط</strong>. خدمتنا أفضل وأسرع من تمارا.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -59,22 +59,14 @@ export default function SiyolaPage() {
               </div>
 
               {/* Apps */}
-              <div className="flex justify-center items-center gap-8 mb-8">
+              <div className="flex justify-center items-center mb-8">
                 <Image
                   src="https://cdn.tabby.ai/assets/tabby-logo-black.svg"
                   alt="تابي"
-                  width={80}
-                  height={32}
-                  className="opacity-80"
-                  style={{ width: 'auto', height: '32px' }}
-                />
-                <Image
-                  src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Tamara_logo.png"
-                  alt="تمارا"
-                  width={100}
-                  height={32}
-                  className="opacity-80"
-                  style={{ width: 'auto', height: '32px' }}
+                  width={120}
+                  height={48}
+                  className="opacity-90"
+                  style={{ width: 'auto', height: '48px' }}
                 />
               </div>
 
@@ -92,8 +84,8 @@ export default function SiyolaPage() {
                 </div>
                 <div className="p-4 bg-card rounded-xl border border-border text-center">
                   <Smartphone className="w-8 h-8 text-primary mx-auto mb-2" />
-                  <p className="font-bold text-2xl text-foreground">3</p>
-                  <p className="text-sm text-muted-foreground">تطبيقات مدعومة</p>
+                  <p className="font-bold text-2xl text-foreground">تابي</p>
+                  <p className="text-sm text-muted-foreground">أفضل من تمارا</p>
                 </div>
               </div>
             </div>
@@ -110,7 +102,7 @@ export default function SiyolaPage() {
               
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4 mb-12">
                 <p>
-                  <strong className="text-foreground">السيولة</strong> (أو السلفة) هي خدمة نقوم فيها بالدخول كشركاء معكم في شراء الجهاز عبر تطبيقات الدفع الآجل مثل تابي وتمارا ومدفوع، ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ <strong className="text-foreground">السيولة أو السلفة المطلوب</strong> مباشرة لحسابكم البنكي.
+                  <strong className="text-foreground">سلفة تابي</strong> (أو السيولة) هي خدمة نقوم فيها بالدخول كشركاء معكم في شراء الجهاز عبر تابي، ونتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ <strong className="text-foreground">السيولة أو السلفة المطلوب</strong> مباشرة لحسابكم البنكي. خدمتنا أفضل وأسرع من تمارا.
                 </p>
                 <p>
                   لمزيد من التفاصيل عن الاساس الذي نعمل عليه، يرجى زيارة صفحة{" "}
@@ -119,7 +111,7 @@ export default function SiyolaPage() {
               </div>
 
               {/* Apps Grid */}
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
                 <Link href="/siyola-tabby" className="p-6 bg-background rounded-2xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group">
                   <Image
                     src="https://cdn.tabby.ai/assets/tabby-logo-black.svg"
@@ -129,37 +121,28 @@ export default function SiyolaPage() {
                     className="mb-4"
                     style={{ width: 'auto', height: '32px' }}
                   />
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سيولة تابي</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سلفة تابي</h3>
                   <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات بسيطة وسريعة.</p>
                   <span className="text-primary text-sm font-medium flex items-center gap-1">
                     اعرف المزيد <ArrowLeft className="w-4 h-4" />
                   </span>
                 </Link>
 
-                <Link href="/cash-tamara" className="p-6 bg-background rounded-2xl border border-border hover:border-accent/50 hover:shadow-lg transition-all group">
+                <Link href="/cash-tabby" className="p-6 bg-background rounded-2xl border border-border hover:border-primary/50 hover:shadow-lg transition-all group">
                   <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Tamara_logo.png"
-                    alt="تمارا"
-                    width={100}
+                    src="https://cdn.tabby.ai/assets/tabby-logo-black.svg"
+                    alt="تابي"
+                    width={80}
                     height={32}
                     className="mb-4"
                     style={{ width: 'auto', height: '32px' }}
                   />
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-accent transition-colors">كاش تمارا</h3>
-                  <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات مختلفة عن تابي.</p>
-                  <span className="text-accent text-sm font-medium flex items-center gap-1">
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">كاش تابي</h3>
+                  <p className="text-sm text-muted-foreground mb-3">تحويل تابي الى كاش. أسهل وأسرع من تمارا.</p>
+                  <span className="text-primary text-sm font-medium flex items-center gap-1">
                     اعرف المزيد <ArrowLeft className="w-4 h-4" />
                   </span>
                 </Link>
-
-                <div className="p-6 bg-background rounded-2xl border border-border">
-                  <div className="h-8 mb-4 flex items-center">
-                    <span className="text-xl font-bold text-foreground">مدفوع</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">سيولة مدفوع</h3>
-                  <p className="text-sm text-muted-foreground mb-3">متاح في المنيع فقط. نفس خطوات تابي.</p>
-                  <span className="text-muted-foreground text-sm">تواصل معنا للتفاصيل</span>
-                </div>
               </div>
             </div>
           </div>

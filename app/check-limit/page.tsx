@@ -4,9 +4,9 @@ import { Footer } from "@/components/footer"
 import { CheckLimitContent } from "@/components/check-limit-content"
 
 export const metadata: Metadata = {
-  title: "افحص حدك واطلب السيولة | مطر - سيولة تابي وتمارا",
-  description: "افحص حدك الائتماني واطلب سيولة من تابي وتمارا ومدفوع. خطوات سهلة للحصول على كاش فوري خلال ساعتين.",
-  keywords: "فحص حد تابي, فحص حد تمارا, طلب سيولة, سيولة تابي, كاش تمارا, خطوات السيولة",
+  title: "افحص حدك واطلب سلفة تابي | مطر - سلفة تابي فورية",
+  description: "افحص حدك الائتماني واطلب سلفة تابي. خطوات سهلة للحصول على كاش تابي فوري خلال ساعتين. خدمة أفضل وأسرع من تمارا.",
+  keywords: "فحص حد تابي, طلب سلفة تابي, سيولة تابي, كاش تابي, خطوات سلفة تابي, افضل من تمارا",
 }
 
 export default function CheckLimitPage() {
