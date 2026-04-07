@@ -1,156 +1,72 @@
-import {
-  convertToModelMessages,
-  streamText,
-  tool,
-  type UIMessage,
-  stepCountIs,
-} from "ai"
+import { createGoogleGenerativeAI } from "@ai-sdk/google"
+import { streamText, tool, type CoreMessage } from "ai"
 import { z } from "zod"
-import { createClient, type SupabaseClient } from "@supabase/supabase-js"
 
 export const maxDuration = 60
 
-let _supabase: SupabaseClient | null = null
-function getSupabase() {
-  if (!_supabase) {
-    _supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
-  }
-  return _supabase
-}
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? "",
+})
 
-const ADMIN_PHONE = "966590360039"
-const WHATSAPP_API = "https://graph.facebook.com/v22.0"
+const WHATSAPP_NUMBER = "966590360039"
 
 const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد خدمة مطر لتحويل مشتريات التقسيط الى كاش.
-لما تعرف عن نفسك قول: "معك مطر سحابة غيث ماحسبت حسابها"
-المطر نعمة وغيث من الله، وأنت كذلك غيث للعميل تساعده يحصل على السيولة اللي يحتاجها.
 
 ## شخصيتك:
 - تتكلم باللهجة النجدية كأنك شخص حقيقي مو بوت
-- تختصر - ما تكتب مقالات، تكتب مثل ما الناس تكتب بالواتساب
-- ما تكرر نفسك أبداً - لو شرحت شي مرة ما تعيده
-- تستخدم تعابير طبيعية مثل: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"، "كم تبي"، "وش رايك"، "ان شاء الله"، "على طول"
-- لو العميل سأل سؤال ما له علاقة بالخدمة ترد بشكل لطيف وترجعه للموضوع
-- ما تستخدم كلمات رسمية مثل "بالتأكيد" أو "سعدت بخدمتك" - كلامك عادي وبسيط
-- لو العميل متردد أو خايف طمّنه بطريقة طبيعية مو بنسخ كلام تسويقي.
+- تختصر - تكتب مثل ما الناس تكتب بالواتساب
+- ما تكرر نفسك أبداً
+- تستخدم: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"، "الحين"، "ان شاء الله"، "على طول"
+- ما تستخدم كلمات رسمية
 
-## شرح الخدمة (مهم جداً تفهمها صح وتشرحها صح):
+## شرح الخدمة:
 1. العميل يحدد المبلغ اللي يحتاجه كاش (الصافي)
 2. نحن نحدد له قيمة الجهاز المطلوب شراءه بالتقسيط
 3. العميل يروح المتجر (اكسترا/نون/المنيع) ويشتري الجهاز عن طريق تابي أو تمارا أو مدفوع
-4. نحن نستلم الجهاز من العميل ونبيعه
-5. من قيمة البيع نخصم الرسوم الإدارية والعمولة وقيمة الدفعة الأولى
-6. الباقي (الصافي) نحوله لحساب العميل البنكي خلال ساعتين
-- الدفعة الأولى نحن ندفعها عن العميل ونستردها من قيمة البيع - ما يدفع شي من جيبه
+4. نحن نستلم الجهاز ونبيعه ونحول الصافي لحساب العميل البنكي خلال أقل من ساعة
+- الدفعة الأولى نحن ندفعها عن العميل ونستردها من قيمة البيع
 - بدون أي فوائد على العميل
 
 ## قاعدة ذهبية:
-العميل ما يختار الجهاز - العميل يحدد المبلغ ونحن نحدد له الجهاز المناسب بالقيمة المطلوبة.
-لا تقول أبداً "تختار جهاز" - دايم قول "نحدد لك جهاز بالقيمة المطلوبة".
+العميل ما يختار الجهاز - نحن نحدد له الجهاز المناسب.
 
-## الضمان والمصداقية:
-- خدمة موثوقة تقدر تتطلع على تفاصيلنا من [صفحة من نحن](/about)
-- عندنا عمليات تتعدى 100 ألف ريال بكل شفافية تقدر تشوفها من [آراء العملاء](/reviews)
-- التحويل خلال ساعتين مباشرة لحسابك البنكي
-- نتابع معك خطوة بخطوة لين يوصلك المبلغ
-
-## تدفق المحادثة - تمشي مع العميل خطوة بخطوة:
+## تدفق المحادثة:
 
 ### الخطوة 1 - الترحيب:
-"هلا والله! معك مطر سحابة غيث ماحسبت حسابها
+"هلا والله! معك مطر سحابة غيث ماحسبت حسابها 🌧️
 نحول لك مشتريات التقسيط من تابي وتمارا ومدفوع لكاش بحسابك.
 كم تحتاج كاش (الصافي)؟"
 
 ### الخطوة 2 - الحساب:
-لما يذكر مبلغ:
-- حوّل الكلام لرقم (الف = 1000، خمسمية = 500، الفين = 2000، ثلاث آلاف = 3000، اربع آلاف = 4000، خمسة آلاف = 5000)
-- استخدم أداة calculateCash فوراً مع type: "net"
-- بعد النتيجة قول:
-  "ابشر يالغالي! عشان توصلك [الصافي] ر.س كاش:
-  قيمة الجهاز: [مبلغ الشراء] ر.س - نبيعه بـ [مبلغ البيع] ر.س
-  الرسوم: [الرسوم] ر.س | الدفعة الاولى (مستردة): [الدفعة] ر.س
-  الصافي لك: [الصافي] ر.س
-  
-  **ندخل كشركاء معك في شراء الجهاز ونتكفل بالدفعة الأولى** - ما تحتاج تسوي شي غير انك تشتريه بالتقسيط وبعدها نبيعه ونحول لك السيولة.
-  
-  تبي نكمل؟"
+لما يذكر مبلغ، استخدم أداة calculateCash فوراً.
+بعد النتيجة قول:
+"ابشر يالغالي! عشان توصلك [الصافي] ر.س كاش:
+قيمة الجهاز: [مبلغ الشراء] ر.س
+الرسوم الإدارية: [الرسوم] ر.س
+الدفعة الأولى (نتكفل فيها): [الدفعة] ر.س
+**الصافي لك: [الصافي] ر.س** ✅
 
-### الخطوة 3 - اختيار التطبيق:
-"حلو! تبي تقدم عن طريق تابي، تمارا، ولا مدفوع؟"
+تبي نكمل؟"
 
-### الخطوة 4 - طلب البيانات ورفع الطلب:
-"تمام! عشان أرفع لك الطلب الحين، احتاج:
-1. اسمك الكامل
-2. رقم جوالك
-3. اسم البنك
-4. رقم الآيبان (IBAN)"
+### الخطوة 3 - التحويل للواتساب:
+لما يوافق، استخدم أداة getWhatsAppLink وقول:
+"ممتاز! عشان نكمل الطلب، تواصل معنا على الواتساب الحين وذكر لنا:
+1. المبلغ اللي تبيه: [الصافي] ر.س
+2. التطبيق اللي تبيه: تابي، تمارا، أو مدفوع
 
-لما يعطيك البيانات، استخدم أداة submitOrder فوراً لرفع الطلب تلقائياً.
-بعد رفع الطلب بنجاح قول:
-"تمام رفعت طلبك! رقم طلبك: [رقم الطلب]
-الحين ادخل المتجر وابحث عن جهاز بقيمة قريبة من [مبلغ الشراء] ر.س واختر الدفع عن طريق [التطبيق] على 4 دفعات.
-اكسترا: https://www.extra.com/ar-sa/ | نون: https://www.noon.com/saudi-ar/ | المنيع: https://www.almunayes.com.sa/ar/
-لما تخلص قول لي تم."
+👇 اضغط هنا للتواصل المباشر:"
 
-### الخطوة 5 - طلب الصورة:
-#### إذا تابي أو مدفوع:
-"ممتاز! ارفع صورة صفحة تقسيم الدفعات."
+ثم استخدم أداة getWhatsAppLink لإنشاء الرابط.
 
-#### إذا تمارا:
-"ممتاز! اتبع الخطوات:
-1. اختر خطة الدفع واضغط ادفع
-2. أضف بطاقة يدوي (لا تستخدم ابل باي)
-3. حط بطاقة بدون رصيد واضغط ادفع
-4. صوّر الشاشة وارسلها لنا - بدون ادخال اي كود
-5. ارسل لنا الصورة"
-
-### الخطوة 6 - التأكيد:
-"تمام يالغالي! طلبك وصلنا وقيد المراجعة. نتواصل معك خلال ساعتين ان شاء الله."
-
-## الأدوات المتاحة لك:
-1. **calculateCash** - حساب تفاصيل السيولة (استخدمها فوراً عند ذكر مبلغ)
-2. **submitOrder** - رفع طلب جديد للعميل (استخدمها لما تجمع بيانات العميل)
-3. **trackOrder** - تتبع حالة طلب (استخدمها لما يسأل عن طلبه)
-4. **searchExtra** - البحث في اكسترا
-5. **notifyAdmin** - ارسال تنبيه للادارة (استخدمها لأي حالة طارئة أو مشكلة)
-6. **suggestImprovement** - اقتراح تحسين (استخدمها لما تلاحظ خلل أو ميزة مطلوبة من العملاء)
-
-## متى تستخدم notifyAdmin:
-- عميل يشتكي من مشكلة
-- عميل ينتظر أكثر من ساعتين ولم يتم التواصل معه
-- عميل يطلب مبلغ كبير (أكثر من 5000)
-- أي حالة طارئة
-
-## متى تستخدم suggestImprovement:
-- عميل يسأل عن ميزة غير موجودة
-- تلاحظ ان العملاء يكررون نفس السؤال
-- تلاحظ خلل في النظام أو الأسعار
-- أي اقتر��ح يحسن الخدمة
-
-## الذاكرة والسياق:
-- لو في سياق محادثة سابقة مع العميل (يجيك في نهاية هالرسالة) استخد��ه!
-- لو سأل "تعرفني" أو "تتذكرني" رد عليه بالمعلومات اللي عندك من السياق
-- لو عنده طلبات سابقة اذكرها له
-- لو ما عندك سياق، قول "هلا! وش اقدر اساعدك فيه؟" بدون ما تقول "ما اقدر احتفظ بمعلومات"
+## الأدوات المتاحة:
+1. **calculateCash** - حساب تفاصيل السيولة عند ذكر مبلغ
+2. **getWhatsAppLink** - إنشاء رابط واتساب مع رسالة جاهزة
 
 ## قواعد مهمة:
-- لا تسأل العميل عن جهاز معين أبداً
-- لا تتخطى أي خطوة - لازم العميل يأكد قبل تنتقل
-- "تم" أو "خلاص" أو "سويت" أو "اوكي" أو "ايه" = خلص الخطوة الحالية
-- إذا سأل سؤال عام أجب عليه ورجّعه للخطوة الحالية
-- اكتب الروابط بصيغة markdown: [النص](الرابط)
-- خلك مختصر - لا تطوّل
-- أي رقم يذكره العميل بدون توضيح = المبلغ المطلوب كاش (صافي)
-- دايم قول "ندخل كشركاء معك في شراء الجهاز ونتكفل بالدفعة الأولى ثم نبيعه ونحول لك السيولة" عند الحساب
-- إذا سأل عن الضمان أو المصداقية: ذكره بالعمليات اللي تتعدى 100 ألف وخبرتنا في المجال
-- **لا تقول أبداً "ما أقدر أحتفظ بمعلومات" أو "ما عندي ذاكرة"** - دايم حاول تساعد العميل`
-
-// ═══════════════════════════════════════════════
-// CALCULATION FUNCTIONS
-// ═══════════════════════════════════════════════
+- لا تطلب بيانات بنكية أبداً - الواتساب يتكفل بذلك
+- لا تقول "سأرفع طلبك" - كل التقديم عبر الواتساب
+- أي رقم يذكره العميل بدون توضيح = المبلغ المطلوب كاش
+- خلك مختصر`
 
 function calculateAmount(netRequested: number) {
   let purchaseAmount = netRequested * 2
@@ -189,91 +105,6 @@ function calculateAmount(netRequested: number) {
   return { purchaseAmount, saleAmount, adminFee, downPayment, netAmount, remainingInstallment }
 }
 
-function calculateFromPurchase(purchaseAmount: number) {
-  let sellingLossRate: number
-  if (purchaseAmount <= 5500) sellingLossRate = 0.15
-  else if (purchaseAmount >= 9500) sellingLossRate = 0.10
-  else {
-    const steps = Math.floor((purchaseAmount - 5500) / 1000)
-    sellingLossRate = 0.14 - steps * 0.01
-  }
-  const saleAmount = Math.round(purchaseAmount * (1 - sellingLossRate))
-  const adminFee = Math.round(purchaseAmount * 0.10 + (purchaseAmount < 4000 ? 100 : 0))
-  const downPayment = Math.round(purchaseAmount * 0.25)
-  const netAmount = saleAmount - adminFee - downPayment
-  const remainingInstallment = purchaseAmount - downPayment
-
-  return { purchaseAmount, saleAmount, adminFee, downPayment, netAmount, remainingInstallment }
-}
-
-function generateOrderNumber() {
-  const date = new Date()
-  const y = date.getFullYear().toString().slice(-2)
-  const m = (date.getMonth() + 1).toString().padStart(2, "0")
-  const d = date.getDate().toString().padStart(2, "0")
-  const rand = Math.floor(Math.random() * 9000 + 1000)
-  return `LS-${y}${m}${d}-${rand}`
-}
-
-// ═══════════════════════════════════════════════
-// WHATSAPP NOTIFICATION
-// ═══════════════════════════════════════════════
-
-async function sendWhatsAppNotification(message: string) {
-  const token = process.env.WHATSAPP_TOKEN
-  const phoneId = process.env.WHATSAPP_PHONE_NUMBER_ID
-  
-  if (!token || !phoneId) {
-    console.log("[matar] WhatsApp not configured - WHATSAPP_TOKEN:", !!token, "WHATSAPP_PHONE_NUMBER_ID:", !!phoneId)
-    // Save notification to database as fallback
-    await getSupabase().from("notifications").insert({
-      type: "whatsapp_fallback",
-      title: "تنبيه (واتساب غير مفعل)",
-      body: message,
-    }).then(() => {})
-    return { success: false, reason: "WhatsApp not configured - saved to notifications" }
-  }
-  
-  try {
-    const res = await fetch(`${WHATSAPP_API}/${phoneId}/messages`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        messaging_product: "whatsapp",
-        to: ADMIN_PHONE,
-        type: "text",
-        text: { body: message },
-      }),
-    })
-    const responseBody = await res.text()
-    console.log("[matar] WhatsApp API response:", res.status, responseBody)
-    
-    if (!res.ok) {
-      // Save to notifications as fallback
-      await getSupabase().from("notifications").insert({
-        type: "whatsapp_failed",
-        title: "تنبيه (فشل ارسال واتساب)",
-        body: `${message}\n\n--- خطأ: ${responseBody}`,
-      }).then(() => {})
-    }
-    
-    return { success: res.ok }
-  } catch (err) {
-    console.error("[matar] WhatsApp send error:", err)
-    // Save to notifications as fallback
-    await getSupabase().from("notifications").insert({
-      type: "whatsapp_error",
-      title: "تنبيه (خطأ واتساب)",
-      body: message,
-    }).then(() => {})
-    return { success: false, reason: "send failed" }
-  }
-}
-
-// ═══════════════════════════════════════════════
-// RATE LIMITER
-// ═══════════════════════════════════════════════
-
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 function checkRateLimit(visitorId: string): boolean {
   const now = Date.now()
@@ -287,325 +118,61 @@ function checkRateLimit(visitorId: string): boolean {
   return true
 }
 
-// ═══════════════════════════════════════════════
-// POST HANDLER
-// ═══════════════════════════════════════════════
-
 export async function POST(req: Request) {
   try {
-    const { messages }: { messages: UIMessage[] } = await req.json()
+    const { messages }: { messages: CoreMessage[] } = await req.json()
     const visitorId = req.headers.get("x-visitor-id") || "anonymous"
 
     if (!checkRateLimit(visitorId)) {
-      return new Response(JSON.stringify({ error: "��ثرت الرسائل، انتظر شوي وحاول مرة ثانية" }), {
+      return new Response(JSON.stringify({ error: "كثرت الرسائل، انتظر شوي وحاول مرة ثانية" }), {
         status: 429, headers: { "Content-Type": "application/json" }
       })
     }
 
-    // Extract and save user message
-    const lastUserMsg = messages[messages.length - 1]
-    let userText = ""
-    if (lastUserMsg?.role === "user") {
-      userText = lastUserMsg.parts
-        ?.filter((p: { type: string }) => p.type === "text")
-        .map((p: { type: string; text?: string }) => p.text)
-        .join("") || ""
-    }
-    if (userText) saveMessage(visitorId, "user", userText).catch(() => {})
-
-    // Load conversation history from Supabase to give AI context about this customer
-    let historyContext = ""
-    try {
-      const phone = `web-${visitorId}`
-      const { data: conv } = await getSupabase()
-        .from("conversations")
-        .select("messages, customer_name, phone")
-        .eq("phone", phone)
-        .eq("source", "website")
-        .in("status", ["active", "pending"])
-        .order("updated_at", { ascending: false })
-        .limit(1)
-        .single()
-
-      if (conv?.messages && Array.isArray(conv.messages) && conv.messages.length > 0) {
-        // Get last 20 messages from database as context
-        const pastMsgs = conv.messages.slice(-20)
-        const history = pastMsgs
-          .map((m: { role: string; content: string }) => `${m.role === "user" ? "العميل" : "مطر"}: ${m.content}`)
-          .join("\n")
-        historyContext = `\n\n## سياق المحادثة السابقة مع هذا العميل (${conv.customer_name || "زائر"}):\n${history}\n\nملاحظة: استخدم هذا السياق لتذكر العميل ومحادثتك السابقة معه. لو سأل "تعرفني" أو "تتذكرني" استخدم المعلومات اللي عندك.`
-      }
-
-      // Also check if this visitor has orders
-      const { data: orders } = await getSupabase()
-        .from("orders")
-        .select("order_number, status, customer_name, customer_phone, app_type, final_amount, created_at")
-        .or(`customer_phone.eq.${phone},customer_phone.eq.${phone.replace("web-", "")}`)
-        .order("created_at", { ascending: false })
-        .limit(3)
-
-      if (orders && orders.length > 0) {
-        const ordersSummary = orders.map(o => 
-          `- طلب ${o.order_number}: ${o.status === "completed" ? "مكتمل" : o.status === "pending" ? "قيد المراجعة" : o.status} | ${o.final_amount} ر.س | ${o.app_type}`
-        ).join("\n")
-        historyContext += `\n\n## طلبات هذا العميل:\n${ordersSummary}`
-      }
-    } catch { /* no history available */ }
-
     const result = streamText({
-      model: "openai/gpt-4o",
-      system: SYSTEM_PROMPT + historyContext,
-      messages: await convertToModelMessages(messages),
+      model: google("gemini-2.0-flash"),
+      system: SYSTEM_PROMPT,
+      messages,
       abortSignal: req.signal,
       tools: {
-        // Tool 1: Calculator
         calculateCash: tool({
-          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ. type=net يعني المبلغ هو الصافي المطلوب كاش. type=purchase يعني مبلغ الشراء.",
-          inputSchema: z.object({
-            amount: z.number().describe("المبلغ بالريال"),
-            type: z.enum(["net", "purchase"]).describe("net = الصافي المطلوب كاش, purchase = مبلغ الشراء"),
+          description: "حساب تفاصيل السيولة. استخدمها فوراً عندما يذكر العميل أي مبلغ.",
+          parameters: z.object({
+            amount: z.number().describe("المبلغ الصافي المطلوب بالريال"),
           }),
-          execute: async ({ amount, type }) => {
-            return type === "net" ? calculateAmount(amount) : calculateFromPurchase(amount)
+          execute: async ({ amount }) => {
+            return calculateAmount(amount)
           },
         }),
 
-        // Tool 2: Submit Order
-        submitOrder: tool({
-          description: "رفع طلب جديد للعميل. استخدمها لما تجمع بيانات العميل (الاسم، الرقم، البنك، الآيبان، التطبيق، المبلغ).",
-          inputSchema: z.object({
-            customerName: z.string().describe("اسم العميل"),
-            customerPhone: z.string().describe("رقم جوال العميل"),
-            appType: z.enum(["tabby", "tamara", "madfu"]).describe("تطبيق الدفع"),
-            netRequested: z.number().describe("المبلغ المطلوب كاش (صافي)"),
-            bankName: z.string().optional().describe("اسم البنك"),
-            iban: z.string().optional().describe("رقم الآيبان"),
+        getWhatsAppLink: tool({
+          description: "إنشاء رابط واتساب مع رسالة جاهزة للعميل للتواصل وإكمال الطلب.",
+          parameters: z.object({
+            netAmount: z.number().describe("المبلغ الصافي المطلوب"),
+            purchaseAmount: z.number().describe("قيمة الجهاز المطلوب"),
           }),
-          execute: async ({ customerName, customerPhone, appType, netRequested, bankName, iban }) => {
-            try {
-              const calc = calculateAmount(netRequested)
-              const orderNumber = generateOrderNumber()
-              const appNames: Record<string, string> = { tabby: "تابي", tamara: "تمارا", madfu: "مدفوع" }
-
-              console.log("[matar] Submitting order:", { orderNumber, customerName, customerPhone, appType, netRequested })
-
-              const { data, error } = await getSupabase().from("orders").insert({
-                order_number: orderNumber,
-                customer_name: customerName,
-                customer_phone: customerPhone,
-                app_type: appNames[appType] || appType,
-                purchase_amount: calc.purchaseAmount,
-                sale_amount: calc.saleAmount,
-                admin_fee: calc.adminFee,
-                first_payment: calc.downPayment,
-                final_amount: calc.netAmount,
-                remaining_installment: calc.remainingInstallment,
-                net_requested: netRequested,
-                notes: `${bankName ? `البنك: ${bankName}\n` : ""}${iban ? `IBAN: ${iban}\n` : ""}طلب من الشات`,
-                status: "pending",
-              }).select("id, order_number").single()
-
-              if (error) {
-                console.error("[matar] Order insert error:", error)
-                return { success: false, error: `فشل رفع الطلب: ${error.message}` }
-              }
-
-              console.log("[matar] Order created:", data)
-
-              // Always save notification to database first
-              await getSupabase().from("notifications").insert({
-                type: "new_order",
-                title: "طلب جديد من الشات",
-                body: `${customerName} - ${customerPhone}\nالصافي: ${netRequested} ر.س | التطبيق: ${appNames[appType] || appType}\n${bankName ? `البنك: ${bankName}` : ""}${iban ? ` | IBAN: ${iban}` : ""}`,
-                reference_type: "order",
-                reference_id: data.id,
-              })
-
-              // Then try WhatsApp notification
-              const whatsappMsg = `طلب جديد من الشات!\nرقم الطلب: ${orderNumber}\nالعميل: ${customerName}\nالجوال: ${customerPhone}\nالصافي: ${netRequested} ر.س\nالتطبيق: ${appNames[appType] || appType}${bankName ? `\nالبنك: ${bankName}` : ""}${iban ? `\nIBAN: ${iban}` : ""}`
-              sendWhatsAppNotification(whatsappMsg).catch(() => {})
-
-              return {
-                success: true,
-                orderNumber,
-                purchaseAmount: calc.purchaseAmount,
-                netAmount: calc.netAmount,
-                appType: appNames[appType] || appType,
-              }
-            } catch (err) {
-              console.error("[matar] submitOrder error:", err)
-              return { success: false, error: "حصل خطأ أثناء رفع الطلب" }
-            }
-          },
-        }),
-
-        // Tool 3: Track Order
-        trackOrder: tool({
-          description: "تتبع حالة طلب العميل. استخدمها لما العميل يسأل عن طلبه أو يعطيك رقم الطلب أو رقم جواله.",
-          inputSchema: z.object({
-            orderNumber: z.string().optional().describe("رقم الطلب مثل LS-250101-1234"),
-            phone: z.string().optional().describe("رقم جوال العميل"),
-          }),
-          execute: async ({ orderNumber, phone }) => {
-            let query = getSupabase().from("orders").select("order_number, status, customer_name, purchase_amount, final_amount, app_type, created_at").order("created_at", { ascending: false })
-            if (orderNumber) query = query.eq("order_number", orderNumber)
-            else if (phone) query = query.eq("customer_phone", phone)
-            else return { found: false, message: "احتاج رقم الطلب أو رقم جوالك" }
-
-            const { data } = await query.limit(3)
-            if (!data || data.length === 0) return { found: false, message: "ما لقيت طلب بهالبيانات" }
-
-            const statusMap: Record<string, string> = {
-              pending: "قيد المراجعة",
-              processing: "جاري التنفيذ",
-              completed: "مكتمل - تم التحويل",
-              cancelled: "ملغي",
-            }
-
-            return {
-              found: true,
-              orders: data.map(o => ({
-                orderNumber: o.order_number,
-                status: statusMap[o.status] || o.status,
-                amount: o.final_amount,
-                appType: o.app_type,
-                date: new Date(o.created_at).toLocaleDateString("ar-SA"),
-              })),
-            }
-          },
-        }),
-
-        // Tool 4: Search Extra
-        searchExtra: tool({
-          description: "البحث عن منتج في متجر اكسترا بسعر معين أو باسم المنتج",
-          inputSchema: z.object({
-            query: z.string().describe("اسم المنتج أو وصفه بالانجليزي مثل iPhone 16 أو laptop"),
-          }),
-          execute: async ({ query }) => {
-            const searchUrl = `https://www.extra.com/en-sa/search?q=${encodeURIComponent(query)}`
-            return { searchUrl, message: `رابط البحث في اكسترا: ${searchUrl}` }
-          },
-        }),
-
-        // Tool 5: Notify Admin
-        notifyAdmin: tool({
-          description: "ارسال تنبيه للادارة عبر واتساب. استخدمها عند: شكوى عميل، عميل ينتظر اكثر من ساعتين، طلب مبلغ كبير اكثر من 5000، او اي حالة طارئة.",
-          inputSchema: z.object({
-            reason: z.string().describe("سبب التنبيه"),
-            customerInfo: z.string().optional().describe("معلومات العميل ان وجدت"),
-            urgency: z.enum(["low", "medium", "high"]).describe("مستوى الاهمية"),
-          }),
-          execute: async ({ reason, customerInfo, urgency }) => {
-            const urgencyEmoji = urgency === "high" ? "🔴" : urgency === "medium" ? "🟡" : "🟢"
-            const message = `${urgencyEmoji} تنبيه من مطر:\n${reason}${customerInfo ? `\nالعميل: ${customerInfo}` : ""}`
-
-            await sendWhatsAppNotification(message)
-            await getSupabase().from("notifications").insert({
-              type: "matar_alert",
-              title: `تنبيه مطر (${urgency})`,
-              body: reason + (customerInfo ? ` | ${customerInfo}` : ""),
-            })
-
-            return { sent: true, message: "تم ارسال التنبيه للادارة" }
-          },
-        }),
-
-        // Tool 6: Suggest Improvement
-        suggestImprovement: tool({
-          description: "اقتراح تحسين للنظام. استخدمها لما تلاحظ: سؤال متكرر من العملاء غير موجود بالنظام، خلل بالاسعار، ميزة مطلوبة، او اي ملاحظة لتطوير الخدمة.",
-          inputSchema: z.object({
-            category: z.enum(["bug", "feature", "pricing", "faq", "other"]).describe("نوع الاقتراح"),
-            description: z.string().describe("وصف الاقتراح او المشكلة"),
-            priority: z.enum(["low", "medium", "high"]).describe("اولوية الاقتراح"),
-          }),
-          execute: async ({ category, description, priority }) => {
-            const catNames: Record<string, string> = { bug: "خلل", feature: "ميزة جديدة", pricing: "اسعار", faq: "سؤال متكرر", other: "اخرى" }
-            await getSupabase().from("notifications").insert({
-              type: "improvement_suggestion",
-              title: `اقتراح تطوير: ${catNames[category]} (${priority})`,
-              body: description,
-            })
-
-            const priorityEmoji = priority === "high" ? "🔴" : priority === "medium" ? "🟡" : "🟢"
-            sendWhatsAppNotification(
-              `${priorityEmoji} اقتراح تطوير من مطر:\nالنوع: ${catNames[category]}\n${description}`
-            ).catch(() => {})
-
-            return { saved: true, message: "تم حفظ الاقتراح وارساله للادارة" }
+          execute: async ({ netAmount, purchaseAmount }) => {
+            const msg = encodeURIComponent(
+              `السلام عليكم، أبي كاش من تابي/تمارا\nالمبلغ الصافي: ${netAmount} ر.س\nقيمة الجهاز: ${purchaseAmount} ر.س`
+            )
+            const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`
+            return { link, whatsappNumber: WHATSAPP_NUMBER }
           },
         }),
       },
       maxSteps: 5,
-      onFinish: async ({ text }) => {
-        if (text?.trim()) {
-          saveMessage(visitorId, "assistant", text).catch(() => {})
-        }
-      },
     })
 
-    return result.toUIMessageStreamResponse()
+    return result.toDataStreamResponse()
   } catch (error) {
     console.error("Chat API error:", error)
     const errorMessage = error instanceof Error ? error.message : "unknown"
-    const status = errorMessage.includes("Insufficient funds") ? 402
-      : errorMessage.includes("rate") ? 429 : 500
-    const userMessage = status === 402
-      ? "الخدمة متوقفة مؤقتاً، تواصل معنا على الواتساب: wa.me/966590360039"
-      : status === 429 ? "كثرت الرسائل، انتظر شوي وحاول مرة ثانية"
-      : "حصل خطأ، حاول مرة ثانية"
+    const status = errorMessage.includes("rate") ? 429 : 500
+    const userMessage = status === 429
+      ? "كثرت الرسائل، انتظر شوي وحاول مرة ثانية"
+      : "حصل خطأ، تواصل معنا على الواتساب: wa.me/966590360039"
     return new Response(JSON.stringify({ error: userMessage }), {
       status, headers: { "Content-Type": "application/json" }
     })
   }
-}
-
-// ═══════════════════════════════════════════════
-// SAVE MESSAGE TO SUPABASE
-// ═══════════════════════════════════════════════
-
-async function saveMessage(visitorId: string, role: "user" | "assistant", content: string) {
-  try {
-    const phone = `web-${visitorId}`
-    const { data: existing } = await getSupabase()
-      .from("conversations")
-      .select("id, messages")
-      .eq("phone", phone)
-      .eq("source", "website")
-      .in("status", ["active", "pending"])
-      .order("updated_at", { ascending: false })
-      .limit(1)
-      .single()
-
-    const timestamp = new Date().toISOString()
-    const newMsg = { role, content, timestamp }
-
-    if (existing) {
-      const msgs = Array.isArray(existing.messages) ? existing.messages : []
-      msgs.push(newMsg)
-      await getSupabase().from("conversations").update({
-        messages: msgs.slice(-50),
-        last_message: content.slice(0, 200),
-        updated_at: timestamp,
-      }).eq("id", existing.id)
-    } else {
-      const { data: newConv } = await getSupabase().from("conversations").insert({
-        phone,
-        customer_name: "زائر الموقع",
-        messages: [newMsg],
-        last_message: content.slice(0, 200),
-        source: "website",
-        status: "active",
-      }).select("id").single()
-
-      if (newConv) {
-        await getSupabase().from("notifications").insert({
-          type: "new_customer",
-          title: "محادثة جديدة",
-          body: "زائر جديد بدأ محادثة عبر الموقع",
-          reference_type: "conversation",
-          reference_id: newConv.id,
-        })
-      }
-    }
-  } catch { /* silent */ }
 }
