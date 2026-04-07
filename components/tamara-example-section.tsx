@@ -33,7 +33,7 @@ const steps = [
     label: "المبلغ اللي تستلمه (كاش)",
     value: "~1,100",
     unit: "ر.س",
-    description: "يتحول لحسابك البنكي خلال ساعتين فقط",
+    description: "يتحول لحسابك البنكي خلال ساعة فقط",
     color: "bg-accent/10 text-accent",
     isResult: true,
   },
@@ -139,7 +139,7 @@ export function TamaraExampleSection() {
               <p className="text-sm text-foreground text-center leading-relaxed">
                 <strong>الخلاصة:</strong> جهاز بـ 2,400 ريال عبر سلفة تمارا = تحصل على
                 <span className="text-accent font-bold"> ~1,100 ريال كاش </span>
-                فوري لحسابك البنكي خلال ساعتين
+                فوري لحسابك البنكي خلال ساعة
               </p>
             </div>
 

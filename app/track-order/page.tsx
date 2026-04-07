@@ -167,7 +167,7 @@ export default function TrackOrderPage() {
                           <div className="mt-4 pt-4 border-t border-border">
                             <div className="flex items-center gap-2 text-blue-600 text-sm">
                               <Clock className="w-4 h-4 animate-pulse" />
-                              <span>جاري تنفيذ طلبك... سيتم التحويل خلال ساعتين</span>
+                              <span>جاري تنفيذ طلبك... سيتم التحويل خلال ساعة</span>
                             </div>
                           </div>
                         )}

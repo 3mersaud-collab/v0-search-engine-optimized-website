@@ -8,14 +8,14 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
-  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعتين. أفضل أسعار السيولة في السعودية مع مطر.",
+  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعة. أفضل أسعار السيولة في السعودية مع مطر.",
   keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, مطر, سحابة غيث",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
     title: "سيولة وسلفة فورية - مطر",
-    description: "سيولة من تابي وتمارا ومدفوع خلال ساعتين",
+    description: "سيولة من تابي وتمارا ومدفوع خلال ساعة",
   },
 }
 
@@ -43,7 +43,7 @@ export default function SiyolaPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعتين فقط</strong>.
+                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعة فقط</strong>.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -234,7 +234,7 @@ export default function SiyolaPage() {
               جاهز تحصل على سيولة؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              تواصل معنا الآن واحصل على كاش في حسابك خلال ساعتين فقط
+              تواصل معنا الآن واحصل على كاش في حسابك خلال ساعة فقط
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
               <a href="https://wa.me/966590360039">

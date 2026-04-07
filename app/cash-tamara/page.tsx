@@ -7,15 +7,15 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "كاش تمارا | سيولة تمارا | سلفة تمارا - تحويل خلال ساعتين",
-  description: "احصل على كاش تمارا وسيولة من رصيدك خلال ساعتين. سلفة تمارا بأفضل الأسعار. تحويل رصيد تمارا إلى نقد في حسابك البنكي مع مطر.",
+  title: "كاش تمارا | سيولة تمارا | سلفة تمارا - تحويل خلال ساعة",
+  description: "احصل على كاش تمارا وسيولة من رصيدك خلال ساعة. سلفة تمارا بأفضل الأسعار. تحويل رصيد تمارا إلى نقد في حسابك البنكي مع مطر.",
   keywords: "كاش تمارا, سيولة تمارا, سلفة تمارا, تحويل رصيد تمارا, تسييل تمارا, tamara cash, كاش من تمارا",
   alternates: {
     canonical: "https://liilsol.com/cash-tamara",
   },
   openGraph: {
     title: "كاش تمارا | سيولة تمارا - مطر",
-    description: "احصل على كاش من رصيد تمارا خلال ساعتين",
+    description: "احصل على كاش من رصيد تمارا خلال ساعة",
   },
 }
 
@@ -41,7 +41,7 @@ export default function CashTamaraPage() {
                   className="h-10 w-auto"
                 />
                 <span className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm font-medium">
-                  خلال ساعتين
+                  خلال ساعة
                 </span>
               </div>
               
@@ -50,7 +50,7 @@ export default function CashTamaraPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-                ندخل معك كشركاء في شراء الجهاز عبر تمارا، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعتين.
+                ندخل معك كشركاء في شراء الجهاز عبر تمارا، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعة.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -122,7 +122,7 @@ export default function CashTamaraPage() {
                 },
                 {
                   step: "6",
-                  title: "استلم السيولة خلال ساعتين",
+                  title: "استلم السيولة خلال ساعة",
                   desc: "ندخل كشركاء معك ونتكفل بالدفعة الأولى، ثم نبيع الجهاز ونحول لك مبلغ السيولة في حسابك البنكي"
                 }
               ].map((item, index) => (
@@ -259,7 +259,7 @@ export default function CashTamaraPage() {
               جاهز تحصل على كاش تمارا؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              تواصل معنا الآن واحصل على سيولة تمارا في حسابك خلال ساعتين
+              تواصل معنا الآن واحصل على سيولة تمارا في حسابك خلال ساعة
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
               <a href="https://wa.me/966590360039">
@@ -281,7 +281,7 @@ export default function CashTamaraPage() {
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "كاش تمارا - مطر",
-            "description": "خدمة تحويل رصيد تمارا إلى كاش نقدي خلال ساعتين",
+            "description": "خدمة تحويل رصيد تمارا إلى كاش نقدي خلال ساعة",
             "provider": {
               "@type": "Organization",
               "name": "مطر",

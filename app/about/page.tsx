@@ -89,7 +89,7 @@ export default function AboutPage() {
               {
                 icon: Clock,
                 title: "سرعة فائقة",
-                description: "ننفذ طلبك ونحول المبلغ لحسابك خلال ساعتين فقط"
+                description: "ننفذ طلبك ونحول المبلغ لحسابك خلال ساعة فقط"
               },
               {
                 icon: Shield,
@@ -224,7 +224,7 @@ export default function AboutPage() {
             جاهز للحصول على سيولة فورية؟
           </h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            احسب المبلغ الآن وتواصل معنا لتحويل رصيدك إلى كاش خلال ساعتين
+            احسب المبلغ الآن وتواصل معنا لتحويل رصيدك إلى كاش خلال ساعة
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" variant="secondary" asChild>

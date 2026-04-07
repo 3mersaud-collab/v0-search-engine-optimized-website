@@ -79,7 +79,7 @@ export default async function Image() {
               fontSize: 24,
             }}
           >
-            تحويل خلال ساعتين
+            تحويل خلال ساعة
           </div>
           <div
             style={{

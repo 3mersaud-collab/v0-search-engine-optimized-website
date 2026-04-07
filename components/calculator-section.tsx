@@ -256,7 +256,7 @@ export function CalculatorSection() {
             {/* Disclaimer */}
             <div className="bg-secondary/30 px-6 py-4 text-center border-t border-border">
               <p className="text-sm text-muted-foreground">
-                * الأرقام تقريبية وقد تختلف حسب المنتج والمتجر. التنفيذ خلال ساعتين والتحويل مباشرة لحسابك.
+                * الأرقام تقريبية وقد تختلف حسب المنتج والمتجر. التنفيذ خلال ساعة والتحويل مباشرة لحسابك.
               </p>
             </div>
           </div>

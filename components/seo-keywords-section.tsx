@@ -2,18 +2,18 @@ import Link from "next/link"
 import { ArrowLeft, TrendingUp, Clock, Shield, Banknote } from "lucide-react"
 
 const keywords = [
-  { term: "سيولة", description: "احصل على سيولة نقدية فورية من رصيدك خلال ساعتين", popular: true },
+  { term: "سيولة", description: "احصل على سيولة نقدية فورية من رصيدك خلال ساعة", popular: true },
   { term: "سلفة", description: "سلفة سريعة بدون تعقيدات لحسابك البنكي", popular: true },
   { term: "كاش تمارا", description: "حول رصيد تمارا إلى كاش نقدي فوري", popular: true },
-  { term: "كاش تابي", description: "تحويل رصيد تابي لنقد في ساعتين", popular: true },
+  { term: "كاش تابي", description: "تحويل رصيد تابي لنقد في ساعة", popular: true },
   { term: "سيولة تابي", description: "سيولة فورية من تطبيق تابي بأفضل سعر", popular: true },
   { term: "سيولة تمارا", description: "سيولة سريعة من تمارا للحساب البنكي", popular: true },
-  { term: "سلفة تابي", description: "سلفة من رصيدك في تابي خلال ساعتين", popular: false },
+  { term: "سلفة تابي", description: "سلفة من رصيدك في تابي خلال ساعة", popular: false },
   { term: "سلفة تمارا", description: "سلفة نقدية من تمارا بأقل رسوم", popular: false },
   { term: "تسييل تابي", description: "تسييل رصيدك بأفضل سعر في السوق", popular: false },
   { term: "تسييل تمارا", description: "خدمة تسييل موثوقة وسريعة", popular: false },
   { term: "تحويل رصيد", description: "تحويل الرصيد لحسابك البنكي بضمان", popular: false },
-  { term: "كاش فوري", description: "كاش يصلك خلال ساعتين فقط", popular: false },
+  { term: "كاش فوري", description: "كاش يصلك خلال ساعة فقط", popular: false },
 ]
 
 const stats = [
@@ -41,7 +41,7 @@ export function SeoKeywordsSection() {
             كل ما تبحث عنه من سيولة وكاش تابي وتمارا
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            نقدم جميع خدمات السيولة والتسييل من تابي وتمارا ومدفوع. اختر الخدمة المناسبة لك واحصل على الكاش خلال ساعتين.
+            نقدم جميع خدمات السيولة والتسييل من تابي وتمارا ومدفوع. اختر الخدمة المناسبة لك واحصل على الكاش خلال ساعة.
           </p>
         </div>
 

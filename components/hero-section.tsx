@@ -40,7 +40,7 @@ export function HeroSection() {
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
-              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعتين. 
+              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعة. 
               خدمة موثوقة في الرياض والسعودية.
             </p>
 
@@ -73,7 +73,7 @@ export function HeroSection() {
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-accent" />
-                <span>تحويل خلال ساعتين</span>
+                <span>تحويل خلال ساعة</span>
               </div>
             </div>
           </div>
@@ -123,7 +123,7 @@ export function HeroSection() {
 
               {/* Floating Elements */}
               <div className="absolute -top-3 right-2 md:-right-4 bg-gradient-to-r from-primary to-accent text-primary-foreground px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg">
-                تحويل خلال ساعتين
+                تحويل خلال ساعة
               </div>
               <div className="absolute -bottom-3 left-2 md:-left-3 bg-card border border-border text-foreground px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium shadow-lg flex items-center gap-1 md:gap-2">
                 <Star className="w-3 h-3 md:w-4 md:h-4 text-yellow-500 fill-yellow-500" />

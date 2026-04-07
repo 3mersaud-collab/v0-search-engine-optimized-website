@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 const articles = [
   {
     id: "siyola-tabby-guide",
-    title: "سيولة تابي: دليل شامل للحصول على كاش من تابي خلال ساعتين",
-    excerpt: "تعرف على خطوات الحصول على سيولة تابي وكيفية تحويل رصيدك إلى كاش نقدي في حسابك البنكي خلال ساعتين فقط.",
+    title: "سيولة تابي: دليل شامل للحصول على كاش من تابي خلال ساعة",
+    excerpt: "تعرف على خطوات الحصول على سيولة تابي وكيفية تحويل رصيدك إلى كاش نقدي في حسابك البنكي خلال ساعة فقط.",
     category: "سيولة تابي",
     readTime: "5 دقائق",
     date: "2026-01-15",
@@ -270,7 +270,7 @@ export default function ArticlesPage() {
               جاهز تحصل على سيولة أو كاش الآن؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              تواصل معنا للحصول على سيولة تابي أو كاش تمارا خلال ساعتين فقط
+              تواصل معنا للحصول على سيولة تابي أو كاش تمارا خلال ساعة فقط
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>

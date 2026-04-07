@@ -7,15 +7,15 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعتين",
-  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعتين فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر.",
+  title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعة",
+  description: "احصل على سيولة تابي وكاش من رصيدك خلال ساعة فقط. سلفة تابي بأفضل الأسعار. تحويل رصيد تابي إلى نقد في حسابك البنكي مع مطر.",
   keywords: "سيولة تابي, كاش تابي, سلفة تابي, تحويل رصيد تابي, تسييل تابي, tabby cash, سيولة من تابي",
   alternates: {
     canonical: "https://liilsol.com/siyola-tabby",
   },
   openGraph: {
     title: "سيولة تابي | كاش تابي - مطر",
-    description: "احصل على كاش من رصيد تابي خلال ساعتين",
+    description: "احصل على كاش من رصيد تابي خلال ساعة",
   },
 }
 
@@ -41,7 +41,7 @@ export default function SiyolaTabbyPage() {
                   className="h-10 w-auto"
                 />
                 <span className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-medium">
-                  خلال ساعتين
+                  خلال ساعة
                 </span>
               </div>
               
@@ -50,7 +50,7 @@ export default function SiyolaTabbyPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-                ندخل معك كشركاء في شراء الجهاز عبر تابي، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعتين فقط.
+                ندخل معك كشركاء في شراء الجهاز عبر تابي، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك <strong className="text-foreground">مبلغ السيولة أو السلفة</strong> في حسابك البنكي خلال ساعة فقط.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -70,7 +70,7 @@ export default function SiyolaTabbyPage() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Clock className="w-8 h-8 text-primary" />
                   <div>
-                    <p className="font-bold text-foreground">ساعتين فقط</p>
+                    <p className="font-bold text-foreground">ساعة فقط</p>
                     <p className="text-sm text-muted-foreground">تحويل سريع</p>
                   </div>
                 </div>
@@ -119,8 +119,8 @@ export default function SiyolaTabbyPage() {
                 },
                 {
                   step: "4",
-                  title: "استلم السيولة خلال ساعتين",
-                  desc: "ندخل كشركاء معك ونتكفل بالدفعة الأولى، ثم نبيع الجهاز ونحول لك مبلغ السيولة في حسابك البنكي خلال ساعتين"
+                  title: "استلم السيولة خلال ساعة",
+                  desc: "ندخل كشركاء معك ونتكفل بالدفعة الأولى، ثم نبيع الجهاز ونحول لك مبلغ السيولة في حسابك البنكي خلال ساعة"
                 }
               ].map((item, index) => (
                 <div key={index} className="flex gap-4 p-6 bg-background rounded-2xl border border-border">
@@ -187,7 +187,7 @@ export default function SiyolaTabbyPage() {
               {[
                 {
                   q: "كم يستغرق الحصول على كاش تابي؟",
-                  a: "ساعتين فقط من وقت إرسال صورة الشاشة حتى التحويل لحسابك البنكي."
+                  a: "ساعة فقط من وقت إرسال صورة الشاشة حتى التحويل لحسابك البنكي."
                 },
                 {
                   q: "هل سيولة تابي آمنة؟",
@@ -222,7 +222,7 @@ export default function SiyolaTabbyPage() {
               جاهز تحصل على سيولة تابي؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              تواصل معنا الآن واحصل على كاش تابي في حسابك خلال ساعتين
+              تواصل معنا الآن واحصل على كاش تابي في حسابك خلال ساعة
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
               <a href="https://wa.me/966590360039">
@@ -244,7 +244,7 @@ export default function SiyolaTabbyPage() {
             "@context": "https://schema.org",
             "@type": "Service",
             "name": "سيولة تابي - مطر",
-            "description": "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعتين",
+            "description": "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعة",
             "provider": {
               "@type": "Organization",
               "name": "مطر",
