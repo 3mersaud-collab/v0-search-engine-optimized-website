@@ -60,7 +60,7 @@ export function ChatFab() {
         parts: [
           {
             type: "text",
-            text: "هلا والله! معك **مطر** سحابة غيث ماحسبت حسابها\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعتين.\n\nتحدد المبلغ اللي تحتاجه ونحن نتكفل بالباقي - بدون فوائد.\n\n**كم تحتاج كاش؟**"
+            text: "هلا والله! معك **مطر** سحابة غيث ماحسبت حسابها 🌧️\n\nنحسب لك المبلغ ونكمل معك على **الواتساب مباشرة**.\n\n**كم تحتاج كاش؟**"
           }
         ],
         createdAt: new Date(),
@@ -342,11 +342,7 @@ export function ChatFab() {
                     if (part.type === "tool-invocation") {
                       const toolLoadingLabels: Record<string, string> = {
                         calculateCash: "جاري الحساب...",
-                        submitOrder: "جاري رفع الطلب...",
-                        trackOrder: "جاري البحث عن الطلب...",
                         searchExtra: "جاري البحث...",
-                        notifyAdmin: "جاري ارسال التنبيه...",
-                        suggestImprovement: "جاري حفظ الاقتراح...",
                       }
                       if (part.state !== "output-available") {
                         return (
@@ -393,46 +389,7 @@ export function ChatFab() {
                           </div>
                         )
                       }
-                      if (part.toolName === "submitOrder") {
-                        const r = part.output as { success: boolean; orderNumber?: string; purchaseAmount?: number; netAmount?: number; appType?: string; error?: string }
-                        if (r?.success) {
-                          return (
-                            <div key={index} className="mt-2 bg-accent/10 rounded-lg p-3 border border-accent/30">
-                              <div className="flex items-center gap-1.5 text-xs font-bold text-accent mb-1">
-                                <MessageCircle className="w-3 h-3" />
-                                تم رفع الطلب بنجاح
-                              </div>
-                              <div className="text-[11px] space-y-0.5">
-                                <p><span className="text-muted-foreground">رقم الطلب:</span> <span className="font-bold">{r.orderNumber}</span></p>
-                                <p><span className="text-muted-foreground">المبلغ الصافي:</span> {r.netAmount?.toLocaleString()} ر.س</p>
-                                <p><span className="text-muted-foreground">التطبيق:</span> {r.appType}</p>
-                              </div>
-                            </div>
-                          )
-                        }
-                      }
-                      if (part.toolName === "trackOrder") {
-                        const r = part.output as { found: boolean; orders?: { orderNumber: string; status: string; amount: number; appType: string; date: string }[]; message?: string }
-                        if (r?.found && r.orders) {
-                          return (
-                            <div key={index} className="mt-2 space-y-1.5">
-                              {r.orders.map((o, i) => (
-                                <div key={i} className="bg-background/60 rounded-lg p-2.5 border border-border/50 text-[11px]">
-                                  <div className="flex justify-between items-center mb-1">
-                                    <span className="font-bold">{o.orderNumber}</span>
-                                    <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-medium ${
-                                      o.status.includes("مكتمل") ? "bg-accent/15 text-accent" :
-                                      o.status.includes("ملغي") ? "bg-destructive/15 text-destructive" :
-                                      "bg-primary/15 text-primary"
-                                    }`}>{o.status}</span>
-                                  </div>
-                                  <p className="text-muted-foreground">{o.amount?.toLocaleString()} ر.س - {o.appType} - {o.date}</p>
-                                </div>
-                              ))}
-                            </div>
-                          )
-                        }
-                      }
+
                       if (part.toolName === "searchExtra") {
                         const result = part.output as { searchUrl?: string }
                         if (result?.searchUrl) {
@@ -498,46 +455,11 @@ export function ChatFab() {
             )}
           </div>
 
-          {/* Phone Prompt */}
-          {showPhonePrompt && !phoneLinked && (
-            <div className="px-3 py-2.5 border-t border-primary/20 bg-primary/5">
-              <div className="flex items-center gap-1.5 mb-2">
-                <Phone className="w-3 h-3 text-primary" />
-                <p className="text-[11px] text-foreground font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
-              </div>
-              <div className="flex gap-1.5">
-                <input
-                  value={phoneInput}
-                  onChange={(e) => setPhoneInput(e.target.value)}
-                  placeholder="05xxxxxxxx"
-                  className="flex-1 bg-card border border-border rounded-lg px-2.5 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
-                  dir="ltr"
-                  type="tel"
-                  maxLength={10}
-                />
-                <button
-                  type="button"
-                  onClick={handlePhoneSubmit}
-                  disabled={!phoneInput.trim()}
-                  className="px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-xs font-medium hover:bg-primary/90 disabled:opacity-50 transition-colors"
-                >
-                  تأكيد
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowPhonePrompt(false)}
-                  className="px-2 py-1.5 text-muted-foreground hover:text-foreground transition-colors text-xs"
-                >
-                  لاحقا
-                </button>
-              </div>
-            </div>
-          )}
+
 
           {/* Quick links */}
           <div className="flex items-center justify-center gap-3 px-3 py-2 border-t border-border/50 bg-secondary/30">
-            <Link href="/order" className="text-[10px] text-primary hover:underline">صفحة الطلب</Link>
-            <span className="text-border">|</span>
+
             <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer" className="text-[10px] text-[#25D366] hover:underline flex items-center gap-1">
               <MessageCircle className="w-2.5 h-2.5" /> واتساب
             </a>

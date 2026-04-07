@@ -418,28 +418,7 @@ export default function ChatPage() {
               )}
             </div>
 
-            {/* Phone Prompt */}
-            {showPhonePrompt && !phoneLinked && (
-              <div className="px-4 py-3 border-t border-primary/20 bg-primary/5">
-                <div className="flex items-center gap-1.5 mb-2">
-                  <Phone className="w-3.5 h-3.5 text-primary" />
-                  <p className="text-xs text-foreground font-medium">ادخل رقم جوالك عشان نتواصل معك بسرعة:</p>
-                </div>
-                <div className="flex gap-2">
-                  <input
-                    value={phoneInput}
-                    onChange={(e) => setPhoneInput(e.target.value)}
-                    placeholder="05xxxxxxxx"
-                    className="flex-1 bg-card border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/50"
-                    dir="ltr"
-                    type="tel"
-                    maxLength={10}
-                  />
-                  <Button size="sm" onClick={handlePhoneSubmit} disabled={!phoneInput.trim()}>تأكيد</Button>
-                  <Button size="sm" variant="ghost" onClick={() => setShowPhonePrompt(false)} className="text-muted-foreground">لاحقا</Button>
-                </div>
-              </div>
-            )}
+
 
             {/* Image Preview */}
             {imagePreview && (
@@ -490,12 +469,6 @@ export default function ChatPage() {
 
           {/* Bottom CTAs */}
           <div className="flex flex-wrap justify-center gap-3 mt-4 mb-4">
-            <Button variant="outline" size="sm" asChild className="gap-2 bg-transparent">
-              <Link href="/order">
-                <FileText className="w-4 h-4" />
-                صفحة الطلب
-              </Link>
-            </Button>
             <Button variant="outline" size="sm" asChild className="gap-2 bg-[#25D366]/10 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 hover:text-[#25D366]">
               <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-4 h-4" />

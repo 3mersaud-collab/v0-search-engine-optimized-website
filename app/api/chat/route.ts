@@ -3,70 +3,48 @@ export const dynamic = "force-dynamic"
 
 const WHATSAPP_NUMBER = "966590360039"
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? ""
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
-const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد خدمة مطر لتحويل مشتريات التقسيط الى كاش.
+const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد مختصر ولطيف لخدمة تحويل مشتريات التقسيط الى كاش.
+- تكلّم باللهجة النجدية وباختصار.
+- لا تطلب بيانات بنكية ولا ترفع طلب داخل الموقع.
+- إذا طلب العميل مبلغ، احسب له بشكل تقريبي ثم وجّهه للواتساب فقط.
+- إذا وافق العميل، أعطه رابط واتساب مباشر.
+- لا تستخدم أدوات داخلية ولا تذكر submitOrder أو trackOrder.
 
-## شخصيتك:
-- تتكلم باللهجة النجدية كأنك شخص حقيقي مو بوت
-- تختصر - تكتب مثل ما الناس تكتب بالواتساب
-- ما تكرر نفسك أبداً
-- تستخدم: "هلا والله"، "ابشر"، "لا تشيل هم"، "يالغالي"، "حياك"
+الترحيب المناسب:
+هلا والله! معك مطر سحابة غيث ماحسبت حسابها 🌧️
+نحسب لك المبلغ ونكمل معك على الواتساب مباشرة.
+كم تحتاج كاش؟`
 
-## شرح الخدمة:
-1. العميل يحدد المبلغ اللي يحتاجه كاش
-2. نحن نحدد له الجهاز المطلوب شراؤه بالتقسيط
-3. العميل يشتري الجهاز عن طريق تابي أو تمارا أو مدفوع من جرير/اكسترا/نون
-4. نحن نستلم الجهاز ونبيعه ونحول الصافي لحسابه خلال أقل من ساعة
-- الدفعة الأولى (25%) نحن ندفعها عن العميل - ما يدفع شي من جيبه
-
-## حساب المبالغ:
-لما يذكر مبلغ صافي مطلوب، احسب تقريباً:
-- قيمة الجهاز = المبلغ × 2.5 (تقريب لأقرب 100)
-- قيمة البيع = قيمة الجهاز × 85%
-- الدفعة الأولى = قيمة الجهاز × 25%
-- الرسوم الإدارية = قيمة الجهاز × 10%
-- الصافي = قيمة البيع - الدفعة الأولى - الرسوم
-
-## تدفق المحادثة:
-
-### الترحيب:
-"هلا والله! معك مطر سحابة غيث ماحسبت حسابها 🌧️
-نحول لك مشتريات التقسيط من تابي وتمارا ومدفوع لكاش.
-كم تحتاج كاش (الصافي)؟"
-
-### عند ذكر مبلغ - احسب وقول:
-"ابشر يالغالي! عشان توصلك [الصافي] ر.س:
-• قيمة الجهاز: [مبلغ الشراء] ر.س
-• الرسوم الإدارية: [الرسوم] ر.س
-• الدفعة الأولى (نتكفل فيها ✅): [الدفعة] ر.س
-**الصافي لك: [الصافي] ر.س**
-
-تبي نكمل؟"
-
-### عند الموافقة:
-"ممتاز! تواصل معنا على الواتساب وذكر:
-1️⃣ المبلغ اللي تبيه: [الصافي] ر.س
-2️⃣ التطبيق: تابي، تمارا، أو مدفوع
-
-👇 اضغط هنا:
-https://wa.me/${WHATSAPP_NUMBER}?text=السلام+عليكم+أبي+كاش+الصافي+[الصافي]+ريال"
-
-## قواعد:
-- لا تطلب بيانات بنكية - الواتساب يتكفل
-- أي رقم = المبلغ المطلوب كاش
-- خلك مختصر ومباشر`
-
-function calculateAmount(net: number) {
+function calc(net: number) {
   let purchase = Math.round((net * 2.5) / 100) * 100
+  for (let i = 0; i < 8; i++) {
+    const sale = Math.round(purchase * 0.85)
+    const down = Math.round(purchase * 0.25)
+    const admin = Math.round(purchase * 0.10)
+    const actual = sale - down - admin
+    const diff = net - actual
+    if (Math.abs(diff) < 50) break
+    purchase = Math.round((purchase + diff * 1.5) / 100) * 100
+  }
   const sale = Math.round(purchase * 0.85)
-  const downPayment = Math.round(purchase * 0.25)
-  const adminFee = Math.round(purchase * 0.10)
-  const actualNet = sale - downPayment - adminFee
-  // تعديل بسيط لتقريب النتيجة
-  const diff = net - actualNet
-  purchase = Math.round((purchase + diff * 1.5) / 100) * 100
-  return { purchase, sale: Math.round(purchase * 0.85), downPayment: Math.round(purchase * 0.25), adminFee: Math.round(purchase * 0.10), net: Math.round(purchase * 0.85) - Math.round(purchase * 0.25) - Math.round(purchase * 0.10) }
+  const down = Math.round(purchase * 0.25)
+  const admin = Math.round(purchase * 0.10)
+  const actual = sale - down - admin
+  return { purchase, sale, down, admin, actual }
+}
+
+function fallbackReply(lastUserText: string) {
+  const txt = lastUserText || ""
+  const match = txt.match(/\d{3,5}/)
+  if (match) {
+    const amount = Number(match[0])
+    const r = calc(amount)
+    const wa = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`السلام عليكم، أبي كاش ${amount} ريال`)}`
+    return `ابشر يالغالي!\n\nعشان توصلك تقريباً ${r.actual.toLocaleString()} ر.س:\n• قيمة الجهاز: ${r.purchase.toLocaleString()} ر.س\n• قيمة البيع: ${r.sale.toLocaleString()} ر.س\n• الرسوم الإدارية: ${r.admin.toLocaleString()} ر.س\n• الدفعة الأولى (نتكفل فيها): ${r.down.toLocaleString()} ر.س\n\nإذا مناسب لك، كمل معنا على الواتساب مباشرة:\n${wa}`
+  }
+  return `هلا والله! معك مطر 🌧️\nنحسب لك المبلغ ونكمل معك على الواتساب مباشرة.\n\nارسل لي كم تحتاج كاش بالأرقام مثل: 2000 أو 3500.`
 }
 
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
@@ -75,59 +53,65 @@ function checkRateLimit(id: string): boolean {
   const l = rateLimitMap.get(id)
   if (!l || now > l.resetAt) { rateLimitMap.set(id, { count: 1, resetAt: now + 60_000 }); return true }
   if (l.count >= 15) return false
-  l.count++; return true
+  l.count++
+  return true
 }
 
-interface GeminiMessage { role: "user" | "model"; parts: Array<{ text: string }> }
+interface InMessage {
+  role: string
+  content?: string
+  parts?: Array<{ type: string; text?: string }>
+}
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json() as { messages: Array<{ role: string; content: string }> }
+    const { messages } = await req.json() as { messages: InMessage[] }
     const visitorId = req.headers.get("x-visitor-id") || "anonymous"
 
     if (!checkRateLimit(visitorId)) {
-      return Response.json({ error: "كثرت الرسائل، انتظر شوي" }, { status: 429 })
+      return Response.json({ messages: [{ role: "assistant", content: "كثرت الرسائل، انتظر شوي وحاول مرة ثانية" }] }, { status: 429 })
     }
+
+    const normalized = (messages || []).map((m) => {
+      const textFromParts = Array.isArray(m.parts)
+        ? m.parts.filter((p) => p.type === "text").map((p) => p.text || "").join("\n")
+        : ""
+      return {
+        role: m.role === "assistant" ? "model" : "user",
+        text: m.content || textFromParts || "",
+      }
+    }).filter((m) => m.text.trim())
+
+    const lastUserText = [...normalized].reverse().find((m) => m.role === "user")?.text || ""
 
     if (!GEMINI_API_KEY) {
-      return Response.json({ error: "تواصل معنا على الواتساب: wa.me/" + WHATSAPP_NUMBER }, { status: 500 })
+      const text = fallbackReply(lastUserText)
+      return Response.json({ messages: [{ role: "assistant", content: text }] })
     }
-
-    // تحويل الرسائل لصيغة Gemini
-    const geminiMessages: GeminiMessage[] = messages
-      .filter((m) => m.role === "user" || m.role === "assistant")
-      .map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content || "" }],
-      }))
 
     const body = {
       system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-      contents: geminiMessages,
-      generationConfig: { maxOutputTokens: 500, temperature: 0.7 },
+      contents: normalized.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
+      generationConfig: { temperature: 0.7, maxOutputTokens: 400 },
     }
 
-    const geminiRes = await fetch(GEMINI_URL, {
+    const res = await fetch(GEMINI_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
       signal: req.signal,
     })
 
-    if (!geminiRes.ok) {
-      const err = await geminiRes.text()
-      console.error("Gemini error:", err)
-      return Response.json({ error: "تواصل معنا على الواتساب: wa.me/" + WHATSAPP_NUMBER }, { status: 500 })
+    if (!res.ok) {
+      const text = fallbackReply(lastUserText)
+      return Response.json({ messages: [{ role: "assistant", content: text }] })
     }
 
-    const data = await geminiRes.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "هلا! كيف أقدر أساعدك؟"
+    const data = await res.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> }
+    const text = data?.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("\n").trim() || fallbackReply(lastUserText)
 
-    // رد بصيغة بسيطة يفهمها الفرونت
-    return Response.json({ role: "assistant", content: text })
-
-  } catch (error) {
-    console.error("Chat error:", error)
-    return Response.json({ error: "حصل خطأ، تواصل معنا: wa.me/" + WHATSAPP_NUMBER }, { status: 500 })
+    return Response.json({ messages: [{ role: "assistant", content: text }] })
+  } catch {
+    return Response.json({ messages: [{ role: "assistant", content: "هلا! تواصل معنا على الواتساب مباشرة: https://wa.me/966590360039" }] })
   }
 }
