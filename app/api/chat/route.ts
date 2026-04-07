@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic"
 
 const WHATSAPP_NUMBER = "966590360039"
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? ""
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent?key=${GEMINI_API_KEY}`
 
 const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسابها. مساعد خدمة مطر لتحويل مشتريات التقسيط الى كاش.
 
