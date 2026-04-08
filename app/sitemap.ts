@@ -2,9 +2,8 @@ import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://liilsol.com'
-  const currentDate = new Date()
+  const now = new Date()
 
-  // Article slugs
   const articleSlugs = [
     'siyola-tabby-guide',
     'cash-tamara-steps',
@@ -12,106 +11,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'siyola-guide-beginners',
     'best-stores-siyola',
     'avoid-scams-siyola',
+    'tabby-vs-tamara',
+    'كيف-احول-رصيد-تابي-الى-كاش',
+    'سيولة-تابي-بدون-تحويل-راتب',
+    'كم-عمولة-تسييل-تابي-وتمارا',
   ]
 
   const staticPages: MetadataRoute.Sitemap = [
-    // Homepage - highest priority
-    {
-      url: baseUrl,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    // Main keyword landing pages - very high priority for SEO
-    {
-      url: `${baseUrl}/siyola`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/siyola-tabby`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/cash-tamara`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    // Check limit page
-    {
-      url: `${baseUrl}/check-limit`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    // Articles index
-    {
-      url: `${baseUrl}/articles`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    // Order page
-    {
-      url: `${baseUrl}/order`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    // Track order
-    {
-      url: `${baseUrl}/track-order`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    // Reviews
-    {
-      url: `${baseUrl}/reviews`,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 0.85,
-    },
-    // Add review
-    {
-      url: `${baseUrl}/add-review`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    // Referral
-    {
-      url: `${baseUrl}/referral`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    // About
-    {
-      url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    // Terms
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: currentDate,
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
+    { url: baseUrl,                              lastModified: now, changeFrequency: 'daily',   priority: 1.0  },
+    { url: `${baseUrl}/siyola-tabby`,            lastModified: now, changeFrequency: 'weekly',  priority: 0.98 },
+    { url: `${baseUrl}/cash-tamara`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.98 },
+    { url: `${baseUrl}/siyola`,                  lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
+    // Local SEO pages
+    { url: `${baseUrl}/siyola-riyadh`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
+    { url: `${baseUrl}/siyola-jeddah`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
+    { url: `${baseUrl}/siyola-dammam`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
+    // Supporting pages
+    { url: `${baseUrl}/check-limit`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
+    { url: `${baseUrl}/reviews`,                 lastModified: now, changeFrequency: 'daily',   priority: 0.85 },
+    { url: `${baseUrl}/articles`,                lastModified: now, changeFrequency: 'weekly',  priority: 0.80 },
+    { url: `${baseUrl}/about`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
+    { url: `${baseUrl}/referral`,                lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
+    { url: `${baseUrl}/add-review`,              lastModified: now, changeFrequency: 'monthly', priority: 0.55 },
+    { url: `${baseUrl}/shariah`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.50 },
+    { url: `${baseUrl}/track-order`,             lastModified: now, changeFrequency: 'monthly', priority: 0.45 },
+    { url: `${baseUrl}/privacy`,                 lastModified: now, changeFrequency: 'yearly',  priority: 0.20 },
+    { url: `${baseUrl}/terms`,                   lastModified: now, changeFrequency: 'yearly',  priority: 0.20 },
   ]
 
-  // Article pages
   const articlePages: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
-    url: `${baseUrl}/articles/${slug}`,
-    lastModified: currentDate,
+    url: `${baseUrl}/articles/${encodeURIComponent(slug)}`,
+    lastModified: now,
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority: 0.75,
   }))
 
   return [...staticPages, ...articlePages]
