@@ -1,25 +1,25 @@
 import { ShoppingCart, Smartphone, Camera, Banknote, ExternalLink, AlertTriangle, CheckCircle2, Star, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { TabbyLogo, TamaraLogo, MadfuLogo } from "@/components/app-logos"
+import { TabbyLogo, TamaraLogo } from "@/components/app-logos"
 import Link from "next/link"
 
 const steps = [
   {
     icon: Smartphone,
     title: "احسب السيولة واختر المبلغ",
-    description: "استخدم حاسبة السيولة لمعرفة المبلغ الذي ستحصل عليه، ثم افحص حدك الائتماني في تابي أو تمارا أو مدفوع",
+    description: "استخدم حاسبة السيولة لمعرفة المبلغ الذي ستحصل عليه، ثم افحص حدك الائتماني في تابي أو تمارا",
     number: "01"
   },
   {
     icon: ShoppingCart,
     title: "ادخل المتجر وأضف المنتجات",
-    description: "ادخل نون أو اكسترا (تابي/تمارا) أو المنيع (مدفوع) وأضف أي منتجات بنفس مبلغ الشراء من الحاسبة",
+    description: "ادخل نون أو اكسترا وأضف جهاز بنفس قيمة الشراء من الحاسبة",
     number: "02"
   },
   {
     icon: Camera,
     title: "اختر طريقة الدفع وصور الشاشة",
-    description: "اختر تابي أو تمارا أو مدفوع كوسيلة دفع. بعد ظهور تقسيم الدفعات صور الشاشة وأرسلها لنا",
+    description: "اختر تابي أو تمارا كوسيلة دفع. اتبع خطوات التحقق وأرسل لنا صورة التأكيد",
     number: "03"
   },
   {
@@ -43,12 +43,7 @@ const stores = [
     url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT&text=&pg=1&pageSize=24&sort=relevance",
     description: "سيولة تابي وكاش تمارا من اكسترا"
   },
-  {
-    name: "متجر المنيع",
-    apps: ["مدفوع"],
-    url: "https://www.almanea.sa/mobiles-tablets-c-7423/mobiles-c-7424",
-    description: "سيولة مدفوع من المنيع"
-  }
+  // متجر المنيع موقوف مؤقتاً مع مدفوع
 ]
 
 export function HowItWorks() {
@@ -67,7 +62,7 @@ export function HowItWorks() {
             خطوات الحصول على سيولة تابي وكاش تمارا
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            عملية سهلة وشفافة للحصول على كاش تابي أو سيولة تمارا أو سلفة مدفوع بأسرع وقت
+            عملية سهلة وشفافة للحصول على كاش تابي أو سيولة تمارا بأسرع وقت
           </p>
         </div>
 
@@ -145,10 +140,6 @@ export function HowItWorks() {
             <TamaraLogo className="w-24 h-10 mx-auto mb-2" />
             <span className="text-xs text-muted-foreground">كاش تمارا</span>
           </div>
-          <div className="text-center">
-            <MadfuLogo className="w-24 h-10 mx-auto mb-2" />
-            <span className="text-xs text-muted-foreground">سيولة مدفوع</span>
-          </div>
         </div>
 
         {/* Instructions for Tamara */}
@@ -184,9 +175,9 @@ export function HowItWorks() {
           <div className="flex items-start gap-4">
             <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
             <div>
-              <h4 className="font-bold text-foreground mb-3">تعليمات سيولة تابي ومدفوع</h4>
+              <h4 className="font-bold text-foreground mb-3">تعليمات سيولة تابي</h4>
               <p className="text-muted-foreground text-sm mb-3">
-                بعد اختيار تابي أو مدفوع كوسيلة دفع وظهور تقسيم الدفعات:
+                بعد اختيار تابي كوسيلة دفع وظهور تقسيم الدفعات:
               </p>
               <ul className="space-y-2 text-muted-foreground text-sm">
                 <li className="flex items-start gap-2">

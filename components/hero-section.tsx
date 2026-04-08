@@ -39,7 +39,7 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong> و<strong>مدفوع</strong>، 
+              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong>، 
               ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعة. 
               خدمة موثوقة في الرياض والسعودية.
             </p>
@@ -101,7 +101,7 @@ export function HeroSection() {
                 <div className="text-muted-foreground mb-8">ريال سعودي</div>
                 
                 {/* Payment Apps */}
-                <div className="grid grid-cols-3 gap-2 mb-6 w-full min-w-0">
+                <div className="grid grid-cols-2 gap-2 mb-6 w-full min-w-0">
                   <div className="bg-[#3BFFC1]/10 rounded-xl p-2 md:p-3 text-center border border-[#3BFFC1]/30 min-w-0">
                     <div className="text-sm md:text-lg font-bold text-[#292929] mb-1 truncate">tabby</div>
                     <span className="text-[10px] md:text-xs font-medium text-muted-foreground">كاش تابي</span>
@@ -109,10 +109,6 @@ export function HeroSection() {
                   <div className="bg-[#FFD700]/10 rounded-xl p-2 md:p-3 text-center border border-[#FFD700]/30 min-w-0">
                     <div className="text-sm md:text-lg font-bold text-[#1A1A1A] mb-1 truncate">tamara</div>
                     <span className="text-[10px] md:text-xs font-medium text-muted-foreground">كاش تمارا</span>
-                  </div>
-                  <div className="bg-[#4361EE]/10 rounded-xl p-2 md:p-3 text-center border border-[#4361EE]/30 min-w-0">
-                    <div className="text-sm md:text-lg font-bold text-[#4361EE] mb-1 truncate">مدفوع</div>
-                    <span className="text-[10px] md:text-xs font-medium text-muted-foreground">مدفوع</span>
                   </div>
                 </div>
 
