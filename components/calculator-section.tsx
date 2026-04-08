@@ -6,7 +6,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
-  const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara" | "madfu">("tabby")
+  const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara">("tabby")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
   // New calculation logic based on requirements
@@ -57,14 +57,12 @@ export function CalculatorSection() {
 
   const apps = [
     { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
-    { id: "tamara" as const, name: "تمارا", label: "tamara", color: "text-[#FF6B35]" },
-    { id: "madfu" as const, name: "مدفوع", label: "مدفوع", color: "text-[#4361EE]" }
+    { id: "tamara" as const, name: "تمارا", label: "tamara", color: "text-[#FF6B35]" }
   ]
 
   const appColors = {
     tabby: "border-[#3CBED8] bg-[#3CBED8]/5",
-    tamara: "border-[#FF6B35] bg-[#FF6B35]/5",
-    madfu: "border-[#4361EE] bg-[#4361EE]/5"
+    tamara: "border-[#FF6B35] bg-[#FF6B35]/5"
   }
 
   return (
@@ -98,9 +96,9 @@ export function CalculatorSection() {
               {/* App Selection with SVG Logos */}
               <div className="mb-8">
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  اختر التطبيق (سيولة تابي، سيولة تمارا، أو مدفوع)
+                  اختر التطبيق (سيولة تابي أو سيولة تمارا)
                 </label>
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 gap-3">
                   {apps.map((app) => (
                     <button
                       key={app.id}
