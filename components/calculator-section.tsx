@@ -228,8 +228,8 @@ export function CalculatorSection() {
 
               {/* CTA */}
               <Button size="lg" className="w-full gap-2 text-lg py-6 shadow-lg shadow-primary/20" asChild>
-                <a href="https://wa.me/966590360039">
-                  اطلب سيولة الآن
+                <a href="#verify">
+                  اطلب السيولة الآن
                   <ArrowLeft className="w-5 h-5" />
                 </a>
               </Button>

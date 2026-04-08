@@ -147,6 +147,14 @@ export function VerifySteps() {
             </div>
           </div>
 
+          <div className="bg-red-500/10 border-2 border-red-500/30 rounded-2xl p-5 mb-8 flex items-start gap-3 text-sm shadow-sm">
+            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-bold text-foreground mb-1">تنبيه مهم — مدفوع موقف مؤقتاً</p>
+              <p className="text-muted-foreground leading-relaxed">حالياً التقديم متاح عبر <strong className="text-foreground">تابي</strong> و<strong className="text-foreground">تمارا</strong> فقط. خدمة <strong className="text-foreground">مدفوع</strong> متوقفة مؤقتاً حتى إشعار آخر.</p>
+            </div>
+          </div>
+
           {/* Tab Selector */}
           <div className="flex gap-3 mb-8 bg-card border border-border rounded-2xl p-2">
             <button
@@ -231,14 +239,6 @@ export function VerifySteps() {
             </p>
           </div>
 
-          {/* Madfu Notice */}
-          <div className="bg-muted/40 border border-border rounded-xl p-4 mb-8 flex items-start gap-3 text-sm">
-            <AlertCircle className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-semibold text-foreground mb-0.5">مدفوع — موقف مؤقت</p>
-              <p className="text-muted-foreground">الخدمة عبر مدفوع متوقفة حالياً بشكل مؤقت. تواصل معنا للاستفسار عن آخر التحديثات.</p>
-            </div>
-          </div>
 
           {/* CTA */}
           <Button
