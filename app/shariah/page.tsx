@@ -199,7 +199,7 @@ export default function ShariahPage() {
                 هل لديك استفسار عن الجانب الشرعي لخدماتنا؟
               </p>
               <Link
-                href="https://wa.me/966590360039"
+                href="https://wa.me/966563457734"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:opacity-90 transition-opacity"
               >
                 تواصل معنا عبر واتساب

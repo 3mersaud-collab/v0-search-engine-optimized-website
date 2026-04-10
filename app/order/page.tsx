@@ -164,7 +164,7 @@ export default function OrderPage() {
       if (data.success) {
         setOrderNumber(data.order.order_number)
         const message = `تم تقديم طلب جديد ✅%0Aرقم الطلب: ${data.order.order_number}%0A%0Aالاسم: ${name}%0Aالجوال: ${phone}%0Aالتطبيق: ${app}%0Aالصافي المطلوب: ${netAmount.toLocaleString()} ريال%0Aقيمة الشراء: ${calc.purchaseAmount.toLocaleString()} ريال%0Aالمتجر: ${selectedStore}%0A%0Aالصورة مرفقة في لوحة التحكم`
-        window.open(`https://wa.me/966590360039?text=${message}`, "_blank")
+        window.open(`https://wa.me/966563457734?text=${message}`, "_blank")
         setIsSubmitted(true)
       } else {
         alert(data.error || "حدث خطأ")
@@ -206,7 +206,7 @@ export default function OrderPage() {
                 </div>
               </div>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button asChild><a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">فتح واتساب</a></Button>
+                <Button asChild><a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">فتح واتساب</a></Button>
                 <Button variant="outline" asChild className="bg-transparent"><Link href="/track">تتبع الطلب</Link></Button>
                 <Button variant="outline" asChild className="bg-transparent"><Link href="/">العودة للرئيسية</Link></Button>
               </div>

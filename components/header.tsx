@@ -72,13 +72,13 @@ export function Header() {
           <div className="hidden md:flex items-center gap-3">
             <ThemeToggle />
             <Button variant="outline" size="sm" className="gap-2 bg-transparent" asChild>
-              <a href="tel:+966590360039">
+              <a href="tel:+966563457734">
                 <Phone className="w-4 h-4" />
                 <span dir="ltr">0563457734</span>
               </a>
             </Button>
             <Button size="sm" asChild>
-              <a href="https://wa.me/966590360039">ابدأ الآن</a>
+              <a href="https://wa.me/966563457734">ابدأ الآن</a>
             </Button>
           </div>
 
@@ -173,13 +173,13 @@ export function Header() {
               </div>
               <div className="flex flex-col gap-2 pt-2">
                 <Button variant="outline" className="gap-2 w-full bg-transparent" asChild>
-                  <a href="tel:+966590360039">
+                  <a href="tel:+966563457734">
                     <Phone className="w-4 h-4" />
                     <span dir="ltr">0563457734</span>
                   </a>
                 </Button>
                 <Button className="w-full" asChild>
-                  <a href="https://wa.me/966590360039">ابدأ الآن</a>
+                  <a href="https://wa.me/966563457734">ابدأ الآن</a>
                 </Button>
               </div>
             </div>

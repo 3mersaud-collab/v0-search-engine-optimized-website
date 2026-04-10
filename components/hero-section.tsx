@@ -47,7 +47,7 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-3">
               <Button size="lg" className="gap-2 text-lg px-8 py-6 shadow-xl bg-[#25D366] hover:bg-[#1fb855] text-white" asChild>
-                <a href="https://wa.me/966590360039">
+                <a href="https://wa.me/966563457734">
                   <MessageCircle className="w-5 h-5" />
                   اطلب سيولة عبر الواتساب
                 </a>
@@ -136,7 +136,7 @@ export function HeroSection() {
                   <p className="text-xs text-muted-foreground">تواصل معنا لرؤية تقييمات عملائنا</p>
                 </div>
                 <Button size="sm" variant="ghost" className="text-accent hover:text-accent" asChild>
-                  <a href="https://wa.me/966590360039">واتساب</a>
+                  <a href="https://wa.me/966563457734">واتساب</a>
                 </Button>
               </div>
             </div>
@@ -154,7 +154,7 @@ export function HeroSection() {
             "name": "مطر - سحابة غيث ماحسبت حسابها",
             "description": "مطر - سحابة غيث ماحسبت حسابها. ندخل كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
-            "telephone": "+966590360039",
+            "telephone": "+966563457734",
             "email": "matar@liilsa.com",
             "address": {
               "@type": "PostalAddress",

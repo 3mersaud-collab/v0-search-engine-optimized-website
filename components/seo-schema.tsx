@@ -7,7 +7,7 @@ export function SeoSchema() {
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سحابة غيث ماحسبت حسابها"],
     "description": "سيولة نقدية فورية وسلفة من رصيدك. ندخل كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى. كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، تحويل جوالات الى كاش خلال ساعة.",
     "url": "https://liilsol.com",
-    "telephone": "+966590360039",
+    "telephone": "+966563457734",
     "email": "matar@liilsa.com",
     "image": "https://liilsol.com/og-image.jpg",
     "logo": "https://liilsol.com/logo.png",

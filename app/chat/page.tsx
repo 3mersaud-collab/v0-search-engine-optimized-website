@@ -270,7 +270,7 @@ export default function ChatPage() {
             <div className="mb-4 px-4 py-3 bg-destructive/10 border border-destructive/20 rounded-xl text-destructive text-sm text-center">
               {errorMessage}
               {errorMessage.includes("واتساب") && (
-                <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer" className="underline font-medium mr-1">
+                <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer" className="underline font-medium mr-1">
                   اضغط هنا
                 </a>
               )}
@@ -470,7 +470,7 @@ export default function ChatPage() {
           {/* Bottom CTAs */}
           <div className="flex flex-wrap justify-center gap-3 mt-4 mb-4">
             <Button variant="outline" size="sm" asChild className="gap-2 bg-[#25D366]/10 border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/20 hover:text-[#25D366]">
-              <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                 <MessageCircle className="w-4 h-4" />
                 تواصل واتساب
               </a>
