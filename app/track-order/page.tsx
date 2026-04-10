@@ -31,7 +31,7 @@ export default function TrackOrderPage() {
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     // بيانات تجريبية - في الواقع ستأتي من قاعدة البيانات
-    if (phone === "0590360039") {
+    if (phone === "0563457734") {
       setOrders([
         {
           id: "ORD-2026-001",
@@ -211,7 +211,7 @@ export default function TrackOrderPage() {
           <Button size="lg" variant="outline" asChild>
             <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
               <Phone className="w-5 h-5 ml-2" />
-              0590360039
+              0563457734
             </a>
           </Button>
         </div>

@@ -238,7 +238,7 @@ export default function SiyolaPage() {
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
               <a href="https://wa.me/966590360039">
-                واتساب: 0590360039
+                واتساب: 0563457734
                 <ArrowLeft className="w-5 h-5" />
               </a>
             </Button>

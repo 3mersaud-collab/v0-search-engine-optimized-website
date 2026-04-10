@@ -807,7 +807,7 @@ export default function SiyolaTabbyPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 text-lg shadow-xl shadow-primary/25" asChild>
                   <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
-                    واتساب: 0590360039
+                    واتساب: 0563457734
                     <ArrowLeft className="w-5 h-5" />
                   </a>
                 </Button>

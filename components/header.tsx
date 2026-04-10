@@ -74,7 +74,7 @@ export function Header() {
             <Button variant="outline" size="sm" className="gap-2 bg-transparent" asChild>
               <a href="tel:+966590360039">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">0590360039</span>
+                <span dir="ltr">0563457734</span>
               </a>
             </Button>
             <Button size="sm" asChild>
@@ -175,7 +175,7 @@ export function Header() {
                 <Button variant="outline" className="gap-2 w-full bg-transparent" asChild>
                   <a href="tel:+966590360039">
                     <Phone className="w-4 h-4" />
-                    <span dir="ltr">0590360039</span>
+                    <span dir="ltr">0563457734</span>
                   </a>
                 </Button>
                 <Button className="w-full" asChild>

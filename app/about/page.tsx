@@ -186,7 +186,7 @@ export default function AboutPage() {
                   <Phone className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">واتساب</h3>
-                <p className="text-muted-foreground" dir="ltr">0590360039</p>
+                <p className="text-muted-foreground" dir="ltr">0563457734</p>
               </a>
 
               <a 
