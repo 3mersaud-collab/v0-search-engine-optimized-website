@@ -9,37 +9,70 @@ export function CalculatorSection() {
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara">("tabby")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
-  // New calculation logic based on requirements
+  // جدول الأسعار الثابتة: قيمة الشراء -> الصافي للعميل
+  const priceTable = [
+    { purchase: 1000, net: 300 },
+    { purchase: 1500, net: 500 },
+    { purchase: 2000, net: 750 },
+    { purchase: 2500, net: 1000 },
+    { purchase: 3099, net: 1350 },
+  ]
+
+  // حساب الصافي بناءً على الجدول الثابت مع interpolation بين النقاط
+  function getNetFromTable(purchaseAmount: number): number {
+    if (purchaseAmount <= priceTable[0].purchase) {
+      // أقل من أول نقطة: نحسب بنفس نسبة أول نقطة
+      const ratio = priceTable[0].net / priceTable[0].purchase
+      return purchaseAmount * ratio
+    }
+    if (purchaseAmount >= priceTable[priceTable.length - 1].purchase) {
+      // أكبر من آخر نقطة: نحسب بنفس نسبة آخر نقطتين
+      const last = priceTable[priceTable.length - 1]
+      const prev = priceTable[priceTable.length - 2]
+      const slope = (last.net - prev.net) / (last.purchase - prev.purchase)
+      return last.net + slope * (purchaseAmount - last.purchase)
+    }
+    // بين نقطتين: interpolation خطي
+    for (let i = 0; i < priceTable.length - 1; i++) {
+      const curr = priceTable[i]
+      const next = priceTable[i + 1]
+      if (purchaseAmount >= curr.purchase && purchaseAmount <= next.purchase) {
+        const ratio = (purchaseAmount - curr.purchase) / (next.purchase - curr.purchase)
+        return curr.net + ratio * (next.net - curr.net)
+      }
+    }
+    return 0
+  }
+
   const calculations = useMemo(() => {
-    // مبلغ البيع: يبدأ من 14% في 5500 وينقص 1% كل 1000 حتى يصل 10% ويثبت
+    const purchaseAmount = amount
+    const netAmount = Math.round(getNetFromTable(amount))
+
+    // الخصومات الإجمالية = مبلغ الشراء - الصافي
+    const totalDeductions = purchaseAmount - netAmount
+
+    // مبلغ البيع وفرق البيع (للعرض فقط - لا تتغير)
     let sellingLossRate: number
     if (amount <= 5500) {
-      sellingLossRate = 0.15 // 15% للمبالغ الأقل من 5500
+      sellingLossRate = 0.15
     } else if (amount >= 9500) {
-      sellingLossRate = 0.10 // 10% ثابت بعد 9500
+      sellingLossRate = 0.10
     } else {
-      // تدريجي من 14% عند 5500 إلى 10% عند 9500
       const stepsAbove5500 = Math.floor((amount - 5500) / 1000)
       sellingLossRate = 0.14 - (stepsAbove5500 * 0.01)
     }
+    const sellingLoss = amount * sellingLossRate
+    const saleAmount = amount - sellingLoss
 
-    const purchaseAmount = amount // مبلغ الشراء
-    const sellingLoss = amount * sellingLossRate // فرق البيع
-    const saleAmount = amount - sellingLoss // مبلغ البيع
-    
-    // الرسوم الإدارية: 10% + 100 ريال للمبالغ أقل من 4000، و 10% فقط بعد 4000
+    // الرسوم الإدارية (للعرض فقط - لا تتغير)
     const adminFeeRate = 0.10
     const adminFeeBase = amount * adminFeeRate
-    const adminFeeExtra = amount < 4000 ? 100 : 0 // 100 ريال إضافية للمبالغ أقل من 4000
+    const adminFeeExtra = amount < 4000 ? 100 : 0
     const adminFee = adminFeeBase + adminFeeExtra
-    
-    const downPaymentRate = 1 / installmentMonths // نسبة الشراكة = عدد الدفعات (مثلا 10 دفعات = 10%)
+
+    // الدفعة الأولى (للعرض فقط - لا تتغير)
+    const downPaymentRate = 1 / installmentMonths
     const downPayment = amount * downPaymentRate
-    
-    const totalDeductions = downPayment + adminFee + sellingLoss
-    const netAmount = Math.max(0, amount - totalDeductions)
-    
-    // الدفعة الشهرية للدفعة الأولى (removed from display)
 
     return {
       purchaseAmount,
