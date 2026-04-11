@@ -146,7 +146,7 @@ export function TamaraExampleSection() {
             {/* CTA */}
             <div className="p-6 md:px-8 border-t border-border">
               <Button size="lg" className="w-full gap-2 shadow-lg shadow-primary/20" asChild>
-                <a href="https://wa.me/966563457734">
+                <a href="https://wa.me/966590360039">
                   <MessageCircle className="w-5 h-5" />
                   اطلب سلفة تمارا الآن عبر واتساب
                 </a>
