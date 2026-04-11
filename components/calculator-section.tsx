@@ -123,22 +123,28 @@ export function CalculatorSection() {
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
                   عدد الدفعات
                 </label>
-                <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
-                  {Array.from({ length: 21 }, (_, i) => i + 4).map((months) => (
-                    <button
-                      key={months}
-                      onClick={() => setInstallmentMonths(months)}
-                      className={`p-3 rounded-xl border-2 transition-all text-center ${
-                        installmentMonths === months
-                          ? "border-primary bg-primary/10 shadow-lg"
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <span className={`font-bold ${installmentMonths === months ? "text-primary" : "text-foreground"}`}>
-                        {months}
-                      </span>
-                    </button>
-                  ))}
+                <div className="relative px-2">
+                  <input
+                    type="range"
+                    min="4"
+                    max="24"
+                    step="1"
+                    value={installmentMonths}
+                    onChange={(e) => setInstallmentMonths(Number(e.target.value))}
+                    className="w-full h-3 bg-secondary rounded-full appearance-none cursor-pointer accent-primary"
+                  />
+                  <div className="flex justify-between mt-2 text-sm text-muted-foreground">
+                    <span>4 دفعات</span>
+                    <span>24 دفعة</span>
+                  </div>
+                </div>
+                <div className="mt-4 text-center">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl px-8 py-4">
+                    <span className="text-4xl md:text-5xl font-bold text-primary">
+                      {installmentMonths}
+                    </span>
+                    <span className="text-muted-foreground text-lg">دفعة</span>
+                  </div>
                 </div>
               </div>
 
