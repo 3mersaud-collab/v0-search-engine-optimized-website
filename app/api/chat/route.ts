@@ -161,7 +161,7 @@ export async function POST(req: Request) {
     }
 
     const body = {
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT.replace("WHATSAPP_NUMBER", WHATSAPP_NUMBER) + calcContext }] },
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT.replaceAll("WHATSAPP_NUMBER", WHATSAPP_NUMBER) + calcContext }] },
       contents: normalized.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
       generationConfig: { temperature: 0.65, maxOutputTokens: 450 },
     }
