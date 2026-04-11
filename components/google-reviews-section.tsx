@@ -202,9 +202,12 @@ export function GoogleReviewsSection() {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {reviews.map((review, index) => (
-            <div
+            <a
               key={review.id}
-              className="flex-shrink-0 w-[320px] md:w-[360px] bg-card rounded-2xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all snap-start"
+              href="https://www.google.com/maps/place/liilSOL/@24.7480288,46.6824448,17z/data=!4m8!3m7!1s0x3e2efd0019dca76d:0x1ef93aea000775cb!8m2!3d24.7480288!4d46.6850197!9m1!1b1!16s%2Fg%2F11yxpt_4y_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 w-[320px] md:w-[360px] bg-card rounded-2xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all snap-start cursor-pointer block no-underline"
             >
               {/* Review Header */}
               <div className="flex items-start justify-between mb-4">
@@ -254,7 +257,7 @@ export function GoogleReviewsSection() {
 
               {/* Comment */}
               <p className="text-foreground text-sm leading-relaxed line-clamp-4">{review.comment}</p>
-            </div>
+            </a>
           ))}
         </div>
 

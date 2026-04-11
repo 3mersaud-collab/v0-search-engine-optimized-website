@@ -342,9 +342,12 @@ export default function ReviewsPage() {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {displayedReviews.map((review, index) => (
-              <div
+              <a
                 key={review.id}
-                className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all group"
+                href="https://www.google.com/maps/place/liilSOL/@24.7480288,46.6824448,17z/data=!4m8!3m7!1s0x3e2efd0019dca76d:0x1ef93aea000775cb!8m2!3d24.7480288!4d46.6850197!9m1!1b1!16s%2Fg%2F11yxpt_4y_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all group cursor-pointer block no-underline"
               >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
@@ -411,7 +414,7 @@ export default function ReviewsPage() {
                   )}
                   <span className="text-xs">Google Maps</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
 
