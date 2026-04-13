@@ -31,7 +31,7 @@ export default function TrackOrderPage() {
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     // بيانات تجريبية - في الواقع ستأتي من قاعدة البيانات
-    if (phone === "0567130112") {
+    if (phone === "0563457734") {
       setOrders([
         {
           id: "ORD-2026-001",
@@ -187,7 +187,7 @@ export default function TrackOrderPage() {
                       <Link href="/order">طلب سيولة جديد</Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                         تواصل معنا
                       </a>
                     </Button>
@@ -209,9 +209,9 @@ export default function TrackOrderPage() {
             تواصل معنا مباشرة على واتساب للاستفسار عن طلبك
           </p>
           <Button size="lg" variant="outline" asChild>
-            <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
               <Phone className="w-5 h-5 ml-2" />
-              0567130112
+              0563457734
             </a>
           </Button>
         </div>

@@ -145,7 +145,7 @@ const serviceSchema = {
     "@type": "Organization",
     name: "مطر",
     url: "https://liilsol.com",
-    telephone: "+966567130112",
+    telephone: "+966563457734",
   },
   areaServed: {
     "@type": "Country",
@@ -221,7 +221,7 @@ export default function SiyolaTabbyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                     اطلب سيولة تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -362,7 +362,7 @@ export default function SiyolaTabbyPage() {
                   🚀 جاهز تبدأ؟ تواصل معنا الآن واحصل على سيولتك خلال ساعة
                 </p>
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                     ابدأ الآن عبر واتساب
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -617,7 +617,7 @@ export default function SiyolaTabbyPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                     سيولة تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -806,8 +806,8 @@ export default function SiyolaTabbyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 text-lg shadow-xl shadow-primary/25" asChild>
-                  <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
-                    واتساب: 0567130112
+                  <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
+                    واتساب: 0563457734
                     <ArrowLeft className="w-5 h-5" />
                   </a>
                 </Button>

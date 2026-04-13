@@ -177,7 +177,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
               <a 
-                href="https://wa.me/966567130112"
+                href="https://wa.me/966563457734"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-green-500/50 hover:shadow-lg transition-all text-center group"
@@ -186,7 +186,7 @@ export default function AboutPage() {
                   <Phone className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">واتساب</h3>
-                <p className="text-muted-foreground" dir="ltr">0567130112</p>
+                <p className="text-muted-foreground" dir="ltr">0563457734</p>
               </a>
 
               <a 
@@ -231,7 +231,7 @@ export default function AboutPage() {
               <Link href="/#calculator">احسب سيولتك</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <a href="https://wa.me/966567130112" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/966563457734" target="_blank" rel="noopener noreferrer">
                 تواصل واتساب
               </a>
             </Button>
