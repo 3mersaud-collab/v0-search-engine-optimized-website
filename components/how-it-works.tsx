@@ -208,7 +208,7 @@ export function HowItWorks() {
               <p className="text-sm text-muted-foreground">تواصل معنا على واتساب لرؤية تقييمات وتجارب عملائنا السابقين</p>
             </div>
             <Button className="gap-2" asChild>
-              <a href="https://wa.me/966563457734">
+              <a href="https://wa.me/966567130112">
                 <MessageCircle className="w-4 h-4" />
                 واتساب
               </a>
@@ -220,7 +220,7 @@ export function HowItWorks() {
         <div className="mt-12 text-center">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="shadow-lg shadow-primary/20" asChild>
-              <a href="https://wa.me/966563457734" className="gap-2">
+              <a href="https://wa.me/966567130112" className="gap-2">
                 تواصل معنا الآن على واتساب
               </a>
             </Button>

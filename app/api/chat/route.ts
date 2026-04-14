@@ -1,7 +1,7 @@
 export const maxDuration = 60
 export const dynamic = "force-dynamic"
 
-const WHATSAPP_NUMBER = "966563457734"
+const WHATSAPP_NUMBER = "966567130112"
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? ""
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
