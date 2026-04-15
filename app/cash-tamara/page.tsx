@@ -144,7 +144,7 @@ const breadcrumbSchema = {
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
-const WA_LINK = "https://wa.me/966567130112"
+const WA_LINK = "https://wa.me/966548613381"
 
 const WHATSAPP_MSG = encodeURIComponent(
   "السلام عليكم، أريد الاستفسار عن كاش تمارا 🌧️"
@@ -835,7 +835,7 @@ export default function CashTamaraPage() {
                   </Button>
                 </Link>
                 <p className="text-muted-foreground text-sm mt-4">
-                  رقم الواتساب: 966567130112
+                  رقم الواتساب: 966548613381
                 </p>
               </div>
             </div>

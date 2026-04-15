@@ -33,7 +33,7 @@ const jsonLd = {
       description:
         "خدمة سيولة تابي الرياض وكاش تمارا الرياض. ندخل معك كشركاء في شراء الأجهزة عبر تابي وتمارا ونحوّل لك الصافي خلال ساعة.",
       url: "https://liilsol.com/siyola-riyadh",
-      telephone: "+966567130112",
+      telephone: "+966548613381",
       address: {
         "@type": "PostalAddress",
         streetAddress: "حي المرسلات",
@@ -206,7 +206,7 @@ export default function SiyolaRiyadhPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
                   <a
-                    href="https://wa.me/966567130112?text=أريد سيولة تابي أو كاش تمارا في الرياض"
+                    href="https://wa.me/966548613381?text=أريد سيولة تابي أو كاش تمارا في الرياض"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -420,7 +420,7 @@ export default function SiyolaRiyadhPage() {
                 asChild
               >
                 <a
-                  href="https://wa.me/966567130112?text=أريد سيولة تابي أو كاش تمارا في الرياض"
+                  href="https://wa.me/966548613381?text=أريد سيولة تابي أو كاش تمارا في الرياض"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

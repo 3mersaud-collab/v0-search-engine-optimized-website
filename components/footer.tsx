@@ -32,7 +32,7 @@ export function Footer() {
               السيولة مباشرة لحسابكم البنكي خلال ساعة. خدمة موثوقة في الرياض وجدة والدمام.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="tel:+966567130112" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="tel:+966548613381" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
                 <span dir="ltr">+966 56 345 7734</span>
               </a>

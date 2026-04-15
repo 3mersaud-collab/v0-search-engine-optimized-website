@@ -274,8 +274,8 @@ export default function ArticlesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                <a href="https://wa.me/966567130112">
-                  واتساب: 0567130112
+                <a href="https://wa.me/966548613381">
+                  واتساب: 0548613381
                   <ArrowLeft className="w-5 h-5" />
                 </a>
               </Button>

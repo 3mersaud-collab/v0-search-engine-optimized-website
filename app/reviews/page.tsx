@@ -301,7 +301,7 @@ export default function ReviewsPage() {
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <a
-                  href="https://wa.me/966567130112?text=أريد%20رؤية%20تعاملاتكم%20السابقة"
+                  href="https://wa.me/966548613381?text=أريد%20رؤية%20تعاملاتكم%20السابقة"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -457,7 +457,7 @@ export default function ReviewsPage() {
             </p>
             <Button size="lg" className="gap-2" asChild>
               <a
-                href="https://wa.me/966567130112?text=أريد%20رؤية%20تعاملاتكم%20السابقة%20وآراء%20العملاء"
+                href="https://wa.me/966548613381?text=أريد%20رؤية%20تعاملاتكم%20السابقة%20وآراء%20العملاء"
                 target="_blank"
                 rel="noopener noreferrer"
               >
