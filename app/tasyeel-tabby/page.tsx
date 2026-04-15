@@ -2,21 +2,21 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle2, Clock, Shield, Smartphone, Star, ChevronDown, RefreshCw, Zap, TrendingUp } from "lucide-react"
+import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, RefreshCw, CheckCircle } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تسييل تابي | تسييل رصيد تابي كاش فوري خلال ساعة",
+  title: "تسييل تابي | حوّل رصيد تابي إلى كاش فوري — مطر",
   description:
-    "تسييل تابي فوري — حوّل رصيدك في تابي إلى كاش يصل حسابك البنكي خلال ساعة. أفضل أسعار تسييل تابي في السعودية بدون كفيل وبدون تحويل راتب مع مطر.",
+    "تسييل تابي فوري مع مطر. حوّل حدك الائتماني في تابي إلى نقد يصل حسابك البنكي خلال ساعة. نظام شراكة حلال وتقييم 5 نجوم.",
   keywords:
-    "تسييل تابي, تسييل رصيد تابي, تسييل تابي كاش, تسييل حد تابي, تحويل تابي كاش, تسييل تابي فوري, تسييل تابي بدون كفيل, تسييل تابي الرياض, تسييل تابي جدة, تسييل تابي الدمام, طريقة تسييل تابي",
+    "تسييل تابي, تسييل رصيد تابي, تحويل تابي كاش, تسييل حد تابي",
   alternates: {
     canonical: "https://liilsol.com/tasyeel-tabby",
   },
   openGraph: {
-    title: "تسييل تابي فوري — حوّل رصيدك إلى كاش خلال ساعة | مطر",
-    description: "تسييل تابي يصل حسابك البنكي خلال ساعة. بدون كفيل، بدون تحويل راتب. أفضل الأسعار مع مطر.",
+    title: "تسييل تابي — حوّل رصيدك إلى كاش | مطر",
+    description: "تسييل رصيد تابي فوري. حوّل حدك الائتماني إلى نقد يصل حسابك خلال ساعة.",
     url: "https://liilsol.com/tasyeel-tabby",
     locale: "ar_SA",
     type: "website",
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/tasyeel-tabby#service",
-      name: "تسييل تابي — تحويل رصيد تابي إلى كاش فوري",
-      description: "خدمة تسييل تابي من مطر. نحول رصيدك في تابي إلى كاش فوري يصل حسابك البنكي خلال ساعة بدون كفيل وبدون تحويل راتب.",
+      name: "تسييل تابي — تحويل رصيد تابي إلى كاش",
+      description: "خدمة تسييل رصيد تابي وتحويله إلى نقد فوري عبر نظام الشراكة الحلال.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تسييل تابي", "تسييل رصيد تابي", "تحويل تابي كاش"],
+      serviceType: ["تسييل تابي", "تحويل تابي كاش", "تسييل رصيد تابي"],
     },
     {
       "@type": "BreadcrumbList",
@@ -48,51 +48,51 @@ const jsonLd = {
         {
           "@type": "Question",
           name: "ما معنى تسييل تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "تسييل تابي يعني تحويل حدك الائتماني في تطبيق تابي إلى كاش نقدي يصل حسابك البنكي. بدلاً من استخدام الرصيد في شراء منتجات، تحوله إلى سيولة نقدية." },
+          acceptedAnswer: { "@type": "Answer", text: "تسييل تابي يعني تحويل حدك الائتماني في تطبيق تابي من رصيد شرائي إلى نقد حقيقي يصل حسابك البنكي." },
         },
         {
           "@type": "Question",
-          name: "كيف يتم تسييل تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "تدخل متجر اكسترا أو جرير أو نون، تختار جهازاً بالمبلغ المطلوب، تختار تابي كوسيلة دفع، تصور شاشة التأكيد وترسلها لنا عبر واتساب. نكمل الباقي ونحول لك الكاش خلال ساعة." },
-        },
-        {
-          "@type": "Question",
-          name: "كم يستغرق تسييل تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "تسييل تابي يستغرق ساعة واحدة فقط من إرسال صورة التأكيد حتى وصول الكاش لحسابك البنكي." },
-        },
-        {
-          "@type": "Question",
-          name: "هل تسييل تابي آمن؟",
-          acceptedAnswer: { "@type": "Answer", text: "نعم، تسييل تابي مع مطر آمن 100%. نعمل بنظام الشراكة الحلال وكل العمليات موثقة. لدينا أكثر من 1000 عميل وتقييم 5 نجوم على Google Maps." },
+          name: "هل تسييل تابي قانوني؟",
+          acceptedAnswer: { "@type": "Answer", text: "نعم، العملية هي شراء جهاز عبر تابي ثم بيعه. لا يوجد ما يمنع ذلك قانونياً. ونحن نعمل بنظام الشراكة الحلال." },
         },
       ],
     },
   ],
 }
 
-const howItWorks = [
-  { num: "١", title: "تواصل معنا", desc: "أرسل لنا عبر واتساب المبلغ اللي تبي تسيّله من تابي." },
-  { num: "٢", title: "ادخل المتجر", desc: "ادخل اكسترا أو جرير أو نون واختر جهاز بالمبلغ المطلوب." },
-  { num: "٣", title: "اختر تابي", desc: "من صفحة الدفع اختر تابي. بعد ظهور جدول الأقساط صوّره وأرسله لنا." },
-  { num: "٤", title: "نسيّل لك", desc: "ندخل كشركاء، نشتري الجهاز، نبيعه، ونحول لك الكاش خلال ساعة." },
+const whyTasyeel = [
+  { icon: Banknote, title: "سيولة فورية", desc: "حوّل رصيدك الشرائي إلى نقد تستخدمه في أي شيء — إيجار، فاتورة، طوارئ." },
+  { icon: RefreshCw, title: "استفد من حدك الكامل", desc: "بدلاً من ترك رصيدك في تابي بدون استخدام، حوّله إلى نقد مفيد." },
+  { icon: Shield, title: "شراكة حلال", desc: "نشتري معك كشركاء — لا فائدة ولا ربا. نسبة الشراكة واضحة من البداية." },
+  { icon: Clock, title: "ساعة واحدة فقط", desc: "من لحظة إرسال التأكيد حتى وصول المبلغ لحسابك البنكي." },
+  { icon: CheckCircle, title: "لا أوراق مطلوبة", desc: "لا تعريف راتب، لا كشف حساب، لا ضامن. حسابك في تابي يكفي." },
+  { icon: Star, title: "خبرة +1000 عميل", desc: "أكثر من ألف عميل سيّلوا رصيدهم معنا بنجاح." },
 ]
 
-const advantages = [
-  { icon: Clock, title: "تسييل خلال ساعة", desc: "أسرع خدمة تسييل تابي في السعودية — الكاش في حسابك خلال 60 دقيقة" },
-  { icon: Shield, title: "آمن وموثوق", desc: "عقود شراكة واضحة — أكثر من 1000 عملية تسييل ناجحة" },
-  { icon: TrendingUp, title: "أعلى صافي", desc: "نبيع الجهاز بأعلى سعر ممكن لنضمن لك أكبر صافي" },
-  { icon: RefreshCw, title: "بدون تعقيدات", desc: "لا كفيل، لا تحويل راتب، لا أوراق — فقط حساب تابي نشط" },
-  { icon: Zap, title: "تنفيذ فوري", desc: "نبدأ فوراً بعد استلام صورة التأكيد — بدون انتظار" },
-  { icon: Star, title: "5 نجوم", desc: "تقييم 5.0 على Google Maps — ثقة مئات العملاء" },
+const useCases = [
+  { emoji: "🏠", title: "دفع الإيجار", desc: "موعد الإيجار قرب وما عندك سيولة؟ سيّل رصيد تابي وادفع إيجارك." },
+  { emoji: "🚗", title: "إصلاح السيارة", desc: "عطل مفاجئ في السيارة؟ حوّل رصيدك إلى نقد وأصلحها فوراً." },
+  { emoji: "💊", title: "مصاريف طبية", desc: "موعد طبي أو علاج عاجل؟ سيّل رصيدك وغطِّ المصاريف." },
+  { emoji: "🎓", title: "رسوم دراسية", desc: "قسط جامعة أو دورة تدريبية؟ حوّل رصيد تابي وادفع الرسوم." },
+  { emoji: "✈️", title: "سفر طارئ", desc: "تحتاج تسافر بشكل عاجل؟ سيّل رصيدك واحجز تذكرتك." },
+  { emoji: "📱", title: "فاتورة مستعجلة", desc: "فاتورة كهرباء أو اتصالات؟ حوّل رصيدك وادفعها فوراً." },
+]
+
+const steps = [
+  { num: "١", title: "تواصل معنا عبر واتساب", desc: "أرسل لنا طلبك مع المبلغ المطلوب." },
+  { num: "٢", title: "ادخل المتجر واختر الجهاز", desc: "ادخل اكسترا أو جرير أو نون واختر جهازاً بالمبلغ المناسب." },
+  { num: "٣", title: "اختر تابي كوسيلة دفع", desc: "من صفحة الدفع اختر تابي، وبعد ظهور جدول الأقساط صوّره وأرسله لنا." },
+  { num: "٤", title: "نشتري معك كشركاء", desc: "ندخل كشريك في الشراء ونغطي الدفعة الأولى نيابةً عنك." },
+  { num: "٥", title: "تستلم المبلغ في حسابك", desc: "نبيع الجهاز ونحول لك الصافي مباشرة لحسابك البنكي." },
 ]
 
 const faqs = [
-  { q: "ما الفرق بين تسييل تابي وسيولة تابي؟", a: "تسييل تابي وسيولة تابي وسلفة تابي كلها نفس الخدمة بمسميات مختلفة. في جميع الحالات نحول رصيدك في تابي إلى كاش نقدي في حسابك البنكي." },
-  { q: "هل تسييل تابي حلال شرعاً؟", a: "نعم، نعمل بنظام الشراكة الحلال. ندخل معك كشركاء في شراء الجهاز ونتكفل بالدفعة الأولى مقابل نسبة شراكة متفق عليها مسبقاً. لا يوجد ربا أو فائدة." },
-  { q: "كم نسبة تسييل تابي؟", a: "النسبة تعتمد على المبلغ وعدد الدفعات. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الصافي الدقيق. كلما زاد المبلغ كلما كانت النسبة أفضل." },
-  { q: "هل أقدر أسيّل تابي وتمارا معاً؟", a: "نعم! كثير من عملائنا يسيّلون تابي وتمارا معاً للحصول على أقصى كاش ممكن. تواصل معنا وسنساعدك." },
-  { q: "ما هي أفضل متاجر تسييل تابي؟", a: "أفضل المتاجر لتسييل تابي هي اكسترا وجرير ونون. نختار معك المتجر والجهاز الأفضل لضمان أعلى صافي ممكن." },
-  { q: "هل تسييل تابي يؤثر على حسابي في تابي؟", a: "تسييل تابي هو عملية شراء عادية عبر تابي. طالما تلتزم بسداد الأقساط في مواعيدها فلن يتأثر حسابك أو تقييمك في تابي." },
+  { q: "ما الفرق بين تسييل تابي وسيولة تابي وسلفة تابي؟", a: "كلها مسميات لنفس الخدمة: تحويل رصيدك في تابي إلى نقد. الفرق فقط في المصطلح المستخدم." },
+  { q: "هل تسييل تابي يؤثر على حسابي؟", a: "هي عملية شراء عادية عبر تابي. طالما تلتزم بسداد الأقساط في مواعيدها فلن يتأثر حسابك أو سجلك الائتماني." },
+  { q: "كم أقدر أسيّل من تابي؟", a: "يعتمد على حدك في تطبيق تابي. الحد الأدنى 1,000 ريال. استخدم حاسبة السيولة لمعرفة الصافي الدقيق." },
+  { q: "هل أقدر أسيّل تابي وتمارا معاً؟", a: "نعم! كثير من عملائنا يسيّلون رصيدهم في كلا التطبيقين للحصول على أقصى مبلغ ممكن." },
+  { q: "متى يصل المبلغ بعد التسييل؟", a: "خلال ساعة واحدة من إرسال صورة التأكيد. التحويل يصل لأي حساب بنكي سعودي." },
+  { q: "هل التسييل متاح في جميع المدن؟", a: "نعم، الخدمة عن بُعد 100% عبر واتساب. متاحة في الرياض، جدة، الدمام، وجميع مدن المملكة." },
 ]
 
 export default function TasyeelTabbyPage() {
@@ -114,8 +114,8 @@ export default function TasyeelTabbyPage() {
         {/* Hero */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5" />
-          <div className="absolute top-20 right-10 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -125,21 +125,19 @@ export default function TasyeelTabbyPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                تسييل تابي — حوّل رصيدك إلى كاش
-                <span className="block text-primary mt-2">خلال ساعة واحدة ⚡</span>
+                تسييل تابي — حوّل رصيدك
+                <span className="block text-primary mt-2">إلى كاش فوري ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                تبي <strong className="text-foreground">تسييل تابي</strong>؟ مطر يحول رصيدك في تابي إلى{" "}
-                <strong className="text-foreground">كاش فوري</strong> يصل حسابك البنكي خلال ساعة.
-                ندخل معك كشركاء في شراء الجهاز ونتكفل بالدفعة الأولى ثم نبيعه ونحول لك{" "}
-                <strong className="text-foreground">الصافي مباشرة</strong>. بدون كفيل وبدون تحويل راتب.
+                عندك رصيد في تابي وتحتاج <strong className="text-foreground">نقد حقيقي</strong>؟ مطر يسيّل لك رصيد تابي ويحوله إلى كاش يصل حسابك البنكي.
+                نشتري معك جهازاً كشركاء، نبيعه، ونحول لك <strong className="text-foreground">الصافي مباشرة</strong>.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
                   <a href="https://wa.me/966548613381?text=أبي تسييل تابي" target="_blank" rel="noopener noreferrer">
-                    سيّل تابي الآن
+                    سيّل رصيد تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
                 </Button>
@@ -147,68 +145,82 @@ export default function TasyeelTabbyPage() {
                   <Link href="/#calculator">احسب الصافي</Link>
                 </Button>
               </div>
-
-              <div className="grid sm:grid-cols-3 gap-4">
-                <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <Clock className="w-8 h-8 text-primary shrink-0" />
-                  <div className="text-start">
-                    <p className="font-bold text-foreground">ساعة فقط</p>
-                    <p className="text-sm text-muted-foreground">الكاش في حسابك</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <Shield className="w-8 h-8 text-accent shrink-0" />
-                  <div className="text-start">
-                    <p className="font-bold text-foreground">آمن 100%</p>
-                    <p className="text-sm text-muted-foreground">عقود شراكة واضحة</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <TrendingUp className="w-8 h-8 text-green-500 shrink-0" />
-                  <div className="text-start">
-                    <p className="font-bold text-foreground">أعلى صافي</p>
-                    <p className="text-sm text-muted-foreground">أفضل أسعار تسييل</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* ما هو تسييل تابي */}
+        {/* ما معنى تسييل تابي */}
         <section className="py-16 bg-card/50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
-                ما هو <span className="text-primary">تسييل تابي</span>؟
+                ما معنى <span className="text-primary">تسييل تابي</span>؟
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>
-                  <strong className="text-foreground">تسييل تابي</strong> هو عملية تحويل حدك الائتماني في تطبيق تابي إلى <strong className="text-foreground">كاش نقدي حقيقي</strong> يصل حسابك البنكي. بدلاً من أن يبقى رصيدك في تابي مخصصاً فقط لشراء المنتجات، يمكنك تسييله والاستفادة منه في أي غرض تحتاجه.
+                  <strong className="text-foreground">التسييل</strong> في عالم المال يعني تحويل أصل غير نقدي إلى نقد. وفي حالة تابي، يعني تحويل حدك الائتماني (الذي يمكنك استخدامه فقط للشراء) إلى نقد حقيقي تستطيع استخدامه في أي شيء.
                 </p>
                 <p>
-                  <strong className="text-foreground">مطر</strong> يقدم خدمة <strong className="text-foreground">تسييل تابي</strong> بأفضل الأسعار في السعودية. الآلية بسيطة: تدخل المتجر الإلكتروني (اكسترا أو جرير أو نون)، تختار جهازاً بالمبلغ اللي تبي تسيّله، تختار تابي كوسيلة دفع، وبعد ظهور جدول الأقساط تصوره وترسله لنا عبر واتساب.
+                  كثير من الناس لديهم حد في تابي لا يستخدمونه لأنهم لا يحتاجون شراء منتجات. لكنهم يحتاجون سيولة نقدية لدفع إيجار، فاتورة، أو مصاريف طارئة. هنا يأتي دور <strong className="text-foreground">تسييل تابي</strong>.
                 </p>
                 <p>
-                  بعدها ندخل معك كشركاء في عملية الشراء ونتكفل بالدفعة الأولى نيابةً عنك. ثم نبيع الجهاز بأعلى سعر ممكن في السوق ونحول لك <strong className="text-foreground">صافي التسييل</strong> مباشرة لحسابك البنكي. كل العملية تستغرق <strong className="text-foreground">ساعة واحدة فقط</strong>.
-                </p>
-                <p>
-                  خدمة <strong className="text-foreground">تسييل تابي</strong> متاحة في جميع مدن المملكة العربية السعودية. سواء كنت في الرياض أو جدة أو الدمام أو مكة أو المدينة أو أي مدينة أخرى، التحويل يصل لأي حساب بنكي سعودي.
+                  في <strong className="text-foreground">مطر</strong>، نسيّل لك رصيد تابي بنظام الشراكة الحلال: نشتري معك جهازاً عبر تابي كشركاء، نغطي الدفعة الأولى، ثم نبيع الجهاز ونحول لك الصافي. العملية كاملة تتم عن بُعد عبر واتساب وتستغرق ساعة واحدة.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* كيف يعمل */}
+        {/* لماذا تسيّل */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
+                لماذا تختار <span className="text-primary">مطر لتسييل تابي</span>؟
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {whyTasyeel.map((b, i) => (
+                  <div key={i} className="p-6 bg-card rounded-2xl border border-border hover:border-primary/30 transition-colors">
+                    <b.icon className="w-10 h-10 text-primary mb-4" />
+                    <h3 className="font-bold text-foreground text-lg mb-2">{b.title}</h3>
+                    <p className="text-muted-foreground text-sm">{b.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* حالات الاستخدام */}
+        <section className="py-16 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+                متى تحتاج <span className="text-primary">تسييل تابي</span>؟
+              </h2>
+              <p className="text-center text-muted-foreground mb-10">حالات شائعة يلجأ فيها عملاؤنا لتسييل رصيدهم</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {useCases.map((uc, i) => (
+                  <div key={i} className="p-5 bg-background rounded-2xl border border-border hover:border-primary/30 transition-colors">
+                    <span className="text-3xl mb-3 block">{uc.emoji}</span>
+                    <h3 className="font-bold text-foreground mb-1">{uc.title}</h3>
+                    <p className="text-muted-foreground text-sm">{uc.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* الخطوات */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
-                كيف يتم <span className="text-primary">تسييل تابي</span>؟
+                خطوات <span className="text-primary">تسييل تابي</span>
               </h2>
               <div className="space-y-6">
-                {howItWorks.map((step, i) => (
+                {steps.map((step, i) => (
                   <div key={i} className="flex items-start gap-5 p-5 bg-card rounded-2xl border border-border hover:border-primary/30 transition-colors">
                     <div className="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-extrabold text-xl flex items-center justify-center shrink-0">
                       {step.num}
@@ -224,28 +236,8 @@ export default function TasyeelTabbyPage() {
           </div>
         </section>
 
-        {/* المميزات */}
-        <section className="py-16 bg-card/50">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
-                لماذا <span className="text-primary">تسييل تابي مع مطر</span>؟
-              </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {advantages.map((a, i) => (
-                  <div key={i} className="p-6 bg-background rounded-2xl border border-border hover:border-primary/30 transition-colors">
-                    <a.icon className="w-10 h-10 text-primary mb-4" />
-                    <h3 className="font-bold text-foreground text-lg mb-2">{a.title}</h3>
-                    <p className="text-muted-foreground text-sm">{a.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* FAQ */}
-        <section className="py-16">
+        <section className="py-16 bg-card/50">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
@@ -253,7 +245,7 @@ export default function TasyeelTabbyPage() {
               </h2>
               <div className="space-y-4">
                 {faqs.map((faq, i) => (
-                  <details key={i} className="group bg-card border border-border rounded-2xl overflow-hidden">
+                  <details key={i} className="group bg-background border border-border rounded-2xl overflow-hidden">
                     <summary className="flex items-center justify-between p-5 cursor-pointer font-bold text-foreground hover:bg-primary/5 transition-colors list-none">
                       <span>{faq.q}</span>
                       <ChevronDown className="w-5 h-5 text-primary transition-transform group-open:rotate-180 shrink-0" />
@@ -267,7 +259,7 @@ export default function TasyeelTabbyPage() {
         </section>
 
         {/* روابط داخلية */}
-        <section className="py-12 bg-card/50">
+        <section className="py-12">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-xl font-bold text-center mb-6 text-foreground">خدمات ذات صلة</h2>
@@ -275,12 +267,12 @@ export default function TasyeelTabbyPage() {
                 {[
                   { href: "/siyola-tabby", label: "سيولة تابي" },
                   { href: "/salfa-tabby", label: "سلفة تابي" },
-                  { href: "/cash-tamara", label: "كاش تمارا" },
-                  { href: "/salfa-tamara", label: "سلفة تمارا" },
                   { href: "/tahweel-tabby-cash", label: "تحويل تابي كاش" },
+                  { href: "/salfa-tamara", label: "سلفة تمارا" },
                   { href: "/siyola", label: "سيولة فورية" },
+                  { href: "/check-limit", label: "افحص حدك" },
                 ].map((link, i) => (
-                  <Link key={i} href={link.href} className="p-4 bg-background rounded-xl border border-border hover:border-primary/30 text-center font-medium text-foreground hover:text-primary transition-colors">
+                  <Link key={i} href={link.href} className="p-4 bg-card rounded-xl border border-border hover:border-primary/30 text-center font-medium text-foreground hover:text-primary transition-colors">
                     {link.label}
                   </Link>
                 ))}
@@ -298,15 +290,15 @@ export default function TasyeelTabbyPage() {
                 <Smartphone className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-4">
-                جاهز <span className="text-primary">تسيّل تابي</span>؟
+                جاهز <span className="text-primary">تسيّل رصيد تابي</span>؟
               </h2>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                تواصل معنا الآن عبر واتساب وسيّل رصيدك في تابي خلال ساعة واحدة. بدون كفيل وبدون تحويل راتب.
+                تواصل معنا الآن عبر واتساب وسيّل رصيدك. المبلغ يصل حسابك البنكي خلال ساعة واحدة.
               </p>
               <Button size="lg" className="gap-3 text-xl px-10 py-6 bg-green-500 hover:bg-green-600 text-white shadow-xl shadow-green-500/30 rounded-2xl" asChild>
                 <a href="https://wa.me/966548613381?text=أبي تسييل تابي" target="_blank" rel="noopener noreferrer">
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                  سيّل تابي الآن
+                  سيّل رصيد تابي الآن
                 </a>
               </Button>
             </div>

@@ -2,21 +2,21 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle2, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Zap, Users } from "lucide-react"
+import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Zap, TrendingUp } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "سلفة تمارا | سلفة من تمارا فورية خلال ساعة — بدون كفيل",
+  title: "سلفة تمارا | حوّل رصيد تمارا إلى نقد فوري — مطر",
   description:
-    "احصل على سلفة تمارا فورية بدون كفيل وبدون تحويل راتب. سلفة من رصيدك في تمارا تصل حسابك البنكي خلال ساعة. أفضل أسعار سلفة تمارا في السعودية مع مطر.",
+    "سلفة تمارا فورية تصل حسابك البنكي خلال ساعة. تمارا توفر حدوداً أعلى أحياناً مما يعني سلفة أكبر. نظام شراكة حلال مع مطر.",
   keywords:
-    "سلفة تمارا, سلفة من تمارا, سلفة تمارا فورية, سلفة تمارا بدون كفيل, سلفة تمارا بدون تحويل راتب, سلفة نقدية تمارا, سلفة سريعة تمارا, tamara سلفة, سلفة من تطبيق تمارا, كاش تمارا, سلفة تمارا الرياض",
+    "سلفة تمارا, سلفة من تمارا, كاش تمارا, سلفة تمارا فورية, tamara سلفة",
   alternates: {
     canonical: "https://liilsol.com/salfa-tamara",
   },
   openGraph: {
-    title: "سلفة تمارا فورية — بدون كفيل وبدون تحويل راتب | مطر",
-    description: "سلفة تمارا تصل حسابك البنكي خلال ساعة. بدون كفيل، بدون تحويل راتب. أفضل الأسعار مع مطر.",
+    title: "سلفة تمارا — حدود أعلى وسلفة أكبر | مطر",
+    description: "حوّل رصيدك في تمارا إلى نقد فوري. تمارا توفر حدوداً أعلى أحياناً. +1000 عميل وتقييم 5 نجوم.",
     url: "https://liilsol.com/salfa-tamara",
     locale: "ar_SA",
     type: "website",
@@ -30,7 +30,7 @@ const jsonLd = {
       "@type": "Service",
       "@id": "https://liilsol.com/salfa-tamara#service",
       name: "سلفة تمارا — سلفة فورية من رصيد تمارا",
-      description: "خدمة سلفة تمارا الفورية من مطر. نحول رصيدك في تمارا إلى سلفة نقدية تصل حسابك البنكي خلال ساعة بدون كفيل وبدون تحويل راتب.",
+      description: "خدمة تحويل رصيد تمارا إلى سلفة نقدية عبر نظام الشراكة الحلال. تمارا توفر حدوداً أعلى أحياناً مما يتيح سلفة أكبر.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
       serviceType: ["سلفة تمارا", "سلفة من تمارا", "كاش تمارا فوري"],
@@ -47,53 +47,41 @@ const jsonLd = {
       mainEntity: [
         {
           "@type": "Question",
-          name: "ما هي سلفة تمارا؟",
-          acceptedAnswer: { "@type": "Answer", text: "سلفة تمارا هي خدمة تحويل حدك الائتماني في تطبيق تمارا إلى سلفة نقدية تصل حسابك البنكي خلال ساعة. ندخل معك كشركاء في شراء جهاز عبر تمارا ونتكفل بالدفعة الأولى ثم نبيعه ونحول لك الصافي." },
-        },
-        {
-          "@type": "Question",
-          name: "هل سلفة تمارا تحتاج كفيل؟",
-          acceptedAnswer: { "@type": "Answer", text: "لا، سلفة تمارا من مطر لا تحتاج كفيل ولا تحويل راتب. كل ما تحتاجه هو حساب تمارا نشط بحد كافٍ." },
-        },
-        {
-          "@type": "Question",
           name: "ما الفرق بين سلفة تمارا وسلفة تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "الآلية نفسها لكن عبر تطبيق مختلف. تمارا أحياناً توفر حدوداً أعلى من تابي، مما يتيح سلفة أكبر. يمكنك استخدام كلا التطبيقين للحصول على أقصى سلفة ممكنة." },
+          acceptedAnswer: { "@type": "Answer", text: "الآلية نفسها لكن عبر تطبيق مختلف. تمارا أحياناً توفر حدوداً أعلى من تابي، مما يتيح سلفة أكبر. يمكنك استخدام كلا التطبيقين معاً." },
         },
         {
           "@type": "Question",
           name: "كم الحد الأقصى لسلفة تمارا؟",
-          acceptedAnswer: { "@type": "Answer", text: "الحد الأقصى يعتمد على حدك في تطبيق تمارا. بعض العملاء لديهم حدود تصل إلى 15,000 ريال أو أكثر في تمارا." },
+          acceptedAnswer: { "@type": "Answer", text: "يعتمد على حدك في تطبيق تمارا. بعض العملاء لديهم حدود تصل إلى 15,000 ريال أو أكثر." },
         },
       ],
     },
   ],
 }
 
-const benefits = [
-  { icon: Clock, title: "سلفة خلال ساعة", desc: "تصل السلفة لحسابك البنكي خلال ساعة واحدة فقط" },
-  { icon: Shield, title: "بدون كفيل", desc: "لا تحتاج كفيل أو ضامن — حسابك في تمارا يكفي" },
-  { icon: Banknote, title: "حدود أعلى", desc: "تمارا توفر حدوداً أعلى أحياناً — سلفة أكبر لك" },
-  { icon: Zap, title: "تنفيذ فوري", desc: "نبدأ فوراً بعد استلام صورة التأكيد عبر واتساب" },
-  { icon: Users, title: "+1000 عميل", desc: "أكثر من ألف عميل حصلوا على سلفة تمارا معنا" },
-  { icon: Star, title: "تقييم 5 نجوم", desc: "تقييم 5.0 على Google Maps من عملائنا" },
+const tamaraVsTabby = [
+  { feature: "الحد الائتماني", tabby: "يصل 5,000 ريال عادةً", tamara: "يصل 15,000+ ريال أحياناً" },
+  { feature: "عدد الدفعات", tabby: "4 دفعات", tamara: "3 أو 6 دفعات" },
+  { feature: "المتاجر المتاحة", tabby: "اكسترا، جرير، نون", tamara: "اكسترا، جرير، نون، وأكثر" },
+  { feature: "طريقة الدفع", tabby: "خصم تلقائي", tamara: "بطاقة بنكية (بدون رصيد)" },
 ]
 
 const steps = [
-  { num: "١", title: "تواصل معنا عبر واتساب", desc: "أرسل لنا طلب سلفة تمارا مع المبلغ المطلوب." },
-  { num: "٢", title: "ادخل المتجر واختر الجهاز", desc: "ادخل اكسترا أو جرير أو نون واختر جهازاً بالمبلغ المطلوب." },
-  { num: "٣", title: "اختر تمارا كوسيلة دفع", desc: "من صفحة الدفع اختر تمارا. أضف بطاقة بنكية بدون رصيد واضغط ادفع، ثم صوّر الشاشة وأرسلها لنا." },
-  { num: "٤", title: "نشتري معك كشركاء", desc: "ندخل معك كشريك في الشراء ونتكفل بالدفعة الأولى نيابةً عنك." },
-  { num: "٥", title: "تستلم السلفة في حسابك", desc: "نبيع الجهاز ونحول لك صافي السلفة مباشرة لحسابك البنكي خلال ساعة." },
+  { num: "١", title: "تواصل معنا عبر واتساب", desc: "أرسل لنا طلبك مع المبلغ المطلوب." },
+  { num: "٢", title: "ادخل المتجر واختر الجهاز", desc: "ادخل اكسترا أو جرير أو نون واختر جهازاً بالمبلغ المناسب." },
+  { num: "٣", title: "اختر تمارا كوسيلة دفع", desc: "من صفحة الدفع اختر تمارا، أضف بطاقة بنكية (بدون رصيد)، واضغط ادفع. صوّر الشاشة وأرسلها لنا." },
+  { num: "٤", title: "نشتري معك كشركاء", desc: "ندخل كشريك في الشراء ونغطي الدفعة الأولى نيابةً عنك." },
+  { num: "٥", title: "تستلم المبلغ في حسابك", desc: "نبيع الجهاز ونحول لك الصافي مباشرة لحسابك البنكي." },
 ]
 
 const faqs = [
-  { q: "ما الفرق بين سلفة تمارا وكاش تمارا؟", a: "سلفة تمارا وكاش تمارا هما نفس الخدمة بمسميات مختلفة. في كلتا الحالتين نحول رصيدك في تمارا إلى نقد في حسابك البنكي خلال ساعة." },
-  { q: "هل سلفة تمارا حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. ندخل معك كشركاء في شراء الجهاز ونتكفل بالدفعة الأولى مقابل نسبة شراكة متفق عليها مسبقاً." },
-  { q: "كم عمولة سلفة تمارا؟", a: "العمولة تعتمد على المبلغ وعدد الدفعات. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الصافي الدقيق الذي ستستلمه." },
-  { q: "هل أقدر آخذ سلفة تمارا وسلفة تابي معاً؟", a: "نعم بالتأكيد! كثير من عملائنا يستخدمون كلا التطبيقين للحصول على أقصى سلفة ممكنة. تواصل معنا وسنساعدك في تحقيق أعلى مبلغ." },
-  { q: "هل سلفة تمارا تؤثر على سجلي الائتماني؟", a: "سلفة تمارا هي عملية شراء عادية عبر تمارا. طالما تلتزم بسداد أقساط تمارا في مواعيدها فلن يتأثر سجلك الائتماني." },
-  { q: "ما هي خطوات سلفة تمارا بالتفصيل؟", a: "ادخل المتجر (اكسترا/جرير/نون)، اختر جهازاً بالمبلغ المطلوب، اختر تمارا كوسيلة دفع، أضف بطاقة بنكية بدون رصيد واضغط ادفع، صوّر الشاشة وأرسلها لنا على واتساب. نكمل الباقي ونحول لك السلفة خلال ساعة." },
+  { q: "ما الفرق بين سلفة تمارا وكاش تمارا؟", a: "هما نفس الخدمة بمسميات مختلفة. في كلتا الحالتين نحول رصيدك في تمارا إلى نقد في حسابك البنكي." },
+  { q: "هل سلفة تمارا حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. نشتري معك الجهاز كشركاء مقابل نسبة شراكة متفق عليها مسبقاً. لا ربا ولا فائدة." },
+  { q: "كم عمولة سلفة تمارا؟", a: "تعتمد على المبلغ وعدد الدفعات. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الصافي الدقيق." },
+  { q: "هل أقدر آخذ سلفة تمارا وسلفة تابي معاً؟", a: "نعم! كثير من عملائنا يستخدمون كلا التطبيقين للحصول على أقصى مبلغ ممكن. تواصل معنا وسنساعدك." },
+  { q: "لماذا تمارا أحياناً أفضل من تابي؟", a: "تمارا توفر حدوداً ائتمانية أعلى لبعض المستخدمين، وتتيح 6 دفعات بدلاً من 4. هذا يعني سلفة أكبر وأقساط أصغر." },
+  { q: "ما خطوات سلفة تمارا بالتفصيل؟", a: "ادخل المتجر، اختر جهازاً، اختر تمارا كوسيلة دفع، أضف بطاقة بنكية بدون رصيد واضغط ادفع، صوّر الشاشة وأرسلها لنا على واتساب. نكمل الباقي ونحول لك الصافي." },
 ]
 
 export default function SalfaTamaraPage() {
@@ -121,20 +109,18 @@ export default function SalfaTamaraPage() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 rounded-full px-4 py-2 mb-6">
-                <Banknote className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium text-accent">سلفة فورية</span>
+                <TrendingUp className="w-4 h-4 text-accent" />
+                <span className="text-sm font-medium text-accent">حدود أعلى</span>
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                سلفة تمارا فورية
-                <span className="block text-primary mt-2">بدون كفيل — خلال ساعة ⚡</span>
+                سلفة تمارا — حدود أعلى
+                <span className="block text-primary mt-2">سلفة أكبر تصلك خلال ساعة ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                تحتاج <strong className="text-foreground">سلفة من تمارا</strong>؟ مطر يوفر لك{" "}
-                <strong className="text-foreground">سلفة تمارا فورية</strong> تصل حسابك البنكي خلال ساعة واحدة.
-                بدون كفيل، بدون تحويل راتب. تمارا توفر حدوداً أعلى أحياناً مما يعني{" "}
-                <strong className="text-foreground">سلفة أكبر لك</strong>.
+                تحتاج <strong className="text-foreground">سلفة من تمارا</strong>؟ تمارا توفر حدوداً ائتمانية أعلى أحياناً من تابي، مما يعني{" "}
+                <strong className="text-foreground">سلفة أكبر لك</strong>. مطر يحول رصيدك في تمارا إلى نقد حقيقي يصل حسابك البنكي.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -145,30 +131,30 @@ export default function SalfaTamaraPage() {
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="bg-transparent" asChild>
-                  <Link href="/#calculator">احسب السلفة</Link>
+                  <Link href="/#calculator">احسب الصافي</Link>
                 </Button>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-4">
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <Clock className="w-8 h-8 text-primary shrink-0" />
+                  <TrendingUp className="w-8 h-8 text-primary shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">ساعة فقط</p>
-                    <p className="text-sm text-muted-foreground">السلفة في حسابك</p>
+                    <p className="font-bold text-foreground">حدود أعلى</p>
+                    <p className="text-sm text-muted-foreground">تصل 15,000+ ريال</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
-                  <Shield className="w-8 h-8 text-accent shrink-0" />
+                  <Clock className="w-8 h-8 text-accent shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">بدون كفيل</p>
-                    <p className="text-sm text-muted-foreground">ولا تحويل راتب</p>
+                    <p className="font-bold text-foreground">ساعة واحدة</p>
+                    <p className="text-sm text-muted-foreground">من التأكيد للتحويل</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Banknote className="w-8 h-8 text-green-500 shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">حدود أعلى</p>
-                    <p className="text-sm text-muted-foreground">سلفة أكبر مع تمارا</p>
+                    <p className="font-bold text-foreground">6 دفعات</p>
+                    <p className="text-sm text-muted-foreground">أقساط أصغر وأريح</p>
                   </div>
                 </div>
               </div>
@@ -185,38 +171,51 @@ export default function SalfaTamaraPage() {
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>
-                  <strong className="text-foreground">سلفة تمارا</strong> هي خدمة تتيح لك تحويل حدك الائتماني في تطبيق تمارا إلى <strong className="text-foreground">سلفة نقدية فورية</strong> تصل حسابك البنكي. تمارا من أشهر تطبيقات الشراء الآن والدفع لاحقاً في السعودية، وحدودها أحياناً تكون أعلى من تابي.
+                  <strong className="text-foreground">سلفة تمارا</strong> هي خدمة تتيح لك تحويل حدك الائتماني في تطبيق تمارا إلى نقد حقيقي. تمارا من أشهر تطبيقات «اشترِ الآن وادفع لاحقاً» في السعودية، وتتميز بحدود ائتمانية أعلى أحياناً من تابي.
                 </p>
                 <p>
-                  في <strong className="text-foreground">مطر</strong>، نقدم خدمة <strong className="text-foreground">سلفة تمارا</strong> بطريقة الشراكة الحلال: ندخل معك كشركاء في شراء جهاز ذكي من اكسترا أو جرير أو نون عبر تمارا، نتكفل بالدفعة الأولى نيابةً عنك، ثم نبيع الجهاز ونحول لك <strong className="text-foreground">صافي السلفة</strong> مباشرة لحسابك البنكي.
+                  في <strong className="text-foreground">مطر</strong>، نعمل بنظام الشراكة الحلال: نشتري معك جهازاً ذكياً عبر تمارا، ونغطي الدفعة الأولى نيابةً عنك. بعدها نبيع الجهاز ونحول لك الصافي مباشرة لحسابك البنكي.
                 </p>
                 <p>
-                  ما يميز <strong className="text-foreground">سلفة تمارا</strong> عن غيرها هو أن تمارا توفر حدوداً ائتمانية أعلى لبعض المستخدمين، مما يعني إمكانية الحصول على <strong className="text-foreground">سلفة أكبر</strong>. كثير من عملائنا يجمعون بين سلفة تابي وسلفة تمارا للحصول على أقصى مبلغ ممكن.
+                  ما يميز تمارا هو إمكانية التقسيط على <strong className="text-foreground">6 دفعات</strong> بدلاً من 4، مما يجعل الأقساط أصغر وأريح. كما أن بعض المستخدمين يحصلون على حدود تصل إلى <strong className="text-foreground">15,000 ريال أو أكثر</strong>.
                 </p>
                 <p>
-                  الخدمة متاحة في جميع مدن المملكة — <strong className="text-foreground">الرياض، جدة، الدمام، مكة، المدينة</strong> وغيرها. كل شيء يتم عن بُعد عبر واتساب والسلفة تصلك خلال ساعة.
+                  كثير من عملائنا يجمعون بين سلفة تابي وسلفة تمارا للحصول على أقصى مبلغ ممكن. الخدمة متاحة في جميع مدن المملكة.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* المميزات */}
+        {/* مقارنة تمارا vs تابي */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
-                لماذا تختار <span className="text-primary">سلفة تمارا من مطر</span>؟
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+                <span className="text-primary">تمارا</span> مقابل <span className="text-primary">تابي</span>
               </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {benefits.map((b, i) => (
-                  <div key={i} className="p-6 bg-card rounded-2xl border border-border hover:border-primary/30 transition-colors">
-                    <b.icon className="w-10 h-10 text-primary mb-4" />
-                    <h3 className="font-bold text-foreground text-lg mb-2">{b.title}</h3>
-                    <p className="text-muted-foreground text-sm">{b.desc}</p>
-                  </div>
-                ))}
+              <p className="text-center text-muted-foreground mb-10">أيهما أفضل لك؟ المقارنة تساعدك تقرر</p>
+              <div className="overflow-x-auto rounded-2xl border border-border">
+                <table className="w-full text-sm">
+                  <thead className="bg-primary/10">
+                    <tr>
+                      <th className="p-4 text-start font-bold text-foreground">المعيار</th>
+                      <th className="p-4 text-center font-bold text-foreground">تابي</th>
+                      <th className="p-4 text-center font-bold text-primary">تمارا</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tamaraVsTabby.map((row, i) => (
+                      <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-background" : "bg-card"}`}>
+                        <td className="p-4 font-medium text-foreground">{row.feature}</td>
+                        <td className="p-4 text-center text-muted-foreground">{row.tabby}</td>
+                        <td className="p-4 text-center text-primary font-medium">{row.tamara}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
+              <p className="text-center text-sm text-muted-foreground mt-4">💡 نصيحة: استخدم كلا التطبيقين معاً للحصول على أقصى سلفة ممكنة</p>
             </div>
           </div>
         </section>
@@ -302,7 +301,7 @@ export default function SalfaTamaraPage() {
                 جاهز تحصل على <span className="text-primary">سلفة تمارا</span>؟
               </h2>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                تواصل معنا الآن عبر واتساب واحصل على سلفة تمارا فورية تصل حسابك البنكي خلال ساعة واحدة. بدون كفيل وبدون تحويل راتب.
+                تواصل معنا الآن عبر واتساب. نساعدك تحصل على أعلى سلفة ممكنة من تمارا.
               </p>
               <Button size="lg" className="gap-3 text-xl px-10 py-6 bg-green-500 hover:bg-green-600 text-white shadow-xl shadow-green-500/30 rounded-2xl" asChild>
                 <a href="https://wa.me/966548613381?text=أبي سلفة تمارا" target="_blank" rel="noopener noreferrer">

@@ -2,21 +2,21 @@ import type { Metadata } from "next"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, CheckCircle2, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Zap, Users } from "lucide-react"
+import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Zap, Users } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "سلفة تابي | سلفة من تابي فورية خلال ساعة — بدون كفيل",
+  title: "سلفة تابي | احصل على سلفة فورية من رصيد تابي — مطر",
   description:
-    "احصل على سلفة تابي فورية بدون كفيل وبدون تحويل راتب. سلفة من رصيدك في تابي تصل حسابك البنكي خلال ساعة. أفضل أسعار سلفة تابي في السعودية مع مطر.",
+    "سلفة تابي فورية تصل حسابك البنكي خلال ساعة. نشتري معك كشركاء عبر تابي ونحول لك الصافي مباشرة. أكثر من 1000 عميل وتقييم 5 نجوم.",
   keywords:
-    "سلفة تابي, سلفة من تابي, سلفة تابي فورية, سلفة تابي بدون كفيل, سلفة تابي بدون تحويل راتب, سلفة نقدية تابي, سلفة سريعة تابي, tabby سلفة, سلفة من تطبيق تابي, سلفة تابي الرياض, سلفة تابي جدة",
+    "سلفة تابي, سلفة من تابي, سلفة تابي فورية, سلفة نقدية تابي, tabby سلفة",
   alternates: {
     canonical: "https://liilsol.com/salfa-tabby",
   },
   openGraph: {
-    title: "سلفة تابي فورية — بدون كفيل وبدون تحويل راتب | مطر",
-    description: "سلفة تابي تصل حسابك البنكي خلال ساعة. بدون كفيل، بدون تحويل راتب. أفضل الأسعار مع مطر.",
+    title: "سلفة تابي فورية من رصيدك | مطر",
+    description: "حوّل رصيدك في تابي إلى سلفة نقدية تصل حسابك خلال ساعة. +1000 عميل وتقييم 5 نجوم.",
     url: "https://liilsol.com/salfa-tabby",
     locale: "ar_SA",
     type: "website",
@@ -30,7 +30,7 @@ const jsonLd = {
       "@type": "Service",
       "@id": "https://liilsol.com/salfa-tabby#service",
       name: "سلفة تابي — سلفة فورية من رصيد تابي",
-      description: "خدمة سلفة تابي الفورية من مطر. نحول رصيدك في تابي إلى سلفة نقدية تصل حسابك البنكي خلال ساعة بدون كفيل وبدون تحويل راتب.",
+      description: "خدمة تحويل رصيد تابي إلى سلفة نقدية عبر نظام الشراكة الحلال. التحويل خلال ساعة واحدة لأي حساب بنكي سعودي.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
       serviceType: ["سلفة تابي", "سلفة من تابي", "سلفة نقدية فورية"],
@@ -48,22 +48,17 @@ const jsonLd = {
         {
           "@type": "Question",
           name: "ما هي سلفة تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "سلفة تابي هي خدمة تحويل حدك الائتماني في تطبيق تابي إلى سلفة نقدية تصل حسابك البنكي خلال ساعة. ندخل معك كشركاء في شراء جهاز ونتكفل بالدفعة الأولى ثم نبيعه ونحول لك الصافي." },
-        },
-        {
-          "@type": "Question",
-          name: "هل سلفة تابي تحتاج كفيل؟",
-          acceptedAnswer: { "@type": "Answer", text: "لا، سلفة تابي من مطر لا تحتاج كفيل ولا تحويل راتب. كل ما تحتاجه هو حساب تابي نشط بحد كافٍ." },
+          acceptedAnswer: { "@type": "Answer", text: "سلفة تابي هي خدمة تحويل حدك الائتماني في تطبيق تابي إلى نقد يصل حسابك البنكي. نشتري معك جهازاً عبر تابي كشركاء ثم نبيعه ونحول لك الصافي." },
         },
         {
           "@type": "Question",
           name: "كم تستغرق سلفة تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "سلفة تابي تصل حسابك البنكي خلال ساعة واحدة فقط من إكمال الخطوات وإرسال صورة التأكيد عبر واتساب." },
+          acceptedAnswer: { "@type": "Answer", text: "العملية كاملة تستغرق ساعة واحدة من إرسال صورة التأكيد حتى وصول المبلغ لحسابك البنكي." },
         },
         {
           "@type": "Question",
           name: "ما هو الحد الأدنى لسلفة تابي؟",
-          acceptedAnswer: { "@type": "Answer", text: "الحد الأدنى لسلفة تابي هو 1,000 ريال سعودي. والحد الأقصى يعتمد على حدك في تطبيق تابي." },
+          acceptedAnswer: { "@type": "Answer", text: "الحد الأدنى 1,000 ريال سعودي، والحد الأقصى يعتمد على حدك في تطبيق تابي." },
         },
       ],
     },
@@ -71,29 +66,29 @@ const jsonLd = {
 }
 
 const benefits = [
-  { icon: Clock, title: "سلفة خلال ساعة", desc: "تصل السلفة لحسابك البنكي خلال ساعة واحدة فقط" },
-  { icon: Shield, title: "بدون كفيل", desc: "لا تحتاج كفيل أو ضامن — حسابك في تابي يكفي" },
-  { icon: Banknote, title: "بدون تحويل راتب", desc: "لا نشترط تحويل الراتب — سلفة مباشرة من رصيدك" },
-  { icon: Zap, title: "تنفيذ فوري", desc: "نبدأ فوراً بعد استلام صورة التأكيد عبر واتساب" },
-  { icon: Users, title: "+1000 عميل", desc: "أكثر من ألف عميل حصلوا على سلفة تابي معنا" },
+  { icon: Clock, title: "تحويل خلال ساعة", desc: "من لحظة إرسال التأكيد حتى وصول المبلغ لحسابك" },
+  { icon: Shield, title: "شراكة حلال", desc: "نظام شراكة واضح — لا فائدة ولا ربا" },
+  { icon: Banknote, title: "لا شروط معقدة", desc: "لا نحتاج تحويل راتب أو ضامن — حسابك في تابي يكفي" },
+  { icon: Zap, title: "تنفيذ فوري", desc: "نبدأ مباشرة بعد استلام صورة التأكيد عبر واتساب" },
+  { icon: Users, title: "+1000 عميل", desc: "أكثر من ألف عميل استفادوا من الخدمة" },
   { icon: Star, title: "تقييم 5 نجوم", desc: "تقييم 5.0 على Google Maps من عملائنا" },
 ]
 
 const steps = [
-  { num: "١", title: "تواصل معنا عبر واتساب", desc: "أرسل لنا طلب سلفة تابي مع المبلغ المطلوب." },
-  { num: "٢", title: "ادخل المتجر واختر الجهاز", desc: "ادخل اكسترا أو جرير أو نون واختر جهازاً بالمبلغ المطلوب." },
-  { num: "٣", title: "اختر تابي كوسيلة دفع", desc: "من صفحة الدفع اختر تابي. بعد ظهور جدول الأقساط صوّره وأرسله لنا." },
-  { num: "٤", title: "نشتري معك كشركاء", desc: "ندخل معك كشريك في الشراء ونتكفل بالدفعة الأولى نيابةً عنك." },
-  { num: "٥", title: "تستلم السلفة في حسابك", desc: "نبيع الجهاز ونحول لك صافي السلفة مباشرة لحسابك البنكي خلال ساعة." },
+  { num: "١", title: "تواصل معنا عبر واتساب", desc: "أرسل لنا طلبك مع المبلغ المطلوب." },
+  { num: "٢", title: "ادخل المتجر واختر الجهاز", desc: "ادخل اكسترا أو جرير أو نون واختر جهازاً بالمبلغ المناسب." },
+  { num: "٣", title: "اختر تابي كوسيلة دفع", desc: "من صفحة الدفع اختر تابي، وبعد ظهور جدول الأقساط صوّره وأرسله لنا." },
+  { num: "٤", title: "نشتري معك كشركاء", desc: "ندخل كشريك في الشراء ونغطي الدفعة الأولى نيابةً عنك." },
+  { num: "٥", title: "تستلم المبلغ في حسابك", desc: "نبيع الجهاز ونحول لك الصافي مباشرة لحسابك البنكي." },
 ]
 
 const faqs = [
-  { q: "ما الفرق بين سلفة تابي وسيولة تابي؟", a: "سلفة تابي وسيولة تابي هما نفس الخدمة بمسميات مختلفة. في كلتا الحالتين نحول رصيدك في تابي إلى نقد في حسابك البنكي خلال ساعة." },
-  { q: "هل سلفة تابي حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. ندخل معك كشركاء في شراء الجهاز ونتكفل بالدفعة الأولى مقابل نسبة شراكة متفق عليها. لمزيد من التفاصيل زر صفحة الامتثال الشرعي." },
-  { q: "كم عمولة سلفة تابي؟", a: "العمولة تعتمد على المبلغ وعدد الدفعات. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الصافي الدقيق الذي ستستلمه." },
-  { q: "هل أقدر آخذ سلفة تابي وأنا موظف حكومي؟", a: "نعم، سلفة تابي متاحة لجميع الفئات — موظفين حكوميين، قطاع خاص، أصحاب أعمال حرة. المهم أن يكون لديك حساب تابي نشط بحد كافٍ." },
-  { q: "هل سلفة تابي تؤثر على سجلي الائتماني؟", a: "سلفة تابي هي عملية شراء عادية عبر تابي. طالما تلتزم بسداد أقساط تابي في مواعيدها فلن يتأثر سجلك الائتماني." },
-  { q: "ما هي المتاجر المتاحة لسلفة تابي؟", a: "تابي متاح في متاجر كثيرة أبرزها: اكسترا، جرير، نون. نختار معك المتجر الأفضل لضمان أعلى صافي ممكن." },
+  { q: "ما الفرق بين سلفة تابي وسيولة تابي؟", a: "هما نفس الخدمة بمسميات مختلفة. في كلتا الحالتين نحول رصيدك في تابي إلى نقد في حسابك البنكي." },
+  { q: "هل سلفة تابي حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. نشتري معك الجهاز كشركاء مقابل نسبة شراكة متفق عليها مسبقاً. لا ربا ولا فائدة. لمزيد من التفاصيل زر صفحة الامتثال الشرعي." },
+  { q: "كم عمولة سلفة تابي؟", a: "تعتمد على المبلغ وعدد الدفعات. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الصافي الدقيق." },
+  { q: "هل الخدمة متاحة لجميع الفئات؟", a: "نعم — موظفين حكوميين، قطاع خاص، أصحاب أعمال حرة. المهم أن يكون لديك حساب تابي نشط بحد كافٍ." },
+  { q: "هل تؤثر على سجلي الائتماني؟", a: "هي عملية شراء عادية عبر تابي. طالما تلتزم بسداد الأقساط في مواعيدها فلن يتأثر سجلك." },
+  { q: "ما هي المتاجر المتاحة؟", a: "اكسترا، جرير، نون. نختار معك المتجر الأنسب لضمان أعلى صافي ممكن." },
 ]
 
 export default function SalfaTabbyPage() {
@@ -127,14 +122,13 @@ export default function SalfaTabbyPage() {
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
                 سلفة تابي فورية
-                <span className="block text-primary mt-2">بدون كفيل — خلال ساعة ⚡</span>
+                <span className="block text-primary mt-2">تصل حسابك خلال ساعة ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                تحتاج <strong className="text-foreground">سلفة من تابي</strong>؟ مطر يوفر لك{" "}
-                <strong className="text-foreground">سلفة تابي فورية</strong> تصل حسابك البنكي خلال ساعة واحدة.
-                بدون كفيل، بدون تحويل راتب، بدون تعقيدات. ندخل معك كشركاء في شراء الجهاز عبر تابي
-                ونتكفل بالدفعة الأولى ثم نحول لك <strong className="text-foreground">السلفة مباشرة</strong>.
+                تحتاج <strong className="text-foreground">سلفة من تابي</strong>؟ مطر يحول رصيدك في تابي إلى نقد حقيقي.
+                نشتري معك جهازاً كشركاء عبر تابي، نغطي الدفعة الأولى، ثم نبيعه ونحول لك{" "}
+                <strong className="text-foreground">الصافي مباشرة</strong> لحسابك البنكي.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -145,7 +139,7 @@ export default function SalfaTabbyPage() {
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="bg-transparent" asChild>
-                  <Link href="/#calculator">احسب السلفة</Link>
+                  <Link href="/#calculator">احسب الصافي</Link>
                 </Button>
               </div>
 
@@ -153,15 +147,15 @@ export default function SalfaTabbyPage() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Clock className="w-8 h-8 text-primary shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">ساعة فقط</p>
-                    <p className="text-sm text-muted-foreground">السلفة في حسابك</p>
+                    <p className="font-bold text-foreground">ساعة واحدة</p>
+                    <p className="text-sm text-muted-foreground">من التأكيد للتحويل</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Shield className="w-8 h-8 text-accent shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">بدون كفيل</p>
-                    <p className="text-sm text-muted-foreground">ولا تحويل راتب</p>
+                    <p className="font-bold text-foreground">شراكة حلال</p>
+                    <p className="text-sm text-muted-foreground">لا فائدة ولا ربا</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
@@ -185,16 +179,16 @@ export default function SalfaTabbyPage() {
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>
-                  <strong className="text-foreground">سلفة تابي</strong> هي خدمة تتيح لك تحويل حدك الائتماني في تطبيق تابي إلى <strong className="text-foreground">سلفة نقدية فورية</strong> تصل حسابك البنكي. بدلاً من استخدام رصيد تابي في شراء منتجات تحتاجها، يمكنك تحويله إلى كاش حقيقي تستخدمه في أي غرض.
+                  <strong className="text-foreground">سلفة تابي</strong> هي خدمة تتيح لك تحويل حدك الائتماني في تطبيق تابي إلى نقد حقيقي يصل حسابك البنكي. بدلاً من استخدام الرصيد في شراء منتجات فقط، يمكنك الاستفادة منه كسيولة نقدية لأي غرض تحتاجه.
                 </p>
                 <p>
-                  في <strong className="text-foreground">مطر</strong>، نقدم خدمة <strong className="text-foreground">سلفة تابي</strong> بطريقة الشراكة الحلال: ندخل معك كشركاء في شراء جهاز ذكي من اكسترا أو جرير أو نون عبر تابي، نتكفل بالدفعة الأولى نيابةً عنك مقابل نسبة شراكة متفق عليها، ثم نبيع الجهاز ونحول لك <strong className="text-foreground">صافي السلفة</strong> مباشرة لحسابك البنكي.
+                  في <strong className="text-foreground">مطر</strong>، نعمل بنظام الشراكة الحلال: نشتري معك جهازاً ذكياً من اكسترا أو جرير أو نون عبر تابي، ونغطي الدفعة الأولى نيابةً عنك مقابل نسبة شراكة متفق عليها مسبقاً. بعدها نبيع الجهاز ونحول لك الصافي مباشرة.
                 </p>
                 <p>
-                  الميزة الأساسية في <strong className="text-foreground">سلفة تابي من مطر</strong> هي السرعة والبساطة: لا تحتاج كفيل، لا تحتاج تحويل راتب، لا تحتاج زيارة مكتب. كل شيء يتم عن بُعد عبر واتساب والسلفة تصلك خلال ساعة واحدة فقط.
+                  ما يميز الخدمة هو البساطة والسرعة: لا تحتاج زيارة مكتب أو تقديم أوراق. كل شيء يتم عن بُعد عبر واتساب، والمبلغ يصلك خلال ساعة واحدة.
                 </p>
                 <p>
-                  سواء كنت في <strong className="text-foreground">الرياض</strong> أو <strong className="text-foreground">جدة</strong> أو <strong className="text-foreground">الدمام</strong> أو أي مدينة سعودية، خدمة سلفة تابي متاحة لك. التحويل يصل لأي حساب بنكي سعودي.
+                  الخدمة متاحة في جميع مدن المملكة — <strong className="text-foreground">الرياض، جدة، الدمام</strong> وغيرها. التحويل يصل لأي حساب بنكي سعودي.
                 </p>
               </div>
             </div>
@@ -206,7 +200,7 @@ export default function SalfaTabbyPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
-                لماذا تختار <span className="text-primary">سلفة تابي من مطر</span>؟
+                لماذا تختار <span className="text-primary">مطر لسلفة تابي</span>؟
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {benefits.map((b, i) => (
@@ -221,8 +215,47 @@ export default function SalfaTabbyPage() {
           </div>
         </section>
 
-        {/* الخطوات */}
+        {/* مقارنة سلفة تابي مع القروض */}
         <section className="py-16 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+                سلفة تابي مقابل <span className="text-primary">القرض البنكي</span>
+              </h2>
+              <p className="text-center text-muted-foreground mb-10">لماذا يفضل كثير من العملاء سلفة تابي على القروض التقليدية؟</p>
+              <div className="overflow-x-auto rounded-2xl border border-border">
+                <table className="w-full text-sm">
+                  <thead className="bg-primary/10">
+                    <tr>
+                      <th className="p-4 text-start font-bold text-foreground">المعيار</th>
+                      <th className="p-4 text-center font-bold text-foreground">القرض البنكي</th>
+                      <th className="p-4 text-center font-bold text-primary">سلفة تابي (مطر)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { feature: "المدة", bank: "3-7 أيام عمل", matar: "ساعة واحدة" },
+                      { feature: "الأوراق المطلوبة", bank: "تعريف راتب + كشف حساب", matar: "لا شيء" },
+                      { feature: "تحويل الراتب", bank: "مطلوب", matar: "غير مطلوب" },
+                      { feature: "الكفيل", bank: "مطلوب أحياناً", matar: "غير مطلوب" },
+                      { feature: "زيارة الفرع", bank: "مطلوبة", matar: "عن بُعد 100%" },
+                      { feature: "الفائدة", bank: "فائدة سنوية", matar: "نسبة شراكة ثابتة" },
+                    ].map((row, i) => (
+                      <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-background" : "bg-card"}`}>
+                        <td className="p-4 font-medium text-foreground">{row.feature}</td>
+                        <td className="p-4 text-center text-red-400">{row.bank}</td>
+                        <td className="p-4 text-center text-green-400 font-bold">{row.matar}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* الخطوات */}
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-foreground">
@@ -230,7 +263,7 @@ export default function SalfaTabbyPage() {
               </h2>
               <div className="space-y-6">
                 {steps.map((step, i) => (
-                  <div key={i} className="flex items-start gap-5 p-5 bg-background rounded-2xl border border-border hover:border-primary/30 transition-colors">
+                  <div key={i} className="flex items-start gap-5 p-5 bg-card rounded-2xl border border-border hover:border-primary/30 transition-colors">
                     <div className="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary text-primary font-extrabold text-xl flex items-center justify-center shrink-0">
                       {step.num}
                     </div>
@@ -240,6 +273,43 @@ export default function SalfaTabbyPage() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* أمثلة أرقام */}
+        <section className="py-16 bg-card/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
+                أمثلة على <span className="text-primary">صافي السلفة</span>
+              </h2>
+              <p className="text-center text-muted-foreground mb-10">الأرقام تقريبية وتعتمد على المتجر والجهاز — استخدم <Link href="/#calculator" className="text-primary underline">الحاسبة</Link> للرقم الدقيق</p>
+              <div className="overflow-x-auto rounded-2xl border border-border">
+                <table className="w-full text-sm">
+                  <thead className="bg-primary/10">
+                    <tr>
+                      <th className="p-4 text-center font-bold text-foreground">حد تابي</th>
+                      <th className="p-4 text-center font-bold text-foreground">عدد الدفعات</th>
+                      <th className="p-4 text-center font-bold text-primary">الصافي التقريبي</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      { limit: "1,000 ريال", payments: "4 دفعات", net: "~750 ريال" },
+                      { limit: "3,000 ريال", payments: "4 دفعات", net: "~2,350 ريال" },
+                      { limit: "5,000 ريال", payments: "4 دفعات", net: "~4,000 ريال" },
+                      { limit: "8,000 ريال", payments: "4 دفعات", net: "~6,500 ريال" },
+                    ].map((row, i) => (
+                      <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-background" : "bg-card"}`}>
+                        <td className="p-4 text-center text-foreground">{row.limit}</td>
+                        <td className="p-4 text-center text-muted-foreground">{row.payments}</td>
+                        <td className="p-4 text-center text-primary font-bold">{row.net}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -302,7 +372,7 @@ export default function SalfaTabbyPage() {
                 جاهز تحصل على <span className="text-primary">سلفة تابي</span>؟
               </h2>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                تواصل معنا الآن عبر واتساب واحصل على سلفة تابي فورية تصل حسابك البنكي خلال ساعة واحدة. بدون كفيل وبدون تحويل راتب.
+                تواصل معنا الآن عبر واتساب وابدأ الخطوات. المبلغ يصل حسابك البنكي خلال ساعة واحدة.
               </p>
               <Button size="lg" className="gap-3 text-xl px-10 py-6 bg-green-500 hover:bg-green-600 text-white shadow-xl shadow-green-500/30 rounded-2xl" asChild>
                 <a href="https://wa.me/966548613381?text=أبي سلفة تابي" target="_blank" rel="noopener noreferrer">
