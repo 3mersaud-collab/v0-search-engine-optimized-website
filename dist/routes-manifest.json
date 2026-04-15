@@ -1,0 +1,452 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ],
+      "regex": "^(?:/(.*))(?:/)?$"
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|gif|webp|avif|ico|svg)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ],
+      "regex": "^(?:/(.*))\\.(jpg|jpeg|png|gif|webp|avif|ico|svg)(?:/)?$"
+    }
+  ],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/articles/[slug]",
+      "regex": "^/articles/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/articles/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/add-review",
+      "regex": "^/add\\-review(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/add\\-review(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/conversations",
+      "regex": "^/admin/conversations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/conversations(?:/)?$"
+    },
+    {
+      "page": "/admin/login",
+      "regex": "^/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/login(?:/)?$"
+    },
+    {
+      "page": "/admin/notifications",
+      "regex": "^/admin/notifications(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/notifications(?:/)?$"
+    },
+    {
+      "page": "/admin/setup",
+      "regex": "^/admin/setup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/setup(?:/)?$"
+    },
+    {
+      "page": "/admin/whatsapp",
+      "regex": "^/admin/whatsapp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/whatsapp(?:/)?$"
+    },
+    {
+      "page": "/affiliate",
+      "regex": "^/affiliate(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/affiliate(?:/)?$"
+    },
+    {
+      "page": "/api/admin/conversations",
+      "regex": "^/api/admin/conversations(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/conversations(?:/)?$"
+    },
+    {
+      "page": "/api/admin/conversations/reply",
+      "regex": "^/api/admin/conversations/reply(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/conversations/reply(?:/)?$"
+    },
+    {
+      "page": "/api/admin/login",
+      "regex": "^/api/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/login(?:/)?$"
+    },
+    {
+      "page": "/api/admin/notifications",
+      "regex": "^/api/admin/notifications(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/notifications(?:/)?$"
+    },
+    {
+      "page": "/api/admin/notify",
+      "regex": "^/api/admin/notify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/notify(?:/)?$"
+    },
+    {
+      "page": "/api/admin/orders",
+      "regex": "^/api/admin/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/orders(?:/)?$"
+    },
+    {
+      "page": "/api/admin/send-template",
+      "regex": "^/api/admin/send\\-template(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/send\\-template(?:/)?$"
+    },
+    {
+      "page": "/api/admin/setup",
+      "regex": "^/api/admin/setup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/setup(?:/)?$"
+    },
+    {
+      "page": "/api/chat",
+      "regex": "^/api/chat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat(?:/)?$"
+    },
+    {
+      "page": "/api/chat/history",
+      "regex": "^/api/chat/history(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat/history(?:/)?$"
+    },
+    {
+      "page": "/api/chat/identify",
+      "regex": "^/api/chat/identify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat/identify(?:/)?$"
+    },
+    {
+      "page": "/api/chat/typing",
+      "regex": "^/api/chat/typing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat/typing(?:/)?$"
+    },
+    {
+      "page": "/api/chat/upload",
+      "regex": "^/api/chat/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat/upload(?:/)?$"
+    },
+    {
+      "page": "/api/orders",
+      "regex": "^/api/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/orders(?:/)?$"
+    },
+    {
+      "page": "/api/upload",
+      "regex": "^/api/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/upload(?:/)?$"
+    },
+    {
+      "page": "/api/whatsapp",
+      "regex": "^/api/whatsapp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/whatsapp(?:/)?$"
+    },
+    {
+      "page": "/api/whatsapp/test",
+      "regex": "^/api/whatsapp/test(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/whatsapp/test(?:/)?$"
+    },
+    {
+      "page": "/apple-icon.png",
+      "regex": "^/apple\\-icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/apple\\-icon\\.png(?:/)?$"
+    },
+    {
+      "page": "/articles",
+      "regex": "^/articles(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/articles(?:/)?$"
+    },
+    {
+      "page": "/cash-tabby",
+      "regex": "^/cash\\-tabby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cash\\-tabby(?:/)?$"
+    },
+    {
+      "page": "/cash-tamara",
+      "regex": "^/cash\\-tamara(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cash\\-tamara(?:/)?$"
+    },
+    {
+      "page": "/cc",
+      "regex": "^/cc(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cc(?:/)?$"
+    },
+    {
+      "page": "/chat",
+      "regex": "^/chat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/chat(?:/)?$"
+    },
+    {
+      "page": "/check-limit",
+      "regex": "^/check\\-limit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/check\\-limit(?:/)?$"
+    },
+    {
+      "page": "/icon.png",
+      "regex": "^/icon\\.png(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.png(?:/)?$"
+    },
+    {
+      "page": "/opengraph-image",
+      "regex": "^/opengraph\\-image(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/opengraph\\-image(?:/)?$"
+    },
+    {
+      "page": "/order",
+      "regex": "^/order(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/order(?:/)?$"
+    },
+    {
+      "page": "/privacy",
+      "regex": "^/privacy(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/referral",
+      "regex": "^/referral(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/referral(?:/)?$"
+    },
+    {
+      "page": "/reviews",
+      "regex": "^/reviews(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reviews(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/salfa-tabby",
+      "regex": "^/salfa\\-tabby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/salfa\\-tabby(?:/)?$"
+    },
+    {
+      "page": "/salfa-tamara",
+      "regex": "^/salfa\\-tamara(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/salfa\\-tamara(?:/)?$"
+    },
+    {
+      "page": "/shariah",
+      "regex": "^/shariah(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/shariah(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/siyola",
+      "regex": "^/siyola(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola(?:/)?$"
+    },
+    {
+      "page": "/siyola-dammam",
+      "regex": "^/siyola\\-dammam(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-dammam(?:/)?$"
+    },
+    {
+      "page": "/siyola-jeddah",
+      "regex": "^/siyola\\-jeddah(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-jeddah(?:/)?$"
+    },
+    {
+      "page": "/siyola-riyadh",
+      "regex": "^/siyola\\-riyadh(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-riyadh(?:/)?$"
+    },
+    {
+      "page": "/siyola-tabby",
+      "regex": "^/siyola\\-tabby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-tabby(?:/)?$"
+    },
+    {
+      "page": "/siyola-without-bank",
+      "regex": "^/siyola\\-without\\-bank(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-without\\-bank(?:/)?$"
+    },
+    {
+      "page": "/siyola-without-salary",
+      "regex": "^/siyola\\-without\\-salary(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/siyola\\-without\\-salary(?:/)?$"
+    },
+    {
+      "page": "/tahweel-tabby-cash",
+      "regex": "^/tahweel\\-tabby\\-cash(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tahweel\\-tabby\\-cash(?:/)?$"
+    },
+    {
+      "page": "/takyeesh-tabby",
+      "regex": "^/takyeesh\\-tabby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/takyeesh\\-tabby(?:/)?$"
+    },
+    {
+      "page": "/tasyeel-tabby",
+      "regex": "^/tasyeel\\-tabby(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/tasyeel\\-tabby(?:/)?$"
+    },
+    {
+      "page": "/terms",
+      "regex": "^/terms(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/terms(?:/)?$"
+    },
+    {
+      "page": "/track",
+      "regex": "^/track(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/track(?:/)?$"
+    },
+    {
+      "page": "/track-order",
+      "regex": "^/track\\-order(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/track\\-order(?:/)?$"
+    },
+    {
+      "page": "/twitter-image",
+      "regex": "^/twitter\\-image(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/twitter\\-image(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

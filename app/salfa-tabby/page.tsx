@@ -278,39 +278,17 @@ export default function SalfaTabbyPage() {
           </div>
         </section>
 
-        {/* أمثلة أرقام */}
+        {/* توضيح الأسعار */}
         <section className="py-16 bg-card/50">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
-                أمثلة على <span className="text-primary">صافي السلفة</span>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                لمعرفة <span className="text-primary">الصافي الصحيح</span>
               </h2>
-              <p className="text-center text-muted-foreground mb-10">الأرقام تقريبية وتعتمد على المتجر والجهاز — استخدم <Link href="/#calculator" className="text-primary underline">الحاسبة</Link> للرقم الدقيق</p>
-              <div className="overflow-x-auto rounded-2xl border border-border">
-                <table className="w-full text-sm">
-                  <thead className="bg-primary/10">
-                    <tr>
-                      <th className="p-4 text-center font-bold text-foreground">حد تابي</th>
-                      <th className="p-4 text-center font-bold text-foreground">عدد الدفعات</th>
-                      <th className="p-4 text-center font-bold text-primary">الصافي التقريبي</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { limit: "1,000 ريال", payments: "4 دفعات", net: "~750 ريال" },
-                      { limit: "3,000 ريال", payments: "4 دفعات", net: "~2,350 ريال" },
-                      { limit: "5,000 ريال", payments: "4 دفعات", net: "~4,000 ريال" },
-                      { limit: "8,000 ريال", payments: "4 دفعات", net: "~6,500 ريال" },
-                    ].map((row, i) => (
-                      <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-background" : "bg-card"}`}>
-                        <td className="p-4 text-center text-foreground">{row.limit}</td>
-                        <td className="p-4 text-center text-muted-foreground">{row.payments}</td>
-                        <td className="p-4 text-center text-primary font-bold">{row.net}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                تم حذف الأمثلة الرقمية التقريبية لأن الأسعار تختلف حسب الجهاز والمتجر ووقت التنفيذ، وحتى لا تظهر أرقام غير دقيقة.
+                لمعرفة الصافي الصحيح لحالتك استخدم <Link href="/#calculator" className="text-primary underline">حاسبة السيولة</Link> أو تواصل معنا مباشرة عبر واتساب.
+              </p>
             </div>
           </div>
         </section>

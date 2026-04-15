@@ -47,24 +47,23 @@ export default function ChatPage() {
   const [hasHistory, setHasHistory] = useState(false)
   const [loadingHistory, setLoadingHistory] = useState(false)
 
+  const welcomeMessage = {
+    id: "welcome",
+    role: "assistant" as const,
+    parts: [
+      {
+        type: "text" as const,
+        text: "هلا والله! معك **مطر** سحابة غيث ماحسبت حسابها\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعة.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك أو نبيعه\n- نخصم الرسوم والدفعة الاولى من قيمة البيع ونحول لك الباقي\n- الدفعة الاولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة موثوقة وعمليات تتعدى 100 الف بكل شفافية. راح امشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**",
+      },
+    ],
+    createdAt: new Date(),
+  }
+
   const { messages, sendMessage, status, setMessages } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
       headers: () => ({ "x-visitor-id": getVisitorId() }),
     }),
-    initialMessages: [
-      {
-        id: "welcome",
-        role: "assistant",
-        parts: [
-          {
-            type: "text",
-            text: "هلا والله! معك **مطر** سحابة غيث ماحسبت حسابها\n\nنحول لك مشتريات التقسيط من **تابي وتمارا ومدفوع** لكاش بحسابك خلال ساعة.\n\nالطريقة سهلة:\n- تحدد المبلغ اللي تحتاجه كاش\n- نحدد لك جهاز تشتريه بالتقسيط من متجر مثل اكسترا\n- نستلم الجهاز منك أو نبيعه\n- نخصم الرسوم والدفعة الاولى من قيمة البيع ونحول لك الباقي\n- الدفعة الاولى **ندفعها عنك** ونستردها من البيع - **ما تدفع شي من جيبك وبدون فوائد**\n\nخدمة موثوقة وعمليات تتعدى 100 الف بكل شفافية. راح امشي معك خطوة بخطوة ان شاء الله.\n\n**كم تحتاج كاش (الصافي)؟**"
-          }
-        ],
-        createdAt: new Date(),
-      }
-    ],
     onError: (error) => {
       const msg = error?.message || ""
       if (msg.includes("402") || msg.includes("funds")) {
@@ -77,6 +76,12 @@ export default function ChatPage() {
       setTimeout(() => setErrorMessage(null), 5000)
     },
   })
+
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([welcomeMessage])
+    }
+  }, [messages.length, setMessages])
 
   const isLoading = status === "streaming" || status === "submitted"
 
@@ -298,16 +303,20 @@ export default function ChatPage() {
                         return <ChatMessageContent key={index} text={part.text} isUser={message.role === "user"} />
                       }
                       if (part.type === "tool-invocation") {
+                        const toolName = typeof part.type === "string" && part.type.startsWith("tool-")
+                          ? part.type.replace("tool-", "")
+                          : ""
+
                         if (part.state !== "output-available") {
                           return (
                             <div key={index} className="flex items-center gap-2 text-xs text-muted-foreground mt-2">
                               <Loader2 className="w-3 h-3 animate-spin" />
-                              {part.toolName === "searchExtra" ? "جاري البحث في اكسترا..." : "جاري الحساب..."}
+                              {toolName === "searchExtra" ? "جاري البحث في اكسترا..." : "جاري الحساب..."}
                             </div>
                           )
                         }
 
-                        if (part.toolName === "calculateCash") {
+                        if (toolName === "calculateCash") {
                           const r = part.output as {
                             purchaseAmount: number; saleAmount: number; adminFee: number
                             downPayment: number; netAmount: number; remainingInstallment: number
@@ -349,7 +358,7 @@ export default function ChatPage() {
                           )
                         }
 
-                        if (part.toolName === "searchExtra") {
+                        if (toolName === "searchExtra") {
                           const result = part.output as { searchUrl?: string }
                           if (result?.searchUrl) {
                             return (

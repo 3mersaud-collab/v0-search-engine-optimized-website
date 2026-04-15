@@ -1,0 +1,3 @@
+{
+  "/api/admin/conversations/reply/route": "app/api/admin/conversations/reply/route.js"
+}

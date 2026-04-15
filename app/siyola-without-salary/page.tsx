@@ -6,11 +6,11 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, User
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "سيولة بدون تحويل راتب | احصل على نقد فوري بدون شروط — مطر",
+  title: "سيولة بدون بنك | سيولة بدون تحويل راتب وبشروط أبسط — مطر",
   description:
-    "سيولة فورية بدون تحويل راتب مع مطر. لا نحتاج ضامن أو كشف حساب. نحول رصيدك في تابي أو تمارا إلى نقد يصل حسابك خلال ساعة.",
+    "سيولة بدون بنك مع مطر. إذا كنت تبحث عن سيولة بدون تحويل راتب أو بدون تعقيدات البنوك فنحن نحوّل رصيدك في تابي أو تمارا إلى نقد بسرعة.",
   keywords:
-    "سيولة بدون تحويل راتب, سيولة بدون كفيل, سيولة فورية بدون شروط, تمويل بدون تحويل راتب",
+    "سيولة بدون بنك, سيولة بدون تحويل راتب, سيولة بدون كفيل, سيولة فورية بدون شروط, تمويل بدون تحويل راتب",
   alternates: {
     canonical: "https://liilsol.com/siyola-without-salary",
   },
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/siyola-without-salary#service",
-      name: "سيولة بدون تحويل راتب",
-      description: "خدمة سيولة فورية لا تتطلب تحويل راتب أو ضامن. نحول رصيدك في تابي أو تمارا إلى نقد يصل حسابك البنكي خلال ساعة.",
+      name: "سيولة بدون بنك",
+      description: "خدمة سيولة بدون بنك وبدون تحويل راتب أو ضامن، عبر تحويل رصيدك في تابي أو تمارا إلى نقد بسرعة.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["سيولة بدون تحويل راتب", "سيولة بدون كفيل", "تمويل بدون شروط"],
+      serviceType: ["سيولة بدون بنك", "سيولة بدون تحويل راتب", "سيولة بدون كفيل", "تمويل بدون شروط"],
     },
     {
       "@type": "BreadcrumbList",
@@ -112,7 +112,7 @@ const comparisonData = [
 ]
 
 const faqs = [
-  { q: "كيف أحصل على سيولة بدون تحويل راتب؟", a: "تواصل معنا عبر واتساب. نحول رصيدك في تابي أو تمارا إلى نقد يصل حسابك البنكي. لا نحتاج تحويل راتب أو أي مستندات." },
+  { q: "كيف أحصل على سيولة بدون بنك؟", a: "تواصل معنا عبر واتساب، ثم نرشدك للخطوات المناسبة لتحويل رصيدك في تابي أو تمارا إلى نقد. بهذه الطريقة تحصل على السيولة بدون المرور بإجراءات البنوك المعتادة." },
   { q: "هل الخدمة حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. نشتري معك جهازاً كشركاء مقابل نسبة شراكة متفق عليها. لا ربا ولا فائدة." },
   { q: "لماذا لا تحتاجون تحويل راتب؟", a: "لأن خدمتنا تعتمد على رصيدك في تابي أو تمارا وليس على راتبك. حدك الائتماني في التطبيق هو ضمانك." },
   { q: "هل الخدمة متاحة للمتقاعدين؟", a: "نعم، طالما لديك حساب نشط في تابي أو تمارا بحد كافٍ. لا نشترط عمراً معيناً أو وظيفة محددة." },
@@ -150,13 +150,13 @@ export default function SiyolaWithoutSalaryPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                سيولة فورية
-                <span className="block text-primary mt-2">بدون تحويل راتب ⚡</span>
+                سيولة بدون بنك
+                <span className="block text-primary mt-2">وبدون تحويل راتب ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                تحتاج <strong className="text-foreground">سيولة نقدية</strong> لكن ما تبي تحول راتبك أو تجيب ضامن؟
-                مطر يحول رصيدك في تابي أو تمارا إلى نقد يصل حسابك البنكي — بدون أي شروط معقدة.
+                تحتاج <strong className="text-foreground">سيولة نقدية</strong> لكن لا تريد الدخول في تعقيدات البنوك أو تحويل الراتب؟
+                مطر يوفر لك <strong className="text-foreground">سيولة بدون بنك</strong> عبر تحويل رصيدك في تابي أو تمارا إلى نقد يصل حسابك البنكي بسرعة.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -203,14 +203,14 @@ export default function SiyolaWithoutSalaryPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
-                لماذا <span className="text-primary">لا نحتاج تحويل راتب</span>؟
+                لماذا يختار العملاء <span className="text-primary">سيولة بدون بنك</span>؟
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>
-                  البنوك وشركات التمويل تطلب تحويل الراتب كضمان للسداد. لكن خدمتنا مختلفة تماماً — نحن لا نقرضك مالاً.
+                  البنوك وشركات التمويل غالباً تربط السيولة بإجراءات أطول مثل تحويل الراتب، زيارة الفرع، أو تقديم مستندات متعددة. لكن خدمتنا مختلفة تماماً — نحن لا نقرضك مالاً.
                 </p>
                 <p>
-                  ما نفعله هو <strong className="text-foreground">تحويل رصيدك الموجود فعلاً</strong> في تابي أو تمارا إلى نقد. حدك الائتماني في التطبيق هو ضمانك، وليس راتبك. لذلك لا نحتاج تحويل راتب أو ضامن أو أي مستندات.
+                  ما نفعله هو <strong className="text-foreground">تحويل رصيدك الموجود فعلاً</strong> في تابي أو تمارا إلى نقد. لهذا يعتبرها كثير من العملاء خياراً عملياً للحصول على <strong className="text-foreground">سيولة بدون بنك</strong> وبدون التعقيدات المعتادة.
                 </p>
                 <p>
                   هذا يجعل الخدمة مناسبة لجميع الفئات: الموظف الحكومي الذي لا يستطيع تحويل راتبه، موظف القطاع الخاص الذي لا يريد الارتباط ببنك، صاحب العمل الحر الذي ليس لديه راتب ثابت، وحتى المتقاعد.

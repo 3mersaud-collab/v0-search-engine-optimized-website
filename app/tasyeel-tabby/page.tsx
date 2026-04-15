@@ -6,11 +6,11 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Refr
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تسييل تابي | حوّل رصيد تابي إلى كاش فوري — مطر",
+  title: "تسييل تابي | تكييش تابي وتحويل رصيد تابي إلى كاش — مطر",
   description:
-    "تسييل تابي فوري مع مطر. حوّل حدك الائتماني في تابي إلى نقد يصل حسابك البنكي خلال ساعة. نظام شراكة حلال وتقييم 5 نجوم.",
+    "تسييل تابي وتكييش تابي مع مطر. حوّل رصيدك في تابي إلى كاش يصل حسابك البنكي خلال ساعة عبر نظام شراكة واضح وسريع.",
   keywords:
-    "تسييل تابي, تسييل رصيد تابي, تحويل تابي كاش, تسييل حد تابي",
+    "تسييل تابي, تكييش تابي, كاش تابي, تحويل رصيد تابي كاش, تسييل رصيد تابي",
   alternates: {
     canonical: "https://liilsol.com/tasyeel-tabby",
   },
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/tasyeel-tabby#service",
-      name: "تسييل تابي — تحويل رصيد تابي إلى كاش",
-      description: "خدمة تسييل رصيد تابي وتحويله إلى نقد فوري عبر نظام الشراكة الحلال.",
+      name: "تسييل تابي — تكييش تابي وتحويل الرصيد إلى كاش",
+      description: "خدمة تسييل رصيد تابي وتكييشه وتحويله إلى كاش فوري عبر نظام شراكة واضح.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تسييل تابي", "تحويل تابي كاش", "تسييل رصيد تابي"],
+      serviceType: ["تسييل تابي", "تكييش تابي", "كاش تابي", "تحويل رصيد تابي كاش"],
     },
     {
       "@type": "BreadcrumbList",
@@ -87,7 +87,7 @@ const steps = [
 ]
 
 const faqs = [
-  { q: "ما الفرق بين تسييل تابي وسيولة تابي وسلفة تابي؟", a: "كلها مسميات لنفس الخدمة: تحويل رصيدك في تابي إلى نقد. الفرق فقط في المصطلح المستخدم." },
+  { q: "ما الفرق بين تسييل تابي وتكييش تابي وكاش تابي؟", a: "كلها مسميات شائعة لنفس الفكرة: تحويل رصيدك في تابي إلى نقد. الاختلاف فقط في التعبير المستخدم بين العملاء." },
   { q: "هل تسييل تابي يؤثر على حسابي؟", a: "هي عملية شراء عادية عبر تابي. طالما تلتزم بسداد الأقساط في مواعيدها فلن يتأثر حسابك أو سجلك الائتماني." },
   { q: "كم أقدر أسيّل من تابي؟", a: "يعتمد على حدك في تطبيق تابي. الحد الأدنى 1,000 ريال. استخدم حاسبة السيولة لمعرفة الصافي الدقيق." },
   { q: "هل أقدر أسيّل تابي وتمارا معاً؟", a: "نعم! كثير من عملائنا يسيّلون رصيدهم في كلا التطبيقين للحصول على أقصى مبلغ ممكن." },
@@ -125,13 +125,13 @@ export default function TasyeelTabbyPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                تسييل تابي — حوّل رصيدك
+                تسييل تابي وتكييش تابي
                 <span className="block text-primary mt-2">إلى كاش فوري ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                عندك رصيد في تابي وتحتاج <strong className="text-foreground">نقد حقيقي</strong>؟ مطر يسيّل لك رصيد تابي ويحوله إلى كاش يصل حسابك البنكي.
-                نشتري معك جهازاً كشركاء، نبيعه، ونحول لك <strong className="text-foreground">الصافي مباشرة</strong>.
+                عندك رصيد في تابي وتحتاج <strong className="text-foreground">كاش تابي</strong> بشكل سريع؟ مطر يسيّل لك رصيدك ويحوّله إلى نقد يصل حسابك البنكي.
+                نشتري معك جهازاً كشركاء، نبيعه، ونحوّل لك <strong className="text-foreground">الصافي مباشرة</strong> بطريقة واضحة وسهلة.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -154,17 +154,17 @@ export default function TasyeelTabbyPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
-                ما معنى <span className="text-primary">تسييل تابي</span>؟
+                ما معنى <span className="text-primary">تسييل تابي أو تكييش تابي</span>؟
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>
                   <strong className="text-foreground">التسييل</strong> في عالم المال يعني تحويل أصل غير نقدي إلى نقد. وفي حالة تابي، يعني تحويل حدك الائتماني (الذي يمكنك استخدامه فقط للشراء) إلى نقد حقيقي تستطيع استخدامه في أي شيء.
                 </p>
                 <p>
-                  كثير من الناس لديهم حد في تابي لا يستخدمونه لأنهم لا يحتاجون شراء منتجات. لكنهم يحتاجون سيولة نقدية لدفع إيجار، فاتورة، أو مصاريف طارئة. هنا يأتي دور <strong className="text-foreground">تسييل تابي</strong>.
+                  كثير من الناس لديهم حد في تابي لا يستخدمونه لأنهم لا يحتاجون شراء منتجات. لكنهم يحتاجون سيولة نقدية لدفع إيجار، فاتورة، أو مصاريف طارئة. هنا يأتي دور <strong className="text-foreground">تسييل تابي</strong> أو ما يسميه البعض <strong className="text-foreground">تكييش تابي</strong>.
                 </p>
                 <p>
-                  في <strong className="text-foreground">مطر</strong>، نسيّل لك رصيد تابي بنظام الشراكة الحلال: نشتري معك جهازاً عبر تابي كشركاء، نغطي الدفعة الأولى، ثم نبيع الجهاز ونحول لك الصافي. العملية كاملة تتم عن بُعد عبر واتساب وتستغرق ساعة واحدة.
+                  في <strong className="text-foreground">مطر</strong>، نسيّل لك رصيد تابي بنظام الشراكة الحلال: نشتري معك جهازاً عبر تابي كشركاء، نغطي الدفعة الأولى، ثم نبيع الجهاز ونحول لك الصافي. بهذه الطريقة تحصل على <strong className="text-foreground">كاش تابي</strong> بشكل منظم وواضح بالكامل.
                 </p>
               </div>
             </div>

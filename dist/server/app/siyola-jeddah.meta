@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/siyola-jeddah/layout,_N_T_/siyola-jeddah/page,_N_T_/siyola-jeddah"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/siyola-jeddah/__PAGE__",
+    "/siyola-jeddah",
+    "/_index",
+    "/_head"
+  ]
+}

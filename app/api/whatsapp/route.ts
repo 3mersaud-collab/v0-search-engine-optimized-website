@@ -547,7 +547,6 @@ export async function POST(req: Request) {
           },
         }),
       },
-      maxSteps: 5,
     })
 
     // Save AI response

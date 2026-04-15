@@ -6,11 +6,11 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Arro
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تحويل رصيد تابي الى كاش | حوّل حدك إلى نقد فوري — مطر",
+  title: "تحويل رصيد تابي كاش | كاش تابي وتحويل حدك إلى نقد — مطر",
   description:
-    "تحويل رصيد تابي الى كاش فوري مع مطر. حوّل حدك الائتماني في تابي إلى نقد يصل حسابك البنكي خلال ساعة. نظام شراكة حلال.",
+    "تحويل رصيد تابي كاش مع مطر. إذا كنت تبحث عن كاش تابي أو تحويل حد تابي إلى نقد فستجد هنا الطريقة الواضحة للحصول على الصافي بسرعة.",
   keywords:
-    "تحويل رصيد تابي الى كاش, تحويل تابي كاش, تحويل حد تابي نقد, tabby cash",
+    "تحويل رصيد تابي كاش, كاش تابي, تحويل رصيد تابي الى كاش, تحويل تابي كاش, tabby cash",
   alternates: {
     canonical: "https://liilsol.com/tahweel-tabby-cash",
   },
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/tahweel-tabby-cash#service",
-      name: "تحويل رصيد تابي الى كاش",
-      description: "خدمة تحويل رصيد تابي إلى كاش فوري عبر نظام الشراكة الحلال. المبلغ يصل حسابك البنكي خلال ساعة.",
+      name: "تحويل رصيد تابي كاش",
+      description: "خدمة تحويل رصيد تابي كاش والحصول على كاش تابي بسرعة عبر نظام شراكة واضح.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تحويل رصيد تابي الى كاش", "تحويل تابي كاش", "تحويل حد تابي نقد"],
+      serviceType: ["تحويل رصيد تابي كاش", "كاش تابي", "تحويل رصيد تابي الى كاش", "تحويل تابي كاش"],
     },
     {
       "@type": "BreadcrumbList",
@@ -98,7 +98,7 @@ const importantNotes = [
 ]
 
 const faqs = [
-  { q: "كيف أحول رصيد تابي الى كاش؟", a: "تواصل معنا عبر واتساب، ادخل المتجر واختر جهازاً، اختر تابي كوسيلة دفع، صوّر التأكيد وأرسله لنا. نكمل الباقي ونحول لك الصافي خلال ساعة." },
+  { q: "كيف أحول رصيد تابي كاش أو أحصل على كاش تابي؟", a: "تواصل معنا عبر واتساب، ادخل المتجر واختر جهازاً مناسباً، اختر تابي كوسيلة دفع، ثم أرسل لنا التأكيد. بعد ذلك نكمل الإجراء ونحول لك الصافي خلال ساعة." },
   { q: "هل تحويل رصيد تابي الى كاش حلال؟", a: "نعم، نعمل بنظام الشراكة الحلال. نشتري معك الجهاز كشركاء مقابل نسبة شراكة متفق عليها. لا ربا ولا فائدة." },
   { q: "كم الصافي من تحويل 5,000 ريال تابي؟", a: "يعتمد على عدد الدفعات والمتجر. استخدم حاسبة السيولة في الصفحة الرئيسية لمعرفة الرقم الدقيق." },
   { q: "هل أقدر أحول رصيد تابي وتمارا معاً؟", a: "نعم! كثير من عملائنا يحولون رصيدهم في كلا التطبيقين للحصول على أقصى كاش ممكن." },
@@ -135,13 +135,13 @@ export default function TahweelTabbyCashPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                تحويل رصيد تابي الى كاش
-                <span className="block text-primary mt-2">يصل حسابك خلال ساعة ⚡</span>
+                تحويل رصيد تابي كاش
+                <span className="block text-primary mt-2">واحصل على كاش تابي بسرعة ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                تبي تحول <strong className="text-foreground">رصيد تابي إلى كاش</strong>؟ مطر يحول لك حدك الائتماني في تابي إلى نقد حقيقي.
-                نشتري معك جهازاً كشركاء، نبيعه، ونحول لك <strong className="text-foreground">الصافي مباشرة</strong> لحسابك البنكي.
+                إذا كنت تبحث عن <strong className="text-foreground">كاش تابي</strong> أو تريد تحويل رصيدك إلى نقد حقيقي، فمطر يوفر لك طريقة واضحة وسريعة.
+                نشتري معك جهازاً كشركاء، نبيعه، ثم نحوّل لك <strong className="text-foreground">الصافي مباشرة</strong> إلى حسابك البنكي.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -188,7 +188,7 @@ export default function TahweelTabbyCashPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
-                كيف يتم <span className="text-primary">تحويل رصيد تابي الى كاش</span>؟
+                كيف يتم <span className="text-primary">تحويل رصيد تابي كاش</span>؟
               </h2>
               <p className="text-center text-muted-foreground mb-12">5 خطوات بسيطة — كل شيء عن بُعد عبر واتساب</p>
               <div className="space-y-6">

@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/shariah/layout,_N_T_/shariah/page,_N_T_/shariah"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/shariah/__PAGE__",
+    "/shariah",
+    "/_index",
+    "/_head"
+  ]
+}

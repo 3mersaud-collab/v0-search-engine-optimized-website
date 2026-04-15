@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/siyola-without-salary/layout,_N_T_/siyola-without-salary/page,_N_T_/siyola-without-salary"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/siyola-without-salary/__PAGE__",
+    "/siyola-without-salary",
+    "/_index",
+    "/_head"
+  ]
+}

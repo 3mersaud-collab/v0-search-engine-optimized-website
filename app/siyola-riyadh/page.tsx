@@ -123,13 +123,6 @@ const steps = [
   },
 ]
 
-const examples = [
-  { device: "آيفون 15 — اكسترا الرياض", price: "4,500", net: "3,600", time: "45 دقيقة" },
-  { device: "سامسونج S24 — جرير الرياض", price: "3,800", net: "3,000", time: "50 دقيقة" },
-  { device: "آيباد Pro — نون", price: "5,200", net: "4,100", time: "60 دقيقة" },
-  { device: "لابتوب Dell — اكسترا الرياض", price: "6,000", net: "4,700", time: "55 دقيقة" },
-]
-
 const faqs = [
   {
     q: "ما هي مناطق الرياض التي تخدمونها؟",
@@ -215,7 +208,7 @@ export default function SiyolaRiyadhPage() {
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="bg-transparent" asChild>
-                  <a href="#examples">شاهد أمثلة</a>
+                  <Link href="/#calculator">احسب الصافي</Link>
                 </Button>
               </div>
 
@@ -330,45 +323,16 @@ export default function SiyolaRiyadhPage() {
           </div>
         </section>
 
-        {/* ─── جدول الأمثلة ─── */}
-        <section id="examples" className="py-16 bg-card/50">
+        {/* ─── توضيح الصافي ─── */}
+        <section className="py-16 bg-card/50">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
-                أمثلة على <span className="text-primary">سيولة في الرياض</span>
+                لمعرفة <span className="text-primary">الصافي الصحيح</span>
               </h2>
-              <p className="text-center text-muted-foreground mb-10">
-                أرقام تقريبية توضح الصافي الذي تستلمه بعد بيع الجهاز في الرياض
-              </p>
-
-              <div className="overflow-x-auto rounded-2xl border border-border">
-                <table className="w-full text-sm">
-                  <thead className="bg-primary/10">
-                    <tr>
-                      <th className="p-4 text-start font-bold text-foreground">الجهاز والمتجر</th>
-                      <th className="p-4 text-center font-bold text-foreground">سعر الشراء</th>
-                      <th className="p-4 text-center font-bold text-foreground">الصافي لك</th>
-                      <th className="p-4 text-center font-bold text-foreground">وقت التحويل</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {examples.map((ex, i) => (
-                      <tr
-                        key={i}
-                        className={`border-t border-border ${i % 2 === 0 ? "bg-background" : "bg-card"}`}
-                      >
-                        <td className="p-4 font-medium text-foreground">{ex.device}</td>
-                        <td className="p-4 text-center text-muted-foreground">{ex.price} ر.س</td>
-                        <td className="p-4 text-center font-bold text-primary">{ex.net} ر.س</td>
-                        <td className="p-4 text-center text-muted-foreground">{ex.time}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="text-xs text-center text-muted-foreground mt-4">
-                * الأرقام تقديرية وتتوقف على سعر الجهاز وقت البيع في الرياض
+              <p className="text-center text-muted-foreground text-lg leading-relaxed">
+                تم حذف الأمثلة والأسعار التقريبية لأنها قد لا تعكس السعر الفعلي وقت التنفيذ، وحتى لا تظهر أرقام غير واقعية أو غير صحيحة.
+                لمعرفة الصافي الصحيح استخدم <Link href="/#calculator" className="text-primary underline">حاسبة السيولة</Link> أو تواصل معنا مباشرة عبر واتساب للحصول على رقم دقيق حسب حالتك.
               </p>
             </div>
           </div>

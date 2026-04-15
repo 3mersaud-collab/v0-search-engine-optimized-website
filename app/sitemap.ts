@@ -32,6 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tasyeel-tabby`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
     { url: `${baseUrl}/tahweel-tabby-cash`,      lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
     { url: `${baseUrl}/siyola-without-salary`,   lastModified: now, changeFrequency: 'weekly',  priority: 0.94 },
+    { url: `${baseUrl}/takyeesh-tabby`,          lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
+    { url: `${baseUrl}/cash-tabby`,              lastModified: now, changeFrequency: 'weekly',  priority: 0.94 },
+    { url: `${baseUrl}/siyola-without-bank`,     lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     // Supporting pages
     { url: `${baseUrl}/check-limit`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
     { url: `${baseUrl}/reviews`,                 lastModified: now, changeFrequency: 'daily',   priority: 0.85 },
