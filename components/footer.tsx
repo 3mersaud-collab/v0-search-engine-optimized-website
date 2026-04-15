@@ -57,6 +57,11 @@ export function Footer() {
             <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-tabby" className="text-background/70 hover:text-background transition-colors">سيولة تابي</Link>
               <Link href="/cash-tamara" className="text-background/70 hover:text-background transition-colors">كاش تمارا</Link>
+              <Link href="/salfa-tabby" className="text-background/70 hover:text-background transition-colors">سلفة تابي</Link>
+              <Link href="/salfa-tamara" className="text-background/70 hover:text-background transition-colors">سلفة تمارا</Link>
+              <Link href="/tasyeel-tabby" className="text-background/70 hover:text-background transition-colors">تسييل تابي</Link>
+              <Link href="/tahweel-tabby-cash" className="text-background/70 hover:text-background transition-colors">تحويل تابي كاش</Link>
+              <Link href="/siyola-without-salary" className="text-background/70 hover:text-background transition-colors">سيولة بدون تحويل راتب</Link>
               <Link href="/#calculator" className="text-background/70 hover:text-background transition-colors">حاسبة السيولة</Link>
               <Link href="/check-limit" className="text-background/70 hover:text-background transition-colors">افحص حدك</Link>
               <Link href="/reviews" className="text-background/70 hover:text-background transition-colors">آراء العملاء</Link>
@@ -89,6 +94,7 @@ export function Footer() {
         <div className="border-t border-background/10 py-6">
           <div className="flex flex-wrap gap-2 justify-center">
             {["سيولة تابي","كاش تابي","سيولة تمارا","كاش تمارا","سلفة تابي","سلفة تمارا",
+              "تسييل تابي","تحويل رصيد تابي الى كاش","سيولة بدون تحويل راتب","سيولة بدون كفيل",
               "سيولة الرياض","كاش جدة","سيولة الدمام","تقسيط جوالات كاش","سيولة نقدية فورية"].map(tag => (
               <span key={tag} className="px-3 py-1.5 bg-background/10 rounded-lg text-xs text-background/60">{tag}</span>
             ))}
