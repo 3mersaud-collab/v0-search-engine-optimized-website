@@ -6,11 +6,11 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Refr
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تسييل تابي | تكييش تابي وتحويل رصيد تابي إلى كاش — مطر",
+  title: "تسييل تابي | تحويل تابي إلى كاش بطريقة واضحة — مطر",
   description:
-    "تسييل تابي وتكييش تابي مع مطر. حوّل رصيدك في تابي إلى كاش يصل حسابك البنكي خلال ساعة عبر نظام شراكة واضح وسريع.",
+    "تسييل تابي مع مطر لتحويل رصيد تابي إلى كاش يصل حسابك البنكي بسرعة عبر خطوات واضحة ونظام شراكة منظم.",
   keywords:
-    "تسييل تابي, تكييش تابي, كاش تابي, تحويل رصيد تابي كاش, تسييل رصيد تابي",
+    "تسييل تابي, تحويل تابي إلى كاش, تحويل رصيد تابي كاش, كاش تابي, تسييل رصيد تابي",
   alternates: {
     canonical: "https://liilsol.com/tasyeel-tabby",
   },
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/tasyeel-tabby#service",
-      name: "تسييل تابي — تكييش تابي وتحويل الرصيد إلى كاش",
-      description: "خدمة تسييل رصيد تابي وتكييشه وتحويله إلى كاش فوري عبر نظام شراكة واضح.",
+      name: "تسييل تابي وتحويل الرصيد إلى كاش",
+      description: "خدمة تسييل رصيد تابي وتحويله إلى كاش فوري عبر نظام شراكة واضح.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تسييل تابي", "تكييش تابي", "كاش تابي", "تحويل رصيد تابي كاش"],
+      serviceType: ["تسييل تابي", "تحويل تابي إلى كاش", "كاش تابي", "تحويل رصيد تابي كاش"],
     },
     {
       "@type": "BreadcrumbList",
@@ -125,13 +125,13 @@ export default function TasyeelTabbyPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                تسييل تابي وتكييش تابي
-                <span className="block text-primary mt-2">إلى كاش فوري ⚡</span>
+                تسييل تابي
+                <span className="block text-primary mt-2">وتحويل تابي إلى كاش ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                عندك رصيد في تابي وتحتاج <strong className="text-foreground">كاش تابي</strong> بشكل سريع؟ مطر يسيّل لك رصيدك ويحوّله إلى نقد يصل حسابك البنكي.
-                نشتري معك جهازاً كشركاء، نبيعه، ونحوّل لك <strong className="text-foreground">الصافي مباشرة</strong> بطريقة واضحة وسهلة.
+                إذا كان لديك رصيد في تابي وتحتاج سيولة فعلية، فهذه الصفحة تشرح لك معنى <strong className="text-foreground">تسييل تابي</strong> وكيفية
+                <strong className="text-foreground"> تحويل تابي إلى كاش</strong> بخطوات واضحة حتى يصل الصافي إلى حسابك البنكي بسرعة.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -154,7 +154,7 @@ export default function TasyeelTabbyPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
-                ما معنى <span className="text-primary">تسييل تابي أو تكييش تابي</span>؟
+                ما معنى <span className="text-primary">تسييل تابي وتحويل تابي إلى كاش</span>؟
               </h2>
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-5">
                 <p>

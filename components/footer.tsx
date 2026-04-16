@@ -34,7 +34,7 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <a href="tel:+966503367637" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">+966 56 345 7734</span>
+                <span dir="ltr">+966 50 336 7637</span>
               </a>
               <a href="mailto:matar@liilsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Mail className="w-4 h-4" />
@@ -53,42 +53,32 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold mb-4">روابط سريعة</h4>
+            <h4 className="font-bold mb-4">روابط مهمة</h4>
             <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-tabby" className="text-background/70 hover:text-background transition-colors">سيولة تابي</Link>
               <Link href="/cash-tamara" className="text-background/70 hover:text-background transition-colors">كاش تمارا</Link>
-              <Link href="/salfa-tabby" className="text-background/70 hover:text-background transition-colors">سلفة تابي</Link>
-              <Link href="/salfa-tamara" className="text-background/70 hover:text-background transition-colors">سلفة تمارا</Link>
-              <Link href="/takyeesh-tabby" className="text-background/70 hover:text-background transition-colors">تكييش تابي</Link>
               <Link href="/tasyeel-tabby" className="text-background/70 hover:text-background transition-colors">تسييل تابي</Link>
-              <Link href="/cash-tabby" className="text-background/70 hover:text-background transition-colors">كاش تابي</Link>
-              <Link href="/tahweel-tabby-cash" className="text-background/70 hover:text-background transition-colors">تحويل رصيد تابي كاش</Link>
-              <Link href="/siyola-without-salary" className="text-background/70 hover:text-background transition-colors">سيولة بدون تحويل راتب</Link>
-              <Link href="/siyola-without-bank" className="text-background/70 hover:text-background transition-colors">سيولة بدون بنك</Link>
+              <Link href="/tahweel-tabby-cash" className="text-background/70 hover:text-background transition-colors">تحويل تابي إلى كاش</Link>
               <Link href="/#calculator" className="text-background/70 hover:text-background transition-colors">حاسبة السيولة</Link>
-              <Link href="/check-limit" className="text-background/70 hover:text-background transition-colors">افحص حدك</Link>
               <Link href="/reviews" className="text-background/70 hover:text-background transition-colors">آراء العملاء</Link>
-              <Link href="/articles" className="text-background/70 hover:text-background transition-colors">المقالات</Link>
               <Link href="/about" className="text-background/70 hover:text-background transition-colors">من نحن</Link>
-              <Link href="/referral" className="text-background/70 hover:text-background transition-colors">برنامج الإحالات</Link>
-              <Link href="/shariah" className="text-background/70 hover:text-background transition-colors">الامتثال الشرعي</Link>
             </nav>
           </div>
 
           {/* Cities + Articles */}
           <div>
-            <h4 className="font-bold mb-3">السيولة بالمدينة</h4>
+            <h4 className="font-bold mb-3">صفحات متخصصة</h4>
             <nav className="flex flex-col gap-2 text-sm mb-5">
+              <Link href="/takyeesh-tabby" className="text-background/70 hover:text-background transition-colors">تكييش تابي</Link>
+              <Link href="/cash-tabby" className="text-background/70 hover:text-background transition-colors">كاش تابي</Link>
+              <Link href="/siyola-without-bank" className="text-background/70 hover:text-background transition-colors">سيولة بدون بنك</Link>
+              <Link href="/siyola-without-salary" className="text-background/70 hover:text-background transition-colors">سيولة بدون تحويل راتب</Link>
+            </nav>
+            <h4 className="font-bold mb-3">السيولة بالمدينة</h4>
+            <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-riyadh" className="text-background/70 hover:text-background transition-colors">سيولة تابي الرياض</Link>
               <Link href="/siyola-jeddah" className="text-background/70 hover:text-background transition-colors">سيولة تابي جدة</Link>
               <Link href="/siyola-dammam" className="text-background/70 hover:text-background transition-colors">سيولة تابي الدمام</Link>
-            </nav>
-            <h4 className="font-bold mb-3">مقالات مفيدة</h4>
-            <nav className="flex flex-col gap-2 text-sm">
-              <Link href="/articles/tabby-vs-tamara" className="text-background/70 hover:text-background transition-colors">تابي أم تمارا — أيهما أفضل؟</Link>
-              <Link href="/articles/كيف-احول-رصيد-تابي-الى-كاش" className="text-background/70 hover:text-background transition-colors">كيف أحوّل رصيد تابي للكاش؟</Link>
-              <Link href="/articles/كم-عمولة-تسييل-تابي-وتمارا" className="text-background/70 hover:text-background transition-colors">كم عمولة تسييل تابي وتمارا؟</Link>
-              <Link href="/articles/سيولة-تابي-بدون-تحويل-راتب" className="text-background/70 hover:text-background transition-colors">سيولة تابي بدون تحويل راتب</Link>
             </nav>
           </div>
         </div>
@@ -96,10 +86,14 @@ export function Footer() {
         {/* Services Tags */}
         <div className="border-t border-background/10 py-6">
           <div className="flex flex-wrap gap-2 justify-center">
-            {["سيولة تابي","كاش تابي","سيولة تمارا","كاش تمارا","سلفة تابي","سلفة تمارا",
-              "تكييش تابي","تسييل تابي","تحويل رصيد تابي كاش","تحويل رصيد تابي الى كاش",
-              "سيولة بدون تحويل راتب","سيولة بدون بنك","سيولة بدون كفيل","سيولة الرياض",
-              "كاش جدة","سيولة الدمام","تقسيط جوالات كاش","سيولة نقدية فورية"].map(tag => (
+            {[
+              "سيولة تابي",
+              "كاش تمارا",
+              "تسييل تابي",
+              "تحويل تابي إلى كاش",
+              "سيولة بدون بنك",
+              "سيولة نقدية فورية"
+            ].map(tag => (
               <span key={tag} className="px-3 py-1.5 bg-background/10 rounded-lg text-xs text-background/60">{tag}</span>
             ))}
           </div>

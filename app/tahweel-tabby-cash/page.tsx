@@ -6,11 +6,11 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Arro
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تحويل رصيد تابي كاش | كاش تابي وتحويل حدك إلى نقد — مطر",
+  title: "تحويل تابي إلى كاش | تحويل رصيد تابي كاش بطريقة واضحة — مطر",
   description:
-    "تحويل رصيد تابي كاش مع مطر. إذا كنت تبحث عن كاش تابي أو تحويل حد تابي إلى نقد فستجد هنا الطريقة الواضحة للحصول على الصافي بسرعة.",
+    "تحويل تابي إلى كاش مع مطر. إذا كنت تبحث عن تسييل تابي أو تحويل رصيد تابي كاش فستجد هنا الخطوات الواضحة للحصول على الصافي بسرعة.",
   keywords:
-    "تحويل رصيد تابي كاش, كاش تابي, تحويل رصيد تابي الى كاش, تحويل تابي كاش, tabby cash",
+    "تحويل تابي إلى كاش, تحويل رصيد تابي كاش, تحويل رصيد تابي الى كاش, تسييل تابي, كاش تابي",
   alternates: {
     canonical: "https://liilsol.com/tahweel-tabby-cash",
   },
@@ -29,11 +29,11 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://liilsol.com/tahweel-tabby-cash#service",
-      name: "تحويل رصيد تابي كاش",
-      description: "خدمة تحويل رصيد تابي كاش والحصول على كاش تابي بسرعة عبر نظام شراكة واضح.",
+      name: "تحويل تابي إلى كاش",
+      description: "خدمة تحويل رصيد تابي كاش والحصول على الصافي بسرعة عبر نظام شراكة واضح.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تحويل رصيد تابي كاش", "كاش تابي", "تحويل رصيد تابي الى كاش", "تحويل تابي كاش"],
+      serviceType: ["تحويل تابي إلى كاش", "تحويل رصيد تابي كاش", "تسييل تابي", "كاش تابي"],
     },
     {
       "@type": "BreadcrumbList",
@@ -135,13 +135,13 @@ export default function TahweelTabbyCashPage() {
               </div>
 
               <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 text-foreground">
-                تحويل رصيد تابي كاش
-                <span className="block text-primary mt-2">واحصل على كاش تابي بسرعة ⚡</span>
+                تحويل تابي إلى كاش
+                <span className="block text-primary mt-2">بخطوات واضحة وسريعة ⚡</span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                إذا كنت تبحث عن <strong className="text-foreground">كاش تابي</strong> أو تريد تحويل رصيدك إلى نقد حقيقي، فمطر يوفر لك طريقة واضحة وسريعة.
-                نشتري معك جهازاً كشركاء، نبيعه، ثم نحوّل لك <strong className="text-foreground">الصافي مباشرة</strong> إلى حسابك البنكي.
+                هذه الصفحة مخصصة لشرح <strong className="text-foreground">تحويل تابي إلى كاش</strong> بشكل واضح، من اختيار الطلب وحتى وصول الصافي إلى حسابك البنكي،
+                مع الحفاظ على وجود عبارة <strong className="text-foreground">تحويل رصيد تابي كاش</strong> بصياغة طبيعية غير مبالغ فيها.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -188,7 +188,7 @@ export default function TahweelTabbyCashPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 text-foreground">
-                كيف يتم <span className="text-primary">تحويل رصيد تابي كاش</span>؟
+                كيف يتم <span className="text-primary">تحويل تابي إلى كاش</span>؟
               </h2>
               <p className="text-center text-muted-foreground mb-12">5 خطوات بسيطة — كل شيء عن بُعد عبر واتساب</p>
               <div className="space-y-6">
