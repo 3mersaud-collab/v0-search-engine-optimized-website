@@ -57,7 +57,6 @@ export function Footer() {
             <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-tabby" className="text-background/70 hover:text-background transition-colors">سيولة تابي</Link>
               <Link href="/cash-tamara" className="text-background/70 hover:text-background transition-colors">كاش تمارا</Link>
-              <Link href="/tasyeel-tabby" className="text-background/70 hover:text-background transition-colors">تسييل تابي</Link>
               <Link href="/tahweel-tabby-cash" className="text-background/70 hover:text-background transition-colors">تحويل تابي إلى كاش</Link>
               <Link href="/#calculator" className="text-background/70 hover:text-background transition-colors">حاسبة السيولة</Link>
               <Link href="/reviews" className="text-background/70 hover:text-background transition-colors">آراء العملاء</Link>
@@ -69,8 +68,8 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-3">صفحات متخصصة</h4>
             <nav className="flex flex-col gap-2 text-sm mb-5">
+              <Link href="/tasyeel-tabby" className="text-background/70 hover:text-background transition-colors">تسييل تابي</Link>
               <Link href="/takyeesh-tabby" className="text-background/70 hover:text-background transition-colors">تكييش تابي</Link>
-              <Link href="/cash-tabby" className="text-background/70 hover:text-background transition-colors">كاش تابي</Link>
               <Link href="/siyola-without-bank" className="text-background/70 hover:text-background transition-colors">سيولة بدون بنك</Link>
               <Link href="/siyola-without-salary" className="text-background/70 hover:text-background transition-colors">سيولة بدون تحويل راتب</Link>
             </nav>
@@ -89,10 +88,8 @@ export function Footer() {
             {[
               "سيولة تابي",
               "كاش تمارا",
-              "تسييل تابي",
               "تحويل تابي إلى كاش",
-              "سيولة بدون بنك",
-              "سيولة نقدية فورية"
+              "سيولة بدون بنك"
             ].map(tag => (
               <span key={tag} className="px-3 py-1.5 bg-background/10 rounded-lg text-xs text-background/60">{tag}</span>
             ))}
