@@ -125,7 +125,7 @@ export default function SalfaTamaraPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966503367637?text=أبي سلفة تمارا" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039?text=أبي سلفة تمارا" target="_blank" rel="noopener noreferrer">
                     اطلب سلفة تمارا الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>

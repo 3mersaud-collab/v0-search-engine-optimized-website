@@ -144,7 +144,7 @@ const breadcrumbSchema = {
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
-const WA_LINK = "https://wa.me/966503367637"
+const WA_LINK = "https://wa.me/966590360039"
 
 const WHATSAPP_MSG = encodeURIComponent(
   "السلام عليكم، أريد الاستفسار عن كاش تمارا 🌧️"

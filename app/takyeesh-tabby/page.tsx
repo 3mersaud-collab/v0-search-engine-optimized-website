@@ -117,7 +117,7 @@ export default function TakyeeshTabbyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2" asChild>
-                  <a href="https://wa.me/966503367637?text=أبي تكييش تابي" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039?text=أبي تكييش تابي" target="_blank" rel="noopener noreferrer">
                     اطلب تكييش تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -194,7 +194,7 @@ export default function TakyeeshTabbyPage() {
                 إذا كان لديك حد متاح في تابي وتريد الاستفادة منه بشكل نقدي، تواصل معنا الآن وسنوضح لك الخطوات المناسبة حسب حالتك.
               </p>
               <Button size="lg" className="gap-2" asChild>
-                <a href="https://wa.me/966503367637?text=أبي كاش تابي" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/966590360039?text=أبي كاش تابي" target="_blank" rel="noopener noreferrer">
                   تواصل عبر واتساب
                   <ArrowLeft className="w-5 h-5" />
                 </a>

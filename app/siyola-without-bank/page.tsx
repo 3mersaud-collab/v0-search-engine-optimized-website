@@ -110,7 +110,7 @@ export default function SiyolaWithoutBankPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2" asChild>
-                  <a href="https://wa.me/966503367637?text=أبي سيولة بدون بنك" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039?text=أبي سيولة بدون بنك" target="_blank" rel="noopener noreferrer">
                     اطلب سيولة الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -146,7 +146,7 @@ export default function SiyolaWithoutBankPage() {
                 حتى تتجنب أي أمثلة عامة غير دقيقة، استخدم حاسبة السيولة أو تواصل معنا مباشرة لنوضح لك المسار المناسب حسب الحد المتاح لديك.
               </p>
               <Button size="lg" className="gap-2" asChild>
-                <a href="https://wa.me/966503367637?text=أبي تفاصيل سيولة بدون بنك" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/966590360039?text=أبي تفاصيل سيولة بدون بنك" target="_blank" rel="noopener noreferrer">
                   تواصل عبر واتساب
                   <ArrowLeft className="w-5 h-5" />
                 </a>
