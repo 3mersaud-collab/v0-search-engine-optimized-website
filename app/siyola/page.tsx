@@ -217,33 +217,36 @@ export default function SiyolaPage() {
         <section className="py-16 bg-secondary/20">
           <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold text-foreground text-center mb-10">
-                كيف نوزّع <span className="text-primary">الكلمات المفتاحية</span> بدون حشو؟
+              <h2 className="text-3xl font-bold text-foreground text-center mb-4">
+                اختر <span className="text-primary">تطبيقك</span> وابدأ
               </h2>
+              <p className="text-center text-muted-foreground mb-10">
+                كل خدمة لها صفحة مخصصة بخطوات واضحة وحاسبة دقيقة
+              </p>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Link href="/siyola-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">سيولة تابي</h3>
-                  <p className="text-sm text-muted-foreground">للزائر الذي يبحث عن السيولة المباشرة من تابي وخطوات التنفيذ العامة.</p>
+                <Link href="/siyola-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سيولة تابي</h3>
+                  <p className="text-sm text-muted-foreground">حوّل رصيدك في تابي إلى كاش في حسابك خلال ساعة.</p>
                 </Link>
-                <Link href="/cash-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">كاش تابي</h3>
-                  <p className="text-sm text-muted-foreground">للزائر الذي يستخدم كلمة كاش تابي ويريد معرفة طريقة الحصول على نقد من الرصيد.</p>
+                <Link href="/cash-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">كاش تابي</h3>
+                  <p className="text-sm text-muted-foreground">نقد فوري من رصيد تابي — بدون تعقيد ولا انتظار.</p>
                 </Link>
-                <Link href="/tasyeel-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">تسييل تابي</h3>
-                  <p className="text-sm text-muted-foreground">للباحث عن لفظ التسييل وتحويل الرصيد إلى كاش بصيغة مباشرة.</p>
+                <Link href="/tasyeel-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">تسييل تابي</h3>
+                  <p className="text-sm text-muted-foreground">تسييل رصيد تابي مباشرة لحسابك البنكي خلال ساعة.</p>
                 </Link>
-                <Link href="/takyeesh-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">تكييش تابي</h3>
-                  <p className="text-sm text-muted-foreground">للعبارات العامية الشائعة عند البحث عن تحويل حد تابي إلى نقد.</p>
+                <Link href="/takyeesh-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">تكييش تابي</h3>
+                  <p className="text-sm text-muted-foreground">تكييش رصيد تابي بخطوات بسيطة وكاش يصل حسابك.</p>
                 </Link>
-                <Link href="/salfa-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">سلفة تابي</h3>
-                  <p className="text-sm text-muted-foreground">لمن يبحث عن مفهوم السلفة على رصيد تابي بصيغة أبسط وأقرب للاستخدام اليومي.</p>
+                <Link href="/salfa-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سلفة تابي</h3>
+                  <p className="text-sm text-muted-foreground">سلفة من رصيد تابي — بدون تحويل راتب ولا كفيل.</p>
                 </Link>
-                <Link href="/cash-tamara" className="p-6 rounded-2xl border border-border bg-card hover:border-accent/40 transition-colors">
-                  <h3 className="font-bold text-foreground mb-2">كاش وتمويل تمارا</h3>
-                  <p className="text-sm text-muted-foreground">لجميع صيغ تمارا مثل كاش تمارا وسيولة تمارا وسلفة تمارا وتحويل الرصيد.</p>
+                <Link href="/cash-tamara" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">كاش تمارا</h3>
+                  <p className="text-sm text-muted-foreground">حوّل رصيد تمارا إلى كاش نقدي في حسابك خلال ساعة.</p>
                 </Link>
               </div>
             </div>
