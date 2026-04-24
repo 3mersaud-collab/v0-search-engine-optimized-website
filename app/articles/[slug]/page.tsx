@@ -15,6 +15,7 @@ const articlesData: Record<string, {
   readTime: string
   date: string
   keywords: string[]
+  relatedLinks?: Array<{ href: string; label: string }>
 }> = {
   "siyola-tabby-guide": {
     title: "سيولة تابي: دليل شامل للحصول على كاش من تابي خلال ساعة",
@@ -23,6 +24,12 @@ const articlesData: Record<string, {
     readTime: "5 دقائق",
     date: "2026-01-15",
     keywords: ["سيولة تابي", "كاش تابي", "تحويل رصيد تابي", "سلفة تابي", "تسييل تابي"],
+    relatedLinks: [
+      { href: "/siyola-tabby", label: "صفحة سيولة تابي" },
+      { href: "/cash-tabby", label: "صفحة كاش تابي" },
+      { href: "/tasyeel-tabby", label: "صفحة تسييل تابي" },
+      { href: "/salfa-tabby", label: "صفحة سلفة تابي" },
+    ],
     content: `
 ## ما هي سيولة تابي؟
 
@@ -84,6 +91,11 @@ const articlesData: Record<string, {
     readTime: "6 دقائق",
     date: "2026-01-10",
     keywords: ["كاش تمارا", "سيولة تمارا", "تحويل تمارا", "سلفة تمارا", "تسييل تمارا"],
+    relatedLinks: [
+      { href: "/cash-tamara", label: "صفحة كاش تمارا" },
+      { href: "/salfa-tamara", label: "صفحة سلفة تمارا" },
+      { href: "/siyola", label: "صفحة السيولة الرئيسية" },
+    ],
     content: `
 ## ما هو كاش تمارا؟
 
@@ -423,6 +435,11 @@ const articlesData: Record<string, {
     readTime: "6 دقائق",
     date: "2026-01-20",
     keywords: ["مقارنة تابي وتمارا", "سيولة تابي أم تمارا", "كاش تمارا أم تابي", "الفرق بين تابي وتمارا", "سلفة تابي وسلفة تمارا"],
+    relatedLinks: [
+      { href: "/siyola-tabby", label: "سيولة تابي" },
+      { href: "/cash-tamara", label: "كاش تمارا" },
+      { href: "/salfa-tamara", label: "سلفة تمارا" },
+    ],
     content: `
 ## مقدمة: تابي أم تمارا — السؤال اللي يسأله الكل
 
@@ -528,6 +545,11 @@ const articlesData: Record<string, {
     readTime: "5 دقائق",
     date: "2026-02-01",
     keywords: ["كيف احول رصيد تابي الى كاش", "طريقة تحويل تابي إلى كاش", "تحويل رصيد تابي إلى نقد", "كاش تابي خطوة بخطوة"],
+    relatedLinks: [
+      { href: "/tahweel-tabby-cash", label: "صفحة تحويل تابي إلى كاش" },
+      { href: "/cash-tabby", label: "صفحة كاش تابي" },
+      { href: "/siyola-tabby", label: "صفحة سيولة تابي" },
+    ],
     content: `
 ## كيف تحول رصيد تابي إلى كاش؟
 
@@ -618,6 +640,11 @@ const articlesData: Record<string, {
     readTime: "5 دقائق",
     date: "2026-02-10",
     keywords: ["سيولة تابي بدون تحويل راتب", "تابي بدون راتب", "سيولة بدون تحويل راتب", "سيولة تابي بدون شروط راتب"],
+    relatedLinks: [
+      { href: "/siyola-without-salary", label: "صفحة سيولة بدون تحويل راتب" },
+      { href: "/siyola-without-bank", label: "صفحة سيولة بدون بنك" },
+      { href: "/siyola-tabby", label: "صفحة سيولة تابي" },
+    ],
     content: `
 ## هل أحتاج تحويل راتب للحصول على سيولة تابي؟
 
@@ -993,6 +1020,24 @@ export default async function ArticlePage({ params }: PageProps) {
                   }}
                 />
               </article>
+
+              {article.relatedLinks && article.relatedLinks.length > 0 && (
+                <div className="mt-12 p-6 rounded-2xl border border-border bg-card">
+                  <h3 className="text-xl font-bold text-foreground mb-4">روابط مرتبطة</h3>
+                  <div className="flex flex-wrap gap-3">
+                    {article.relatedLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-background text-sm text-foreground hover:border-primary/40 hover:text-primary transition-colors"
+                      >
+                        {link.label}
+                        <ArrowLeft className="w-4 h-4" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* CTA Box */}
               <div className="mt-12 p-6 md:p-8 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl border border-primary/20">
