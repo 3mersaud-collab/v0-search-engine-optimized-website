@@ -15,6 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'كيف-احول-رصيد-تابي-الى-كاش',
     'سيولة-تابي-بدون-تحويل-راتب',
     'كم-عمولة-تسييل-تابي-وتمارا',
+    // New long-tail articles
+    'how-to-get-cash-tamara',
+    'is-tasyeel-tabby-safe',
+    'best-siyola-tabby-method',
+    'tabby-cash-amount',
+    'siyola-tamara-no-salary',
+    'cash-tabby-vs-tasyeel-tabby',
   ]
 
   const staticPages: MetadataRoute.Sitemap = [
@@ -26,6 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/siyola-riyadh`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     { url: `${baseUrl}/siyola-jeddah`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     { url: `${baseUrl}/siyola-dammam`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
+    { url: `${baseUrl}/siyola-makkah`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
+    { url: `${baseUrl}/siyola-madinah`,          lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
+    { url: `${baseUrl}/siyola-qassim`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
+    { url: `${baseUrl}/siyola-khobar`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
+    { url: `${baseUrl}/siyola-taif`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
+    // Comparison pages
+    { url: `${baseUrl}/compare-tabby-tamara`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.92 },
+    { url: `${baseUrl}/compare-siyola-salfa`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
     // New keyword-targeted pages
     { url: `${baseUrl}/salfa-tabby`,             lastModified: now, changeFrequency: 'daily',   priority: 0.97 },
     { url: `${baseUrl}/salfa-tamara`,            lastModified: now, changeFrequency: 'daily',   priority: 0.97 },
