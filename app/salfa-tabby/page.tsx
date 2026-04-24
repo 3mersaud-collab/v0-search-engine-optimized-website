@@ -6,17 +6,17 @@ import { ArrowLeft, Clock, Shield, Smartphone, Star, ChevronDown, Banknote, Zap,
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "سلفة تابي | شرح طلب سلفة على رصيد تابي | مطر",
+  title: "سلفة تابي | احصل على كاشك من تابي خلال ساعة | مطر",
   description:
-    "صفحة سلفة تابي مخصصة لمن يبحث بهذه الصيغة ويريد فهم طريقة الحصول على نقد من رصيد تابي بخطوات واضحة وسريعة.",
+    "تحتاج سلفة من رصيد تابي؟ مطر يحوّله كاش نقدي لحسابك البنكي خلال ساعة واحدة فقط. بدون تحويل راتب، بدون كفيل، بدون أي تعقيد.",
   keywords:
     "سلفة تابي, سلفة من تابي, طلب سلفة تابي, سلفة على رصيد تابي, tabby سلفة",
   alternates: {
     canonical: "https://liilsol.com/salfa-tabby",
   },
   openGraph: {
-    title: "سلفة تابي | طريقة الحصول على سلفة من الرصيد | مطر",
-    description: "تعرف على معنى سلفة تابي والطريقة المناسبة لطلبها عبر خطوات واضحة.",
+    title: "سلفة تابي | احصل على كاشك من تابي خلال ساعة | مطر",
+    description: "تحتاج سلفة من رصيد تابي؟ مطر يحوّله كاش نقدي لحسابك خلال ساعة. بدون تحويل راتب، بدون كفيل.",
     url: "https://liilsol.com/salfa-tabby",
     locale: "ar_SA",
     type: "website",

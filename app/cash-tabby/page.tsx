@@ -6,17 +6,17 @@ import { ArrowLeft, Wallet, Clock, Shield, ArrowRightLeft, ChevronDown, CheckCir
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "كاش تابي | طريقة الحصول على نقد من رصيد تابي | مطر",
+  title: "كاش تابي | حوّل رصيدك إلى نقد خلال ساعة | مطر",
   description:
-    "صفحة كاش تابي موجهة لمن يبحث بهذه العبارة تحديدًا ويريد معرفة طريقة تحويل الرصيد المتاح في تابي إلى نقد بشكل واضح وسريع.",
+    "تريد كاش من رصيد تابي؟ نحوّله مباشرة لحسابك البنكي خلال ساعة واحدة. خطوات بسيطة، أسعار شفافة من الحاسبة قبل البدء، بدون مفاجآت.",
   keywords:
     "كاش تابي, tabby cash, نقد من تابي, تحويل رصيد تابي كاش, سحب كاش من تابي",
   alternates: {
     canonical: "https://liilsol.com/cash-tabby",
   },
   openGraph: {
-    title: "كاش تابي | تحويل رصيد تابي إلى نقد | مطر",
-    description: "تعرف على معنى كاش تابي والطريقة الواضحة لتحويل الرصيد المتاح إلى نقد.",
+    title: "كاش تابي | حوّل رصيدك إلى نقد خلال ساعة | مطر",
+    description: "تريد كاش من رصيد تابي؟ نحوّله مباشرة لحسابك البنكي خلال ساعة واحدة. خطوات بسيطة، أسعار شفافة، بدون مفاجآت.",
     url: "https://liilsol.com/cash-tabby",
     locale: "ar_SA",
     type: "website",
