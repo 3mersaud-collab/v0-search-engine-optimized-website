@@ -22,7 +22,7 @@ const TEMPLATES: Record<string, (data?: Record<string, string>) => string> = {
     `تم تحويل ${data?.amount || ""} ريال لحسابك يالغالي!\n\nرقم الطلب: ${data?.orderNumber || ""}\n\nنتمنى نكون عند حسن ظنك. لو تحب تقيّم الخدمة:\nhttps://liilsol.com/add-review\n\nنشوفك على خير!`,
 
   order_cancelled: (data) =>
-    `مرحبا ${data?.name || ""}\n\nللأسف طلبك رقم ${data?.orderNumber || ""} تم إلغاؤه.\n\nلو تحتاج مساعدة تواصل معنا:\nhttps://wa.me/966503367637`,
+    `مرحبا ${data?.name || ""}\n\nللأسف طلبك رقم ${data?.orderNumber || ""} تم إلغاؤه.\n\nلو تحتاج مساعدة تواصل معنا:\nhttps://wa.me/966590360039`,
 
   follow_up: (data) =>
     `هلا ${data?.name || "يالغالي"}!\n\nكيف الحال؟ شفت انك تواصلت معنا قبل. لو محتاج سيولة نحن جاهزين نساعدك.\n\nكم تحتاج كاش؟`,

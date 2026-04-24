@@ -7,9 +7,11 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "مقالات سيولة تابي وتمارا | دليل كاش وسلفة شامل",
-  description: "مقالات تعليمية عن سيولة تابي، كاش تمارا، سلفة تابي، سلفة تمارا. دليل شامل لتحويل رصيدك إلى كاش نقدي مع مطر.",
-  keywords: "سيولة تابي, سيولة تمارا, كاش تابي, كاش تمارا, سلفة تابي, سلفة تمارا, تحويل رصيد تابي, مقالات سيولة, مطر, سحابة غيث",
+  title: "مقالات السيولة | سيولة تابي وتمارا وسلفة وكاش | مطر",
+  description:
+    "مكتبة مقالات تعليمية تغطي سيولة تابي، كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، السيولة بدون بنك، وتحويل الرصيد إلى نقد بمحتوى منظم يخدم نيات البحث المختلفة.",
+  keywords:
+    "مقالات السيولة, سيولة تابي, كاش تابي, تسييل تابي, تكييش تابي, تحويل تابي إلى كاش, كاش تمارا, سيولة تمارا, سلفة تمارا, سلفة تابي, السيولة بدون بنك, السيولة بدون تحويل راتب",
   alternates: {
     canonical: "https://liilsol.com/articles",
   },
@@ -97,13 +99,14 @@ export default function ArticlesPage() {
               </div>
               
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance leading-relaxed">
-                دليلك الشامل لـ<span className="text-primary">سيولة تابي</span> و<span className="text-accent">كاش تمارا</span>
+                دليلك الشامل لـ<span className="text-primary">السيولة</span> و<span className="text-accent">السلفة والكاش</span> من تابي وتمارا
               </h1>
-              
+
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                مقالات تعليمية شاملة عن السيولة والسلفة والكاش من تابي وتمارا ومدفوع. 
-                تعرف على الخطوات والرسوم والنصائح للحصول على أفضل قيمة.
+                مقالات تعليمية شاملة تغطي سيولة تابي، كاش تابي، تسييل وتكييش تابي، كاش تمارا، سلفة تمارا، والسيولة بدون بنك أو بدون تحويل راتب.
+                الهدف هو توسيع الظهور على أكبر عدد من الكلمات المفتاحية مع توزيع المحتوى حسب نية البحث الفعلية.
               </p>
+
 
               {/* Apps Logos */}
               <div className="flex justify-center items-center gap-8">
@@ -274,8 +277,8 @@ export default function ArticlesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                <a href="https://wa.me/966503367637">
-                  واتساب: 0503367637
+                <a href="https://wa.me/966590360039">
+                  واتساب: 0590360039
                   <ArrowLeft className="w-5 h-5" />
                 </a>
               </Button>
