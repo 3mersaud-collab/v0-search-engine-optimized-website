@@ -7,17 +7,17 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "سيولة فورية | سلفة وكاش من تابي وتمارا ومدفوع | مطر",
+  title: "سيولة تابي وتمارا | كاش فوري في حسابك خلال ساعة | مطر",
   description:
-    "صفحة السيولة الرئيسية في مطر تجمع أهم مسارات البحث: سيولة فورية، سلفة، كاش تابي، كاش تمارا، وتحويل الرصيد إلى نقد بخطوات واضحة وروابط تفصيلية لكل خدمة.",
+    "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي مباشرة لحسابك البنكي. بدون تحويل راتب ولا كفيل، خطوات بسيطة وساعة فقط. احسب مبلغك وابدأ الآن.",
   keywords:
     "سيولة, سيولة فورية, سلفة, كاش, تحويل الرصيد إلى نقد, تسييل الرصيد, كاش تابي, كاش تمارا, سلفة تابي, سلفة تمارا, سيولة بدون تحويل راتب, سيولة بدون بنك, سيولة الرياض, سيولة جدة, سيولة الدمام",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
-    title: "سيولة فورية | سلفة وكاش من تابي وتمارا ومدفوع | مطر",
-    description: "تعرف على جميع مسارات السيولة من تابي وتمارا ومدفوع، واختر الصفحة الأنسب لعبارة البحث التي تريدها.",
+    title: "سيولة تابي وتمارا | كاش فوري في حسابك خلال ساعة | مطر",
+    description: "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي خلال ساعة. بدون راتب ولا كفيل.",
     url: "https://liilsol.com/siyola",
     locale: "ar_SA",
     type: "website",
@@ -31,7 +31,7 @@ const jsonLd = {
       "@type": "Service",
       "@id": "https://liilsol.com/siyola#service",
       name: "سيولة فورية من تابي وتمارا ومدفوع",
-      description: "صفحة رئيسية تجمع خدمات السيولة والسلفة والكاش وتحويل الرصيد إلى نقد مع توجيه واضح لكل مسار بحث.",
+      description: "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي في حسابك البنكي خلال ساعة. بدون تحويل راتب ولا كفيل.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
       serviceType: ["سيولة", "سلفة", "كاش تابي", "كاش تمارا", "تحويل الرصيد إلى نقد"],
@@ -88,11 +88,11 @@ export default function SiyolaPage() {
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                <span className="text-primary">سيولة</span> و<span className="text-accent">سلفة</span> من رصيدك
+                <span className="text-primary">سيولة تابي وتمارا</span> — كاش في حسابك خلال ساعة
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                هل تحتاج <strong className="text-foreground">سيولة فورية</strong> أو تبحث عن <strong className="text-foreground">سلفة</strong> أو <strong className="text-foreground">كاش من تابي وتمارا</strong>؟ هذه الصفحة الرئيسية تجمع لك كل المسارات، ثم توجهك إلى الصفحة الأدق بحسب عبارة البحث التي تريدها وبحسب التطبيق المناسب لك.
+                نحوّل رصيدك في <strong className="text-foreground">تابي</strong> أو <strong className="text-foreground">تمارا</strong> إلى كاش نقدي مباشرة في حسابك البنكي. بدون تحويل راتب، بدون كفيل — اختر تطبيقك وابدأ الآن.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
