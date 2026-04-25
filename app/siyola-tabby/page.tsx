@@ -45,8 +45,10 @@ export const metadata: Metadata = {
 }
 
 // ─── Schemas ─────────────────────────────────────────────────────────────────
-const faqSchema = {
+const combinedSchema = {
   "@context": "https://schema.org",
+  "@graph": [
+  {
   "@type": "FAQPage",
   mainEntity: [
     {
@@ -114,10 +116,8 @@ const faqSchema = {
       },
     },
   ],
-}
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
+  },
+  {
   "@type": "BreadcrumbList",
   itemListElement: [
     {
@@ -133,10 +133,8 @@ const breadcrumbSchema = {
       item: "https://liilsol.com/siyola-tabby",
     },
   ],
-}
-
-const serviceSchema = {
-  "@context": "https://schema.org",
+  },
+  {
   "@type": "Service",
   name: "سيولة تابي - مطر",
   description:
@@ -157,6 +155,8 @@ const serviceSchema = {
     priceCurrency: "SAR",
     description: "بدون دفعة أولى من جيبك مع رسوم إدارية 10% + فرق بيع 10-15% حسب قيمة الطلب",
   }
+  }
+  ]
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -844,15 +844,7 @@ export default function SiyolaTabbyPage() {
       {/* ── JSON-LD Schemas ────────────────────────────────────────────────── */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
       />
     </div>
   )
