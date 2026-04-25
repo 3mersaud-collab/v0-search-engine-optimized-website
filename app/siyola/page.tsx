@@ -336,25 +336,7 @@ export default function SiyolaPage() {
 
       <Footer />
 
-      {/* Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": "سيولة وسلفة - مطر",
-            "description": "خدمة سيولة وسلفة من تابي وتمارا ومدفوع",
-            "provider": {
-              "@type": "Organization",
-              "name": "مطر",
-              "url": "https://liilsol.com"
-            },
-            "areaServed": "SA",
-            "serviceType": "سيولة"
-          })
-        }}
-      />
+
     </div>
   )
 }
