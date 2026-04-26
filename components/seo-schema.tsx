@@ -104,9 +104,7 @@ export function SeoSchema() {
     }
   }
 
-  // faqSchema removed from global layout to prevent duplicate FAQPage errors.
-  // Each page that needs FAQ schema defines its own.
-
+  // faqSchema removed - each page defines its own FAQPage to avoid duplication in Google Search Console
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
