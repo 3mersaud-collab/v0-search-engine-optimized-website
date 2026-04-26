@@ -15,45 +15,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'كيف-احول-رصيد-تابي-الى-كاش',
     'سيولة-تابي-بدون-تحويل-راتب',
     'كم-عمولة-تسييل-تابي-وتمارا',
-    // New long-tail articles
-    'how-to-get-cash-tamara',
-    'is-tasyeel-tabby-safe',
-    'best-siyola-tabby-method',
-    'tabby-cash-amount',
-    'siyola-tamara-no-salary',
-    'cash-tabby-vs-tasyeel-tabby',
   ]
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl,                              lastModified: now, changeFrequency: 'daily',   priority: 1.0  },
-    { url: `${baseUrl}/siyola-tabby`,            lastModified: now, changeFrequency: 'daily',   priority: 0.99 },
-    { url: `${baseUrl}/cash-tamara`,             lastModified: now, changeFrequency: 'daily',   priority: 0.99 },
-    { url: `${baseUrl}/siyola`,                  lastModified: now, changeFrequency: 'daily',   priority: 0.97 },
+    { url: `${baseUrl}/siyola-tabby`,            lastModified: now, changeFrequency: 'weekly',  priority: 0.98 },
+    { url: `${baseUrl}/cash-tamara`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.98 },
+    { url: `${baseUrl}/siyola`,                  lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
     // Local SEO pages
     { url: `${baseUrl}/siyola-riyadh`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     { url: `${baseUrl}/siyola-jeddah`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     { url: `${baseUrl}/siyola-dammam`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
-    { url: `${baseUrl}/siyola-makkah`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
-    { url: `${baseUrl}/siyola-madinah`,          lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
-    { url: `${baseUrl}/siyola-qassim`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
-    { url: `${baseUrl}/siyola-khobar`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
-    { url: `${baseUrl}/siyola-taif`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
-    // Comparison pages
-    { url: `${baseUrl}/compare-tabby-tamara`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.92 },
-    { url: `${baseUrl}/compare-siyola-salfa`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.90 },
     // New keyword-targeted pages
-    { url: `${baseUrl}/salfa-tabby`,             lastModified: now, changeFrequency: 'daily',   priority: 0.97 },
-    { url: `${baseUrl}/salfa-tamara`,            lastModified: now, changeFrequency: 'daily',   priority: 0.97 },
-    { url: `${baseUrl}/tasyeel-tabby`,           lastModified: now, changeFrequency: 'daily',   priority: 0.96 },
-    { url: `${baseUrl}/tahweel-tabby-cash`,      lastModified: now, changeFrequency: 'daily',   priority: 0.96 },
-    { url: `${baseUrl}/siyola-without-salary`,   lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
-    { url: `${baseUrl}/takyeesh-tabby`,          lastModified: now, changeFrequency: 'daily',   priority: 0.96 },
-    { url: `${baseUrl}/cash-tabby`,              lastModified: now, changeFrequency: 'daily',   priority: 0.95 },
-    { url: `${baseUrl}/siyola-without-bank`,     lastModified: now, changeFrequency: 'weekly',  priority: 0.94 },
+    { url: `${baseUrl}/salfa-tabby`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.96 },
+    { url: `${baseUrl}/salfa-tamara`,            lastModified: now, changeFrequency: 'weekly',  priority: 0.96 },
+    { url: `${baseUrl}/tasyeel-tabby`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
+    { url: `${baseUrl}/tahweel-tabby-cash`,      lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
+    { url: `${baseUrl}/siyola-without-salary`,   lastModified: now, changeFrequency: 'weekly',  priority: 0.94 },
+    { url: `${baseUrl}/takyeesh-tabby`,          lastModified: now, changeFrequency: 'weekly',  priority: 0.95 },
+    { url: `${baseUrl}/cash-tabby`,              lastModified: now, changeFrequency: 'weekly',  priority: 0.94 },
+    { url: `${baseUrl}/siyola-without-bank`,     lastModified: now, changeFrequency: 'weekly',  priority: 0.93 },
     // Supporting pages
     { url: `${baseUrl}/check-limit`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.88 },
     { url: `${baseUrl}/reviews`,                 lastModified: now, changeFrequency: 'daily',   priority: 0.85 },
-    { url: `${baseUrl}/articles`,                lastModified: now, changeFrequency: 'daily',   priority: 0.88 },
+    { url: `${baseUrl}/articles`,                lastModified: now, changeFrequency: 'weekly',  priority: 0.80 },
     { url: `${baseUrl}/about`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${baseUrl}/referral`,                lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
     { url: `${baseUrl}/add-review`,              lastModified: now, changeFrequency: 'monthly', priority: 0.55 },
@@ -66,8 +51,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const articlePages: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
     url: `${baseUrl}/articles/${encodeURIComponent(slug)}`,
     lastModified: now,
-    changeFrequency: 'weekly' as const,
-    priority: 0.82,
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
   }))
 
   return [...staticPages, ...articlePages]

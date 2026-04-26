@@ -20,18 +20,18 @@ import Link from "next/link"
 
 // ─── Metadata ────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "سيولة تابي | كاش في حسابك خلال ساعة — بدون تعقيد | مطر",
+  title: "سيولة تابي | كاش تابي وتحويل الرصيد إلى نقد خلال ساعة",
   description:
-    "حوّل رصيدك في تابي إلى كاش نقدي خلال ساعة مع مطر. لا تحتاج تحويل راتب ولا تعقيدات. احسب مبلغك في الحاسبة وابدأ على واتساب الآن.",
+    "احصل على سيولة تابي وكاش من رصيدك خلال ساعة عبر نظام شراكة واضح. تعرف على الخطوات وحساب الصافي قبل التنفيذ، والخدمة متاحة في الرياض وجدة والدمام وبقية المناطق.",
   keywords:
-    "سيولة تابي, كاش تابي, سلفة تابي, تحويل رصيد تابي, كيف احول رصيد تابي الى كاش, سيولة تابي بدون تحويل راتب, تسييل تابي, tabby cash, سيولة تابي بدون دفعة أولى, تحويل تابي إلى كاش, أفضل سيولة تابي, طريقة سيولة تابي",
+    "سيولة تابي, كاش تابي, سلفة تابي, تحويل رصيد تابي, كيف احول رصيد تابي الى كاش, سيولة تابي بدون تحويل راتب, تسييل تابي, tabby cash",
   alternates: {
     canonical: "https://liilsol.com/siyola-tabby",
   },
   openGraph: {
-    title: "سيولة تابي | كاش في حسابك خلال ساعة — بدون تعقيد | مطر",
+    title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعة",
     description:
-      "حوّل رصيدك في تابي إلى كاش نقدي خلال ساعة مع مطر. لا تحتاج تحويل راتب ولا تعقيدات. احسب مبلغك في الحاسبة وابدأ على واتساب الآن.",
+      "احصل على كاش من رصيد تابي خلال ساعة فقط. بدون تحويل راتب، بدون OTP. خدمة مطر للسيولة في الرياض وجدة والدمام.",
     url: "https://liilsol.com/siyola-tabby",
     siteName: "مطر",
     locale: "ar_SA",
@@ -39,16 +39,14 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "سيولة تابي | كاش فوري خلال ساعة | مطر",
-    description: "احصل على سيولة تابي بدون دفعة أولى من جيبك وخلال ساعة واحدة مع خطوات واضحة وآمنة.",
+    title: "سيولة تابي | كاش تابي - مطر",
+    description: "احصل على كاش من رصيد تابي خلال ساعة. بدون تحويل راتب.",
   },
 }
 
 // ─── Schemas ─────────────────────────────────────────────────────────────────
-const combinedSchema = {
+const faqSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-  {
   "@type": "FAQPage",
   mainEntity: [
     {
@@ -116,8 +114,10 @@ const combinedSchema = {
       },
     },
   ],
-  },
-  {
+}
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
     {
@@ -133,17 +133,19 @@ const combinedSchema = {
       item: "https://liilsol.com/siyola-tabby",
     },
   ],
-  },
-  {
+}
+
+const serviceSchema = {
+  "@context": "https://schema.org",
   "@type": "Service",
   name: "سيولة تابي - مطر",
   description:
-    "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعة في السعودية. بدون دفعة أولى من جيبك، بدون تحويل راتب، وبدون OTP.",
+    "خدمة تحويل رصيد تابي إلى كاش نقدي خلال ساعة في السعودية. بدون تحويل راتب، بدون OTP.",
   provider: {
     "@type": "Organization",
     name: "مطر",
     url: "https://liilsol.com",
-    telephone: "+966590360039",
+    telephone: "+966503367637",
   },
   areaServed: {
     "@type": "Country",
@@ -153,10 +155,8 @@ const combinedSchema = {
   offers: {
     "@type": "Offer",
     priceCurrency: "SAR",
-    description: "بدون دفعة أولى من جيبك مع رسوم إدارية 10% + فرق بيع 10-15% حسب قيمة الطلب",
-  }
-  }
-  ]
+    description: "رسوم إدارية 10% + فرق بيع 10-15%",
+  },
 }
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -189,38 +189,34 @@ export default function SiyolaTabbyPage() {
                   ✅ التحويل خلال ساعة
                 </span>
                 <span className="px-4 py-1.5 bg-accent/10 text-accent rounded-full text-sm font-semibold border border-accent/20">
-                  💸 بدون دفعة أولى من جيبك
+                  🔒 بدون OTP
                 </span>
                 <span className="px-4 py-1.5 bg-green-500/10 text-green-600 dark:text-green-400 rounded-full text-sm font-semibold border border-green-500/20">
                   💳 بدون تحويل راتب
-                </span>
-                <span className="px-4 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-semibold border border-primary/20">
-                  🔒 بدون OTP
                 </span>
               </div>
 
               {/* H1 */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
                 <span className="text-primary">سيولة تابي</span> |{" "}
-                <span className="text-accent">كاش فوري</span> |{" "}
-                <span className="text-primary">بدون دفعة أولى</span>
+                <span className="text-accent">كاش تابي</span> |{" "}
+                <span className="text-primary">سلفة تابي</span>
                 <br />
                 <span className="text-2xl md:text-3xl font-semibold text-muted-foreground mt-2 block">
-                  تحويل رصيد تابي إلى نقد خلال ساعة مع مطر
+                  تحويل رصيد تابي إلى نقد خلال ساعة
                 </span>
               </h1>
 
               <p className="text-xl text-muted-foreground mb-4 leading-relaxed max-w-2xl">
                 هل تبحث عن طريقة لتحويل رصيد تابي إلى كاش في حسابك البنكي؟ مع{" "}
-                <strong className="text-foreground">مطر</strong> تحصل على{" "}
-                <strong className="text-foreground">سيولة تابي وكاش فوري بدون دفعة أولى من جيبك</strong> — ندخل معك كشركاء في شراء الجهاز عبر تابي،
+                <strong className="text-foreground">مطر</strong> الأمر بسيط جدًا — ندخل معك كشركاء في شراء الجهاز عبر تابي،
                 نتكفل بالدفعة الأولى (25%)، ثم نبيع الجهاز ونحوّل لك{" "}
                 <strong className="text-foreground">صافي مبلغ السيولة</strong> في حسابك البنكي خلال ساعة واحدة فقط.
               </p>
 
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-2xl">
                 الخدمة متاحة في <strong className="text-foreground">الرياض وجدة والدمام وجميع مناطق المملكة</strong>، ولا
-                تحتاج إلى تحويل راتب أو إثبات دخل أو دفعة أولى من جيبك — فقط حد متاح في تطبيق تابي.
+                تحتاج إلى تحويل راتب أو إثبات دخل — فقط حد متاح في تطبيق تابي.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -366,7 +362,7 @@ export default function SiyolaTabbyPage() {
                   🚀 جاهز تبدأ؟ تواصل معنا الآن واحصل على سيولتك خلال ساعة
                 </p>
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
                     ابدأ الآن عبر واتساب
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -513,13 +509,10 @@ export default function SiyolaTabbyPage() {
                 ))}
               </div>
 
-              <div className="mt-8 p-5 bg-primary/5 rounded-xl border border-primary/20 space-y-3">
+              <div className="mt-8 p-5 bg-primary/5 rounded-xl border border-primary/20">
                 <p className="text-foreground text-sm leading-relaxed">
                   <strong>💡 نصيحة:</strong> لا يهم أي متجر تختار — نون، اكسترا، أو جرير — الأهم أن تكون قيمة الجهاز مطابقة
                   للمبلغ الذي اتفقنا عليه. تواصل معنا أولاً لنحدد معك قيمة الشراء الصحيحة.
-                </p>
-                <p className="text-foreground text-sm leading-relaxed">
-                  كثير من العملاء يبحثون عن <strong>سيولة تابي بدون دفعة أولى</strong> أو <strong>تحويل تابي إلى كاش</strong> بشكل سريع؛ وهنا نوضح لك الخطوات الصحيحة قبل ما تبدأ حتى تتجنب الخطأ في قيمة المنتج أو طريقة الدفع.
                 </p>
               </div>
             </div>
@@ -624,7 +617,7 @@ export default function SiyolaTabbyPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
                     سيولة تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -699,20 +692,12 @@ export default function SiyolaTabbyPage() {
                     a: "الطريقة بسيطة: تواصل معنا على واتساب، ادخل أحد المتاجر (نون أو اكسترا أو جرير)، اختر جهازًا بالقيمة التي نحددها لك، وادفع بتابي. صوّر شاشة تقسيم الدفعات وأرسلها لنا. نحن نكمل الباقي ونحوّل المبلغ لحسابك خلال ساعة.",
                   },
                   {
-                    q: "هل سيولة تابي بدون دفعة أولى ممكنة؟",
-                    a: "نعم، المقصود هنا أنك لا تحتاج تدفع الدفعة الأولى من جيبك قبل بدء العملية. مطر يدخل معك كشريك ويتكفل بهذه الدفعة ضمن نموذج الشراكة، ثم يتم احتسابها داخل العملية بشكل واضح قبل التحويل.",
-                  },
-                  {
                     q: "كم يستغرق وقت الحصول على كاش تابي؟",
                     a: "من لحظة إرسالك صورة الشاشة إلى وصول المبلغ حسابك البنكي، الوقت المعتاد لا يتجاوز ساعة واحدة. في بعض الحالات قد يصل خلال 15-30 دقيقة.",
                   },
                   {
                     q: "هل سيولة تابي بدون تحويل راتب ممكنة؟",
                     a: "نعم 100%. لا نشترط تحويل الراتب ولا إثبات الدخل ولا أي وثائق بنكية. الشرط الوحيد هو وجود حد متاح في تطبيق تابي.",
-                  },
-                  {
-                    q: "ما الفرق بين سيولة تابي والقرض البنكي؟",
-                    a: "القرض البنكي غالبًا يحتاج تحويل راتب وإجراءات أطول، بينما سيولة تابي تعتمد على الحد المتاح لك في التطبيق وعلى شراء جهاز ثم بيعه ضمن نموذج شراكة واضح. لذلك فهي أسرع وأسهل لمن يحتاج كاش فوري.",
                   },
                   {
                     q: "ما هو الحد الأدنى والأقصى للسيولة؟",
@@ -821,8 +806,8 @@ export default function SiyolaTabbyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 text-lg shadow-xl shadow-primary/25" asChild>
-                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
-                    واتساب: 0590360039
+                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
+                    واتساب: 0503367637
                     <ArrowLeft className="w-5 h-5" />
                   </a>
                 </Button>
@@ -844,7 +829,15 @@ export default function SiyolaTabbyPage() {
       {/* ── JSON-LD Schemas ────────────────────────────────────────────────── */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(combinedSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
     </div>
   )

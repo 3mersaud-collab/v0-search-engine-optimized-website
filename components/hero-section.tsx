@@ -34,12 +34,14 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              <span className="text-primary">سيولة تابي وتمارا</span>{" "}
-              — كاش في حسابك خلال ساعة
+              سيولة تابي وسلفة تمارا |{" "}
+              <span className="text-primary">كاش فوري عبر تقسيط جوالات الى كاش</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              تحتاج كاش من <strong>تابي</strong> أو <strong>تمارا</strong>؟ نحوّل رصيدك نقداً مباشرة لحسابك البنكي خلال ساعة — بدون تحويل راتب ولا أي تعقيد.
+              نقوم بالدخول معك كشركاء في شراء الجهاز عبر <strong>تابي</strong> و<strong>تمارا</strong>، 
+              ونتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نقوم ببيعه وتحويل مبلغ السيولة او السلفة المطلوب مباشرة لحسابك البنكي خلال ساعة. 
+              خدمة موثوقة في الرياض والسعودية.
             </p>
 
             {/* CTA Buttons */}

@@ -6,17 +6,17 @@ import { ArrowLeft, Coins, Clock, Shield, Wallet, CheckCircle, ChevronDown } fro
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "تكييش تابي | كاش فوري من رصيدك خلال ساعة | مطر",
+  title: "تكييش تابي | حوّل حدك في تابي إلى كاش بسرعة — مطر",
   description:
-    "تكييش تابي مع مطر: نحوّل رصيدك إلى كاش نقدي في حسابك البنكي خلال ساعة. صوّر شاشة تابي وأرسلها لنا على واتساب — ونتمم الباقي.",
+    "تكييش تابي مع مطر بطريقة واضحة وسريعة. إذا كان لديك رصيد في تابي وتحتاج نقداً، نساعدك على تحويله إلى كاش يصل حسابك البنكي خلال وقت قصير.",
   keywords:
-    "تكييش تابي, معنى تكييش تابي, تكييش رصيد تابي, كاش تابي, تحويل رصيد تابي كاش",
+    "تكييش تابي, تسييل تابي, كاش تابي, تحويل رصيد تابي كاش, تحويل تابي إلى كاش",
   alternates: {
     canonical: "https://liilsol.com/takyeesh-tabby",
   },
   openGraph: {
-    title: "تكييش تابي | كاش فوري من رصيدك خلال ساعة | مطر",
-    description: "تكييش تابي مع مطر: نحوّل رصيدك إلى كاش نقدي في حسابك خلال ساعة. صوّر شاشة تابي وأرسلها لنا على واتساب — ونتمم الباقي.",
+    title: "تكييش تابي | كاش تابي بسرعة مع مطر",
+    description: "صفحة مخصصة لشرح تكييش تابي وتحويل الرصيد إلى كاش بطريقة واضحة وسريعة.",
     url: "https://liilsol.com/takyeesh-tabby",
     locale: "ar_SA",
     type: "website",
@@ -30,10 +30,10 @@ const jsonLd = {
       "@type": "Service",
       "@id": "https://liilsol.com/takyeesh-tabby#service",
       name: "تكييش تابي",
-      description: "صفحة متخصصة تشرح معنى تكييش تابي وتحويل الرصيد المتاح في التطبيق إلى كاش عبر آلية شراكة واضحة.",
+      description: "خدمة تكييش تابي وتحويل الرصيد المتاح في التطبيق إلى كاش عبر آلية شراكة واضحة.",
       provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
       areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["تكييش تابي", "معنى تكييش تابي", "كاش تابي"],
+      serviceType: ["تكييش تابي", "تسييل تابي", "كاش تابي"],
     },
     {
       "@type": "BreadcrumbList",
@@ -62,7 +62,7 @@ const benefits = [
     desc: "يتم شرح تفاصيل الإجراء ونسبة الشراكة من البداية حتى تكون الصورة كاملة قبل البدء.",
   },
   {
-    icon: Wallet,
+icon: Wallet,
     title: "مفيد عند الحاجة للسيولة",
     desc: "يستخدم بعض العملاء تكييش تابي لتغطية احتياجاتهم العاجلة أو الالتزامات القريبة بطريقة أوضح وأسرع.",
   },
@@ -81,8 +81,8 @@ const faqs = [
     a: "المقصود هو تحويل الحد الشرائي المتاح لك في تابي إلى كاش يمكنك الاستفادة منه في احتياجاتك المختلفة.",
   },
   {
-    q: "هل تكييش تابي يختلف عن تسييل تابي؟",
-    a: "غالباً المقصود واحد، لكن هذه الصفحة مخصصة للزوار الذين يبحثون بصيغة تكييش تابي تحديدًا، بينما توجد صفحات أخرى تشرح السيولة أو التحويل بصيغ مختلفة.",
+q: "هل تكييش تابي يختلف عن تسييل تابي؟",
+    a: "غالباً لا، فالعملاء يستخدمون المصطلحين للتعبير عن الفكرة نفسها تقريباً، وهي تحويل الرصيد في تابي إلى نقد عبر خطوات واضحة.",
   },
   {
     q: "كيف أعرف الصافي المتوقع؟",
@@ -111,8 +111,8 @@ export default function TakyeeshTabbyPage() {
               </h1>
 
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                إذا كنت تبحث عن <strong className="text-foreground">تكييش تابي</strong> بصيغته الدارجة،
-                فهذه الصفحة تشرح لك المقصود به وكيف تبدأ بالطريقة المناسبة لتحويل الرصيد إلى نقد بشكل سريع وواضح.
+                إذا كنت تبحث عن <strong className="text-foreground">تكييش تابي</strong> أو <strong className="text-foreground">كاش تابي</strong>،
+                فمطر يساعدك على فهم الطريقة المناسبة لتحويل الرصيد إلى نقد بشكل سريع وواضح.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -123,7 +123,7 @@ export default function TakyeeshTabbyPage() {
                   </a>
                 </Button>
                 <Button variant="outline" size="lg" className="bg-transparent" asChild>
-                  <Link href="/#calculator">استخدم الحاسبة</Link>
+                  <Link href="/#calculator">احسب الصافي</Link>
                 </Button>
               </div>
             </div>
@@ -148,15 +148,15 @@ export default function TakyeeshTabbyPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
-                كيف يتم <span className="text-primary">تكييش تابي</span>؟
+                خطوات <span className="text-primary">تكييش تابي</span>
               </h2>
               <div className="space-y-4">
                 {steps.map((step, index) => (
-                  <div key={index} className="flex gap-4 p-5 bg-card rounded-2xl border border-border">
-                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold shrink-0">
+                  <div key={index} className="flex items-start gap-4 p-5 bg-card rounded-2xl border border-border">
+                    <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold shrink-0">
                       {index + 1}
                     </div>
-                    <p className="text-muted-foreground leading-relaxed pt-2">{step}</p>
+                    <p className="text-muted-foreground leading-relaxed">{step}</p>
                   </div>
                 ))}
               </div>
@@ -166,38 +166,13 @@ export default function TakyeeshTabbyPage() {
 
         <section className="py-16 bg-card/50">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto p-8 bg-background rounded-3xl border border-border text-center">
-              <CheckCircle className="w-14 h-14 text-primary mx-auto mb-4" />
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">اعرف الصافي قبل البدء</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                لأن الصافي يختلف حسب قيمة الرصيد وعدد الدفعات والمتجر، الأفضل استخدام الحاسبة أو التواصل المباشر معنا عبر واتساب للحصول على رقم أدق.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="gap-2" asChild>
-                  <Link href="/#calculator">
-                    افتح الحاسبة الآن
-                    <ArrowLeft className="w-5 h-5" />
-                  </Link>
-                </Button>
-                <Button variant="outline" size="lg" className="bg-transparent" asChild>
-                  <a href="https://wa.me/966590360039?text=أبي كاش تابي" target="_blank" rel="noopener noreferrer">
-                    تواصل واتساب
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16">
-          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-foreground">
                 أسئلة شائعة عن <span className="text-primary">تكييش تابي</span>
               </h2>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
-                  <details key={index} className="group bg-card border border-border rounded-2xl overflow-hidden">
+                  <details key={index} className="group bg-background border border-border rounded-2xl overflow-hidden">
                     <summary className="flex items-center justify-between p-5 cursor-pointer font-bold text-foreground list-none">
                       <span>{faq.q}</span>
                       <ChevronDown className="w-5 h-5 text-primary transition-transform group-open:rotate-180 shrink-0" />
@@ -206,6 +181,24 @@ export default function TakyeeshTabbyPage() {
                   </details>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="container mx-auto px-4 text-center">
+            <div className="max-w-3xl mx-auto p-8 bg-card rounded-3xl border border-border">
+              <CheckCircle className="w-14 h-14 text-primary mx-auto mb-4" />
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">ابدأ الآن</h2>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                إذا كان لديك حد متاح في تابي وتريد الاستفادة منه بشكل نقدي، تواصل معنا الآن وسنوضح لك الخطوات المناسبة حسب حالتك.
+              </p>
+              <Button size="lg" className="gap-2" asChild>
+                <a href="https://wa.me/966590360039?text=أبي كاش تابي" target="_blank" rel="noopener noreferrer">
+                  تواصل عبر واتساب
+                  <ArrowLeft className="w-5 h-5" />
+                </a>
+              </Button>
             </div>
           </div>
         </section>

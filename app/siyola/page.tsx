@@ -7,70 +7,21 @@ import Link from "next/link"
 import Image from "next/image"
 
 export const metadata: Metadata = {
-  title: "سيولة تابي وتمارا | كاش فوري في حسابك خلال ساعة | مطر",
-  description:
-    "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي مباشرة لحسابك البنكي. بدون تحويل راتب ولا كفيل، خطوات بسيطة وساعة فقط. احسب مبلغك وابدأ الآن.",
-  keywords:
-    "سيولة, سيولة فورية, سلفة, كاش, تحويل الرصيد إلى نقد, تسييل الرصيد, كاش تابي, كاش تمارا, سلفة تابي, سلفة تمارا, سيولة بدون تحويل راتب, سيولة بدون بنك, سيولة الرياض, سيولة جدة, سيولة الدمام",
+  title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
+  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعة. أفضل أسعار السيولة في السعودية مع مطر.",
+  keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, مطر, سحابة غيث",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
-    title: "سيولة تابي وتمارا | كاش فوري في حسابك خلال ساعة | مطر",
-    description: "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي خلال ساعة. بدون راتب ولا كفيل.",
-    url: "https://liilsol.com/siyola",
-    locale: "ar_SA",
-    type: "website",
+    title: "سيولة وسلفة فورية - مطر",
+    description: "سيولة من تابي وتمارا ومدفوع خلال ساعة",
   },
-}
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      "@id": "https://liilsol.com/siyola#service",
-      name: "سيولة فورية من تابي وتمارا ومدفوع",
-      description: "نحوّل رصيدك في تابي وتمارا إلى كاش نقدي في حسابك البنكي خلال ساعة. بدون تحويل راتب ولا كفيل.",
-      provider: { "@type": "LocalBusiness", "@id": "https://liilsol.com/#business" },
-      areaServed: { "@type": "Country", name: "Saudi Arabia" },
-      serviceType: ["سيولة", "سلفة", "كاش تابي", "كاش تمارا", "تحويل الرصيد إلى نقد"],
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "الرئيسية", item: "https://liilsol.com" },
-        { "@type": "ListItem", position: 2, name: "السيولة", item: "https://liilsol.com/siyola" },
-      ],
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "ما الصفحة المناسبة إذا كنت أبحث عن سيولة تابي أو كاش تابي؟",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "إذا كان بحثك متعلقاً بتابي فستجد في هذه الصفحة روابط مباشرة إلى سيولة تابي وكاش تابي وتسييل تابي وتحويل تابي إلى كاش حتى تصل إلى المسار الأنسب لعبارة البحث التي تستخدمها."
-          }
-        },
-        {
-          "@type": "Question",
-          name: "هل توجد صفحات منفصلة لتمارا والسلفة والسيولة بدون بنك؟",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "نعم، هذه الصفحة الرئيسية تربطك بصفحات متخصصة مثل كاش تمارا وسلفة تمارا والسيولة بدون بنك والسيولة بدون تحويل راتب حتى يحصل كل زائر على المحتوى الأقرب لنيته البحثية."
-          }
-        }
-      ]
-    }
-  ]
 }
 
 export default function SiyolaPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Header />
       
       <main className="flex-1">
@@ -88,16 +39,16 @@ export default function SiyolaPage() {
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                <span className="text-primary">سيولة تابي وتمارا</span> — كاش في حسابك خلال ساعة
+                <span className="text-primary">سيولة</span> و<span className="text-accent">سلفة</span> من رصيدك
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                نحوّل رصيدك في <strong className="text-foreground">تابي</strong> أو <strong className="text-foreground">تمارا</strong> إلى كاش نقدي مباشرة في حسابك البنكي. بدون تحويل راتب، بدون كفيل — اختر تطبيقك وابدأ الآن.
+                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعة فقط</strong>.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966590360039">
+                  <a href="https://wa.me/966503367637">
                     اطلب سيولة الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -179,7 +130,7 @@ export default function SiyolaPage() {
                     style={{ width: 'auto', height: '32px' }}
                   />
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سيولة تابي</h3>
-                  <p className="text-sm text-muted-foreground mb-3">تغطي نيات بحث مثل: سيولة تابي، كاش تابي، سلفة تابي، وتحويل رصيد تابي إلى نقد.</p>
+                  <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات بسيطة وسريعة.</p>
                   <span className="text-primary text-sm font-medium flex items-center gap-1">
                     اعرف المزيد <ArrowLeft className="w-4 h-4" />
                   </span>
@@ -195,7 +146,7 @@ export default function SiyolaPage() {
                     style={{ width: 'auto', height: '32px' }}
                   />
                   <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-accent transition-colors">كاش تمارا</h3>
-                  <p className="text-sm text-muted-foreground mb-3">تغطي نيات بحث مثل: كاش تمارا، سيولة تمارا، سلفة تمارا، وتحويل رصيد تمارا إلى نقد.</p>
+                  <p className="text-sm text-muted-foreground mb-3">متاح في نون واكسترا. خطوات مختلفة عن تابي.</p>
                   <span className="text-accent text-sm font-medium flex items-center gap-1">
                     اعرف المزيد <ArrowLeft className="w-4 h-4" />
                   </span>
@@ -206,48 +157,9 @@ export default function SiyolaPage() {
                     <span className="text-xl font-bold text-foreground">مدفوع</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">سيولة مدفوع</h3>
-                  <p className="text-sm text-muted-foreground mb-3">مسار إضافي لمن يبحث عن السيولة عبر مدفوع مع شرح منفصل عند التواصل.</p>
+                  <p className="text-sm text-muted-foreground mb-3">متاح في المنيع فقط. نفس خطوات تابي.</p>
                   <span className="text-muted-foreground text-sm">تواصل معنا للتفاصيل</span>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 bg-secondary/20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold text-foreground text-center mb-4">
-                اختر <span className="text-primary">تطبيقك</span> وابدأ
-              </h2>
-              <p className="text-center text-muted-foreground mb-10">
-                كل خدمة لها صفحة مخصصة بخطوات واضحة وحاسبة دقيقة
-              </p>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <Link href="/siyola-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سيولة تابي</h3>
-                  <p className="text-sm text-muted-foreground">حوّل رصيدك في تابي إلى كاش في حسابك خلال ساعة.</p>
-                </Link>
-                <Link href="/cash-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">كاش تابي</h3>
-                  <p className="text-sm text-muted-foreground">نقد فوري من رصيد تابي — بدون تعقيد ولا انتظار.</p>
-                </Link>
-                <Link href="/tasyeel-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">تسييل تابي</h3>
-                  <p className="text-sm text-muted-foreground">تسييل رصيد تابي مباشرة لحسابك البنكي خلال ساعة.</p>
-                </Link>
-                <Link href="/takyeesh-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">تكييش تابي</h3>
-                  <p className="text-sm text-muted-foreground">تكييش رصيد تابي بخطوات بسيطة وكاش يصل حسابك.</p>
-                </Link>
-                <Link href="/salfa-tabby" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">سلفة تابي</h3>
-                  <p className="text-sm text-muted-foreground">سلفة من رصيد تابي — بدون تحويل راتب ولا كفيل.</p>
-                </Link>
-                <Link href="/cash-tamara" className="p-6 rounded-2xl border border-border bg-card hover:border-primary/40 transition-colors group">
-                  <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">كاش تمارا</h3>
-                  <p className="text-sm text-muted-foreground">حوّل رصيد تمارا إلى كاش نقدي في حسابك خلال ساعة.</p>
-                </Link>
               </div>
             </div>
           </div>
@@ -325,8 +237,8 @@ export default function SiyolaPage() {
               تواصل معنا الآن واحصل على كاش في حسابك خلال ساعة فقط
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-              <a href="https://wa.me/966590360039">
-                واتساب: 0590360039
+              <a href="https://wa.me/966503367637">
+                واتساب: 0503367637
                 <ArrowLeft className="w-5 h-5" />
               </a>
             </Button>
@@ -336,7 +248,25 @@ export default function SiyolaPage() {
 
       <Footer />
 
-
+      {/* Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "سيولة وسلفة - مطر",
+            "description": "خدمة سيولة وسلفة من تابي وتمارا ومدفوع",
+            "provider": {
+              "@type": "Organization",
+              "name": "مطر",
+              "url": "https://liilsol.com"
+            },
+            "areaServed": "SA",
+            "serviceType": "سيولة"
+          })
+        }}
+      />
     </div>
   )
 }

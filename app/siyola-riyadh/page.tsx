@@ -382,7 +382,7 @@ export default function SiyolaRiyadhPage() {
                 asChild
               >
                 <a
-                  href="https://wa.me/966590360039?text=أريد سيولة تابي أو كاش تمارا في الرياض"
+                  href="https://wa.me/966503367637?text=أريد سيولة تابي أو كاش تمارا في الرياض"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
