@@ -22,7 +22,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <Image 
-                src="/logo.jpg" 
+                src="/matar-logo.png" 
                 alt="مطر - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
