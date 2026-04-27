@@ -15,16 +15,24 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* ===== لوقو مطر — صورة مباشرة ===== */}
-          <Link href="/" aria-label="مطر - سيولة تابي وتمارا" className="flex-shrink-0">
+          {/* ===== لوقو مطر: أيقونة + نص + تاقلاين ===== */}
+          <Link href="/" aria-label="مطر - سيولة تابي وتمارا" className="flex items-center gap-2.5 flex-shrink-0">
             <Image
-              src="/matar-logo.png"
+              src="/matar-icon.png"
               alt="مطر"
-              width={140}
-              height={140}
+              width={60}
+              height={38}
               priority
-              className="h-14 md:h-16 w-auto object-contain"
+              className="h-10 md:h-12 w-auto object-contain"
             />
+            <div className="flex flex-col leading-none">
+              <span className="text-primary font-black text-xl md:text-2xl leading-none tracking-wide">
+                مطر
+              </span>
+              <span className="text-primary/75 text-[9px] md:text-[10px] font-medium mt-1 whitespace-nowrap">
+                سحابة غيث ماحسبت حسابها
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
