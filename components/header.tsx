@@ -18,29 +18,43 @@ export function Header() {
           <Link href="/" aria-label="مطر - سيولة تابي وتمارا" className="flex-shrink-0">
             <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0px", lineHeight:1 }}>
 
-              {/* SVG اللوقو — سحابة مملوءة + 3 أمطار مستطيلة */}
+              {/* SVG: سحابة outline + 3 أمطار كبسولات */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 60"
-                style={{ width:"56px", height:"34px" }}
+                viewBox="0 0 90 62"
+                fill="none"
+                style={{ width:"54px", height:"37px" }}
                 aria-hidden="true"
               >
-                {/* السحابة المملوءة */}
+                {/* السحابة — outline فقط بدون تعبئة */}
                 <path
-                  d="M 22 42 C 10 42, 4 34, 4 26 C 4 17, 10 10, 19 8 C 22 3, 29 0, 37 0 C 49 0, 58 8, 59 18 C 63 16, 67 16, 71 18 C 78 20, 82 26, 80 33 C 78 39, 72 43, 65 43 Z"
-                  fill="#10b981"
+                  d="M 16 40
+                     C 6 40, 2 32, 2 25
+                     C 2 13, 10 5, 22 4
+                     C 26 -1, 35 -2, 44 2
+                     C 53 -2, 63 3, 66 12
+                     C 72 11, 78 15, 79 21
+                     C 81 29, 77 37, 68 39
+                     C 64 43, 68 50, 66 54"
+                  stroke="#10b981"
+                  strokeWidth="6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  fill="none"
                 />
-                {/* الأمطار — 3 مستطيلات مدورة، الوسطى أطول */}
-                <rect x="32" y="44" width="5" height="13" rx="2.5" fill="#10b981"/>
-                <rect x="44" y="44" width="5" height="16" rx="2.5" fill="#10b981"/>
-                <rect x="56" y="44" width="5" height="13" rx="2.5" fill="#10b981"/>
+                {/* المطر 1 — يسار — طويل */}
+                <rect x="26" y="41" width="6" height="17" rx="3" fill="#10b981"/>
+                {/* المطر 2 — وسط — أقصر وأسفل */}
+                <rect x="41" y="45" width="6" height="13" rx="3" fill="#10b981"/>
+                {/* المطر 3 — يمين — طويل */}
+                <rect x="56" y="41" width="6" height="17" rx="3" fill="#10b981"/>
               </svg>
 
               {/* نص مطر */}
               <span style={{
                 color: "#10b981",
                 fontWeight: 900,
-                fontSize: "1.4rem",
+                fontSize: "1.35rem",
                 lineHeight: 1,
                 letterSpacing: "0.04em",
                 marginTop: "3px",
@@ -50,9 +64,9 @@ export function Header() {
               {/* التاقلاين */}
               <span style={{
                 color: "#10b981",
-                fontSize: "0.45rem",
+                fontSize: "0.44rem",
                 lineHeight: 1,
-                opacity: 0.75,
+                opacity: 0.72,
                 marginTop: "2px",
                 whiteSpace: "nowrap",
                 fontFamily: "Cairo, Tajawal, sans-serif",
