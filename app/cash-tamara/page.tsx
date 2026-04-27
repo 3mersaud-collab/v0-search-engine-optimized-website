@@ -835,7 +835,7 @@ export default function CashTamaraPage() {
                   </Button>
                 </Link>
                 <p className="text-muted-foreground text-sm mt-4">
-                  رقم الواتساب: 966503367637
+                  رقم الواتساب: 966590360039
                 </p>
               </div>
             </div>
