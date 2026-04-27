@@ -20,10 +20,10 @@ export function Header() {
             <Image
               src="/matar-icon.png"
               alt="مطر"
-              width={60}
-              height={38}
+              width={50}
+              height={32}
               priority
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-7 md:h-8 w-auto object-contain"
             />
             <div className="flex flex-col leading-none">
               <span className="text-primary font-black text-xl md:text-2xl leading-none tracking-wide">
