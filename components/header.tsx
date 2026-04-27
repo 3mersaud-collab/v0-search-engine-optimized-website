@@ -14,58 +14,40 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* ===== لوقو مطر — مطابق للصورة: سحابة + مطر + tagline عمودي ===== */}
-          <Link href="/" className="flex items-center" aria-label="مطر - سيولة تابي وتمارا">
-            <div className="flex flex-col items-center leading-none select-none">
-
-              {/* السحابة — outline بنفس شكل الصورة */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 72"
-                className="w-14 h-10 flex-shrink-0"
-                fill="none"
-                aria-hidden="true"
-              >
-                {/* جسم السحابة — outline مفتوح من الأسفل كما في الصورة */}
+          {/* ===== لوقو مطر — مطابق للصورة ===== */}
+          <Link href="/" aria-label="مطر - سيولة تابي وتمارا" className="flex-shrink-0">
+            <div className="flex flex-col items-center gap-0">
+              {/* أيقونة السحابة */}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 65"
+                width="52" height="37" fill="none" aria-hidden="true">
                 <path
-                  d="M18 46
-                     C8 46 2 39 2 31
-                     C2 23 8 17 16 17
-                     C17 9 24 3 34 3
-                     C42 3 48 7 51 14
-                     C53 13 56 12 59 12
-                     C69 12 77 19 77 29
-                     C77 39 69 46 59 46
-                     Z"
-                  stroke="#10b981"
-                  strokeWidth="5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* قطرة 1 — يسار */}
-                <line x1="30" y1="50" x2="28" y2="64" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
-                {/* قطرة 2 — وسط */}
-                <line x1="44" y1="50" x2="42" y2="68" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
-                {/* قطرة 3 — يمين */}
-                <line x1="58" y1="50" x2="56" y2="64" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
+                  d="M16 42 C7 42 2 35 2 28 C2 21 8 16 16 16 C18 9 25 3 35 3
+                     C44 3 51 8 53 15 C55 14 58 13 61 13
+                     C70 13 77 20 77 29 C77 38 70 44 61 44 Z"
+                  stroke="#10b981" strokeWidth="4.5"
+                  strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="28" y1="47" x2="26" y2="59" stroke="#10b981" strokeWidth="4.5" strokeLinecap="round"/>
+                <line x1="42" y1="47" x2="40" y2="63" stroke="#10b981" strokeWidth="4.5" strokeLinecap="round"/>
+                <line x1="56" y1="47" x2="54" y2="59" stroke="#10b981" strokeWidth="4.5" strokeLinecap="round"/>
               </svg>
-
-              {/* نص مطر الكبير */}
-              <span
-                className="font-black text-2xl tracking-wide leading-none mt-0.5"
-                style={{ color: "#10b981", fontFamily: "inherit" }}
-              >
-                مطر
-              </span>
-
-              {/* tagline صغير */}
-              <span
-                className="text-[8px] font-medium leading-none mt-0.5 opacity-75"
-                style={{ color: "#10b981" }}
-              >
-                سحابة غيث ماحسبت حسابها
-              </span>
-
+              {/* اسم مطر */}
+              <span style={{
+                color:"#10b981",
+                fontWeight:900,
+                fontSize:"1.35rem",
+                lineHeight:1,
+                letterSpacing:"0.04em",
+                fontFamily:"inherit"
+              }}>مطر</span>
+              {/* tagline */}
+              <span style={{
+                color:"#10b981",
+                fontSize:"0.52rem",
+                lineHeight:1,
+                opacity:0.75,
+                marginTop:"1px",
+                whiteSpace:"nowrap"
+              }}>سحابة غيث ماحسبت حسابها</span>
             </div>
           </Link>
 
@@ -94,11 +76,8 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="القائمة"
-          >
+          <button className="md:hidden p-2 text-foreground"
+            onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="القائمة">
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
