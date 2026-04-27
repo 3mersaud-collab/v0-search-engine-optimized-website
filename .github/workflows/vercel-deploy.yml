@@ -14,27 +14,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trigger Vercel Deployment
-        run: |
-          RESPONSE=$(curl -s -X POST \
-            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            "https://api.vercel.com/v13/deployments" \
-            -d "{
-              \"name\": \"v0-search-engine-optimized-website\",
-              \"gitSource\": {
-                \"type\": \"github\",
-                \"repoId\": 1152885059,
-                \"ref\": \"main\",
-                \"sha\": \"${{ github.sha }}\"
-              },
-              \"target\": \"production\"
-            }")
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-          DEP_ID=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('id',''))")
-          DEP_URL=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('url',''))")
-          echo "✅ Deployment started: $DEP_ID"
-          echo "🌐 URL: https://$DEP_URL"
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
 
-      - name: Done
-        run: echo "🎉 Deployment triggered for liilsol.com"
+      - name: Deploy to Vercel Production
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --prod --yes
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
