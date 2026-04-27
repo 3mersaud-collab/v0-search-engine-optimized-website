@@ -26,7 +26,7 @@ export default function AboutPage() {
                 alt="مطر - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
-                className="rounded-2xl shadow-lg"
+                className=""
                 style={{ width: "100px", height: "100px" }}
               />
             </div>
