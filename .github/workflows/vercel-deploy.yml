@@ -1,0 +1,40 @@
+name: 🚀 Auto Deploy to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Vercel Production
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Trigger Vercel Deployment
+        run: |
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            "https://api.vercel.com/v13/deployments" \
+            -d "{
+              \"name\": \"v0-search-engine-optimized-website\",
+              \"gitSource\": {
+                \"type\": \"github\",
+                \"repoId\": 1152885059,
+                \"ref\": \"main\",
+                \"sha\": \"${{ github.sha }}\"
+              },
+              \"target\": \"production\"
+            }")
+
+          DEP_ID=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('id',''))")
+          DEP_URL=$(echo $RESPONSE | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('url',''))")
+          echo "✅ Deployment started: $DEP_ID"
+          echo "🌐 URL: https://$DEP_URL"
+
+      - name: Done
+        run: echo "🎉 Deployment triggered for liilsol.com"
