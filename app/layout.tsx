@@ -86,8 +86,8 @@ export const metadata: Metadata = {
   category: 'finance',
   classification: 'خدمات مالية',
   icons: {
-    icon: '/logo.jpg',
-    apple: '/logo.jpg',
+    icon: '/matar-logo.png',
+    apple: '/matar-logo.png',
   },
   generator: 'v0.app'
 }
