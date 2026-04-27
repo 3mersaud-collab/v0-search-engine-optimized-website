@@ -70,7 +70,7 @@ export default function AddReviewPage() {
               </p>
               <Button variant="outline" className="gap-2 bg-transparent" asChild>
                 <a 
-                  href="https://wa.me/966503367637?text=أريد%20مشاركة%20تجربتي%20مع%20خدمة%20السيولة"
+                  href="https://wa.me/966590360039?text=أريد%20مشاركة%20تجربتي%20مع%20خدمة%20السيولة"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
