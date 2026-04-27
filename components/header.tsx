@@ -14,30 +14,58 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* ===== لوقو مطر — مطابق لـ m6rsa.com ===== */}
-          <Link href="/" className="flex items-center gap-2" aria-label="مطر - سيولة تابي وتمارا">
-            <div className="flex items-center gap-2 bg-[#0f1e30] rounded-xl px-3 py-1.5 shadow-md border border-cyan-900/40">
-              {/* أيقونة السحابة والمطر SVG — نفس m6rsa بالضبط */}
+          {/* ===== لوقو مطر — مطابق للصورة: سحابة + مطر + tagline عمودي ===== */}
+          <Link href="/" className="flex items-center" aria-label="مطر - سيولة تابي وتمارا">
+            <div className="flex flex-col items-center leading-none select-none">
+
+              {/* السحابة — outline بنفس شكل الصورة */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 64 50"
-                className="h-9 w-9 flex-shrink-0"
+                viewBox="0 0 100 72"
+                className="w-14 h-10 flex-shrink-0"
+                fill="none"
                 aria-hidden="true"
               >
+                {/* جسم السحابة — outline مفتوح من الأسفل كما في الصورة */}
                 <path
-                  d="M14 28 C14 18 21 10 31 10 C37 10 43 13 46 18 C47.5 17.5 49 17 51 17 C58 17 63 22 63 29 C63 36 58 41 51 41 L13 41 C7 41 2 36 2 30 C2 24 7 20 14 28 Z"
-                  fill="#22d3ee"
-                  opacity="0.92"
+                  d="M18 46
+                     C8 46 2 39 2 31
+                     C2 23 8 17 16 17
+                     C17 9 24 3 34 3
+                     C42 3 48 7 51 14
+                     C53 13 56 12 59 12
+                     C69 12 77 19 77 29
+                     C77 39 69 46 59 46
+                     Z"
+                  stroke="#10b981"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
-                <line x1="22" y1="44" x2="20" y2="50" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="32" y1="44" x2="30" y2="51" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
-                <line x1="42" y1="44" x2="40" y2="50" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
+                {/* قطرة 1 — يسار */}
+                <line x1="30" y1="50" x2="28" y2="64" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
+                {/* قطرة 2 — وسط */}
+                <line x1="44" y1="50" x2="42" y2="68" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
+                {/* قطرة 3 — يمين */}
+                <line x1="58" y1="50" x2="56" y2="64" stroke="#10b981" strokeWidth="5" strokeLinecap="round"/>
               </svg>
-              {/* النصوص */}
-              <div className="flex flex-col leading-tight">
-                <span className="text-white font-extrabold text-xl tracking-wide leading-none">مطر</span>
-                <span className="text-cyan-300 text-[9px] font-medium leading-tight opacity-80">سحابة غيث ما حسبت حسابها</span>
-              </div>
+
+              {/* نص مطر الكبير */}
+              <span
+                className="font-black text-2xl tracking-wide leading-none mt-0.5"
+                style={{ color: "#10b981", fontFamily: "inherit" }}
+              >
+                مطر
+              </span>
+
+              {/* tagline صغير */}
+              <span
+                className="text-[8px] font-medium leading-none mt-0.5 opacity-75"
+                style={{ color: "#10b981" }}
+              >
+                سحابة غيث ماحسبت حسابها
+              </span>
+
             </div>
           </Link>
 
