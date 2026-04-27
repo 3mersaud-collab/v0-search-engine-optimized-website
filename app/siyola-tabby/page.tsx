@@ -145,7 +145,7 @@ const serviceSchema = {
     "@type": "Organization",
     name: "مطر",
     url: "https://liilsol.com",
-    telephone: "+966503367637",
+    telephone: "+966590360039",
   },
   areaServed: {
     "@type": "Country",
@@ -362,7 +362,7 @@ export default function SiyolaTabbyPage() {
                   🚀 جاهز تبدأ؟ تواصل معنا الآن واحصل على سيولتك خلال ساعة
                 </p>
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
                     ابدأ الآن عبر واتساب
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -617,7 +617,7 @@ export default function SiyolaTabbyPage() {
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
                     سيولة تابي الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -806,7 +806,7 @@ export default function SiyolaTabbyPage() {
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="gap-2 text-lg shadow-xl shadow-primary/25" asChild>
-                  <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
+                  <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
                     واتساب: 0503367637
                     <ArrowLeft className="w-5 h-5" />
                   </a>
