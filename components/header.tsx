@@ -14,43 +14,29 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* ===== لوقو مطر ===== */}
+          {/* ===== لوقو مطر — مطابق لـ m6rsa.com ===== */}
           <Link href="/" className="flex items-center gap-2" aria-label="مطر - سيولة تابي وتمارا">
-            <div className="flex items-center gap-2">
-              {/* لوقو مطر — outline سحابة مطر بدون خلفية — متناسق مع ألوان liilsol */}
+            <div className="flex items-center gap-2 bg-[#0f1e30] rounded-xl px-3 py-1.5 shadow-md border border-cyan-900/40">
+              {/* أيقونة السحابة والمطر SVG — نفس m6rsa بالضبط */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 80 80"
-                className="h-10 w-10 flex-shrink-0"
+                viewBox="0 0 64 50"
+                className="h-9 w-9 flex-shrink-0"
                 aria-hidden="true"
-                fill="none"
               >
-                {/* Cloud outline — open arc top, same style as brand logo */}
                 <path
-                  d="M20 52
-                     C20 52 10 51 10 40
-                     C10 30 18 24 28 26
-                     C30 20 36 16 44 16
-                     C54 16 62 24 62 34
-                     C66 34 72 38 72 44
-                     C72 51 66 56 60 56
-                     L20 56
-                     C15 56 10 52 10 47
-                     C10 44 12 41 15 40"
-                  stroke="#10b981"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  d="M14 28 C14 18 21 10 31 10 C37 10 43 13 46 18 C47.5 17.5 49 17 51 17 C58 17 63 22 63 29 C63 36 58 41 51 41 L13 41 C7 41 2 36 2 30 C2 24 7 20 14 28 Z"
+                  fill="#22d3ee"
+                  opacity="0.92"
                 />
-                {/* Rain drops — three vertical bars with rounded ends */}
-                <line x1="30" y1="60" x2="28" y2="70" stroke="#10b981" strokeWidth="4" strokeLinecap="round"/>
-                <line x1="40" y1="60" x2="38" y2="72" stroke="#10b981" strokeWidth="4" strokeLinecap="round"/>
-                <line x1="50" y1="60" x2="48" y2="70" stroke="#10b981" strokeWidth="4" strokeLinecap="round"/>
+                <line x1="22" y1="44" x2="20" y2="50" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="32" y1="44" x2="30" y2="51" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
+                <line x1="42" y1="44" x2="40" y2="50" stroke="#22d3ee" strokeWidth="3" strokeLinecap="round"/>
               </svg>
               {/* النصوص */}
               <div className="flex flex-col leading-tight">
-                <span className="text-foreground font-extrabold text-xl tracking-wide leading-none">مطر</span>
-                <span className="text-emerald-500 text-[9px] font-medium leading-tight opacity-90">سحابة غيث ما حسبت حسابها</span>
+                <span className="text-white font-extrabold text-xl tracking-wide leading-none">مطر</span>
+                <span className="text-cyan-300 text-[9px] font-medium leading-tight opacity-80">سحابة غيث ما حسبت حسابها</span>
               </div>
             </div>
           </Link>
