@@ -20,22 +20,13 @@ export default async function Image() {
           fontFamily: 'Arial, sans-serif',
         }}
       >
-        {/* Logo Circle */}
-        <div
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: 60,
-            background: 'linear-gradient(135deg, #1e3a5f 0%, #10b981 100%)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginBottom: 30,
-            border: '4px solid rgba(255,255,255,0.3)',
-          }}
-        >
-          <span style={{ fontSize: 50, color: 'white', fontWeight: 'bold' }}>م</span>
-        </div>
+        {/* New Logo Image */}
+        <img
+          src="https://liilsol.com/matar-logo.png"
+          width={160}
+          height={160}
+          style={{ marginBottom: 24, objectFit: 'contain' }}
+        />
 
         {/* Brand Name */}
         <div
@@ -44,7 +35,6 @@ export default async function Image() {
             fontWeight: 'bold',
             color: 'white',
             marginBottom: 20,
-            textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
           }}
         >
           مطر
@@ -63,58 +53,16 @@ export default async function Image() {
         </div>
 
         {/* Features */}
-        <div
-          style={{
-            display: 'flex',
-            gap: 40,
-            marginTop: 20,
-          }}
-        >
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.1)',
-              padding: '15px 30px',
-              borderRadius: 50,
-              color: 'white',
-              fontSize: 24,
-            }}
-          >
-            تحويل خلال ساعة
+        <div style={{ display: 'flex', gap: 40, marginTop: 20 }}>
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '15px 30px', borderRadius: 12, color: 'white', fontSize: 24 }}>
+            سيولة تابي
           </div>
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.1)',
-              padding: '15px 30px',
-              borderRadius: 50,
-              color: 'white',
-              fontSize: 24,
-            }}
-          >
-            بدون كفيل
+          <div style={{ background: 'rgba(16,185,129,0.2)', padding: '15px 30px', borderRadius: 12, color: '#10b981', fontSize: 24, border: '1px solid #10b981' }}>
+            كاش تمارا
           </div>
-          <div
-            style={{
-              background: 'rgba(255,255,255,0.1)',
-              padding: '15px 30px',
-              borderRadius: 50,
-              color: 'white',
-              fontSize: 24,
-            }}
-          >
-            تقييم 4.9
+          <div style={{ background: 'rgba(255,255,255,0.1)', padding: '15px 30px', borderRadius: 12, color: 'white', fontSize: 24 }}>
+            خلال ساعة
           </div>
-        </div>
-
-        {/* Website */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 30,
-            fontSize: 24,
-            color: 'rgba(255,255,255,0.7)',
-          }}
-        >
-          مطر - سحابة غيث ماحسبت حسابها
         </div>
       </div>
     ),
