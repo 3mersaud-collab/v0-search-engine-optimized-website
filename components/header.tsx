@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Bot } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
@@ -14,65 +15,16 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* ===== لوقو مطر ===== */}
+          {/* ===== لوقو مطر — صورة مباشرة ===== */}
           <Link href="/" aria-label="مطر - سيولة تابي وتمارا" className="flex-shrink-0">
-            <div style={{ display:"flex", flexDirection:"column", alignItems:"center", gap:"0px", lineHeight:1 }}>
-
-              {/* SVG: سحابة outline + 3 أمطار كبسولات */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 90 62"
-                fill="none"
-                style={{ width:"54px", height:"37px" }}
-                aria-hidden="true"
-              >
-                {/* السحابة — outline فقط بدون تعبئة */}
-                <path
-                  d="M 16 40
-                     C 6 40, 2 32, 2 25
-                     C 2 13, 10 5, 22 4
-                     C 26 -1, 35 -2, 44 2
-                     C 53 -2, 63 3, 66 12
-                     C 72 11, 78 15, 79 21
-                     C 81 29, 77 37, 68 39
-                     C 64 43, 68 50, 66 54"
-                  stroke="#10b981"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                />
-                {/* المطر 1 — يسار — طويل */}
-                <rect x="26" y="41" width="6" height="17" rx="3" fill="#10b981"/>
-                {/* المطر 2 — وسط — أقصر وأسفل */}
-                <rect x="41" y="45" width="6" height="13" rx="3" fill="#10b981"/>
-                {/* المطر 3 — يمين — طويل */}
-                <rect x="56" y="41" width="6" height="17" rx="3" fill="#10b981"/>
-              </svg>
-
-              {/* نص مطر */}
-              <span style={{
-                color: "#10b981",
-                fontWeight: 900,
-                fontSize: "1.35rem",
-                lineHeight: 1,
-                letterSpacing: "0.04em",
-                marginTop: "3px",
-                fontFamily: "Cairo, Tajawal, sans-serif",
-              }}>مطر</span>
-
-              {/* التاقلاين */}
-              <span style={{
-                color: "#10b981",
-                fontSize: "0.44rem",
-                lineHeight: 1,
-                opacity: 0.72,
-                marginTop: "2px",
-                whiteSpace: "nowrap",
-                fontFamily: "Cairo, Tajawal, sans-serif",
-              }}>سحابة غيث ماحسبت حسابها</span>
-
-            </div>
+            <Image
+              src="/matar-logo.png"
+              alt="مطر"
+              width={140}
+              height={140}
+              priority
+              className="h-14 md:h-16 w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop Navigation */}
