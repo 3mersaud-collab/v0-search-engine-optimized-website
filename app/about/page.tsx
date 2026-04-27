@@ -177,7 +177,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
               <a 
-                href="https://wa.me/966503367637"
+                href="https://wa.me/966590360039"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-green-500/50 hover:shadow-lg transition-all text-center group"
@@ -231,7 +231,7 @@ export default function AboutPage() {
               <Link href="/#calculator">احسب سيولتك</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <a href="https://wa.me/966503367637" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
                 تواصل واتساب
               </a>
             </Button>
