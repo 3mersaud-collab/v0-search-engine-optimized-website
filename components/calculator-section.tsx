@@ -7,7 +7,6 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
   const [inputValue, setInputValue] = useState("5000")
-  const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara">("tabby")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
   const calculations = useMemo(() => {
@@ -56,15 +55,6 @@ export function CalculatorSection() {
     setInputValue(String(clamped))
   }
 
-  const apps = [
-    { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
-    { id: "tamara" as const, name: "تمارا", label: "tamara", color: "text-[#FF6B35]" }
-  ]
-
-  const appColors = {
-    tabby: "border-[#3CBED8] bg-[#3CBED8]/5",
-    tamara: "border-[#FF6B35] bg-[#FF6B35]/5"
-  }
 
   return (
     <section id="calculator" className="relative py-16 md:py-24 overflow-hidden">
@@ -93,29 +83,6 @@ export function CalculatorSection() {
           {/* Calculator Card */}
           <div className="bg-card/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-border overflow-hidden">
             <div className="p-6 md:p-10">
-
-              {/* App Selection */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  اختر التطبيق (سيولة تابي أو سيولة تمارا)
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {apps.map((app) => (
-                    <button
-                      key={app.id}
-                      onClick={() => setSelectedApp(app.id)}
-                      className={`p-4 rounded-xl border-2 transition-all text-center ${
-                        selectedApp === app.id
-                          ? `${appColors[app.id]} shadow-lg scale-[1.02]`
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <div className={`text-lg font-bold mb-1 ${app.color}`}>{app.label}</div>
-                      <span className="text-foreground font-medium text-sm">{app.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               {/* المبلغ وعدد الدفعات جنب بعض */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
