@@ -117,103 +117,140 @@ export function CalculatorSection() {
                 </div>
               </div>
 
-              {/* Installment Months */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  عدد الدفعات — مختار الآن: <span className="text-primary font-bold">{installmentMonths} دفعات</span>
-                </label>
-                <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
-                  {Array.from({ length: 21 }, (_, i) => i + 4).map((months) => (
+              {/* المبلغ وعدد الدفعات جنب بعض */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
+                {/* مربع المبلغ */}
+                <div className="bg-secondary/30 rounded-2xl p-5 border border-border flex flex-col gap-4">
+                  <label className="block text-sm font-semibold text-foreground">
+                    💰 المبلغ (ريال سعودي)
+                  </label>
+
+                  {/* حقل الكتابة */}
+                  <div className="relative">
+                    <input
+                      type="number"
+                      min="1000"
+                      max="20000"
+                      value={inputValue}
+                      onChange={(e) => {
+                        const raw = e.target.value
+                        setInputValue(raw)
+                        const parsed = Number(raw)
+                        if (!isNaN(parsed) && parsed >= 1000 && parsed <= 20000) {
+                          setAmount(parsed)
+                        }
+                      }}
+                      onBlur={() => {
+                        const parsed = Number(inputValue)
+                        if (isNaN(parsed) || parsed < 1000) {
+                          handleAmountChange(1000)
+                        } else if (parsed > 20000) {
+                          handleAmountChange(20000)
+                        } else {
+                          handleAmountChange(parsed)
+                        }
+                      }}
+                      placeholder="اكتب المبلغ..."
+                      className="w-full text-2xl font-bold text-center border-2 border-primary/40 focus:border-primary rounded-xl px-4 py-3 bg-background text-foreground outline-none transition-all"
+                      dir="ltr"
+                    />
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-semibold pointer-events-none">ر.س</span>
+                  </div>
+
+                  {/* أزرار سريعة */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {[2000, 5000, 10000, 15000].map((preset) => (
+                      <button
+                        key={preset}
+                        onClick={() => handleAmountChange(preset)}
+                        className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
+                          amount === preset
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border hover:border-primary/50 text-muted-foreground bg-background"
+                        }`}
+                      >
+                        {preset.toLocaleString("ar-SA")}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Slider */}
+                  <div>
+                    <input
+                      type="range"
+                      min="1000"
+                      max="20000"
+                      step="500"
+                      value={amount}
+                      onChange={(e) => {
+                        const val = Number(e.target.value)
+                        setAmount(val)
+                        setInputValue(String(val))
+                      }}
+                      className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between mt-1 text-xs text-muted-foreground">
+                      <span>1,000</span>
+                      <span>20,000</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* مربع عدد الدفعات */}
+                <div className="bg-secondary/30 rounded-2xl p-5 border border-border flex flex-col gap-4">
+                  <label className="block text-sm font-semibold text-foreground">
+                    📅 عدد الدفعات — <span className="text-primary">{installmentMonths} دفعات</span>
+                  </label>
+
+                  {/* عرض الرقم المختار */}
+                  <div className="flex items-center justify-center bg-background border-2 border-primary/40 rounded-xl py-3">
                     <button
-                      key={months}
-                      onClick={() => setInstallmentMonths(months)}
-                      className={`p-3 rounded-xl border-2 transition-all text-center ${
-                        installmentMonths === months
-                          ? "border-primary bg-primary/10 shadow-lg"
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <span className={`font-bold ${installmentMonths === months ? "text-primary" : "text-foreground"}`}>
-                        {months}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Amount Input */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  مبلغ الشراء (ريال سعودي)
-                </label>
-
-                {/* حقل الكتابة المباشر */}
-                <div className="relative mb-4">
-                  <input
-                    type="number"
-                    min="1000"
-                    max="20000"
-                    value={inputValue}
-                    onChange={(e) => {
-                      const raw = e.target.value
-                      setInputValue(raw)
-                      const parsed = Number(raw)
-                      if (!isNaN(parsed) && parsed >= 1000 && parsed <= 20000) {
-                        setAmount(parsed)
-                      }
-                    }}
-                    onBlur={() => {
-                      const parsed = Number(inputValue)
-                      if (isNaN(parsed) || parsed < 1000) {
-                        handleAmountChange(1000)
-                      } else if (parsed > 20000) {
-                        handleAmountChange(20000)
-                      } else {
-                        handleAmountChange(parsed)
-                      }
-                    }}
-                    placeholder="اكتب المبلغ هنا..."
-                    className="w-full text-2xl font-bold text-center border-2 border-primary/40 focus:border-primary rounded-2xl px-6 py-4 bg-background text-foreground outline-none transition-all"
-                    dir="ltr"
-                  />
-                  <span className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground font-semibold text-lg pointer-events-none">ر.س</span>
-                </div>
-
-                {/* أزرار مبالغ سريعة */}
-                <div className="grid grid-cols-4 gap-2 mb-4">
-                  {[2000, 5000, 10000, 15000].map((preset) => (
+                      onClick={() => setInstallmentMonths(Math.max(4, installmentMonths - 1))}
+                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/10 text-foreground font-bold text-xl transition-all flex items-center justify-center"
+                    >−</button>
+                    <span className="text-3xl font-bold text-primary mx-6 w-12 text-center">{installmentMonths}</span>
                     <button
-                      key={preset}
-                      onClick={() => handleAmountChange(preset)}
-                      className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
-                        amount === preset
-                          ? "border-primary bg-primary/10 text-primary"
-                          : "border-border hover:border-primary/50 text-muted-foreground"
-                      }`}
-                    >
-                      {preset.toLocaleString("ar-SA")}
-                    </button>
-                  ))}
+                      onClick={() => setInstallmentMonths(Math.min(24, installmentMonths + 1))}
+                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/10 text-foreground font-bold text-xl transition-all flex items-center justify-center"
+                    >+</button>
+                  </div>
+
+                  {/* Slider الدفعات */}
+                  <div>
+                    <input
+                      type="range"
+                      min="4"
+                      max="24"
+                      step="1"
+                      value={installmentMonths}
+                      onChange={(e) => setInstallmentMonths(Number(e.target.value))}
+                      className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between mt-1 text-xs text-muted-foreground">
+                      <span>4 دفعات</span>
+                      <span>24 دفعة</span>
+                    </div>
+                  </div>
+
+                  {/* أزرار دفعات شائعة */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[4, 6, 9, 12, 18, 24].map((m) => (
+                      <button
+                        key={m}
+                        onClick={() => setInstallmentMonths(m)}
+                        className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
+                          installmentMonths === m
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border hover:border-primary/50 text-muted-foreground bg-background"
+                        }`}
+                      >
+                        {m} دفعة
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Slider */}
-                <input
-                  type="range"
-                  min="1000"
-                  max="20000"
-                  step="500"
-                  value={amount}
-                  onChange={(e) => {
-                    const val = Number(e.target.value)
-                    setAmount(val)
-                    setInputValue(String(val))
-                  }}
-                  className="w-full h-3 bg-secondary rounded-full appearance-none cursor-pointer accent-primary"
-                />
-                <div className="flex justify-between mt-2 text-sm text-muted-foreground">
-                  <span>1,000 ر.س</span>
-                  <span>20,000 ر.س</span>
-                </div>
               </div>
 
               {/* Calculation Breakdown */}
