@@ -6,6 +6,7 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
+  const [inputValue, setInputValue] = useState("5000")
   const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara">("tabby")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
@@ -186,6 +187,62 @@ export function CalculatorSection() {
                 <label className="block text-sm font-medium text-muted-foreground mb-4">
                   مبلغ الشراء (ريال سعودي)
                 </label>
+
+                {/* حقل الكتابة المباشر */}
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="relative flex-1">
+                    <input
+                      type="number"
+                      min="1000"
+                      max="20000"
+                      value={inputValue}
+                      onChange={(e) => {
+                        const raw = e.target.value
+                        setInputValue(raw)
+                        const parsed = Number(raw)
+                        if (!isNaN(parsed) && parsed >= 1000 && parsed <= 20000) {
+                          setAmount(parsed)
+                        }
+                      }}
+                      onBlur={() => {
+                        const parsed = Number(inputValue)
+                        if (isNaN(parsed) || parsed < 1000) {
+                          setAmount(1000)
+                          setInputValue("1000")
+                        } else if (parsed > 20000) {
+                          setAmount(20000)
+                          setInputValue("20000")
+                        } else {
+                          setAmount(parsed)
+                          setInputValue(String(parsed))
+                        }
+                      }}
+                      placeholder="اكتب المبلغ..."
+                      className="w-full text-2xl font-bold text-center border-2 border-primary/40 focus:border-primary rounded-2xl px-6 py-4 bg-background text-foreground outline-none transition-all"
+                      dir="ltr"
+                    />
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">ر.س</span>
+                  </div>
+                </div>
+
+                {/* أزرار سريعة */}
+                <div className="grid grid-cols-4 gap-2 mb-5">
+                  {[2000, 5000, 10000, 15000].map((preset) => (
+                    <button
+                      key={preset}
+                      onClick={() => { setAmount(preset); setInputValue(String(preset)) }}
+                      className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
+                        amount === preset
+                          ? "border-primary bg-primary/10 text-primary"
+                          : "border-border hover:border-primary/50 text-muted-foreground"
+                      }`}
+                    >
+                      {preset.toLocaleString("ar-SA")}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Slider */}
                 <div className="relative">
                   <input
                     type="range"
@@ -193,20 +250,16 @@ export function CalculatorSection() {
                     max="20000"
                     step="500"
                     value={amount}
-                    onChange={(e) => setAmount(Number(e.target.value))}
+                    onChange={(e) => {
+                      const val = Number(e.target.value)
+                      setAmount(val)
+                      setInputValue(String(val))
+                    }}
                     className="w-full h-3 bg-secondary rounded-full appearance-none cursor-pointer accent-primary"
                   />
                   <div className="flex justify-between mt-2 text-sm text-muted-foreground">
                     <span>1,000 ر.س</span>
                     <span>20,000 ر.س</span>
-                  </div>
-                </div>
-                <div className="mt-4 text-center">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl px-8 py-5">
-                    <span className="text-4xl md:text-5xl font-bold text-foreground">
-                      {amount.toLocaleString("ar-SA")}
-                    </span>
-                    <span className="text-muted-foreground text-lg">ر.س</span>
                   </div>
                 </div>
               </div>
