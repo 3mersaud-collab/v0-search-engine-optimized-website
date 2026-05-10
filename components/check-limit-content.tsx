@@ -124,7 +124,7 @@ export function CheckLimitContent() {
                 <p className="text-sm text-muted-foreground">تواصل معنا على واتساب لرؤية تقييمات وتجارب عملائنا السابقين</p>
               </div>
               <Button className="gap-2" asChild>
-                <a href="https://wa.me/966563457734">
+                <a href="https://wa.me/966590360039">
                   <MessageCircle className="w-4 h-4" />
                   واتساب
                 </a>
@@ -239,7 +239,7 @@ export function CheckLimitContent() {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button size="lg" className="flex-1 gap-2" asChild>
-                        <a href="https://wa.me/966563457734">
+                        <a href="https://wa.me/966590360039">
                           أرسل الصورة واستلم كاش خلال ساعة
                           <ArrowLeft className="w-5 h-5" />
                         </a>

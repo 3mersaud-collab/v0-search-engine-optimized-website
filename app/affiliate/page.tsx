@@ -110,7 +110,7 @@ export default function AffiliatePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg px-8">
-                <Link href="https://wa.me/966563457734?text=أرغب%20بالانضمام%20لبرنامج%20المسوقين%20بالعمولة" target="_blank">
+                <Link href="https://wa.me/966590360039?text=أرغب%20بالانضمام%20لبرنامج%20المسوقين%20بالعمولة" target="_blank">
                   <MessageCircle className="w-5 h-5 ml-2" />
                   سجل الآن عبر الواتساب
                 </Link>
@@ -267,7 +267,7 @@ export default function AffiliatePage() {
                 سجل الآن وابدأ بالربح من أول عميل
               </p>
               <Button asChild size="lg" variant="secondary" className="text-lg px-8">
-                <Link href="https://wa.me/966563457734?text=أرغب%20بالانضمام%20لبرنامج%20المسوقين%20بالعمولة" target="_blank">
+                <Link href="https://wa.me/966590360039?text=أرغب%20بالانضمام%20لبرنامج%20المسوقين%20بالعمولة" target="_blank">
                   <MessageCircle className="w-5 h-5 ml-2" />
                   تواصل معنا الآن
                 </Link>
