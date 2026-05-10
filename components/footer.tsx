@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Phone, Mail, MapPin, Instagram } from "lucide-react"
 
 export function Footer() {
@@ -9,22 +8,14 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-3 mb-4">
-              <Image
-                src="/logo.jpg"
+            <Link href="/" className="flex items-center mb-4">
+              <img
+                src="/matar-logo.svg"
                 alt="مطر - سيولة تابي وتمارا"
-                width={48}
-                height={48}
-                className="rounded-xl"
-                style={{ width: "48px", height: "48px" }}
+                width={130}
+                height={72}
+                style={{ width: "130px", height: "72px", filter: "brightness(0) invert(1)" }}
               />
-              <div className="flex flex-col">
-                <span className="font-extrabold text-3xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">
-                  مطر
-                </span>
-                <span className="text-[9px] text-background/50 font-light leading-none tracking-wide">سحابة غيث ماحسبت حسابها</span>
-                <span className="text-[7px] text-background/30 font-light leading-none mt-0.5 tracking-widest">powered by liilsol</span>
-              </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
               نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تابي وتمارا،

@@ -1,0 +1,41 @@
+<svg width="200" height="220" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Cloud shape in cyan -->
+  <g transform="translate(100, 62)">
+    <!-- Main cloud body -->
+    <ellipse cx="0" cy="0" rx="38" ry="24" fill="#00c5d7"/>
+    <ellipse cx="-22" cy="4" rx="20" ry="16" fill="#00c5d7"/>
+    <ellipse cx="22" cy="6" rx="18" ry="14" fill="#00c5d7"/>
+    <ellipse cx="-8" cy="-10" rx="22" ry="18" fill="#00c5d7"/>
+    <ellipse cx="12" cy="-12" rx="20" ry="17" fill="#00c5d7"/>
+    <!-- Bottom flat part -->
+    <rect x="-38" y="0" width="76" height="18" fill="#00c5d7"/>
+    <!-- Rain drops -->
+    <line x1="-18" y1="22" x2="-22" y2="44" stroke="#00c5d7" stroke-width="4" stroke-linecap="round"/>
+    <line x1="0" y1="22" x2="-2" y2="46" stroke="#00c5d7" stroke-width="4" stroke-linecap="round"/>
+    <line x1="18" y1="22" x2="16" y2="44" stroke="#00c5d7" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Arabic text "مطر" -->
+  <text
+    x="100"
+    y="148"
+    text-anchor="middle"
+    font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Arial', sans-serif"
+    font-size="52"
+    font-weight="800"
+    fill="white"
+    letter-spacing="2"
+  >مطر</text>
+
+  <!-- Subtitle text -->
+  <text
+    x="100"
+    y="174"
+    text-anchor="middle"
+    font-family="'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Arial', sans-serif"
+    font-size="11"
+    font-weight="300"
+    fill="#9bb5c0"
+    letter-spacing="0.5"
+  >سحابة غيث ماحسبت حسابها</text>
+</svg>

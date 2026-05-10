@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Phone, Bot } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
@@ -14,23 +13,15 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image 
-              src="/logo.jpg" 
-              alt="مطر - سيولة تابي وتمارا" 
-              width={40} 
-              height={40} 
-              className="rounded-lg"
-              style={{ width: "40px", height: "40px" }}
+          {/* Logo - SVG مطر */}
+          <Link href="/" className="flex items-center">
+            <img
+              src="/matar-logo.svg"
+              alt="مطر - سيولة تابي وتمارا"
+              width={120}
+              height={66}
+              style={{ width: "120px", height: "66px" }}
             />
-            <div className="flex flex-col">
-              <span className="font-extrabold text-2xl md:text-3xl tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent leading-tight font-serif">
-                مطر
-              </span>
-              <span className="text-[9px] md:text-[11px] text-muted-foreground/80 font-light leading-none tracking-wide">سحابة غيث ماحسبت حسابها</span>
-              <span className="text-[7px] md:text-[8px] text-muted-foreground/40 font-light leading-none mt-0.5 tracking-widest">powered by liilsol</span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
