@@ -13,15 +13,23 @@ export function Header() {
     <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo - SVG مطر */}
-          <Link href="/" className="flex items-center">
-            <img
-              src="/matar-logo.svg"
-              alt="مطر - سيولة تابي وتمارا"
-              width={120}
-              height={66}
-              style={{ width: "120px", height: "66px" }}
-            />
+          {/* Logo - مطر inline SVG */}
+          <Link href="/" className="flex items-center gap-2">
+            {/* Cloud Icon */}
+            <svg width="42" height="46" viewBox="0 0 84 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="36" r="22" fill="#0ec4d8"/>
+              <circle cx="48" cy="26" r="26" fill="#0ec4d8"/>
+              <circle cx="64" cy="36" r="18" fill="#0ec4d8"/>
+              <circle cx="42" cy="38" r="20" fill="#0ec4d8"/>
+              <rect x="6" y="36" width="72" height="20" fill="#0ec4d8"/>
+              <line x1="22" y1="58" x2="18" y2="80" stroke="#0ec4d8" strokeWidth="6" strokeLinecap="round"/>
+              <line x1="42" y1="58" x2="40" y2="82" stroke="#0ec4d8" strokeWidth="6" strokeLinecap="round"/>
+              <line x1="62" y1="58" x2="60" y2="80" stroke="#0ec4d8" strokeWidth="6" strokeLinecap="round"/>
+            </svg>
+            <div className="flex flex-col leading-none">
+              <span className="font-black text-2xl md:text-3xl tracking-tight" style={{ color: '#0ec4d8', fontFamily: 'IBM Plex Sans Arabic, Arial, sans-serif' }}>مطر</span>
+              <span className="text-[9px] md:text-[10px] text-muted-foreground/70 font-light tracking-wide mt-0.5">سحابة غيث ماحسبت حسابها</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

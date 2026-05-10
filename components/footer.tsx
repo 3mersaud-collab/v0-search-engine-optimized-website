@@ -8,14 +8,23 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           {/* Logo & Description */}
           <div className="md:col-span-2">
-            <Link href="/" className="flex items-center mb-4">
-              <img
-                src="/matar-logo.svg"
-                alt="مطر - سيولة تابي وتمارا"
-                width={130}
-                height={72}
-                style={{ width: "130px", height: "72px", filter: "brightness(0) invert(1)" }}
-              />
+            <Link href="/" className="flex items-center gap-2 mb-4">
+              {/* Cloud Icon - white version for footer */}
+              <svg width="40" height="44" viewBox="0 0 84 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="36" r="22" fill="white" fillOpacity="0.9"/>
+                <circle cx="48" cy="26" r="26" fill="white" fillOpacity="0.9"/>
+                <circle cx="64" cy="36" r="18" fill="white" fillOpacity="0.9"/>
+                <circle cx="42" cy="38" r="20" fill="white" fillOpacity="0.9"/>
+                <rect x="6" y="36" width="72" height="20" fill="white" fillOpacity="0.9"/>
+                <line x1="22" y1="58" x2="18" y2="80" stroke="white" strokeOpacity="0.9" strokeWidth="6" strokeLinecap="round"/>
+                <line x1="42" y1="58" x2="40" y2="82" stroke="white" strokeOpacity="0.9" strokeWidth="6" strokeLinecap="round"/>
+                <line x1="62" y1="58" x2="60" y2="80" stroke="white" strokeOpacity="0.9" strokeWidth="6" strokeLinecap="round"/>
+              </svg>
+              <div className="flex flex-col leading-none">
+                <span className="font-black text-3xl tracking-tight text-background" style={{ fontFamily: 'IBM Plex Sans Arabic, Arial, sans-serif' }}>مطر</span>
+                <span className="text-[9px] text-background/50 font-light tracking-wide mt-0.5">سحابة غيث ماحسبت حسابها</span>
+                <span className="text-[7px] text-background/30 font-light leading-none mt-0.5 tracking-widest">powered by liilsol</span>
+              </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
               نقوم بالدخول كشركاء معكم في شراء الأجهزة الذكية عبر تابي وتمارا،
