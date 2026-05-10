@@ -111,86 +111,6 @@ export function SeoSchema() {
     }
   }
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "@id": "https://liilsol.com/#faq",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "كيف أحصل على سيولة من تابي؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ادخل متجر نون أو اكسترا، أضف منتجات بالمبلغ المطلوب، اختر تابي كوسيلة دفع، وبعد ظهور تقسيم الدفعات صور الشاشة وأرسلها لنا على واتساب 0590360039. نحول الكاش لحسابك خلال ساعة."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كيف أحصل على كاش من تمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ادخل متجر نون أو اكسترا، أضف منتجات بالمبلغ المطلوب، اختر تمارا كوسيلة دفع، أضف بطاقة بنكية بدون رصيد (لا تستخدم Apple Pay أو بطاقة برصيد)، اضغط ادفع، وصور الشاشة وأرسلها لنا."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي رسوم سيولة تابي وتمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "الرسوم الإدارية 10% من مبلغ البيع. الدفعة الأولى 25%. فرق البيع يتراوح من 10% للمبالغ فوق 12,000 ريال إلى 15% للمبالغ الأقل من 5,500 ريال."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كم يستغرق تحويل الكاش؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "يتم تحويل المبلغ لحسابك البنكي غالباً خلال ساعة من اكتمال الخطوات وإرسال صورة الشاشة عبر الواتساب."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل التقديم يتم من الموقع أم من الواتساب؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "الحسبة والشرح متاحة داخل الموقع، أما إكمال الطلب والتأكيد النهائي فيتم عبر الواتساب مباشرة على الرقم 0590360039."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي المتاجر المتاحة لخدمة السيولة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "تابي وتمارا متاحين في متجر نون (noon.com) ومتجر اكسترا (extra.com). مدفوع متاح في متجر المنيع (almanea.sa)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل خدمة السيولة آمنة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نعم، خدمتنا آمنة 100%. نحن لا نطلب كلمات مرور أو بيانات حساسة. العملية تتم من خلالك مباشرة وأنت تتحكم في كل الخطوات. لدينا تقييم 5 نجوم على Google Maps."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كيف أفحص حدي في تابي وتمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "افتح تطبيق تابي أو تمارا، ادخل أحد المتاجر المتاحة، أضف منتجات في السلة، واختر التطبيق كوسيلة دفع. سيظهر لك الحد المتاح أو رسالة الرفض."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هو رقم التوا��ل للحصول على سيولة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "تواصل معنا عبر واتساب على الرقم 0590360039 أو البريد الإلكتروني matar@liilsa.com. نحن متاحين 24/7."
-        }
-      }
-    ]
-  }
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -291,10 +211,6 @@ export function SeoSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"
