@@ -10,6 +10,7 @@ import { SeoKeywordsSection } from "@/components/seo-keywords-section"
 import { GoogleReviewsSection } from "@/components/google-reviews-section"
 import { EhsanCharityBanner } from "@/components/ehsan-charity-banner"
 import { VerifySteps } from "@/components/verify-steps"
+import { LoyaltyDiscountBanner } from "@/components/loyalty-discount-banner"
 
 export default function Home() {
   return (
@@ -20,11 +21,13 @@ export default function Home() {
         <EhsanCharityBanner />
         <HowItWorks />
         <CalculatorSection />
+        <LoyaltyDiscountBanner />
         <VerifySteps />
         <GoogleReviewsSection />
         <FeaturesSection />
         <SeoKeywordsSection />
         <FaqSection />
+        <LoyaltyDiscountBanner />
         <ContactSection />
       </main>
       <Footer />
