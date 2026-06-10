@@ -5,7 +5,7 @@ export function SeoSchema() {
     "@id": "https://liilsol.com/#business",
     "name": "مطر",
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سحابة غيث ماحسبت حسابها"],
-    "description": "سيولة نقدية فورية وسلفة من رصيدك. ندخل كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى. كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، تحويل جوالات الى كاش خلال ساعة.",
+    "description": "سيولة نقدية فورية وسلفة من رصيدك. ندخل كشركاء معكم في شراء الجهاز عبر تابي وتمارا ونتكفل بالدفعة الأولى. كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، تحويل جوالات الى كاش خلال ساعة.",
     "url": "https://liilsol.com",
     "telephone": "+966590360039",
     "email": "matar@liilsa.com",
@@ -62,8 +62,8 @@ export function SeoSchema() {
     "@type": "Service",
     "@id": "https://liilsol.com/#service",
     "serviceType": "خدمة سيولة وسلفة بالشراكة",
-    "name": "سيولة تابي وتمارا ومدفوع - شراكة في شراء الجهاز",
-    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة خلال ساعة.",
+    "name": "سيولة تابي وتمارا - شراكة في شراء الجهاز",
+    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة خلال ساعة.",
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://liilsol.com/#business"
@@ -74,7 +74,7 @@ export function SeoSchema() {
     },
     "audience": {
       "@type": "Audience",
-      "audienceType": "عملاء تابي وتمارا ومدفوع في السعودية"
+      "audienceType": "عملاء تابي وتمارا في السعودية"
     },
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -96,15 +96,6 @@ export function SeoSchema() {
             "name": "كاش تمارا",
             "alternateName": ["سيولة تمارا", "سلفة تمارا", "تحويل تمارا"],
             "description": "تحويل رصيد تمارا إلى كاش نقدي فوري في حسابك البنكي"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "سيولة مدفوع",
-            "alternateName": ["كاش مدفوع", "تحويل مدفوع"],
-            "description": "تحويل رصيد مدفوع إلى كاش نقدي فوري في حسابك البنكي"
           }
         }
       ]
@@ -161,7 +152,7 @@ export function SeoSchema() {
         "name": "ما هي المتاجر المتاحة لخدمة السيولة؟",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "تابي وتمارا متاحين في متجر نون (noon.com) ومتجر اكسترا (extra.com). مدفوع متاح في متجر المنيع (almanea.sa)."
+          "text": "تابي وتمارا متاحين في متجر نون (noon.com) ومتجر اكسترا (extra.com)."
         }
       },
       {
@@ -241,7 +232,7 @@ export function SeoSchema() {
     "name": "مطر - سيولة تابي وتمارا",
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "سيولة تابي", "كاش تمارا"],
     "url": "https://liilsol.com",
-    "description": "سيولة تابي وتمارا ومدفوع مع حاسبة دقيقة وإكمال الطلب عبر الواتساب. خدمة سريعة في السعودية خلال ساعة.",
+    "description": "سيولة تابي وتمارا مع حاسبة دقيقة وإكمال الطلب عبر الواتساب. خدمة سريعة في السعودية خلال ساعة.",
     "inLanguage": "ar-SA",
     "publisher": {
       "@type": "Organization",
@@ -261,7 +252,7 @@ export function SeoSchema() {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "خدمة سيولة تابي وكاش تمارا",
-    "description": "تحويل رصيد تابي وتمارا ومدفوع إلى كاش نقدي فوري",
+    "description": "تحويل رصيد تابي وتمارا إلى كاش نقدي فوري",
     "brand": {
       "@type": "Brand",
       "name": "مطر"
@@ -278,7 +269,7 @@ export function SeoSchema() {
       "priceCurrency": "SAR",
       "lowPrice": "1000",
       "highPrice": "50000",
-      "offerCount": "3"
+      "offerCount": "2"
     }
   }
 

@@ -43,7 +43,7 @@ const stores = [
     url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT&text=&pg=1&pageSize=24&sort=relevance",
     description: "سيولة تابي وكاش تمارا من اكسترا"
   },
-  // متجر المنيع موقوف مؤقتاً مع مدفوع
+  // متجر  موقوف مؤقتاً مع 
 ]
 
 export function HowItWorks() {
@@ -170,7 +170,7 @@ export function HowItWorks() {
           </div>
         </div>
 
-        {/* Instructions for Tabby & Madfu */}
+        {/* Instructions for Tabby &  */}
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl border border-primary/20 p-6 md:p-8 mb-8">
           <div className="flex items-start gap-4">
             <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
