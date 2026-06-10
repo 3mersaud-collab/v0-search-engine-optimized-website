@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { CreditCard, CheckCircle, ExternalLink, ArrowLeft, Smartphone, ShoppingCart, AlertTriangle, Camera, MessageCircle, Star } from "lucide-react"
-import { TabbyLogo, TamaraLogo, MadfuLogo } from "@/components/app-logos"
+import { TabbyLogo, TamaraLogo } from "@/components/app-logos"
 import Link from "next/link"
 
 const apps = [
@@ -62,28 +62,6 @@ const apps = [
         "استخدم بطاقة بنكية جديدة بدون رصيد فقط"
       ]
     }
-  },
-  {
-    id: "madfu",
-    name: "Madfu",
-    nameAr: "مدفوع",
-    Logo: MadfuLogo,
-    color: "from-[#6366F1]/10 to-[#6366F1]/5",
-    borderColor: "border-[#6366F1]/30",
-    selectedColor: "border-[#6366F1] bg-[#6366F1]/10",
-    accentColor: "bg-[#6366F1]",
-    steps: [
-      "افتح حاسبة السيولة واختر المبلغ المطلوب",
-      "ادخل متجر المنيع",
-      "أضف أي منتجات في السلة بنفس مبلغ الشراء من الحاسبة",
-      "عند الدفع اختر مدفوع كوسيلة دفع",
-      "بعد ظهور تقسيم الدفعات صور الشاشة فقط",
-      "أرسل الصورة لنا على واتساب واستلم الكاش خلال ساعة"
-    ],
-    stores: [
-      { name: "المنيع", url: "https://www.almanea.sa/mobiles-tablets-c-7423/mobiles-c-7424" }
-    ],
-    warning: null
   }
 ]
 
@@ -124,7 +102,7 @@ export function CheckLimitContent() {
                 <p className="text-sm text-muted-foreground">تواصل معنا على واتساب لرؤية تقييمات وتجارب عملائنا السابقين</p>
               </div>
               <Button className="gap-2" asChild>
-                <a href="https://wa.me/966563457734">
+                <a href="https://wa.me/966590360039">
                   <MessageCircle className="w-4 h-4" />
                   واتساب
                 </a>
@@ -135,7 +113,16 @@ export function CheckLimitContent() {
 
         {/* App Selection */}
         <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
+          {/* Madfu Pause Notice */}
+          <div className="bg-red-500/10 border-2 border-red-500/30 rounded-2xl p-5 mb-6 flex items-start gap-3 text-sm">
+            <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="font-bold text-foreground mb-1">تنبيه مهم — مدفوع موقف مؤقتاً</p>
+              <p className="text-muted-foreground leading-relaxed">حالياً التقديم متاح عبر <strong className="text-foreground">تابي</strong> و<strong className="text-foreground">تمارا</strong> فقط. خدمة <strong className="text-foreground">مدفوع</strong> متوقفة مؤقتاً حتى إشعار آخر.</p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             {apps.map((app) => (
               <button
                 key={app.id}
@@ -239,7 +226,7 @@ export function CheckLimitContent() {
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
                       <Button size="lg" className="flex-1 gap-2" asChild>
-                        <a href="https://wa.me/966563457734">
+                        <a href="https://wa.me/966590360039">
                           أرسل الصورة واستلم كاش خلال ساعة
                           <ArrowLeft className="w-5 h-5" />
                         </a>

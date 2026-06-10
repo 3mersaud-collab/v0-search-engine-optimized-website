@@ -41,7 +41,7 @@ export function SeoKeywordsSection() {
             كل ما تبحث عنه من سيولة وكاش تابي وتمارا
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            نقدم جميع خدمات السيولة والتسييل من تابي وتمارا ومدفوع. اختر الخدمة المناسبة لك واحصل على الكاش خلال ساعة.
+            نقدم جميع خدمات السيولة والتسييل من تابي وتمارا. اختر الخدمة المناسبة لك واحصل على الكاش خلال ساعة.
           </p>
         </div>
 
@@ -97,7 +97,7 @@ export function SeoKeywordsSection() {
               <p>
                 نحن في <strong className="text-foreground">مطر</strong> نقدم أفضل خدمة 
                 <strong className="text-foreground"> سيولة وسلفة</strong> في السعودية بدخولنا معكم كشركاء في شراء الجهاز عبر 
-                <strong className="text-foreground"> تابي وتمارا ومدفوع</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
+                <strong className="text-foreground"> تابي وتمارا</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
               </p>
               <p>
                 لمزيد من التفاصيل عن الاساس الذي نعمل عليه، يرجى زيارة صفحة{" "}
@@ -105,7 +105,7 @@ export function SeoKeywordsSection() {
               </p>
               <p>
                 موقعنا في <strong className="text-foreground">الرياض - حي المرسلات</strong>، ونخدم جميع مناطق المملكة.
-                تواصل معنا على <strong className="text-foreground">0563457734</strong> للحصول على أفضل خدمة سيولة وسلفة.
+                تواصل معنا على <strong className="text-foreground">0590360039</strong> للحصول على أفضل خدمة سيولة وسلفة.
               </p>
             </div>
           </div>

@@ -56,7 +56,7 @@ const articles = [
   },
   {
     id: "best-stores-siyola",
-    title: "المتاجر المتاحة لسيولة تابي وتمارا ومدفوع",
+    title: "المتاجر المتاحة لسيولة تابي وتمارا",
     excerpt: "تعرف على المتاجر المتاحة لكل تطبيق: نون واكسترا لتابي وتمارا، والمنيع لمدفوع. روابط مباشرة.",
     category: "المتاجر",
     readTime: "4 دقائق",
@@ -101,7 +101,7 @@ export default function ArticlesPage() {
               </h1>
               
               <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-                مقالات تعليمية شاملة عن السيولة والسلفة والكاش من تابي وتمارا ومدفوع. 
+                مقالات تعليمية شاملة عن السيولة والسلفة والكاش من تابي وتمارا. 
                 تعرف على الخطوات والرسوم والنصائح للحصول على أفضل قيمة.
               </p>
 
@@ -274,8 +274,8 @@ export default function ArticlesPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-                <a href="https://wa.me/966563457734">
-                  واتساب: 0563457734
+                <a href="https://wa.me/966590360039">
+                  واتساب: 0590360039
                   <ArrowLeft className="w-5 h-5" />
                 </a>
               </Button>
