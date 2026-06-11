@@ -22,11 +22,11 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <Image 
-                src="/logo.jpg" 
+                src="/matar-logo.png" 
                 alt="مطر - سيولة تابي وتمارا" 
                 width={100} 
                 height={100} 
-                className="rounded-2xl shadow-lg"
+                className=""
                 style={{ width: "100px", height: "100px" }}
               />
             </div>
@@ -38,7 +38,7 @@ export default function AboutPage() {
             </h1>
             <p className="text-xl text-muted-foreground leading-relaxed mb-4">
               نقوم بالدخول كشركاء معكم في شراء الاجهزة الذكية عبر تطبيقات الدفع الآجل 
-              تابي وتمارا. نتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة او السلفة المطلوب مباشرة لحسابكم البنكي.
+              تابي وتمارا ومدفوع. نتكفل بقيمة الدفعة الاولى مقابل نسبة الشراكة، ثم نبيع الجهاز ونحول لكم مبلغ السيولة او السلفة المطلوب مباشرة لحسابكم البنكي.
             </p>
             <div className="mb-8" />
             <div className="flex flex-wrap justify-center gap-4">
@@ -146,7 +146,7 @@ export default function AboutPage() {
               {[
                 "تختار المبلغ المطلوب من حاسبة السيولة",
                 "نختار لك الجهاز المناسب من المتاجر المعتمدة",
-                "ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا ونتكفل بالدفعة الأولى",
+                "ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع ونتكفل بالدفعة الأولى",
                 "نقوم ببيع الجهاز بسعر السوق نقداً",
                 "نخصم نسبة الشراكة وال��سوم الإدارية ونحول لك مبلغ السيولة أو السلفة المطلوب لحسابك البنكي"
               ].map((step, index) => (
@@ -186,7 +186,7 @@ export default function AboutPage() {
                   <Phone className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">واتساب</h3>
-                <p className="text-muted-foreground" dir="ltr">0590360039</p>
+                <p className="text-muted-foreground" dir="ltr">0503367637</p>
               </a>
 
               <a 

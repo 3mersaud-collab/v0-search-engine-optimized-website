@@ -6,40 +6,34 @@ import { Calculator, ArrowLeft, Info, MessageCircle } from "lucide-react"
 
 export function CalculatorSection() {
   const [amount, setAmount] = useState(5000)
-  const [selectedApp, setSelectedApp] = useState<"tabby" | "tamara">("tabby")
+  const [inputValue, setInputValue] = useState("5000")
   const [installmentMonths, setInstallmentMonths] = useState(4)
 
-  // New calculation logic based on requirements
   const calculations = useMemo(() => {
-    // مبلغ البيع: يبدأ من 14% في 5500 وينقص 1% كل 1000 حتى يصل 10% ويثبت
     let sellingLossRate: number
     if (amount <= 5500) {
-      sellingLossRate = 0.15 // 15% للمبالغ الأقل من 5500
+      sellingLossRate = 0.15
     } else if (amount >= 9500) {
-      sellingLossRate = 0.10 // 10% ثابت بعد 9500
+      sellingLossRate = 0.10
     } else {
-      // تدريجي من 14% عند 5500 إلى 10% عند 9500
       const stepsAbove5500 = Math.floor((amount - 5500) / 1000)
       sellingLossRate = 0.14 - (stepsAbove5500 * 0.01)
     }
 
-    const purchaseAmount = amount // مبلغ الشراء
-    const sellingLoss = amount * sellingLossRate // فرق البيع
-    const saleAmount = amount - sellingLoss // مبلغ البيع
-    
-    // الرسوم الإدارية: 10% + 100 ريال للمبالغ أقل من 4000، و 10% فقط بعد 4000
+    const purchaseAmount = amount
+    const sellingLoss = amount * sellingLossRate
+    const saleAmount = amount - sellingLoss
+
     const adminFeeRate = 0.10
     const adminFeeBase = amount * adminFeeRate
-    const adminFeeExtra = amount < 4000 ? 100 : 0 // 100 ريال إضافية للمبالغ أقل من 4000
+    const adminFeeExtra = amount < 4000 ? 100 : 0
     const adminFee = adminFeeBase + adminFeeExtra
-    
-    const downPaymentRate = 1 / installmentMonths // نسبة الشراكة = عدد الدفعات (مثلا 10 دفعات = 10%)
+
+    const downPaymentRate = 1 / installmentMonths
     const downPayment = amount * downPaymentRate
-    
+
     const totalDeductions = downPayment + adminFee + sellingLoss
     const netAmount = Math.max(0, amount - totalDeductions)
-    
-    // الدفعة الشهرية للدفعة الأولى (removed from display)
 
     return {
       purchaseAmount,
@@ -55,19 +49,15 @@ export function CalculatorSection() {
     }
   }, [amount, installmentMonths])
 
-  const apps = [
-    { id: "tabby" as const, name: "تابي", label: "tabby", color: "text-[#3CBED8]" },
-    { id: "tamara" as const, name: "تمارا", label: "tamara", color: "text-[#FF6B35]" }
-  ]
-
-  const appColors = {
-    tabby: "border-[#3CBED8] bg-[#3CBED8]/5",
-    tamara: "border-[#FF6B35] bg-[#FF6B35]/5"
+  const handleAmountChange = (val: number) => {
+    const clamped = Math.min(20000, Math.max(1000, val))
+    setAmount(clamped)
+    setInputValue(String(clamped))
   }
+
 
   return (
     <section id="calculator" className="relative py-16 md:py-24 overflow-hidden">
-      {/* Background with gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-20 right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -93,83 +83,141 @@ export function CalculatorSection() {
           {/* Calculator Card */}
           <div className="bg-card/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-border overflow-hidden">
             <div className="p-6 md:p-10">
-              {/* App Selection with SVG Logos */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  اختر التطبيق (سيولة تابي أو سيولة تمارا)
-                </label>
-                <div className="grid grid-cols-2 gap-3">
-                  {apps.map((app) => (
-                    <button
-                      key={app.id}
-                      onClick={() => setSelectedApp(app.id)}
-                      className={`p-4 rounded-xl border-2 transition-all text-center ${
-                        selectedApp === app.id
-                          ? `${appColors[app.id]} shadow-lg scale-[1.02]`
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <div className={`text-lg font-bold mb-1 ${app.color}`}>
-                        {app.label}
-                      </div>
-                      <span className="text-foreground font-medium text-sm">{app.name}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
 
-              {/* Installment Months Selection */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  عدد الدفعات
-                </label>
-                <div className="grid grid-cols-5 md:grid-cols-10 gap-2">
-                  {Array.from({ length: 21 }, (_, i) => i + 4).map((months) => (
-                    <button
-                      key={months}
-                      onClick={() => setInstallmentMonths(months)}
-                      className={`p-3 rounded-xl border-2 transition-all text-center ${
-                        installmentMonths === months
-                          ? "border-primary bg-primary/10 shadow-lg"
-                          : "border-border hover:border-primary/50 bg-card"
-                      }`}
-                    >
-                      <span className={`font-bold ${installmentMonths === months ? "text-primary" : "text-foreground"}`}>
-                        {months}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
+              {/* المبلغ وعدد الدفعات جنب بعض */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 
-              {/* Amount Input */}
-              <div className="mb-8">
-                <label className="block text-sm font-medium text-muted-foreground mb-4">
-                  مبلغ الشراء (ريال سعودي)
-                </label>
-                <div className="relative">
-                  <input
-                    type="range"
-                    min="1000"
-                    max="20000"
-                    step="500"
-                    value={amount}
-                    onChange={(e) => setAmount(Number(e.target.value))}
-                    className="w-full h-3 bg-secondary rounded-full appearance-none cursor-pointer accent-primary"
-                  />
-                  <div className="flex justify-between mt-2 text-sm text-muted-foreground">
-                    <span>1,000 ر.س</span>
-                    <span>20,000 ر.س</span>
+                {/* مربع المبلغ */}
+                <div className="bg-secondary/30 rounded-2xl p-5 border border-border flex flex-col gap-4">
+                  <label className="block text-sm font-semibold text-foreground">
+                    💰 المبلغ (ريال سعودي)
+                  </label>
+
+                  {/* حقل الكتابة */}
+                  <div className="relative">
+                    <input
+                      type="number"
+                      min="1000"
+                      max="20000"
+                      value={inputValue}
+                      onChange={(e) => {
+                        const raw = e.target.value
+                        setInputValue(raw)
+                        const parsed = Number(raw)
+                        if (!isNaN(parsed) && parsed >= 1000 && parsed <= 20000) {
+                          setAmount(parsed)
+                        }
+                      }}
+                      onBlur={() => {
+                        const parsed = Number(inputValue)
+                        if (isNaN(parsed) || parsed < 1000) {
+                          handleAmountChange(1000)
+                        } else if (parsed > 20000) {
+                          handleAmountChange(20000)
+                        } else {
+                          handleAmountChange(parsed)
+                        }
+                      }}
+                      placeholder="اكتب المبلغ..."
+                      className="w-full text-2xl font-bold text-center border-2 border-primary/40 focus:border-primary rounded-xl px-4 py-3 bg-background text-foreground outline-none transition-all"
+                      dir="ltr"
+                    />
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground font-semibold pointer-events-none">ر.س</span>
+                  </div>
+
+                  {/* أزرار سريعة */}
+                  <div className="grid grid-cols-2 gap-2">
+                    {[2000, 5000, 10000, 15000].map((preset) => (
+                      <button
+                        key={preset}
+                        onClick={() => handleAmountChange(preset)}
+                        className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
+                          amount === preset
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border hover:border-primary/50 text-muted-foreground bg-background"
+                        }`}
+                      >
+                        {preset.toLocaleString("ar-SA")}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Slider */}
+                  <div>
+                    <input
+                      type="range"
+                      min="1000"
+                      max="20000"
+                      step="500"
+                      value={amount}
+                      onChange={(e) => {
+                        const val = Number(e.target.value)
+                        setAmount(val)
+                        setInputValue(String(val))
+                      }}
+                      className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between mt-1 text-xs text-muted-foreground">
+                      <span>1,000</span>
+                      <span>20,000</span>
+                    </div>
                   </div>
                 </div>
-                <div className="mt-4 text-center">
-                  <div className="inline-flex items-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl px-8 py-5">
-                    <span className="text-4xl md:text-5xl font-bold text-foreground">
-                      {amount.toLocaleString("ar-SA")}
-                    </span>
-                    <span className="text-muted-foreground text-lg">ر.س</span>
+
+                {/* مربع عدد الدفعات */}
+                <div className="bg-secondary/30 rounded-2xl p-5 border border-border flex flex-col gap-4">
+                  <label className="block text-sm font-semibold text-foreground">
+                    📅 عدد الدفعات — <span className="text-primary">{installmentMonths} دفعات</span>
+                  </label>
+
+                  {/* عرض الرقم المختار */}
+                  <div className="flex items-center justify-center bg-background border-2 border-primary/40 rounded-xl py-3">
+                    <button
+                      onClick={() => setInstallmentMonths(Math.max(4, installmentMonths - 1))}
+                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/10 text-foreground font-bold text-xl transition-all flex items-center justify-center"
+                    >−</button>
+                    <span className="text-3xl font-bold text-primary mx-6 w-12 text-center">{installmentMonths}</span>
+                    <button
+                      onClick={() => setInstallmentMonths(Math.min(24, installmentMonths + 1))}
+                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary/10 text-foreground font-bold text-xl transition-all flex items-center justify-center"
+                    >+</button>
+                  </div>
+
+                  {/* Slider الدفعات */}
+                  <div>
+                    <input
+                      type="range"
+                      min="4"
+                      max="24"
+                      step="1"
+                      value={installmentMonths}
+                      onChange={(e) => setInstallmentMonths(Number(e.target.value))}
+                      className="w-full h-2 bg-border rounded-full appearance-none cursor-pointer accent-primary"
+                    />
+                    <div className="flex justify-between mt-1 text-xs text-muted-foreground">
+                      <span>4 دفعات</span>
+                      <span>24 دفعة</span>
+                    </div>
+                  </div>
+
+                  {/* أزرار دفعات شائعة */}
+                  <div className="grid grid-cols-3 gap-2">
+                    {[4, 6, 9, 12, 18, 24].map((m) => (
+                      <button
+                        key={m}
+                        onClick={() => setInstallmentMonths(m)}
+                        className={`py-2 rounded-xl border-2 text-sm font-semibold transition-all ${
+                          installmentMonths === m
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border hover:border-primary/50 text-muted-foreground bg-background"
+                        }`}
+                      >
+                        {m} دفعة
+                      </button>
+                    ))}
                   </div>
                 </div>
+
               </div>
 
               {/* Calculation Breakdown */}
@@ -199,9 +247,13 @@ export function CalculatorSection() {
                     <span className="text-destructive font-medium">- {Math.round(calculations.adminFee).toLocaleString("ar-SA")} ر.س</span>
                   </div>
                   <div className="flex justify-between items-center py-2 border-t border-border/50">
-                    <span className="text-muted-foreground">الدفعة الأولى - نتكفل بها كشركاء ({Math.round(100 / installmentMonths)}%)</span>
+                    <span className="text-muted-foreground">
+                      الدفعة الأولى - نتكفل بها كشركاء ({Math.round(100 / installmentMonths)}% — {installmentMonths} دفعات)
+                    </span>
                     <span className="text-destructive font-medium">- {Math.round(calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
                   </div>
+
+                  {/* النتيجة النهائية */}
                   <div className="border-t-2 border-primary/30 pt-4 mt-4">
                     <div className="mb-3">
                       <span className="font-bold text-foreground text-lg">مجموع ما يتم تحويله إلى حسابك البنكي</span>
@@ -209,17 +261,24 @@ export function CalculatorSection() {
                     <div className="space-y-3 bg-card/50 rounded-xl p-4">
                       <div className="flex justify-between items-center">
                         <span className="text-muted-foreground font-medium">إذا الدفعة عليك</span>
-                        <span className="text-2xl font-bold text-primary">{Math.round(calculations.netAmount + calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
+                        <span className="text-2xl font-bold text-primary">
+                          {Math.round(calculations.netAmount + calculations.downPayment).toLocaleString("ar-SA")} ر.س
+                        </span>
                       </div>
                       <div className="flex justify-between items-center pt-3 border-t border-border/50">
                         <span className="text-muted-foreground font-medium">إذا الدفعة علينا</span>
-                        <span className="text-2xl font-bold text-accent">{Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س</span>
+                        <span className="text-2xl font-bold text-accent">
+                          {Math.round(calculations.netAmount).toLocaleString("ar-SA")} ر.س
+                        </span>
                       </div>
                     </div>
                   </div>
+
                   <div className="flex justify-between items-center pt-3 mt-3 border-t border-border/50">
                     <span className="text-muted-foreground">المبلغ المتبقي للتقسيط</span>
-                    <span className="font-semibold text-primary">{Math.round(calculations.purchaseAmount - calculations.downPayment).toLocaleString("ar-SA")} ر.س</span>
+                    <span className="font-semibold text-primary">
+                      {Math.round(calculations.purchaseAmount - calculations.downPayment).toLocaleString("ar-SA")} ر.س
+                    </span>
                   </div>
                 </div>
               </div>

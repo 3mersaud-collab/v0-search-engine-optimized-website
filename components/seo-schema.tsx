@@ -4,13 +4,13 @@ export function SeoSchema() {
     "@type": "LocalBusiness",
     "@id": "https://liilsol.com/#business",
     "name": "مطر",
-    "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سحابة غيث ماحسبت حسابها"],
-    "description": "سيولة نقدية فورية وسلفة من رصيدك. ندخل كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى. كاش تابي، كاش تمارا، سلفة تابي، سلفة تمارا، تحويل جوالات الى كاش خلال ساعة.",
+    "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سيولة تابي وكاش تمارا"],
+    "description": "خدمة سيولة تابي وكاش تمارا في السعودية عبر نظام شراكة واضح. ندخل مع العميل في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ثم نبيع الجهاز ونحوّل الصافي إلى الحساب البنكي.",
     "url": "https://liilsol.com",
     "telephone": "+966590360039",
     "email": "matar@liilsa.com",
     "image": "https://liilsol.com/og-image.jpg",
-    "logo": "https://liilsol.com/logo.png",
+    "logo": "https://liilsol.com/logo.jpg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "حي المرسلات",
@@ -44,13 +44,6 @@ export function SeoSchema() {
       "opens": "00:00",
       "closes": "23:59"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "50",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "sameAs": [
       "https://www.instagram.com/liilsa.sol",
       "https://www.google.com/maps/place/liilSOL/@24.7480288,46.6824448,17z"
@@ -61,9 +54,9 @@ export function SeoSchema() {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://liilsol.com/#service",
-    "serviceType": "خدمة سيولة وسلفة بالشراكة",
-    "name": "سيولة تابي وتمارا ومدفوع - شراكة في شراء الجهاز",
-    "description": "نقوم بالدخول كشركاء معكم في شراء الجهاز عبر تابي وتمارا ومدفوع ونتكفل بالدفعة الأولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة خلال ساعة.",
+    "serviceType": "خدمة سيولة بالشراكة",
+    "name": "سيولة تابي وكاش تمارا ومدفوع",
+    "description": "ندخل مع العميل كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى بحسب الخطة، ثم نبيع الجهاز ونحوّل صافي المبلغ إلى الحساب البنكي.",
     "provider": {
       "@type": "LocalBusiness",
       "@id": "https://liilsol.com/#business"
@@ -85,8 +78,8 @@ export function SeoSchema() {
           "itemOffered": {
             "@type": "Service",
             "name": "سيولة تابي",
-            "alternateName": ["كاش تابي", "سلفة تابي", "تحويل تابي"],
-            "description": "تحويل رصيد تابي إلى كاش نقدي فوري في حسابك البنكي"
+            "alternateName": ["كاش تابي", "تسييل تابي", "تحويل تابي إلى كاش"],
+            "description": "تحويل رصيد تابي إلى كاش في الحساب البنكي بعد إكمال خطوات الشراء بالشراكة"
           }
         },
         {
@@ -94,8 +87,8 @@ export function SeoSchema() {
           "itemOffered": {
             "@type": "Service",
             "name": "كاش تمارا",
-            "alternateName": ["سيولة تمارا", "سلفة تمارا", "تحويل تمارا"],
-            "description": "تحويل رصيد تمارا إلى كاش نقدي فوري في حسابك البنكي"
+            "alternateName": ["سيولة تمارا", "سلفة تمارا", "تحويل رصيد تمارا"],
+            "description": "تحويل رصيد تمارا إلى كاش في الحساب البنكي بعد إكمال خطوات الشراء بالشراكة"
           }
         },
         {
@@ -111,86 +104,7 @@ export function SeoSchema() {
     }
   }
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "@id": "https://liilsol.com/#faq",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "كيف أحصل على سيولة من تابي؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ادخل متجر نون أو اكسترا، أضف منتجات بالمبلغ المطلوب، اختر تابي كوسيلة دفع، وبعد ظهور تقسيم الدفعات صور الشاشة وأرسلها لنا على واتساب 0590360039. نحول الكاش لحسابك خلال ساعة."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كيف أحصل على كاش من تمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ادخل متجر نون أو اكسترا، أضف منتجات بالمبلغ المطلوب، اختر تمارا كوسيلة دفع، أضف بطاقة بنكية بدون رصيد (لا تستخدم Apple Pay أو بطاقة برصيد)، اضغط ادفع، وصور الشاشة وأرسلها لنا."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي رسوم سيولة تابي وتمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "الرسوم الإدارية 10% من مبلغ البيع. الدفعة الأولى 25%. فرق البيع يتراوح من 10% للمبالغ فوق 12,000 ريال إلى 15% للمبالغ الأقل من 5,500 ريال."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كم يستغرق تحويل الكاش؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "يتم تحويل المبلغ لحسابك البنكي غالباً خلال ساعة من اكتمال الخطوات وإرسال صورة الشاشة عبر الواتساب."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل التقديم يتم من الموقع أم من الواتساب؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "الحسبة والشرح متاحة داخل الموقع، أما إكمال الطلب والتأكيد النهائي فيتم عبر الواتساب مباشرة على الرقم 0590360039."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هي المتاجر المتاحة لخدمة السيولة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "تابي وتمارا متاحين في متجر نون (noon.com) ومتجر اكسترا (extra.com). مدفوع متاح في متجر المنيع (almanea.sa)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "هل خدمة السيولة آمنة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "نعم، خدمتنا آمنة 100%. نحن لا نطلب كلمات مرور أو بيانات حساسة. العملية تتم من خلالك مباشرة وأنت تتحكم في كل الخطوات. لدينا تقييم 5 نجوم على Google Maps."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "كيف أفحص حدي في تابي وتمارا؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "افتح تطبيق تابي أو تمارا، ادخل أحد المتاجر المتاحة، أضف منتجات في السلة، واختر التطبيق كوسيلة دفع. سيظهر لك الحد المتاح أو رسالة الرفض."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "ما هو رقم التوا��ل للحصول على سيولة؟",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "تواصل معنا عبر واتساب على الرقم 0590360039 أو البريد الإلكتروني matar@liilsa.com. نحن متاحين 24/7."
-        }
-      }
-    ]
-  }
-
+  // faqSchema removed - each page defines its own FAQPage to avoid duplication in Google Search Console
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -241,7 +155,7 @@ export function SeoSchema() {
     "name": "مطر - سيولة تابي وتمارا",
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "سيولة تابي", "كاش تمارا"],
     "url": "https://liilsol.com",
-    "description": "سيولة تابي وتمارا ومدفوع مع حاسبة دقيقة وإكمال الطلب عبر الواتساب. خدمة سريعة في السعودية خلال ساعة.",
+    "description": "سيولة تابي وكاش تمارا ومدفوع مع حاسبة للصافي وإكمال الطلب عبر الواتساب. خدمة متاحة في السعودية بنظام شراكة واضح.",
     "inLanguage": "ar-SA",
     "publisher": {
       "@type": "Organization",
@@ -257,7 +171,7 @@ export function SeoSchema() {
     }
   }
 
-  const productSchema = {
+const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "خدمة سيولة تابي وكاش تمارا",
@@ -291,10 +205,6 @@ export function SeoSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"

@@ -34,7 +34,7 @@ const SYSTEM_PROMPT = `اسمك "مطر" - سحابة غيث ماحسبت حسا
 ## شرح الخدمة:
 1. العميل يحدد المبلغ اللي يحتاجه كاش (الصافي)
 2. نحن نحدد له قيمة الجهاز المطلوب شراءه بالتقسيط
-3. العميل يروح المتجر (اكسترا/نون/المنيع) ويشتري الجهاز عن طريق تابي أو تمارا
+3. العميل يروح المتجر (اكسترا/نون/المنيع) ويشتري الجهاز عن طريق تابي أو تمارا أو مدفوع
 4. نحن نستلم الجهاز ونبيعه
 5. من قيمة البيع نخصم الرسوم الإدارية والدفعة الأولى
 6. الباقي (الصافي) نحوله لحساب العميل خلال ساعة
@@ -307,7 +307,7 @@ async function saveMessage(
   return msgs
 }
 
-const ADMIN_PHONE = "966590360039"
+const ADMIN_PHONE = "966503367637"
 
 async function notifyAdmin(type: string, title: string, body: string, refType: string, refId: string) {
   const supabase = getSupabase()
@@ -547,7 +547,6 @@ export async function POST(req: Request) {
           },
         }),
       },
-      maxSteps: 5,
     })
 
     // Save AI response

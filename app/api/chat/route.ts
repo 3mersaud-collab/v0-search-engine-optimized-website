@@ -1,7 +1,7 @@
 export const maxDuration = 60
 export const dynamic = "force-dynamic"
 
-const WHATSAPP_NUMBER = "966590360039"
+const WHATSAPP_NUMBER = "966503367637"
 const GEMINI_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? ""
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`
 
@@ -161,7 +161,7 @@ export async function POST(req: Request) {
     }
 
     const body = {
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT.replace("WHATSAPP_NUMBER", WHATSAPP_NUMBER) + calcContext }] },
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT.replaceAll("WHATSAPP_NUMBER", WHATSAPP_NUMBER) + calcContext }] },
       contents: normalized.map((m) => ({ role: m.role, parts: [{ text: m.text }] })),
       generationConfig: { temperature: 0.65, maxOutputTokens: 450 },
     }
