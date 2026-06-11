@@ -170,7 +170,7 @@ export default function PrivacyPage() {
                       href="https://wa.me/966590360039"
                       className="text-primary hover:underline"
                     >
-                      0503367637
+                      0590360039
                     </a>
                   </li>
                 </ul>
