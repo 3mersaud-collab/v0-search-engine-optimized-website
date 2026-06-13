@@ -46,7 +46,8 @@ export function SeoSchema() {
     },
     "sameAs": [
       "https://www.instagram.com/liilsa.sol",
-      "https://www.google.com/maps/place/liilSOL/@24.7480288,46.6824448,17z"
+      "https://www.google.com/maps/place/liilSOL/@24.7480288,46.6824448,17z",
+      "https://m6rsa.com"
     ]
   }
 
@@ -182,8 +183,8 @@ const productSchema = {
     },
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "50",
+      "ratingValue": "4.7",
+      "reviewCount": "27",
       "bestRating": "5",
       "worstRating": "1"
     },
