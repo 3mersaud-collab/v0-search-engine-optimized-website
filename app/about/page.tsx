@@ -177,7 +177,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
               <a 
-                href="https://wa.me/966590360039"
+                href="https://wa.me/966560903335"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-green-500/50 hover:shadow-lg transition-all text-center group"
@@ -186,18 +186,18 @@ export default function AboutPage() {
                   <Phone className="w-8 h-8 text-green-600" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">واتساب</h3>
-                <p className="text-muted-foreground" dir="ltr">0590360039</p>
+                <p className="text-muted-foreground" dir="ltr">0560903335</p>
               </a>
 
               <a 
-                href="mailto:matar@liilsa.com"
+                href="mailto:matar@m6rsa.com"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-primary/50 hover:shadow-lg transition-all text-center group"
               >
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-8 h-8 text-primary" />
                 </div>
                 <h3 className="font-bold text-foreground mb-2">البريد الإلكتروني</h3>
-                <p className="text-muted-foreground text-sm">matar@liilsa.com</p>
+                <p className="text-muted-foreground text-sm">matar@m6rsa.com</p>
               </a>
 
               <a 
@@ -231,7 +231,7 @@ export default function AboutPage() {
               <Link href="/#calculator">احسب سيولتك</Link>
             </Button>
             <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
-              <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/966560903335" target="_blank" rel="noopener noreferrer">
                 تواصل واتساب
               </a>
             </Button>

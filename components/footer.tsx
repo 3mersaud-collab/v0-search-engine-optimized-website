@@ -32,17 +32,17 @@ export function Footer() {
               السيولة مباشرة لحسابكم البنكي خلال ساعة. خدمة موثوقة في الرياض وجدة والدمام.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="tel:+966590360039" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="tel:+966560903335" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
                 <span dir="ltr">+966 59 036 0039</span>
               </a>
-              <a href="mailto:matar@liilsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="mailto:matar@m6rsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Mail className="w-4 h-4" />
-                <span>matar@liilsa.com</span>
+                <span>matar@m6rsa.com</span>
               </a>
-              <a href="https://instagram.com/liilsa.sol" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="https://instagram.com/m6r.sa" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Instagram className="w-4 h-4" />
-                <span>@liilsa.sol</span>
+                <span>@m6r.sa</span>
               </a>
               <a href="https://maps.google.com/?q=مطر+الرياض+حي+المرسلات" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <MapPin className="w-4 h-4" />

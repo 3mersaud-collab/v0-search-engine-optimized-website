@@ -196,30 +196,30 @@ export default function TermsPage() {
                   <li>
                     <strong>واتساب:</strong>{" "}
                     <a
-                      href="https://wa.me/966590360039"
+                      href="https://wa.me/966560903335"
                       className="text-primary hover:underline"
                     >
-                      0590360039
+                      0560903335
                     </a>
                   </li>
                   <li>
                     <strong>البريد:</strong>{" "}
                     <a
-                      href="mailto:matar@liilsa.com"
+                      href="mailto:matar@m6rsa.com"
                       className="text-primary hover:underline"
                     >
-                      matar@liilsa.com
+                      matar@m6rsa.com
                     </a>
                   </li>
                   <li>
                     <strong>انستقرام:</strong>{" "}
                     <a
-                      href="https://instagram.com/liilsa.sol"
+                      href="https://instagram.com/m6r.sa"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
-                      @liilsa.sol
+                      @m6r.sa
                     </a>
                   </li>
                 </ul>

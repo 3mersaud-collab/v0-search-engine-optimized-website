@@ -107,10 +107,10 @@ export default function PrivacyPage() {
                 <p className="text-muted-foreground leading-relaxed mt-4">
                   لممارسة أي من هذه الحقوق، تواصل معنا عبر البريد الإلكتروني:{" "}
                   <a
-                    href="mailto:matar@liilsa.com"
+                    href="mailto:matar@m6rsa.com"
                     className="text-primary hover:underline"
                   >
-                    matar@liilsa.com
+                    matar@m6rsa.com
                   </a>
                 </p>
               </div>
@@ -158,19 +158,19 @@ export default function PrivacyPage() {
                   <li>
                     <strong>البريد الإلكتروني:</strong>{" "}
                     <a
-                      href="mailto:matar@liilsa.com"
+                      href="mailto:matar@m6rsa.com"
                       className="text-primary hover:underline"
                     >
-                      matar@liilsa.com
+                      matar@m6rsa.com
                     </a>
                   </li>
                   <li>
                     <strong>واتساب:</strong>{" "}
                     <a
-                      href="https://wa.me/966590360039"
+                      href="https://wa.me/966560903335"
                       className="text-primary hover:underline"
                     >
-                      0590360039
+                      0560903335
                     </a>
                   </li>
                 </ul>

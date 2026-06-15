@@ -5,7 +5,7 @@ import { Phone, MessageCircle, Mail, MapPin, Instagram, ArrowLeft } from "lucide
 
 export function ContactSection() {
   const whatsappMsg = encodeURIComponent("السلام عليكم، أبي أستفسر عن السيولة 🙏")
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966590360039&text=${whatsappMsg}&type=phone_number&app_absent=0`
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966560903335&text=${whatsappMsg}&type=phone_number&app_absent=0`
 
   return (
     <section id="contact" className="relative py-16 md:py-24 overflow-hidden">
@@ -36,7 +36,7 @@ export function ContactSection() {
 
               <div className="space-y-5 mb-8">
                 <a
-                  href="tel:+966590360039"
+                  href="tel:+966560903335"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -64,7 +64,7 @@ export function ContactSection() {
                 </a>
 
                 <a
-                  href="mailto:matar@liilsa.com"
+                  href="mailto:matar@m6rsa.com"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -72,12 +72,12 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">البريد الإلكتروني</p>
-                    <p className="font-medium text-foreground text-sm">matar@liilsa.com</p>
+                    <p className="font-medium text-foreground text-sm">matar@m6rsa.com</p>
                   </div>
                 </a>
 
                 <a
-                  href="https://instagram.com/liilsa.sol"
+                  href="https://instagram.com/m6r.sa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-pink-500/30 hover:shadow-md transition-all group"
@@ -87,7 +87,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">انستقرام</p>
-                    <p className="font-medium text-foreground">@liilsa.sol</p>
+                    <p className="font-medium text-foreground">@m6r.sa</p>
                   </div>
                 </a>
 
