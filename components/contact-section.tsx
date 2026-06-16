@@ -44,7 +44,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">اتصل بنا</p>
-                    <p className="font-medium text-foreground" dir="ltr">+966 59 036 0039</p>
+                    <p className="font-medium text-foreground" dir="ltr">+966 56 090 3335</p>
                   </div>
                 </a>
 
