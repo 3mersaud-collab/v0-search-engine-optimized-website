@@ -34,7 +34,7 @@ export function Footer() {
             <div className="space-y-2 text-sm">
               <a href="tel:+966560903335" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">+966 59 036 0039</span>
+                <span dir="ltr">+966 56 090 3335</span>
               </a>
               <a href="mailto:matar@m6rsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Mail className="w-4 h-4" />
