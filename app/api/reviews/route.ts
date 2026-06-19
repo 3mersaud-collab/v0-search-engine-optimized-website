@@ -34,7 +34,35 @@ export async function GET() {
   return NextResponse.json(reviews)
 }
 
-// POST: حفظ تقييم جديد
+// DELETE: حذف تقييم بالـ id (محمي بسر) — لإدارة المحتوى
+export async function DELETE(request: Request) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get("id")
+    const secret = searchParams.get("secret")
+    if (secret !== "liilsol2024setup") {
+      return NextResponse.json({ error: "غير مصرح" }, { status: 403 })
+    }
+    if (!id) {
+      return NextResponse.json({ error: "id مطلوب" }, { status: 400 })
+    }
+
+    const existing = await readReviews()
+    const updated = existing.filter((r) => r.id !== id)
+
+    await put(REVIEWS_PATH, JSON.stringify(updated), {
+      access: "public",
+      contentType: "application/json",
+      allowOverwrite: true,
+    })
+
+    return NextResponse.json({ success: true, remaining: updated.length })
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "خطأ في الخادم"
+    return NextResponse.json({ error: msg }, { status: 500 })
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json()
