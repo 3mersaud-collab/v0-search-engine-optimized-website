@@ -1,27 +1,37 @@
-import { createClient } from "@/lib/supabase/server"
+import { put, list } from "@vercel/blob"
 import { NextResponse } from "next/server"
 
-// GET: جلب كل التقييمات المعتمدة
-export async function GET() {
+const REVIEWS_PATH = "reviews/customer-reviews.json"
+
+type Review = {
+  id: string
+  name: string
+  rating: number
+  comment: string
+  app_type: string
+  created_at: string
+}
+
+async function readReviews(): Promise<Review[]> {
   try {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-      .from("customer_reviews")
-      .select("id, name, rating, comment, app_type, created_at")
-      .order("created_at", { ascending: false })
-
-    if (error) {
-      // إذا الجدول ما موجود بعد، ارجع array فاضي
-      if (error.code === "42P01") {
-        return NextResponse.json([])
-      }
-      return NextResponse.json({ error: error.message }, { status: 500 })
-    }
-
-    return NextResponse.json(data ?? [])
-  } catch (err) {
-    return NextResponse.json({ error: "خطأ في الخادم" }, { status: 500 })
+    const { blobs } = await list({ prefix: REVIEWS_PATH })
+    const match = blobs.find((b) => b.pathname === REVIEWS_PATH)
+    if (!match) return []
+    const res = await fetch(match.url, { cache: "no-store" })
+    if (!res.ok) return []
+    const data = await res.json()
+    return Array.isArray(data) ? data : []
+  } catch {
+    return []
   }
+}
+
+// GET: جلب كل التقييمات
+export async function GET() {
+  const reviews = await readReviews()
+  // الأحدث أولاً
+  reviews.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+  return NextResponse.json(reviews)
 }
 
 // POST: حفظ تقييم جديد
@@ -31,36 +41,33 @@ export async function POST(request: Request) {
     const { name, rating, comment, app_type } = body
 
     if (!name || !rating || !app_type) {
-      return NextResponse.json(
-        { error: "الاسم والتقييم والتطبيق مطلوبين" },
-        { status: 400 }
-      )
+      return NextResponse.json({ error: "الاسم والتقييم والتطبيق مطلوبين" }, { status: 400 })
     }
-
     if (rating < 1 || rating > 5) {
       return NextResponse.json({ error: "التقييم يجب أن يكون بين 1 و5" }, { status: 400 })
     }
 
-    const supabase = await createClient()
-    const { data, error } = await supabase
-      .from("customer_reviews")
-      .insert([
-        {
-          name: name.trim(),
-          rating: Number(rating),
-          comment: (comment ?? "").trim(),
-          app_type,
-        },
-      ])
-      .select()
-      .single()
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 })
+    const newReview: Review = {
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      name: String(name).trim().slice(0, 60),
+      rating: Number(rating),
+      comment: String(comment ?? "").trim().slice(0, 600),
+      app_type: String(app_type),
+      created_at: new Date().toISOString(),
     }
 
-    return NextResponse.json({ success: true, review: data }, { status: 201 })
+    const existing = await readReviews()
+    const updated = [newReview, ...existing]
+
+    await put(REVIEWS_PATH, JSON.stringify(updated), {
+      access: "public",
+      contentType: "application/json",
+      allowOverwrite: true,
+    })
+
+    return NextResponse.json({ success: true, review: newReview }, { status: 201 })
   } catch (err) {
-    return NextResponse.json({ error: "خطأ في الخادم" }, { status: 500 })
+    const msg = err instanceof Error ? err.message : "خطأ في الخادم"
+    return NextResponse.json({ error: msg }, { status: 500 })
   }
 }
