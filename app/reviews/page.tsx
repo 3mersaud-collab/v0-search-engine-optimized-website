@@ -3,8 +3,10 @@
 import { useState } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Star, ExternalLink, MapPin, Quote, ThumbsUp, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react"
+import { Star, ExternalLink, MapPin, Quote, ThumbsUp, ChevronDown, ChevronUp, Send, Heart, Sparkles, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import Link from "next/link"
 
 // تقييمات حقيقية من Google Maps - liilSOL
@@ -198,9 +200,25 @@ const initialColors = [
   "bg-[#F97316]/15 text-[#c2410c]",
 ]
 
+const encouragingQuotes = [
+  "آرائكم هي صوتكم عندنا — وكلمة واحدة منكم تقدر تساعد شخص كثير يتأكد ويثق بخدمتنا",
+  "تجربتك مهمة — شاركها معنا وساعد غيرك يتخذ قراره بثقة",
+  "كل تقييم هو خطوة ت_build ثقة — نحب نسمع منكم",
+]
+
 export default function ReviewsPage() {
   const [showAll, setShowAll] = useState(false)
   const [filter, setFilter] = useState<string>("all")
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    app: "",
+    rating: 0,
+    hoverRating: 0,
+    comment: "",
+  })
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   const filteredReviews = filter === "all"
     ? googleReviews
@@ -210,13 +228,28 @@ export default function ReviewsPage() {
 
   const displayedReviews = showAll ? filteredReviews : filteredReviews.slice(0, 10)
 
-  const totalReviews = 17 // العدد الحقيقي من Google Maps
+  const totalReviews = 17
 
   const ratingBreakdown = [5, 4, 3, 2, 1].map((star) => ({
     star,
     count: star === 5 ? 17 : 0,
     percent: star === 5 ? 100 : 0,
   }))
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formData.name || !formData.app || formData.rating === 0) return
+
+    const message = encodeURIComponent(
+      `أريد أشارك تجربتي مع مطر:\n\n` +
+      `الاسم: ${formData.name}\n` +
+      `التطبيق: ${formData.app}\n` +
+      `التقييم: ${"⭐".repeat(formData.rating)}\n` +
+      `التعليق: ${formData.comment || "بدون تعليق"}`
+    )
+    window.open(`https://wa.me/966560903335?text=${message}`, "_blank")
+    setFormSubmitted(true)
+  }
 
   return (
     <main className="min-h-screen bg-background">
@@ -230,25 +263,173 @@ export default function ReviewsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
-              آراء العملاء
+              <Sparkles className="w-4 h-4 inline ml-1" />
+              رأيك يهمنا
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-              تقييمات عملائنا على Google Maps
+              شاركنا تجربتك مع مطر
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              شاهد تقييمات حقيقية من عملاء جربوا خدمة السيولة معنا
+            <p className="text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+              {encouragingQuotes[0]}
             </p>
+            <p className="text-base text-muted-foreground/70 mb-8 max-w-2xl mx-auto">
+              أكّدنا ثقة {totalReviews} عميل — وأنت تقدر تضيف صوتك معهم. كلماتك بسيطة تكفي لتساعد شخص ثاني يتأكد ويثق في خدمتنا.
+            </p>
+
+            {/* Review Form Card */}
+            <div className="max-w-2xl mx-auto bg-card rounded-2xl p-8 border border-border shadow-lg mb-10">
+              {!formSubmitted ? (
+                <form onSubmit={handleFormSubmit} className="space-y-6">
+                  <div className="text-center mb-6">
+                    <MessageCircle className="w-10 h-10 text-primary mx-auto mb-3" />
+                    <h2 className="text-xl font-bold text-foreground mb-2">
+                      اكتب تقييمك هنا
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      فقط 3 خطوات بسيطة — اسمك، التطبيق اللي استخدمته، وتقييمك
+                    </p>
+                  </div>
+
+                  {/* Name */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      اسمك
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="مثال: عبدالله"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      required
+                      className="h-12 text-right"
+                    />
+                  </div>
+
+                  {/* App Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      أي تطبيق استخدمته للتكييش؟
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {["تابي", "تمارا"].map((app) => (
+                        <button
+                          key={app}
+                          type="button"
+                          onClick={() => setFormData({ ...formData, app })}
+                          className={`py-3.5 px-4 rounded-xl border-2 text-lg font-bold transition-all ${
+                            formData.app === app
+                              ? "border-primary bg-primary/10 text-primary"
+                              : "border-border bg-background text-foreground hover:border-primary/40"
+                          }`}
+                        >
+                          {app}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Star Rating */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      كيف كانت تجربتك؟
+                    </label>
+                    <div className="flex justify-center gap-2 py-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onMouseEnter={() => setFormData({ ...formData, hoverRating: star })}
+                          onMouseLeave={() => setFormData({ ...formData, hoverRating: 0 })}
+                          onClick={() => setFormData({ ...formData, rating: star })}
+                          className="p-1 transition-transform hover:scale-110 focus:outline-none"
+                        >
+                          <Star
+                            className={`w-9 h-9 ${
+                              star <= (formData.hoverRating || formData.rating)
+                                ? "text-yellow-500 fill-yellow-500"
+                                : "text-secondary fill-secondary"
+                            }`}
+                          />
+                        </button>
+                      ))}
+                    </div>
+                    {formData.rating > 0 && (
+                      <p className="text-center text-sm text-primary font-medium mt-1">
+                        {formData.rating === 5 && "ممتاز! شكراً لك 🌟"}
+                        {formData.rating === 4 && "جيد جداً! شكراً لك"}
+                        {formData.rating === 3 && "جيد — نحب نعرف كيف نشيل أفضل"}
+                        {formData.rating === 2 && "نشكر صداقتك — نحب نعرف المشكلة"}
+                        {formData.rating === 1 && "نسأل عن تفاصيل المشكلة ونحسن فوراً"}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Comment */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      تعليقك (اختياري)
+                    </label>
+                    <Textarea
+                      placeholder="اكتب كيف كانت تجربتك... مثال: سرعة في التنفيذ ومعاملة راقية"
+                      value={formData.comment}
+                      onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
+                      className="min-h-[100px] resize-none"
+                    />
+                  </div>
+
+                  {/* Submit */}
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={!formData.name || !formData.app || formData.rating === 0}
+                    className="w-full h-12 text-lg gap-2"
+                  >
+                    <Send className="w-5 h-5" />
+                    أرسل تقييمك
+                  </Button>
+                </form>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Heart className="w-8 h-8 text-green-500 fill-green-500" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground mb-2">
+                    شكراً لتقييمك يا {formData.name}!
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    تقييمك وصلنا عبر واتساب — ونقدر لك وقتك. رأيك يساعدنا نشيل أفضل ونساعد غيرك يتأكد.
+                  </p>
+                  <div className="flex justify-center gap-2 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-6 h-6 ${
+                          i < formData.rating
+                            ? "text-yellow-500 fill-yellow-500"
+                            : "text-secondary fill-secondary"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* Google Rating Summary Card */}
             <div className="max-w-2xl mx-auto bg-card rounded-2xl p-8 border border-border shadow-lg mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <img
+                  src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+                  alt="Google"
+                  className="h-7 object-contain"
+                />
+                <h2 className="text-lg font-bold text-foreground">
+                  تقييمات Google Maps
+                </h2>
+              </div>
+
               <div className="flex flex-col md:flex-row items-center gap-8">
-                {/* Left: Big Rating */}
                 <div className="flex flex-col items-center gap-2">
-                  <img
-                    src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
-                    alt="Google"
-                    className="h-7 object-contain mb-2"
-                  />
                   <span className="text-6xl font-bold text-foreground">5.0</span>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -258,7 +439,6 @@ export default function ReviewsPage() {
                   <span className="text-sm text-muted-foreground">{totalReviews} تقييم</span>
                 </div>
 
-                {/* Right: Rating Breakdown */}
                 <div className="flex-1 w-full">
                   {ratingBreakdown.map((item) => (
                     <div key={item.star} className="flex items-center gap-3 mb-1.5">
@@ -337,9 +517,12 @@ export default function ReviewsPage() {
         </div>
       </section>
 
-      {/* Reviews Grid */}
+      {/* Google Reviews Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
+          <h2 className="text-2xl font-bold text-foreground text-center mb-10">
+            تقييمات عملائنا على Google Maps
+          </h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {displayedReviews.map((review, index) => (
               <a
@@ -349,7 +532,6 @@ export default function ReviewsPage() {
                 rel="noopener noreferrer"
                 className="bg-card rounded-2xl p-6 border border-border hover:border-primary/20 hover:shadow-lg transition-all group cursor-pointer block no-underline"
               >
-                {/* Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div
@@ -377,7 +559,6 @@ export default function ReviewsPage() {
                   />
                 </div>
 
-                {/* Stars + Date */}
                 <div className="flex items-center gap-2 mb-3">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
@@ -395,14 +576,12 @@ export default function ReviewsPage() {
                   <span className="text-xs px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 border border-green-500/20 font-medium">NEW</span>
                 </div>
 
-                {/* Comment */}
                 {review.comment ? (
                   <p className="text-foreground leading-relaxed mb-4 whitespace-pre-line">{review.comment}</p>
                 ) : (
                   <p className="text-muted-foreground text-sm italic mb-4">{"(تقييم بدون تعليق)"}</p>
                 )}
 
-                {/* Footer */}
                 <div className="flex items-center justify-between text-muted-foreground">
                   {review.likes > 0 ? (
                     <div className="flex items-center gap-1.5 text-xs">
@@ -418,7 +597,6 @@ export default function ReviewsPage() {
             ))}
           </div>
 
-          {/* Show More / Less */}
           {filteredReviews.length > 10 && (
             <div className="text-center mt-10">
               <Button
@@ -515,7 +693,7 @@ export default function ReviewsPage() {
             هل جربت خدمتنا؟
           </h2>
           <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-            شاركنا تجربتك على Google Maps وساعد الآخرين في اتخاذ قرارهم
+            {encouragingQuotes[1]}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
