@@ -103,6 +103,7 @@ export default function RootLayout({
         <SeoSchema />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TWCLCVPWB" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18033444354" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137422209" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -111,6 +112,7 @@ export default function RootLayout({
               gtag('js', new Date());
               gtag('config', 'G-3TWCLCVPWB');
               gtag('config', 'AW-18033444354');
+              gtag('config', 'AW-18137422209');
 
               // Track all contact button clicks as Google Ads conversions
               document.addEventListener('click', function(e) {
