@@ -101,8 +101,6 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <SeoSchema />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3TWCLCVPWB" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18033444354" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137422209" />
         <script
           dangerouslySetInnerHTML={{
@@ -110,29 +108,7 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-3TWCLCVPWB');
-              gtag('config', 'AW-18033444354');
               gtag('config', 'AW-18137422209');
-
-              // Track all contact button clicks as Google Ads conversions
-              document.addEventListener('click', function(e) {
-                var el = e.target;
-                while (el && el.tagName !== 'A') { el = el.parentElement; }
-                if (el && el.href) {
-                  var href = el.href;
-                  // Track WhatsApp, phone calls, email, and Instagram clicks
-                  if (href.indexOf('wa.me') !== -1 || 
-                      href.indexOf('whatsapp.com') !== -1 || 
-                      href.indexOf('tel:') !== -1 || 
-                      href.indexOf('mailto:') !== -1 || 
-                      href.indexOf('instagram.com') !== -1) {
-                    gtag('event', 'conversion', {
-                      'send_to': 'AW-18033444354/4RONCODtkY8cEIKMgpdD',
-                      'event_callback': function() {}
-                    });
-                  }
-                }
-              });
             `,
           }}
         />
