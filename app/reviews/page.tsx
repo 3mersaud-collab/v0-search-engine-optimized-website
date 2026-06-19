@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Star, ExternalLink, MapPin, Quote, ThumbsUp, ChevronDown, ChevronUp, Send, Heart, Sparkles, MessageCircle } from "lucide-react"
@@ -222,6 +222,18 @@ export default function ReviewsPage() {
   const [showAll, setShowAll] = useState(false)
   const [filter, setFilter] = useState<string>("all")
 
+  // تقييمات العملاء من Supabase
+  const [customerReviews, setCustomerReviews] = useState<Array<{
+    id: string; name: string; rating: number; comment: string; app_type: string; created_at: string
+  }>>([])
+
+  useEffect(() => {
+    fetch("/api/reviews")
+      .then((r) => r.json())
+      .then((data) => { if (Array.isArray(data)) setCustomerReviews(data) })
+      .catch(() => {})
+  }, [])
+
   // Form state
   const [formData, setFormData] = useState({
     name: "",
@@ -231,6 +243,7 @@ export default function ReviewsPage() {
     comment: "",
   })
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const filteredReviews = filter === "all"
     ? googleReviews
@@ -248,19 +261,33 @@ export default function ReviewsPage() {
     percent: star === 5 ? 93 : star === 1 ? 7 : 0,
   }))
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!formData.name || !formData.app || formData.rating === 0) return
 
-    const message = encodeURIComponent(
-      `أريد أشارك تجربتي مع مطر:\n\n` +
-      `الاسم: ${formData.name}\n` +
-      `التطبيق: ${formData.app}\n` +
-      `التقييم: ${"⭐".repeat(formData.rating)}\n` +
-      `التعليق: ${formData.comment || "بدون تعليق"}`
-    )
-    window.open(`https://wa.me/966560903335?text=${message}`, "_blank")
-    setFormSubmitted(true)
+    setIsSubmitting(true)
+    try {
+      const res = await fetch("/api/reviews", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          rating: formData.rating,
+          comment: formData.comment,
+          app_type: formData.app,
+        }),
+      })
+      const data = await res.json()
+      if (res.ok && data.review) {
+        // أضف التقييم الجديد فوراً في الصفحة
+        setCustomerReviews((prev) => [data.review, ...prev])
+      }
+      setFormSubmitted(true)
+    } catch {
+      setFormSubmitted(true)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -389,15 +416,26 @@ export default function ReviewsPage() {
                     />
                   </div>
 
-                  {/* Submit */}
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={!formData.name || !formData.app || formData.rating === 0}
+                    disabled={!formData.name || !formData.app || formData.rating === 0 || isSubmitting}
                     className="w-full h-12 text-lg gap-2"
                   >
-                    <Send className="w-5 h-5" />
-                    أرسل تقييمك
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                        </svg>
+                        جاري الإرسال...
+                      </span>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        أرسل تقييمك
+                      </>
+                    )}
                   </Button>
                 </form>
               ) : (
@@ -409,7 +447,7 @@ export default function ReviewsPage() {
                     شكراً لتقييمك يا {formData.name}!
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    تقييمك وصلنا عبر واتساب — ونقدر لك وقتك. رأيك يساعدنا نشيل أفضل ونساعد غيرك يتأكد.
+                    تقييمك تم حفظه وظاهر الحين للزوار في الصفحة. نقدر لك وقتك 🌟
                   </p>
                   <div className="flex justify-center gap-2 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -442,7 +480,7 @@ export default function ReviewsPage() {
 
               <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex flex-col items-center gap-2">
-                  <span className="text-6xl font-bold text-foreground">5.0</span>
+                  <span className="text-6xl font-bold text-foreground">4.7</span>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-yellow-500 fill-yellow-500" />
@@ -633,6 +671,65 @@ export default function ReviewsPage() {
           )}
         </div>
       </section>
+
+      {/* Customer Submitted Reviews */}
+      {customerReviews.length > 0 && (
+        <section className="py-16 bg-secondary/20">
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <MessageCircle className="w-6 h-6 text-primary" />
+              <h2 className="text-2xl font-bold text-foreground text-center">
+                تقييمات من زوار الموقع
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {customerReviews.map((review, index) => {
+                const initial = review.name.trim().charAt(0).toUpperCase() || "؟"
+                const dateLabel = new Date(review.created_at).toLocaleDateString("ar-SA", { day: "numeric", month: "long", year: "numeric" })
+                return (
+                  <div
+                    key={review.id}
+                    className="bg-card rounded-2xl p-6 border border-primary/20 shadow-sm"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className={`w-11 h-11 rounded-full flex items-center justify-center font-bold text-lg ${initialColors[index % initialColors.length]}`}>
+                          {initial}
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground">{review.name}</h3>
+                          <span className="text-xs text-muted-foreground">{review.app_type}</span>
+                        </div>
+                      </div>
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 font-medium">
+                        موقع مطر
+                      </span>
+                    </div>
+
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`w-4 h-4 ${i < review.rating ? "text-yellow-500 fill-yellow-500" : "text-secondary fill-secondary"}`}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-muted-foreground">{dateLabel}</span>
+                    </div>
+
+                    {review.comment ? (
+                      <p className="text-foreground leading-relaxed whitespace-pre-line">{review.comment}</p>
+                    ) : (
+                      <p className="text-muted-foreground text-sm italic">{"(تقييم بدون تعليق)"}</p>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Request Previous Transactions */}
       <section className="py-12 bg-accent/10 border-y border-accent/20">
