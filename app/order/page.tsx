@@ -186,7 +186,7 @@ export default function OrderPage() {
               <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="w-10 h-10 text-green-500" />
               </div>
-              <h1 className="text-3xl font-bold text-foreground mb-4">تم إرسال طلبك بنجاح!</h1>
+              <h2 className="text-3xl font-bold text-foreground mb-4">تم إرسال طلبك بنجاح!</h2>
               {orderNumber && (
                 <p className="text-lg text-primary font-bold mb-4">رقم الطلب: {orderNumber}</p>
               )}
