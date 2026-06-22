@@ -59,7 +59,10 @@ export function HeroSection() {
                 </a>
               </Button>
             </div>
-            <p className="text-xs text-muted-foreground mb-6 text-center lg:text-right">تواصل معنا عبر الواتساب مباشرة وتحصل على ردّ فوري</p>
+            <p className="text-xs text-muted-foreground mb-3 text-center lg:text-right">تواصل معنا عبر الواتساب مباشرة وتحصل على ردّ فوري</p>
+            <div className="mb-6 rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm text-foreground text-center lg:text-right">
+              <span className="font-bold">ضمان وقت التحويل:</span> التحويل خلال ساعة من دفع الدفعة الأولى، وفي حال التأخير نلتزم بدفع <span className="font-bold">25 ريال</span> عن كل ساعة تأخير.
+            </div>
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
