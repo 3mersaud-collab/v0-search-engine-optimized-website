@@ -53,12 +53,7 @@ export function LoyaltyDiscountBanner() {
 
           {/* الطلب الثاني والثالث */}
           <div className="relative bg-gradient-to-b from-amber-500/10 to-yellow-400/5 rounded-2xl border-2 border-amber-400/60 p-6 text-center shadow-lg shadow-amber-200/20">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-300 text-amber-900 text-xs font-bold px-3 py-1 rounded-full shadow whitespace-nowrap">
-                🥈 عميل فوق هام السحب
-              </span>
-            </div>
-            <div className="w-14 h-14 bg-amber-400/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
+            <div className="w-14 h-14 bg-amber-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Star className="w-7 h-7 text-amber-500 fill-amber-400" />
             </div>
             <div className="text-5xl font-black bg-gradient-to-r from-amber-500 to-yellow-400 bg-clip-text text-transparent mb-1">
@@ -75,7 +70,7 @@ export function LoyaltyDiscountBanner() {
           <div className="relative bg-gradient-to-b from-green-500/10 to-emerald-400/5 rounded-2xl border-2 border-green-400/60 p-6 text-center shadow-lg shadow-green-200/20">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
               <span className="bg-gradient-to-r from-green-500 to-emerald-400 text-white text-xs font-bold px-3 py-1 rounded-full shadow whitespace-nowrap">
-                👑 عميل ذهبي
+                🥈 عميل فوق هام السحب
               </span>
             </div>
             <div className="w-14 h-14 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-4 mt-2">
