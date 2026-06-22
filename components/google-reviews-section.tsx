@@ -266,7 +266,7 @@ export function GoogleReviewsSection() {
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" variant="outline" className="gap-2" asChild>
               <Link href="/reviews">
-                شاهد جميع التقييمات (17)
+                شاهد جميع التقييمات (27)
               </Link>
             </Button>
             <Button size="lg" className="gap-2" asChild>
