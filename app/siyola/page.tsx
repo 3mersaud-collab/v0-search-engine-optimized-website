@@ -8,14 +8,14 @@ import Image from "next/image"
 
 export const metadata: Metadata = {
   title: "سيولة | سلفة | كاش فوري من تابي وتمارا ومدفوع",
-  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. تحويل لحسابك البنكي خلال ساعة. أفضل أسعار السيولة في السعودية مع مطر.",
+  description: "احصل على سيولة فورية وسلفة من رصيدك في تابي وتمارا ومدفوع. التحويل خلال ساعة من دفع الدفعة الأولى. أفضل أسعار السيولة في السعودية مع مطر.",
   keywords: "سيولة, سلفة, كاش, سيولة فورية, سلفة سريعة, تحويل رصيد, كاش تابي, كاش تمارا, سيولة الرياض, مطر, سحابة غيث",
   alternates: {
     canonical: "https://liilsol.com/siyola",
   },
   openGraph: {
     title: "سيولة وسلفة فورية - مطر",
-    description: "سيولة من تابي وتمارا ومدفوع خلال ساعة",
+    description: "سيولة من تابي وتمارا ومدفوع خلال ساعة من دفع الدفعة الأولى",
   },
 }
 
@@ -234,7 +234,7 @@ export default function SiyolaPage() {
               جاهز تحصل على سيولة؟
             </h2>
             <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
-              تواصل معنا الآن واحصل على كاش في حسابك خلال ساعة فقط
+              تواصل معنا الآن واحصل على كاش في حسابك خلال ساعة من دفع الدفعة الأولى
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
               <a href="https://wa.me/966560903335">
