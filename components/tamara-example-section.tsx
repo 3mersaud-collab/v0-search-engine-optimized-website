@@ -33,7 +33,7 @@ const steps = [
     label: "المبلغ اللي تستلمه (كاش)",
     value: "~1,100",
     unit: "ر.س",
-    description: "يتحول لحسابك البنكي خلال ساعة فقط",
+    description: "يتحول لحسابك البنكي خلال ساعة من دفع الدفعة الأولى",
     color: "bg-accent/10 text-accent",
     isResult: true,
   },

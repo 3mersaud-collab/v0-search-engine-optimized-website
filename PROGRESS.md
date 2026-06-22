@@ -1,0 +1,5 @@
+[2026-06-22 16:50] اعتماد نهائي: وقت='خلال ساعة من دفع الدفعة الأولى'، تعويض=25 ريال/ساعة (توجيه المستخدم الصريح). بدء الجرد الشامل.
+[2026-06-22 18:44] اكتمل الجرد الشامل: أرقام قديمة=صفر، H1 واحد لكل صفحة (عدا order=2 داخلية)، رسوم غير موحّدة في ~10 ملفات، صياغات وقت قديمة في ~12 ملف. بدء تطبيق القاعدة 1 (الرسوم).
+[2026-06-22 19:17] القاعدة 1 (الرسوم) مكتملة: terms, siyola(214), siyola-tabby(158), shariah(55) + hero/features/faq سابقاً. التالي: توحيد وقت التحويل
+[2026-06-22 19:40] القاعدة 2 (وقت التحويل) مكتملة: about, api/chat(3), siyola, siyola-tabby(4), siyola-riyadh/jeddah/dammam(بطاقات+prose), tasyeel-tabby, without-salary, articles/page, articles/[slug], faq-section, features-section, seo-keywords, tamara-example. البناء جارٍ.
+[2026-06-22 19:45] TypeScript نظيف. build_and_deploy فشل 3 مرات بسبب مشكلة بنية تحتية (--base=/ unknown option) لا تتعلق بالكود. المشروع جاهز للنشر اليدوي عبر Vercel CLI.

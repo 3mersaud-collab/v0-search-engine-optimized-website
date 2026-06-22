@@ -215,8 +215,8 @@ export default function SiyolaRiyadhPage() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Clock className="w-8 h-8 text-primary shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">ساعة فقط</p>
-                    <p className="text-sm text-muted-foreground">تحويل سريع للرياض</p>
+                    <p className="font-bold text-foreground">خلال ساعة</p>
+                    <p className="text-sm text-muted-foreground">من دفع الدفعة الأولى</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">

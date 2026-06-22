@@ -43,7 +43,7 @@ export default function SiyolaPage() {
               </h1>
               
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed max-w-2xl mx-auto">
-                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعة فقط</strong>.
+                هل تحتاج <strong className="text-foreground">سيولة فورية</strong>؟ ندخل معك كشركاء في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نبيعه ونحول لك مبلغ السيولة لحسابك البنكي خلال <strong className="text-foreground">ساعة من دفع الدفعة الأولى</strong>.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -211,7 +211,7 @@ export default function SiyolaPage() {
                 </div>
                 <div className="flex justify-between items-center py-3">
                   <span className="text-foreground">فرق البيع</span>
-                  <span className="font-bold text-accent text-xl">10-15%</span>
+                  <span className="font-bold text-accent text-xl">حسب المبلغ</span>
                 </div>
               </div>
               <div className="mt-6 text-center">

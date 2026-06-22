@@ -52,7 +52,7 @@ const tabbySteps = [
   {
     icon: <XCircle className="w-5 h-5" />,
     title: "أقفل الصفحة",
-    desc: "بعد إرسال الصورة، أقفل الصفحة فوراً — لا تكمل عملية الدفع",
+    desc: "بعد إرسال لقطة التحقق، أقفل الصفحة فوراً — لا تكمل عملية الدفع",
     color: "bg-red-500/10 border-red-500/30 text-red-600",
     note: "",
   },
@@ -90,7 +90,7 @@ const tamaraSteps = [
   {
     icon: <XCircle className="w-5 h-5" />,
     title: "أقفل الصفحة أو ألغِ الطلب",
-    desc: "بعد إرسال الصورة، أقفل الصفحة أو ألغِ الطلب — لا تكمل الدفع",
+    desc: "بعد إرسال لقطة التحقق، أقفل الصفحة أو ألغِ الطلب — لا تكمل الدفع",
     color: "bg-red-500/10 border-red-500/30 text-red-600",
     note: "",
   },
@@ -150,7 +150,7 @@ export function VerifySteps() {
           <div className="bg-red-500/10 border-2 border-red-500/30 rounded-2xl p-5 mb-8 flex items-start gap-3 text-sm shadow-sm">
             <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
             <div>
-              <p className="font-bold text-foreground mb-1">تنبيه مهم — مدفوع موقف مؤقتاً</p>
+              <p className="font-bold text-foreground mb-1">تنبيه مهم — مدفوع موقوف مؤقتاً</p>
               <p className="text-muted-foreground leading-relaxed">حالياً التقديم متاح عبر <strong className="text-foreground">تابي</strong> و<strong className="text-foreground">تمارا</strong> فقط. خدمة <strong className="text-foreground">مدفوع</strong> متوقفة مؤقتاً حتى إشعار آخر.</p>
             </div>
           </div>
@@ -235,7 +235,7 @@ export function VerifySteps() {
             <p className="text-sm text-muted-foreground leading-relaxed">
               بعد ما نتحقق من القبول، نرسل لك رابط الدفع الرسمي من{" "}
               <strong className="text-foreground">اكسترا أو جرير أو أحد المتاجر الكبرى</strong>.
-              تدفع عبر التطبيق، ونحوّل لك السيولة في حسابك خلال أقل من ساعة.
+              تدفع عبر التطبيق، ونحوّل لك السيولة في حسابك خلال ساعة من دفع الدفعة الأولى.
             </p>
           </div>
 
@@ -263,7 +263,7 @@ export function VerifySteps() {
               },
               {
                 q: "هل أنا بأمان؟ ألا أدفع شيء؟",
-                a: "بالضبط — أنت فقط تتحقق من قبول الطلب. لا تكمل الدفع. بعد إرسال الصورة تُقفل الصفحة، ونحن من يرسل لك رابط الدفع الفعلي.",
+                a: "بالضبط — أنت فقط تتحقق من قبول الطلب. لا تكمل الدفع. بعد إرسال لقطة التحقق تُقفل الصفحة، ونحن من يرسل لك رابط الدفع الفعلي.",
               },
               {
                 q: "ماذا لو رفضت تابي أو تمارا طلبي؟",

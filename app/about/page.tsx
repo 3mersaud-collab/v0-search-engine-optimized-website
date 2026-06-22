@@ -89,7 +89,7 @@ export default function AboutPage() {
               {
                 icon: Clock,
                 title: "سرعة فائقة",
-                description: "ننفذ طلبك ونحول المبلغ لحسابك خلال ساعة فقط"
+                description: "ننفذ طلبك ونحول المبلغ لحسابك خلال ساعة من دفع الدفعة الأولى"
               },
               {
                 icon: Shield,

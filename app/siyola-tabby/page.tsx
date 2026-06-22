@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "سيولة تابي | كاش تابي | سلفة تابي - تحويل خلال ساعة",
     description:
-      "احصل على كاش من رصيد تابي خلال ساعة فقط. بدون تحويل راتب، بدون OTP. خدمة مطر للسيولة في الرياض وجدة والدمام.",
+      "احصل على كاش من رصيد تابي خلال ساعة من دفع الدفعة الأولى. بدون تحويل راتب، بدون OTP. خدمة مطر للسيولة في الرياض وجدة والدمام.",
     url: "https://liilsol.com/siyola-tabby",
     siteName: "مطر",
     locale: "ar_SA",
@@ -62,7 +62,7 @@ const faqSchema = {
       name: "كم يستغرق الحصول على كاش تابي؟",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "ساعة واحدة فقط من وقت دفع الدفعة الأولى إلى التحويل الكامل لحسابك البنكي.",
+        text: "خلال ساعة من دفع الدفعة الأولى إلى التحويل الكامل لحسابك البنكي.",
       },
     },
     {
@@ -155,7 +155,7 @@ const serviceSchema = {
   offers: {
     "@type": "Offer",
     priceCurrency: "SAR",
-    description: "رسوم إدارية 10% + فرق بيع 10-15%",
+    description: "رسوم إدارية 10% (+ 100 ر.س للمبالغ أقل من 4,000 ر.س)",
   },
 }
 
@@ -211,7 +211,7 @@ export default function SiyolaTabbyPage() {
                 هل تبحث عن طريقة لتحويل رصيد تابي إلى كاش في حسابك البنكي؟ مع{" "}
                 <strong className="text-foreground">مطر</strong> الأمر بسيط جدًا — ندخل معك كشركاء في شراء الجهاز عبر تابي،
                 نتكفل بالدفعة الأولى (25%)، ثم نبيع الجهاز ونحوّل لك{" "}
-                <strong className="text-foreground">صافي مبلغ السيولة</strong> في حسابك البنكي خلال ساعة واحدة فقط.
+                <strong className="text-foreground">صافي مبلغ السيولة</strong> في حسابك البنكي خلال ساعة من دفع الدفعة الأولى.
               </p>
 
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-2xl">
@@ -234,7 +234,7 @@ export default function SiyolaTabbyPage() {
               {/* Quick Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {[
-                  { icon: Clock, label: "ساعة فقط", sub: "وقت التحويل", color: "text-primary" },
+                  { icon: Clock, label: "خلال ساعة", sub: "من دفع الدفعة الأولى", color: "text-primary" },
                   { icon: Shield, label: "آمن 100%", sub: "بدون OTP", color: "text-accent" },
                   { icon: Banknote, label: "1000 ريال+", sub: "حد أدنى", color: "text-green-500" },
                   { icon: MapPin, label: "كل السعودية", sub: "الرياض، جدة، الدمام", color: "text-primary" },
@@ -263,7 +263,7 @@ export default function SiyolaTabbyPage() {
               <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed space-y-4">
                 <p>
                   <strong className="text-foreground">سيولة تابي</strong> هي خدمة تُتيح لك تحويل حدك الائتماني في تطبيق{" "}
-                  <strong className="text-foreground">تابي للتقسيط</strong> إلى نقد حقيقي يصل حسابك البنكي خلال ساعة واحدة.
+                  <strong className="text-foreground">تابي للتقسيط</strong> إلى نقد حقيقي يصل حسابك البنكي خلال ساعة من دفع الدفعة الأولى.
                   تابي هي منصة تقسيط سعودية موثوقة تقبلها كبرى المتاجر مثل اكسترا وجرير ونون، وتتيح لك الشراء على أربع دفعات
                   ميسّرة.
                 </p>
@@ -709,7 +709,7 @@ export default function SiyolaTabbyPage() {
                   },
                   {
                     q: "كم تبلغ رسوم سيولة تابي مع مطر؟",
-                    a: "الرسوم الإدارية 10% من قيمة الشراء، إضافةً لفرق بيع الجهاز الذي يتراوح بين 10-15% حسب قيمة الجهاز والمتجر. كلما زاد المبلغ قلّت نسبة فرق البيع — المبالغ فوق 12,000 ريال تحصل على أفضل نسبة.",
+                    a: "رسوم إدارية 10% (+ 100 ر.س للمبالغ أقل من 4,000 ر.س)، إضافةً لفرق بيع الجهاز المحسوب حسب قيمة المبلغ. كلما زاد المبلغ قلّت نسبة فرق البيع — جميع الأرقام معروضة مسبقاً في الحاسبة.",
                   },
                   {
                     q: "هل الخدمة متاحة في جميع مناطق السعودية؟",

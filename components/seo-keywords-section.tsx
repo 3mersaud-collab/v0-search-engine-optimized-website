@@ -13,7 +13,7 @@ const keywords = [
   { term: "تسييل تابي", description: "تسييل رصيدك بأفضل سعر في السوق", popular: false },
   { term: "تسييل تمارا", description: "خدمة تسييل موثوقة وسريعة", popular: false },
   { term: "تحويل رصيد", description: "تحويل الرصيد لحسابك البنكي بضمان", popular: false },
-  { term: "كاش فوري", description: "كاش يصلك خلال ساعة فقط", popular: false },
+  { term: "كاش فوري", description: "كاش يصلك خلال ساعة من دفع الدفعة الأولى", popular: false },
 ]
 
 const stats = [

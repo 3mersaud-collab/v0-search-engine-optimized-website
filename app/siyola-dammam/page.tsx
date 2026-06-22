@@ -8,7 +8,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "سيولة تابي الدمام | كاش تمارا الدمام — تحويل خلال ساعة",
   description:
-    "احصل على سيولة تابي الدمام وكاش تمارا الدمام خلال ساعة فقط. مطر يدخل معك كشريك في الشراء من اكسترا وجرير ونون ثم يحوّل لك الصافي مباشرة لحسابك البنكي.",
+    "احصل على سيولة تابي الدمام وكاش تمارا الدمام خلال ساعة من دفع الدفعة الأولى. مطر يدخل معك كشريك في الشراء من اكسترا وجرير ونون ثم يحوّل لك الصافي مباشرة لحسابك البنكي.",
   keywords:
     "سيولة تابي الدمام, كاش تمارا الدمام, سيولة في الدمام, سيولة تابي, كاش تمارا, سلفة الدمام, تسييل تابي الدمام, تسييل تمارا الدمام",
   alternates: {
@@ -199,7 +199,7 @@ export default function SiyolaDammamPage() {
                 <strong className="text-foreground">كاش تمارا الدمام</strong>؟ مطر يدخل معك
                 كشريك في شراء الجهاز من اكسترا أو جرير الدمام، يتكفل بالدفعة الأولى، ثم يبيع
                 الجهاز ويحوّل لك <strong className="text-foreground">الصافي مباشرةً</strong> في
-                حسابك البنكي خلال ساعة واحدة فقط — مهما كان موقعك في المنطقة الشرقية.
+                حسابك البنكي خلال ساعة من دفع الدفعة الأولى — مهما كان موقعك في المنطقة الشرقية.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -223,8 +223,8 @@ export default function SiyolaDammamPage() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Clock className="w-8 h-8 text-primary shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">ساعة فقط</p>
-                    <p className="text-sm text-muted-foreground">تحويل سريع للدمام</p>
+                    <p className="font-bold text-foreground">خلال ساعة</p>
+                    <p className="text-sm text-muted-foreground">من دفع الدفعة الأولى</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
