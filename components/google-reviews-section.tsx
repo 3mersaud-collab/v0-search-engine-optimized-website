@@ -164,7 +164,7 @@ export function GoogleReviewsSection() {
               />
               <div className="border-r border-border h-8" />
               <div className="flex flex-col items-center">
-                <span className="text-2xl font-bold text-foreground leading-none">5.0</span>
+                <span className="text-2xl font-bold text-foreground leading-none">4.7</span>
                 <div className="flex mt-0.5">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-3 h-3 text-yellow-500 fill-yellow-500" />

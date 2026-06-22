@@ -161,7 +161,7 @@ export default function SalfaTabbyPage() {
                 <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border">
                   <Star className="w-8 h-8 text-yellow-500 shrink-0" />
                   <div className="text-start">
-                    <p className="font-bold text-foreground">5.0 نجوم</p>
+                    <p className="font-bold text-foreground">4.7 نجوم</p>
                     <p className="text-sm text-muted-foreground">تقييم Google Maps</p>
                   </div>
                 </div>

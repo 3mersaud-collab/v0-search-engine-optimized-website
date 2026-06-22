@@ -61,7 +61,7 @@ export default function AboutPage() {
               { number: "500+", label: "عميل سعيد" },
               { number: "100K+", label: "ريال تم تحويلها" },
               { number: "2", label: "ساعة للتنفيذ" },
-              { number: "5.0", label: "تقييم Google" },
+              { number: "4.7", label: "تقييم Google" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.number}</div>
@@ -109,7 +109,7 @@ export default function AboutPage() {
               {
                 icon: Star,
                 title: "تقييمات ممتازة",
-                description: "أكثر من 500 عميل راضٍ بتقييم 4.9 من 5"
+                description: "أكثر من 500 عميل راضٍ بتقييم 4.7 من 5"
               },
               {
                 icon: CheckCircle2,
