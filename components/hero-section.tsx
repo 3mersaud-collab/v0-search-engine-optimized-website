@@ -1,4 +1,5 @@
 "use client"
+import { WhatsAppLink } from "@/components/whatsapp-link"
 
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, Shield, Zap, Clock, Star, MessageCircle } from "lucide-react"
@@ -47,10 +48,10 @@ export function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-3">
               <Button size="lg" className="gap-2 text-lg px-8 py-6 shadow-xl bg-[#25D366] hover:bg-[#1fb855] text-white" asChild>
-                <a href="https://wa.me/966560903335">
+                <WhatsAppLink href="https://wa.me/966560903335">
                   <MessageCircle className="w-5 h-5" />
                   اطلب سيولة عبر الواتساب
-                </a>
+                </WhatsAppLink>
               </Button>
               <Button size="lg" variant="outline" className="gap-2 text-lg px-8 py-6" asChild>
                 <a href="#calculator">
@@ -139,7 +140,7 @@ export function HeroSection() {
                   <p className="text-xs text-muted-foreground">تواصل معنا لرؤية تقييمات عملائنا</p>
                 </div>
                 <Button size="sm" variant="ghost" className="text-accent hover:text-accent" asChild>
-                  <a href="https://wa.me/966560903335">واتساب</a>
+                  <WhatsAppLink href="https://wa.me/966560903335">واتساب</WhatsAppLink>
                 </Button>
               </div>
             </div>
@@ -173,3 +174,4 @@ export function HeroSection() {
     </section>
   )
 }
+
