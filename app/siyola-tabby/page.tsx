@@ -159,6 +159,37 @@ const serviceSchema = {
   },
 }
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://liilsol.com/siyola-tabby#business",
+  name: "مطر — سيولة تابي",
+  description:
+    "خدمة تحويل رصيد تابي إلى كاش في حسابك البنكي خلال ساعة من دفع الدفعة الأولى عبر نظام شراكة واضح.",
+  url: "https://liilsol.com/siyola-tabby",
+  telephone: "+966560903335",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "الرياض",
+    addressRegion: "منطقة الرياض",
+    addressCountry: "SA",
+  },
+  areaServed: ["الرياض", "جدة", "الدمام", "المملكة العربية السعودية"],
+  serviceType: ["سيولة تابي", "كاش تابي", "تسييل تابي"],
+  priceRange: "10% (+ 100 ر.س للمبالغ أقل من 4,000 ر.س)",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+    opens: "09:00",
+    closes: "22:00",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.7",
+    reviewCount: "27",
+  },
+}
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function SiyolaTabbyPage() {
   return (
@@ -838,6 +869,10 @@ export default function SiyolaTabbyPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
     </div>
   )

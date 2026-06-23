@@ -141,6 +141,39 @@ const breadcrumbSchema = {
   ],
 }
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://liilsol.com/cash-tamara#business",
+  name: "مطر — كاش تمارا",
+  description:
+    "خدمة تحويل رصيد تمارا إلى كاش في حسابك البنكي خلال ساعة من دفع الدفعة الأولى عبر نظام شراكة واضح.",
+  url: "https://liilsol.com/cash-tamara",
+  telephone: "+966560903335",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "الرياض",
+    addressRegion: "منطقة الرياض",
+    addressCountry: "SA",
+  },
+  areaServed: ["الرياض", "جدة", "الدمام", "المملكة العربية السعودية"],
+  serviceType: ["كاش تمارا", "سيولة تمارا", "تسييل تمارا"],
+  priceRange: "10% (+ 100 ر.س للمبالغ أقل من 4,000 ر.س)",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+    opens: "09:00",
+    closes: "22:00",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.7",
+    reviewCount: "27",
+    bestRating: "5",
+    worstRating: "1",
+  },
+}
+
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
@@ -164,6 +197,10 @@ export default function CashTamaraPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
       />
 
       <div className="min-h-screen flex flex-col bg-background" dir="rtl">
