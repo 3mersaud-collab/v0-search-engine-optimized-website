@@ -1,4 +1,5 @@
 "use client"
+import { WhatsAppLink } from "@/components/whatsapp-link"
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { CloudRain, Send, X, User, Loader2, MessageCircle, RotateCcw } from "lucide-react"
@@ -219,10 +220,10 @@ export function ChatFab() {
 
           {/* Quick Links */}
           <div className="flex items-center justify-center gap-3 px-3 py-2 border-t border-border/50 bg-secondary/30 shrink-0">
-            <a href="https://wa.me/966560903335" target="_blank" rel="noopener noreferrer"
+            <WhatsAppLink href="https://wa.me/966560903335"
               className="text-[10px] text-[#25D366] hover:underline flex items-center gap-1">
               <MessageCircle className="w-2.5 h-2.5" /> واتساب
-            </a>
+            </WhatsAppLink>
             <span className="text-border">|</span>
             <Link href="/#calculator" className="text-[10px] text-primary hover:underline">حاسبة السيولة</Link>
           </div>
@@ -253,3 +254,4 @@ export function ChatFab() {
     </>
   )
 }
+
