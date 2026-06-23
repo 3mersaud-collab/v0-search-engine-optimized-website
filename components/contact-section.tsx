@@ -1,4 +1,5 @@
 "use client"
+import { WhatsAppLink } from "@/components/whatsapp-link"
 
 import { Button } from "@/components/ui/button"
 import { Phone, MessageCircle, Mail, MapPin, Instagram, ArrowLeft } from "lucide-react"
@@ -48,8 +49,7 @@ export function ContactSection() {
                   </div>
                 </a>
 
-                <a
-                  href={whatsappUrl}
+                <WhatsAppLink href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-accent/30 hover:shadow-md transition-all group"
@@ -61,7 +61,7 @@ export function ContactSection() {
                     <p className="text-sm text-muted-foreground">واتساب - للسيولة الفورية</p>
                     <p className="font-medium text-foreground">تواصل عبر واتساب الآن</p>
                   </div>
-                </a>
+                </WhatsAppLink>
 
                 <a
                   href="mailto:matar@m6rsa.com"
@@ -113,10 +113,10 @@ export function ContactSection() {
                 className="w-full gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-lg"
                 asChild
               >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <WhatsAppLink href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-5 h-5" />
                   اطلب سيولة عبر واتساب الآن
-                </a>
+                </WhatsAppLink>
               </Button>
             </div>
 
@@ -152,11 +152,11 @@ export function ContactSection() {
                 className="w-full gap-2 bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-lg text-lg py-6"
                 asChild
               >
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <WhatsAppLink href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="w-6 h-6" />
                   ابدأ الطلب الآن — واتساب
                   <ArrowLeft className="w-5 h-5" />
-                </a>
+                </WhatsAppLink>
               </Button>
 
               <p className="text-xs text-center text-muted-foreground">
@@ -169,3 +169,4 @@ export function ContactSection() {
     </section>
   )
 }
+
