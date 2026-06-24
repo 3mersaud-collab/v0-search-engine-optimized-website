@@ -52,6 +52,22 @@ export function FeaturesSection() {
           </p>
         </div>
 
+        {/* Social Proof Stats Bar */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14">
+          {[
+            { value: '+500', label: 'عميل راضي', sub: 'منذ التأسيس' },
+            { value: '4.7★', label: 'تقييم Google', sub: 'من 27 تقييم' },
+            { value: '<1hr', label: 'وقت التحويل', sub: 'مضمون أو نعوض' },
+            { value: '24/7', label: 'دعم واتساب', sub: 'كل يوم بلا انقطاع' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-background rounded-2xl p-5 border border-border text-center">
+              <div className="text-2xl md:text-3xl font-black text-primary mb-1">{stat.value}</div>
+              <div className="text-sm font-semibold text-foreground">{stat.label}</div>
+              <div className="text-xs text-muted-foreground mt-0.5">{stat.sub}</div>
+            </div>
+          ))}
+        </div>
+
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (

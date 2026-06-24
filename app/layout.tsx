@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     icon: '/matar-logo.png',
     apple: '/matar-logo.png',
   },
-  generator: 'v0.app'
+  // لا نذكر generator لتجنب الإشارة لأدوات خارجية
 }
 
 export default function RootLayout({
@@ -101,6 +101,11 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <SeoSchema />
+        {/* Preconnect hints لتحسين FCP/LCP */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://wa.me" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137422209" />
         <script
           dangerouslySetInnerHTML={{

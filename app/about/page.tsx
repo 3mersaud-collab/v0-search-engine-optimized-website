@@ -1,11 +1,24 @@
-"use client"
-
+import type { Metadata } from 'next'
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Shield, Clock, Users, Award, MapPin, Phone, Mail, Star, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import Image from "next/image"
+
+export const metadata: Metadata = {
+  title: 'من نحن | مطر — خدمة سيولة تابي وتمارا في السعودية',
+  description: 'مطر — خدمة سيولة تابي وكاش تمارا في السعودية. ندخل كشركاء في شراء الأجهزة ونتكفل بالدفعة الأولى مقابل نسبة الشراكة، ثم نحول لك السيولة خلال ساعة. +500 عميل راضي في الرياض وجدة والدمام.',
+  keywords: 'مطر سيولة, سيولة تابي, كاش تمارا, من نحن, خدمة سيولة السعودية',
+  alternates: {
+    canonical: 'https://liilsol.com/about',
+  },
+  openGraph: {
+    title: 'من نحن | مطر — خدمة سيولة تابي وتمارا',
+    description: 'مطر — خدمة سيولة تابي وكاش تمارا في السعودية. +500 عميل راضي.',
+    url: 'https://liilsol.com/about',
+  },
+}
 
 export default function AboutPage() {
   return (

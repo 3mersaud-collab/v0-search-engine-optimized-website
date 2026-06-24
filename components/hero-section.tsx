@@ -35,8 +35,8 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground leading-tight mb-6 text-balance">
-              سيولة تابي وسلفة تمارا |{" "}
-              <span className="text-primary">كاش فوري عبر تقسيط جوالات الى كاش</span>
+              سيولة تابي وكاش تمارا{" "}
+              <span className="text-primary">— كاش فوري في حسابك خلال ساعة</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
@@ -66,18 +66,22 @@ export function HeroSection() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-muted-foreground">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <Shield className="w-5 h-5 text-accent" />
                 <span>معاملات آمنة 100%</span>
               </div>
               <div className="flex items-center gap-2">
                 <Zap className="w-5 h-5 text-accent" />
-                <span>سيولة فورية</span>
+                <span>تحويل خلال ساعة</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="w-5 h-5 text-accent" />
-                <span>تحويل خلال ساعة</span>
+                <span>عمل متواصل 24/7</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                <span>+500 عميل راضي</span>
               </div>
             </div>
           </div>
