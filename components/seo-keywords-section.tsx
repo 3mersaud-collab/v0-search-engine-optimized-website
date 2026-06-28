@@ -23,7 +23,7 @@ const keywords = [
 const stats = [
   { icon: Clock, value: "ساعة", label: "وقت التحويل" },
   { icon: Shield, value: "4.7", label: "تقييم Google" },
-  { icon: Banknote, value: "100K+", label: "ريال تم تحويلها" },
+  { icon: Banknote, value: "+2M", label: "ريال تم تحويلها" },
 ]
 
 export function SeoKeywordsSection() {

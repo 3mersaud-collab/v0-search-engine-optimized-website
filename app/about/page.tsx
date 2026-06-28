@@ -72,7 +72,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { number: "500+", label: "عميل سعيد" },
-              { number: "100K+", label: "ريال تم تحويلها" },
+              { number: "+2M", label: "ريال تم تحويلها" },
               { number: "2", label: "ساعة للتنفيذ" },
               { number: "4.7", label: "تقييم Google" },
             ].map((stat, index) => (
