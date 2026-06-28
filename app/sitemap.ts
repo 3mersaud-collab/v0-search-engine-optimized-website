@@ -15,6 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'كيف-احول-رصيد-تابي-الى-كاش',
     'سيولة-تابي-بدون-تحويل-راتب',
     'كم-عمولة-تسييل-تابي-وتمارا',
+    'bnpl-saudi-2026',
+    'siyola-madfu-guide',
+    'siyola-riyadh-jeddah',
+    'siyola-imkan-guide',
+    'siyola-kwara-guide',
+    'siyola-mora-guide',
+    'all-bnpl-apps-siyola',
   ]
 
   const staticPages: MetadataRoute.Sitemap = [

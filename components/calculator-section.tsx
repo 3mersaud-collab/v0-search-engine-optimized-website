@@ -73,10 +73,10 @@ export function CalculatorSection() {
               حاسبة السيولة
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-              احسب كاش تابي وتمارا الذي ستستلمه
+              احسب سيولتك من جميع تطبيقات التقسيط
             </h2>
             <p className="text-muted-foreground text-lg">
-              أدخل المبلغ واختر التطبيق لمعرفة السيولة النهائية
+              تابي • تمارا • مدفوع • إمكان • كوارا • مورا • وجميع تطبيقات التقسيط
             </p>
           </div>
 

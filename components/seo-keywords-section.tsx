@@ -8,6 +8,10 @@ const keywords = [
   { term: "كاش تابي", description: "تحويل رصيد تابي لنقد في ساعة", popular: true },
   { term: "سيولة تابي", description: "سيولة فورية من تطبيق تابي بأفضل سعر", popular: true },
   { term: "سيولة تمارا", description: "سيولة سريعة من تمارا للحساب البنكي", popular: true },
+  { term: "سيولة مدفوع", description: "تحويل رصيد مدفوع إلى كاش فوري", popular: true },
+  { term: "سيولة إمكان", description: "تسييل رصيد إمكان بأفضل سعر", popular: true },
+  { term: "سيولة كوارا", description: "كاش من رصيد كوارا خلال ساعة", popular: false },
+  { term: "سيولة مورا", description: "تحويل رصيد مورا إلى كاش فوري", popular: false },
   { term: "سلفة تابي", description: "سلفة من رصيدك في تابي خلال ساعة", popular: false },
   { term: "سلفة تمارا", description: "سلفة نقدية من تمارا بأقل رسوم", popular: false },
   { term: "تسييل تابي", description: "تسييل رصيدك بأفضل سعر في السوق", popular: false },
@@ -38,10 +42,10 @@ export function SeoKeywordsSection() {
             خدماتنا الأكثر طلباً
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            كل ما تبحث عنه من سيولة وكاش تابي وتمارا
+            سيولة جميع تطبيقات التقسيط — تابي، تمارا، مدفوع، إمكان، كوارا، مورا
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            نقدم جميع خدمات السيولة والتسييل من تابي وتمارا ومدفوع. اختر الخدمة المناسبة لك واحصل على الكاش خلال ساعة.
+            مطر يسيّل جميع تطبيقات التقسيط في السعودية. اختر تطبيقك واحصل على الكاش خلال ساعة بأفضل سعر في السوق.
           </p>
         </div>
 
@@ -97,7 +101,7 @@ export function SeoKeywordsSection() {
               <p>
                 نحن في <strong className="text-foreground">مطر</strong> نقدم أفضل خدمة 
                 <strong className="text-foreground"> سيولة وسلفة</strong> في السعودية بدخولنا معكم كشركاء في شراء الجهاز عبر 
-                <strong className="text-foreground"> تابي وتمارا ومدفوع</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
+                <strong className="text-foreground"> تابي وتمارا ومدفوع وإمكان وكوارا ومورا وجميع تطبيقات التقسيط</strong>. نتكفل بقيمة الدفعة الأولى مقابل نسبة الشراكة، ثم نقوم ببيع الجهاز وتحويل مبلغ السيولة أو السلفة المطلوب مباشرة لحسابكم البنكي.
               </p>
               <p>
                 لمزيد من التفاصيل عن الاساس الذي نعمل عليه، يرجى زيارة صفحة{" "}
