@@ -43,7 +43,12 @@ const stores = [
     url: "https://www.extra.com/ar-sa/mobiles-tablets/mobiles/c/2-212/facet/?q=%3Arelevance%3AinStock%3Atrue%3Atype%3APRODUCT&text=&pg=1&pageSize=24&sort=relevance",
     description: "سيولة تابي وكاش تمارا من اكسترا"
   },
-  // متجر المنيع موقوف مؤقتاً مع مدفوع
+  {
+    name: "متجر المنيع",
+    apps: ["مدفوع", "تابي", "تمارا"],
+    url: "https://www.almaneea.com/",
+    description: "سيولة مدفوع وتابي وتمارا من المنيع"
+  }
 ]
 
 export function HowItWorks() {
@@ -59,10 +64,10 @@ export function HowItWorks() {
             كيف تحصل على سيولة
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
-            خطوات الحصول على سيولة تابي وكاش تمارا
+            خطوات الحصول على سيولتك من جميع تطبيقات التقسيط
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            عملية سهلة وشفافة للحصول على كاش تابي أو سيولة تمارا بأسرع وقت
+            عملية سهلة وشفافة للحصول على كاش من تابي وتمارا ومدفوع وإمكان وكوارا ومورا بأسرع وقت
           </p>
         </div>
 

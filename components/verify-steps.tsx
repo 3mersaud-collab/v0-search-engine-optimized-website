@@ -147,13 +147,6 @@ export function VerifySteps() {
             </div>
           </div>
 
-          <div className="bg-red-500/10 border-2 border-red-500/30 rounded-2xl p-5 mb-8 flex items-start gap-3 text-sm shadow-sm">
-            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-            <div>
-              <p className="font-bold text-foreground mb-1">تنبيه مهم — مدفوع موقوف مؤقتاً</p>
-              <p className="text-muted-foreground leading-relaxed">حالياً التقديم متاح عبر <strong className="text-foreground">تابي</strong> و<strong className="text-foreground">تمارا</strong> فقط. خدمة <strong className="text-foreground">مدفوع</strong> متوقفة مؤقتاً حتى إشعار آخر.</p>
-            </div>
-          </div>
 
           {/* Tab Selector */}
           <div className="flex gap-3 mb-8 bg-card border border-border rounded-2xl p-2">
