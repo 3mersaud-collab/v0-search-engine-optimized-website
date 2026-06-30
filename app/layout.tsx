@@ -120,10 +120,6 @@ export default function RootLayout({
               document.addEventListener('click', function(e) {
                 var target = e.target.closest('a');
                 if (target && target.href && (target.href.includes('wa.me') || target.href.includes('api.whatsapp.com'))) {
-                  gtag('set', 'user_data', {
-                    "email": "",
-                    "phone_number": ""
-                  });
                   gtag('event', 'conversion', {
                     'send_to': 'AW-18137422209/S9b2CIXoicQcEIGzzMhD'
                   });
