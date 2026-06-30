@@ -113,7 +113,22 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-18137422209');
+              gtag('config', 'AW-18137422209', {
+                'allow_enhanced_conversions': true
+              });
+              // Global WhatsApp Click Listener for Enhanced Conversions
+              document.addEventListener('click', function(e) {
+                var target = e.target.closest('a');
+                if (target && target.href && (target.href.includes('wa.me') || target.href.includes('api.whatsapp.com'))) {
+                  gtag('set', 'user_data', {
+                    "email": "",
+                    "phone_number": ""
+                  });
+                  gtag('event', 'conversion', {
+                    'send_to': 'AW-18137422209/S9b2CIXoicQcEIGzzMhD'
+                  });
+                }
+              });
             `,
           }}
         />
