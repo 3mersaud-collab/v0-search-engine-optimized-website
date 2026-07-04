@@ -7,7 +7,7 @@ export function SeoSchema() {
     "alternateName": ["مطر", "سحابة غيث ماحسبت حسابها", "مطر - سيولة تابي وكاش تمارا"],
     "description": "خدمة سيولة تابي وكاش تمارا في السعودية عبر نظام شراكة واضح. ندخل مع العميل في شراء الجهاز عبر تابي أو تمارا أو مدفوع، ثم نبيع الجهاز ونحوّل الصافي إلى الحساب البنكي.",
     "url": "https://liilsol.com",
-    "telephone": "+966560903335",
+    "telephone": "+966575506660",
     "email": "matar@m6rsa.com",
     "image": "https://liilsol.com/og-image.jpg",
     "logo": "https://liilsol.com/logo.jpg",

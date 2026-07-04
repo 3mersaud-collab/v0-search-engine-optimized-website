@@ -149,7 +149,7 @@ const localBusinessSchema = {
   description:
     "خدمة تحويل رصيد تمارا إلى كاش في حسابك البنكي خلال ساعة من دفع الدفعة الأولى عبر نظام شراكة واضح.",
   url: "https://liilsol.com/cash-tamara",
-  telephone: "+966560903335",
+  telephone: "+966575506660",
   address: {
     "@type": "PostalAddress",
     addressLocality: "الرياض",
@@ -177,7 +177,7 @@ const localBusinessSchema = {
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
-const WA_LINK = "https://wa.me/966560903335"
+const WA_LINK = "https://wa.me/966575506660"
 
 const WHATSAPP_MSG = encodeURIComponent(
   "السلام عليكم، أريد الاستفسار عن كاش تمارا 🌧️"
@@ -872,7 +872,7 @@ export default function CashTamaraPage() {
                   </Button>
                 </Link>
                 <p className="text-muted-foreground text-sm mt-4">
-                  رقم الواتساب: 966560903335
+                  رقم الواتساب: 966575506660
                 </p>
               </div>
             </div>

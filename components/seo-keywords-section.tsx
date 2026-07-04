@@ -109,7 +109,7 @@ export function SeoKeywordsSection() {
               </p>
               <p>
                 موقعنا في <strong className="text-foreground">الرياض - حي المرسلات</strong>، ونخدم جميع مناطق المملكة.
-                تواصل معنا على <strong className="text-foreground">0560903335</strong> للحصول على أفضل خدمة سيولة وسلفة.
+                تواصل معنا على <strong className="text-foreground">05755 06660</strong> للحصول على أفضل خدمة سيولة وسلفة.
               </p>
             </div>
           </div>
