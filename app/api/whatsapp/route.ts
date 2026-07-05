@@ -307,7 +307,7 @@ async function saveMessage(
   return msgs
 }
 
-const ADMIN_PHONE = "966568936966"
+const ADMIN_PHONE = "966573777091"
 
 async function notifyAdmin(type: string, title: string, body: string, refType: string, refId: string) {
   const supabase = getSupabase()

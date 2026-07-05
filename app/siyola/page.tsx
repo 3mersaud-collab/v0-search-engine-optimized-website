@@ -48,7 +48,7 @@ export default function SiyolaPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-primary/20" asChild>
-                  <a href="https://wa.me/966568936966">
+                  <a href="https://wa.me/966573777091">
                     اطلب سيولة الآن
                     <ArrowLeft className="w-5 h-5" />
                   </a>
@@ -237,8 +237,8 @@ export default function SiyolaPage() {
               تواصل معنا الآن واحصل على كاش في حسابك خلال ساعة من دفع الدفعة الأولى
             </p>
             <Button size="lg" className="gap-2 shadow-lg shadow-primary/20" asChild>
-              <a href="https://wa.me/966568936966">
-                واتساب: 0568936966
+              <a href="https://wa.me/966573777091">
+                واتساب: 0573777091
                 <ArrowLeft className="w-5 h-5" />
               </a>
             </Button>
