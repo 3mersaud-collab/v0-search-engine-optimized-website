@@ -167,10 +167,10 @@ export default function PrivacyPage() {
                   <li>
                     <strong>واتساب:</strong>{" "}
                     <a
-                      href="https://wa.me/966560903335"
+                      href="https://wa.me/966568936966"
                       className="text-primary hover:underline"
                     >
-                      0560903335
+                      0568936966
                     </a>
                   </li>
                 </ul>
