@@ -177,7 +177,7 @@ const localBusinessSchema = {
 /* ─────────────────────────────────────────────
    Constants
 ───────────────────────────────────────────── */
-const WA_LINK = "https://wa.me/966568936966"
+const WA_LINK = "https://wa.me/966550817121"
 
 const WHATSAPP_MSG = encodeURIComponent(
   "السلام عليكم، أريد الاستفسار عن كاش تمارا 🌧️"

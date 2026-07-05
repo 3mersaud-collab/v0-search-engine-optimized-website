@@ -209,7 +209,7 @@ export default function SiyolaJeddahPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Button size="lg" className="gap-2 text-lg shadow-lg shadow-accent/20" asChild>
                   <a
-                    href="https://wa.me/966568936966?text=أريد سيولة تابي أو كاش تمارا في جدة"
+                    href="https://wa.me/966550817121?text=أريد سيولة تابي أو كاش تمارا في جدة"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -423,7 +423,7 @@ export default function SiyolaJeddahPage() {
                 asChild
               >
                 <a
-                  href="https://wa.me/966568936966?text=أريد سيولة تابي أو كاش تمارا في جدة"
+                  href="https://wa.me/966550817121?text=أريد سيولة تابي أو كاش تمارا في جدة"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

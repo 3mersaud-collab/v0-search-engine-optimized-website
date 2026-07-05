@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 
 const WHATSAPP_API = "https://graph.facebook.com/v22.0"
-const ADMIN_PHONE = "966568936966"
+const ADMIN_PHONE = "966550817121"
 
 async function sendAdminWhatsApp(message: string) {
   const token = process.env.WHATSAPP_ACCESS_TOKEN
