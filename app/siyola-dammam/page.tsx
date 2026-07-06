@@ -33,7 +33,7 @@ const jsonLd = {
       description:
         "خدمة سيولة تابي الدمام وكاش تمارا الدمام. ندخل معك كشركاء في شراء الأجهزة عبر تابي وتمارا ونحوّل لك الصافي خلال ساعة.",
       url: "https://liilsol.com/siyola-dammam",
-      telephone: "+966568936966",
+      telephone: "+966550817121",
       address: {
         "@type": "PostalAddress",
         streetAddress: "حي المرسلات",

@@ -162,7 +162,7 @@ export function HeroSection() {
             "name": "مطر - سحابة غيث ماحسبت حسابها",
             "description": "مطر - سحابة غيث ماحسبت حسابها. ندخل كشركاء معكم في شراء الجهاز ونتكفل بالدفعة الاولى مقابل نسبة الشراكة ثم نبيعه ونحول لكم السيولة. كاش تابي، كاش تمارا، سلفة فورية.",
             "url": "https://liilsol.com",
-            "telephone": "+966568936966",
+            "telephone": "+966550817121",
             "email": "matar@m6rsa.com",
             "address": {
               "@type": "PostalAddress",

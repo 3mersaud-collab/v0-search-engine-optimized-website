@@ -145,7 +145,7 @@ const serviceSchema = {
     "@type": "Organization",
     name: "مطر",
     url: "https://liilsol.com",
-    telephone: "+966568936966",
+    telephone: "+966550817121",
   },
   areaServed: {
     "@type": "Country",
@@ -167,7 +167,7 @@ const localBusinessSchema = {
   description:
     "خدمة تحويل رصيد تابي إلى كاش في حسابك البنكي خلال ساعة من دفع الدفعة الأولى عبر نظام شراكة واضح.",
   url: "https://liilsol.com/siyola-tabby",
-  telephone: "+966568936966",
+  telephone: "+966550817121",
   address: {
     "@type": "PostalAddress",
     addressLocality: "الرياض",

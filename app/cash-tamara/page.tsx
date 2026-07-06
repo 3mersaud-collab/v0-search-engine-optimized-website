@@ -149,7 +149,7 @@ const localBusinessSchema = {
   description:
     "خدمة تحويل رصيد تمارا إلى كاش في حسابك البنكي خلال ساعة من دفع الدفعة الأولى عبر نظام شراكة واضح.",
   url: "https://liilsol.com/cash-tamara",
-  telephone: "+966568936966",
+  telephone: "+966550817121",
   address: {
     "@type": "PostalAddress",
     addressLocality: "الرياض",
@@ -872,7 +872,7 @@ export default function CashTamaraPage() {
                   </Button>
                 </Link>
                 <p className="text-muted-foreground text-sm mt-4">
-                  رقم الواتساب: 966568936966
+                  رقم الواتساب: 966550817121
                 </p>
               </div>
             </div>

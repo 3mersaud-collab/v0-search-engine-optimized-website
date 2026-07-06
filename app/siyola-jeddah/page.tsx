@@ -33,7 +33,7 @@ const jsonLd = {
       description:
         "خدمة سيولة تابي جدة وكاش تمارا جدة. ندخل معك كشركاء في شراء الأجهزة عبر تابي وتمارا ونحوّل لك الصافي خلال ساعة.",
       url: "https://liilsol.com/siyola-jeddah",
-      telephone: "+966568936966",
+      telephone: "+966550817121",
       address: {
         "@type": "PostalAddress",
         streetAddress: "حي المرسلات",
