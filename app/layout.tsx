@@ -100,6 +100,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
+        <meta name="facebook-domain-verification" content="6dozdu6q4szy44w64qplfw0mnhexao" />
         <SeoSchema />
         {/* Preconnect hints لتحسين FCP/LCP */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
