@@ -196,7 +196,7 @@ export default function TermsPage() {
                   <li>
                     <strong>واتساب:</strong>{" "}
                     <a
-                      href="https://wa.me/966568936966"
+                      href="https://wa.me/966544610485"
                       className="text-primary hover:underline"
                     >
                       تواصل معنا

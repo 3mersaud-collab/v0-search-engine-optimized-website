@@ -16,7 +16,7 @@ import {
   XCircle,
 } from "lucide-react"
 
-const WHATSAPP_NUMBER = "966568936966"
+const WHATSAPP_NUMBER = "966544610485"
 
 type Tab = "tabby" | "tamara"
 
