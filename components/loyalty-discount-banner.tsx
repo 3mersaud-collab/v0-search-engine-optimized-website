@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export function LoyaltyDiscountBanner() {
   const whatsappMsg = encodeURIComponent("السلام عليكم، أبي أستفسر عن خصم العملاء الدائمين 🎉")
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966568037324&text=${whatsappMsg}&type=phone_number&app_absent=0`
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966545263810&text=${whatsappMsg}&type=phone_number&app_absent=0`
 
   return (
     <section className="relative py-12 md:py-16 overflow-hidden">

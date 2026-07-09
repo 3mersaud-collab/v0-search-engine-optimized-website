@@ -41,7 +41,7 @@ export default function NotFound() {
             أو تواصل معنا مباشرة:
           </p>
           <Button asChild variant="secondary" className="gap-2">
-            <a href="https://wa.me/966568037324" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/966545263810" target="_blank" rel="noopener noreferrer">
               واتساب: تواصل معنا
             </a>
           </Button>

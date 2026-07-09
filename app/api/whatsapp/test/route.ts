@@ -28,7 +28,7 @@ export async function GET() {
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({
           messaging_product: "whatsapp",
-          to: "966568037324",
+          to: "966545263810",
           type: "text",
           text: { body: "هلا والله! مطر شغال الحين على الواتساب" },
         }),
