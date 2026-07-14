@@ -109,7 +109,7 @@ export function SeoKeywordsSection() {
               </p>
               <p>
                 موقعنا في <strong className="text-foreground">الرياض - حي المرسلات</strong>، ونخدم جميع مناطق المملكة.
-                تواصل معنا على <a href="https://wa.me/966557002147" className="text-foreground font-bold hover:underline" target="_blank" rel="noopener noreferrer">واتساب</a> للحصول على أفضل خدمة سيولة وسلفة.
+                تواصل معنا على <a href="https://wa.me/966503367637" className="text-foreground font-bold hover:underline" target="_blank" rel="noopener noreferrer">واتساب</a> للحصول على أفضل خدمة سيولة وسلفة.
               </p>
             </div>
           </div>
