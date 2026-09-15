@@ -107,25 +107,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://wa.me" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18137422209" />
+        {/* Google tag (gtag.js) — Google Ads account tag */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18423806059" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-18137422209', {
-                'allow_enhanced_conversions': true
-              });
-              // Global WhatsApp Click Listener for Enhanced Conversions
-              document.addEventListener('click', function(e) {
-                var target = e.target.closest('a');
-                if (target && target.href && (target.href.includes('wa.me') || target.href.includes('api.whatsapp.com'))) {
-                  gtag('event', 'conversion', {
-                    'send_to': 'AW-18137422209/S9b2CIXoicQcEIGzzMhD'
-                  });
-                }
-              });
+              gtag('config', 'AW-18423806059');
             `,
           }}
         />
