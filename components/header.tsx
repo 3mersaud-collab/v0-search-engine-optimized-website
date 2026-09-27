@@ -78,7 +78,7 @@ export function Header() {
               <Link href="/reviews" className="text-muted-foreground hover:text-foreground transition-colors py-3 px-2 rounded-lg hover:bg-muted/50" onClick={() => setIsMenuOpen(false)}>التقييمات</Link>
               <Link href="/articles" className="text-muted-foreground hover:text-foreground transition-colors py-3 px-2 rounded-lg hover:bg-muted/50" onClick={() => setIsMenuOpen(false)}>المقالات</Link>
               <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors py-3 px-2 rounded-lg hover:bg-muted/50" onClick={() => setIsMenuOpen(false)}>من نحن</Link>
-              <Link href="/affiliate" className="text-accent font-medium hover:text-accent/80 transition-colors py-3 px-2 rounded-lg hover:bg-accent/5" onClick={() => setIsMenuOpen(false)}>المسوقين بالعمولة</Link>
+              <Link href="/affiliate" className="text-accent font-medium hover:text-accent/80 transition-colors py-3 px-2 rounded-lg hover:bg-accent/5" onClick={() => setIsMenuOpen(false)}>انضم إلى فريقنا</Link>
               <div className="flex items-center justify-between pt-3 mt-2 border-t border-border px-2">
                 <span className="text-muted-foreground text-sm">الوضع الليلي</span>
                 <ThemeToggle />

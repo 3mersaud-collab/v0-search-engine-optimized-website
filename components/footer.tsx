@@ -23,7 +23,7 @@ export function Footer() {
                   مطر
                 </span>
                 <span className="text-[9px] text-background/50 font-light leading-none tracking-wide">سحابة غيث ماحسبت حسابها</span>
-                <span className="text-[7px] text-background/30 font-light leading-none mt-0.5 tracking-widest">الرياض • جدة • الدمام</span>
+                <span className="text-[10px] text-background/70 font-light leading-none mt-1 tracking-wide">الرياض • جدة • الدمام</span>
               </div>
             </Link>
             <p className="text-background/70 leading-relaxed max-w-md mb-6">
@@ -53,7 +53,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold mb-4">روابط مهمة</h4>
+            <h2 className="font-bold mb-4">روابط مهمة</h2>
             <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-tabby" className="text-background/70 hover:text-background transition-colors">سيولة تابي</Link>
               <Link href="/cash-tamara" className="text-background/70 hover:text-background transition-colors">كاش تمارا</Link>
@@ -61,19 +61,20 @@ export function Footer() {
               <Link href="/#calculator" className="text-background/70 hover:text-background transition-colors">حاسبة السيولة</Link>
               <Link href="/reviews" className="text-background/70 hover:text-background transition-colors">آراء العملاء</Link>
               <Link href="/about" className="text-background/70 hover:text-background transition-colors">من نحن</Link>
+              <Link href="/affiliate" className="text-background/70 hover:text-background transition-colors">انضم إلى فريقنا</Link>
             </nav>
           </div>
 
           {/* Cities + Articles */}
           <div>
-            <h4 className="font-bold mb-3">صفحات متخصصة</h4>
+            <h2 className="font-bold mb-3">صفحات متخصصة</h2>
             <nav className="flex flex-col gap-2 text-sm mb-5">
               <Link href="/tasyeel-tabby" className="text-background/70 hover:text-background transition-colors">تسييل تابي</Link>
               <Link href="/takyeesh-tabby" className="text-background/70 hover:text-background transition-colors">تكييش تابي</Link>
               <Link href="/siyola-without-bank" className="text-background/70 hover:text-background transition-colors">سيولة بدون بنك</Link>
               <Link href="/siyola-without-salary" className="text-background/70 hover:text-background transition-colors">سيولة بدون تحويل راتب</Link>
             </nav>
-            <h4 className="font-bold mb-3">السيولة بالمدينة</h4>
+            <h2 className="font-bold mb-3">السيولة بالمدينة</h2>
             <nav className="flex flex-col gap-2 text-sm">
               <Link href="/siyola-riyadh" className="text-background/70 hover:text-background transition-colors">سيولة تابي الرياض</Link>
               <Link href="/siyola-jeddah" className="text-background/70 hover:text-background transition-colors">سيولة تابي جدة</Link>

@@ -48,6 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/articles`,                lastModified: now, changeFrequency: 'weekly',  priority: 0.80 },
     { url: `${baseUrl}/about`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.70 },
     { url: `${baseUrl}/referral`,                lastModified: now, changeFrequency: 'monthly', priority: 0.65 },
+    { url: `${baseUrl}/affiliate`,               lastModified: now, changeFrequency: 'monthly', priority: 0.60 },
     { url: `${baseUrl}/add-review`,              lastModified: now, changeFrequency: 'monthly', priority: 0.55 },
     { url: `${baseUrl}/shariah`,                 lastModified: now, changeFrequency: 'monthly', priority: 0.50 },
     { url: `${baseUrl}/track-order`,             lastModified: now, changeFrequency: 'monthly', priority: 0.45 },
