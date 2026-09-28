@@ -36,18 +36,36 @@ export function ContactSection() {
               <h3 className="text-2xl font-bold text-foreground mb-6">معلومات التواصل - مطر</h3>
 
               <div className="space-y-5 mb-8">
-                <a
-                  href="tel:+966503047304"
-                  className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">اتصل بنا</p>
-                    <p className="font-medium text-foreground" dir="ltr">+966 56 090 3335</p>
-                  </div>
-                </a>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <WhatsAppLink
+                    href="https://wa.me/966503047304"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
+                  >
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">واتساب</p>
+                      <p className="font-medium text-foreground" dir="ltr">0503047304</p>
+                    </div>
+                  </WhatsAppLink>
+                  <WhatsAppLink
+                    href="https://wa.me/966590360039"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
+                  >
+                    <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                      <Phone className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground">واتساب</p>
+                      <p className="font-medium text-foreground" dir="ltr">0590360039</p>
+                    </div>
+                  </WhatsAppLink>
+                </div>
 
                 <WhatsAppLink href={whatsappUrl}
                   target="_blank"
@@ -169,4 +187,3 @@ export function ContactSection() {
     </section>
   )
 }
-

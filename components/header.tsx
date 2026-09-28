@@ -42,18 +42,19 @@ export function Header() {
             </div>
           </Link>
 
-          {/* Desktop Navigation — 6 عناصر أساسية فقط */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-5">
             <Link href="/siyola-tabby" className="text-muted-foreground hover:text-primary transition-colors font-medium">سيولة تابي</Link>
             <Link href="/cash-tamara" className="text-muted-foreground hover:text-accent transition-colors font-medium">كاش تمارا</Link>
             <Link href="/#calculator" className="text-muted-foreground hover:text-foreground transition-colors">الحاسبة</Link>
             <Link href="/check-limit" className="text-muted-foreground hover:text-foreground transition-colors">افحص واطلب</Link>
             <Link href="/reviews" className="text-muted-foreground hover:text-foreground transition-colors">التقييمات</Link>
             <Link href="/articles" className="text-muted-foreground hover:text-foreground transition-colors">المقالات</Link>
+            <Link href="/affiliate" className="text-accent font-medium hover:text-accent/80 transition-colors whitespace-nowrap">انضم إلى فريقنا</Link>
           </nav>
 
           {/* CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
             <Button size="sm" asChild>
               <a href="https://wa.me/966503047304">ابدأ الآن</a>
@@ -61,7 +62,7 @@ export function Header() {
           </div>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 text-foreground"
+          <button className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="القائمة">
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -69,7 +70,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-border">
+          <nav className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-1">
               <Link href="/siyola-tabby" className="text-primary font-medium hover:text-primary/80 transition-colors py-3 px-2 rounded-lg hover:bg-primary/5" onClick={() => setIsMenuOpen(false)}>سيولة تابي</Link>
               <Link href="/cash-tamara" className="text-muted-foreground hover:text-foreground transition-colors py-3 px-2 rounded-lg hover:bg-muted/50" onClick={() => setIsMenuOpen(false)}>كاش تمارا</Link>
