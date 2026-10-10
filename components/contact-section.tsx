@@ -6,7 +6,7 @@ import { Phone, MessageCircle, Mail, MapPin, Instagram, ArrowLeft } from "lucide
 
 export function ContactSection() {
   const whatsappMsg = encodeURIComponent("السلام عليكم، أبي أستفسر عن السيولة 🙏")
-  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966503047304&text=${whatsappMsg}&type=phone_number&app_absent=0`
+  const whatsappUrl = `https://api.whatsapp.com/send/?phone=966510706707&text=${whatsappMsg}&type=phone_number&app_absent=0`
 
   return (
     <section id="contact" className="relative py-16 md:py-24 overflow-hidden">
@@ -38,7 +38,7 @@ export function ContactSection() {
               <div className="space-y-5 mb-8">
                 <div className="grid gap-3 sm:grid-cols-2">
                   <WhatsAppLink
-                    href="https://wa.me/966503047304"
+                    href="https://wa.me/966510706707"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
@@ -48,11 +48,11 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">واتساب</p>
-                      <p className="font-medium text-foreground" dir="ltr">0503047304</p>
+                      <p className="font-medium text-foreground" dir="ltr">0510706707</p>
                     </div>
                   </WhatsAppLink>
                   <WhatsAppLink
-                    href="https://wa.me/966590360039"
+                    href="https://wa.me/966510706707"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all group"
@@ -62,7 +62,7 @@ export function ContactSection() {
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground">واتساب</p>
-                      <p className="font-medium text-foreground" dir="ltr">0590360039</p>
+                      <p className="font-medium text-foreground" dir="ltr">0510706707</p>
                     </div>
                   </WhatsAppLink>
                 </div>

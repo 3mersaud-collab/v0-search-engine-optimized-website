@@ -187,7 +187,7 @@ export default function TrackOrderPage() {
                       <Link href="/order">طلب سيولة جديد</Link>
                     </Button>
                     <Button variant="outline" asChild>
-                      <a href="https://wa.me/966503047304" target="_blank" rel="noopener noreferrer">
+                      <a href="https://wa.me/966510706707" target="_blank" rel="noopener noreferrer">
                         تواصل معنا
                       </a>
                     </Button>
@@ -209,7 +209,7 @@ export default function TrackOrderPage() {
             تواصل معنا مباشرة على واتساب للاستفسار عن طلبك
           </p>
           <Button size="lg" variant="outline" asChild>
-            <a href="https://wa.me/966503047304" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/966510706707" target="_blank" rel="noopener noreferrer">
               <Phone className="w-5 h-5 ml-2" />
               تواصل عبر واتساب
             </a>
