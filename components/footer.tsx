@@ -32,13 +32,13 @@ export function Footer() {
               السيولة مباشرة لحسابكم البنكي خلال ساعة. خدمة موثوقة في الرياض وجدة والدمام.
             </p>
             <div className="space-y-2 text-sm">
-              <a href="https://wa.me/966510706707" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب على الرقم 0510706707" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="https://wa.me/966590360039" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب على الرقم 0590360039" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">0510706707</span>
+                <span dir="ltr">0590360039</span>
               </a>
-              <a href="https://wa.me/966510706707" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب على الرقم 0510706707" className="flex items-center gap-2 text-background/70 hover:text-background">
+              <a href="https://wa.me/966503047304" target="_blank" rel="noopener noreferrer" aria-label="تواصل عبر واتساب على الرقم 0503047304" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Phone className="w-4 h-4" />
-                <span dir="ltr">0510706707</span>
+                <span dir="ltr">0503047304</span>
               </a>
               <a href="mailto:matar@m6rsa.com" className="flex items-center gap-2 text-background/70 hover:text-background">
                 <Mail className="w-4 h-4" />

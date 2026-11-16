@@ -57,7 +57,7 @@ export function Header() {
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
             <Button size="sm" asChild>
-              <a href="https://wa.me/966510706707">ابدأ الآن</a>
+              <a href="https://wa.me/966590360039">ابدأ الآن</a>
             </Button>
           </div>
 
@@ -86,7 +86,7 @@ export function Header() {
               </div>
               <div className="pt-2">
                 <Button className="w-full" asChild>
-                  <a href="https://wa.me/966510706707">ابدأ الآن عبر واتساب</a>
+                  <a href="https://wa.me/966590360039">ابدأ الآن عبر واتساب</a>
                 </Button>
               </div>
             </div>
